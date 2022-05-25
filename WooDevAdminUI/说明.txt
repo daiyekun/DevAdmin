@@ -1,0 +1,12 @@
+此前端框架有流程设计
+
+获取项目代码
+git clone https://github.com/anncwb/vue-vben-admin.git
+安装依赖
+cd vue-vben-admin
+
+pnpm install
+跑
+pnpm serve
+建造
+pnpm build
