@@ -1,0 +1,11 @@
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\bin\Debug\net6.0\WooDev.IServices.deps.json
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\bin\Debug\net6.0\WooDev.IServices.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\bin\Debug\net6.0\ref\WooDev.IServices.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\bin\Debug\net6.0\WooDev.IServices.pdb
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\obj\Debug\net6.0\WooDev.IServices.GeneratedMSBuildEditorConfig.editorconfig
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\obj\Debug\net6.0\WooDev.IServices.AssemblyInfoInputs.cache
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\obj\Debug\net6.0\WooDev.IServices.AssemblyInfo.cs
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\obj\Debug\net6.0\WooDev.IServices.csproj.CoreCompileInputs.cache
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\obj\Debug\net6.0\WooDev.IServices.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\obj\Debug\net6.0\ref\WooDev.IServices.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\obj\Debug\net6.0\WooDev.IServices.pdb
