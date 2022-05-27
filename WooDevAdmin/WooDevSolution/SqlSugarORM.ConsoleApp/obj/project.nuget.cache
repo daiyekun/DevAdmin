@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RjEc9XMIfNK52EKgWpgqYxVTHYVjhnLEHjBIH/boBYv8lvXYWW/j7QGgENQuy/Kc//fvmuhurcqmLEKOjqExrQ==",
+  "dgSpecHash": "C8I4U1N+uutxo8fqvYvIwuM2zDGeGYkmALyLe2+DyNu7VHHDxRnOZeGOc1QUH00GrPL6XY+MtDN2cIqbLn0UeQ==",
   "success": true,
-  "projectFilePath": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.Model\\WooDev.Model.csproj",
+  "projectFilePath": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\SqlSugarORM.ConsoleApp\\SqlSugarORM.ConsoleApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\google.protobuf\\3.19.4\\google.protobuf.3.19.4.nupkg.sha512",

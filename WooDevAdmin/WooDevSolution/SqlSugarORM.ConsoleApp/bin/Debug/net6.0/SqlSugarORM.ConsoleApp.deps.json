@@ -6,12 +6,12 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "WooDev.Model/1.0.0": {
+      "SqlSugarORM.ConsoleApp/1.0.0": {
         "dependencies": {
           "SqlSugarCore": "5.0.8.4"
         },
         "runtime": {
-          "WooDev.Model.dll": {}
+          "SqlSugarORM.ConsoleApp.dll": {}
         }
       },
       "BouncyCastle.NetCore/1.8.5": {
@@ -1374,7 +1374,7 @@
     }
   },
   "libraries": {
-    "WooDev.Model/1.0.0": {
+    "SqlSugarORM.ConsoleApp/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.Model\\WooDev.Model.csproj": {}
+    "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\SqlSugarORM.ConsoleApp\\SqlSugarORM.ConsoleApp.csproj": {}
   },
   "projects": {
-    "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.Model\\WooDev.Model.csproj": {
+    "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\SqlSugarORM.ConsoleApp\\SqlSugarORM.ConsoleApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.Model\\WooDev.Model.csproj",
-        "projectName": "WooDev.Model",
-        "projectPath": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.Model\\WooDev.Model.csproj",
+        "projectUniqueName": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\SqlSugarORM.ConsoleApp\\SqlSugarORM.ConsoleApp.csproj",
+        "projectName": "SqlSugarORM.ConsoleApp",
+        "projectPath": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\SqlSugarORM.ConsoleApp\\SqlSugarORM.ConsoleApp.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.Model\\obj\\",
+        "outputPath": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\SqlSugarORM.ConsoleApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",

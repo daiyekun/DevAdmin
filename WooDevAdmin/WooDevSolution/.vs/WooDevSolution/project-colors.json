@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "7b679a0f-622b-4340-85cc-87be265df607": {
+      "ProjectGuid": "7b679a0f-622b-4340-85cc-87be265df607",
+      "DisplayName": "WooDev.Model",
+      "ColorIndex": 0
+    },
+    "5efad6be-e665-464e-887b-9b7f4d4b41f1": {
+      "ProjectGuid": "5efad6be-e665-464e-887b-9b7f4d4b41f1",
+      "DisplayName": "WooDev.ViewModel",
+      "ColorIndex": 1
+    },
+    "ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07": {
+      "ProjectGuid": "ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07",
+      "DisplayName": "WooDev.Services",
+      "ColorIndex": 2
+    },
+    "4b389afa-e612-426f-9826-0cea5ad45833": {
+      "ProjectGuid": "4b389afa-e612-426f-9826-0cea5ad45833",
+      "DisplayName": "WooDev.IServices",
+      "ColorIndex": 3
+    },
+    "fbed4e9c-85fb-44ff-ba44-c1e532aeed88": {
+      "ProjectGuid": "fbed4e9c-85fb-44ff-ba44-c1e532aeed88",
+      "DisplayName": "WooDev.WebApi",
+      "ColorIndex": 4
+    },
+    "a525b9fd-4cd4-4864-b794-2f1d05a6639e": {
+      "ProjectGuid": "a525b9fd-4cd4-4864-b794-2f1d05a6639e",
+      "DisplayName": "WooDev.Common",
+      "ColorIndex": 5
+    }
+  },
+  "NextColorIndex": 6
+}
