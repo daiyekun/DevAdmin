@@ -10,3 +10,8 @@ E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Services\obj\Debug
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Services\obj\Debug\net6.0\WooDev.Services.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Services\obj\Debug\net6.0\ref\WooDev.Services.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Services\obj\Debug\net6.0\WooDev.Services.pdb
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Services\bin\Debug\net6.0\WooDev.Model.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Services\bin\Debug\net6.0\WooDev.ViewModel.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Services\bin\Debug\net6.0\WooDev.Model.pdb
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Services\bin\Debug\net6.0\WooDev.ViewModel.pdb
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Services\obj\Debug\net6.0\WooDev.Services.csproj.CopyComplete
