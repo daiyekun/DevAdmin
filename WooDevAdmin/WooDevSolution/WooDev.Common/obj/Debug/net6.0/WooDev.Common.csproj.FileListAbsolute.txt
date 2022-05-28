@@ -9,3 +9,4 @@ E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Common\obj\Debug\n
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Common\obj\Debug\net6.0\WooDev.Common.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Common\obj\Debug\net6.0\ref\WooDev.Common.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Common\obj\Debug\net6.0\WooDev.Common.pdb
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Common\obj\Debug\net6.0\WooDev.Common.csproj.AssemblyReference.cache

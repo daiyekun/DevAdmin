@@ -1,5 +1,7 @@
-﻿using log4net;
+﻿using Dev.WooNet.AutoMapper.Extend;
+using log4net;
 using log4net.Config;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -35,6 +37,23 @@ namespace WooDev.WebCommon.ServiceExtend
             services.AddHttpContextAccessor();
             services.AddControllers();
             services.AddEndpointsApiExplorer();
+           
+            #region 跨域
+            services.AddCors(options =>
+            {
+                options.AddPolicy("default", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+            #endregion 跨域
+
+            //关闭模型验证否则会出现状态400：One or more validation errors occurred.
+            services.Configure<ApiBehaviorOptions>(opt => opt.SuppressModelStateInvalidFilter = true);
+            //services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+            services.AddDevMapperFiles();
 
 
         }

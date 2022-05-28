@@ -26,8 +26,6 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "管理系统后台API", Version = "v1" });
 });
-
-
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
