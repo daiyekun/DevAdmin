@@ -16,10 +16,11 @@ namespace WooDev.Services
     public abstract class BaseService<T>
         where T : class, new()
     {
-        protected SqlSugarClient  DbClient { get; private set; }
-        public BaseService(SqlSugarClient sqlSugarClient)
+        protected ISqlSugarClient DbClient;
+        
+        public BaseService(ISqlSugarClient client)
         {
-            this.DbClient = sqlSugarClient;
+            this.DbClient = client;
         }
         /// <summary>
         /// 新增
@@ -75,8 +76,24 @@ namespace WooDev.Services
            return DbClient.Updateable<T>(t).ExecuteCommand();
 
         }
+        /// <summary>
+        /// 查询所有
+        /// </summary>
+        /// <returns></returns>
+        public ISugarQueryable<T> Query()
+        {
+            return DbClient.Queryable<T>();
+        }
+        /// <summary>
+        /// 查询所有并返回集合
+        /// </summary>
+        /// <returns></returns>
+        public List<T> AllList() 
+        {
+            return DbClient.Queryable<T>().ToList();
+        }
 
-       
+
 
     }
 }

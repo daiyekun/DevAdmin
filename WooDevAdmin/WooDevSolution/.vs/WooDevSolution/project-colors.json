@@ -30,7 +30,32 @@
       "ProjectGuid": "a525b9fd-4cd4-4864-b794-2f1d05a6639e",
       "DisplayName": "WooDev.Common",
       "ColorIndex": 5
+    },
+    "f727e671-8273-48ea-a8ee-83e1e941e097": {
+      "ProjectGuid": "f727e671-8273-48ea-a8ee-83e1e941e097",
+      "DisplayName": "SqlSugarORM.ConsoleApp",
+      "ColorIndex": 6
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "杂项文件",
+      "ColorIndex": -1
+    },
+    "44430f06-c2c3-43d8-a973-4859e62fe88e": {
+      "ProjectGuid": "44430f06-c2c3-43d8-a973-4859e62fe88e",
+      "DisplayName": "WooDev.WebCommon",
+      "ColorIndex": 7
+    },
+    "ea234ffb-c7c9-4801-862b-8ed31a9f5176": {
+      "ProjectGuid": "ea234ffb-c7c9-4801-862b-8ed31a9f5176",
+      "DisplayName": "WebApplication1",
+      "ColorIndex": 8
+    },
+    "5cef8af4-4b40-4b22-bb04-b085c34e1868": {
+      "ProjectGuid": "5cef8af4-4b40-4b22-bb04-b085c34e1868",
+      "DisplayName": "WooDev.WebApp",
+      "ColorIndex": 9
     }
   },
-  "NextColorIndex": 6
+  "NextColorIndex": 10
 }

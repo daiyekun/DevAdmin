@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WooDev.Common\WooDev.Common.csproj" />
     <ProjectReference Include="..\WooDev.Model\WooDev.Model.csproj" />
     <ProjectReference Include="..\WooDev.ViewModel\WooDev.ViewModel.csproj" />
   </ItemGroup>

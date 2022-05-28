@@ -29,6 +29,13 @@ namespace WooDev.Model.Models
         public int ID { get; set; }
 
         /// <summary>
+        /// 描    述:父类字段
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int PID { get; set; }
+
+        /// <summary>
         /// 描    述:名称
         /// 默 认 值:
         /// 是否空值:False
@@ -104,6 +111,27 @@ namespace WooDev.Model.Models
         /// 是否空值:False
         /// </summary>
         public int ORDER_NUM { get; set; }
+
+        /// <summary>
+        /// 描    述:描述
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public string REMARK { get; set; }
+
+        /// <summary>
+        /// 描    述:字段1
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public string FILED1 { get; set; }
+
+        /// <summary>
+        /// 描    述:字段2
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public string FILED2 { get; set; }
 
     }
 }

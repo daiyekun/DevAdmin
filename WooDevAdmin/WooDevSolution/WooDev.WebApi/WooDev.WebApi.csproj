@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
-    <PackageReference Include="SqlSugarCore" Version="5.0.8.4" />
+    <PackageReference Include="SqlSugarCore" Version="5.0.8.6" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
@@ -19,6 +19,7 @@
     <ProjectReference Include="..\WooDev.Model\WooDev.Model.csproj" />
     <ProjectReference Include="..\WooDev.Services\WooDev.Services.csproj" />
     <ProjectReference Include="..\WooDev.ViewModel\WooDev.ViewModel.csproj" />
+    <ProjectReference Include="..\WooDev.WebCommon\WooDev.WebCommon.csproj" />
   </ItemGroup>
 
 </Project>

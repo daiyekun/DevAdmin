@@ -6,4 +6,17 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
+    <PackageReference Include="SqlSugarCore" Version="5.0.8.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WooDev.IServices\WooDev.IServices.csproj" />
+    <ProjectReference Include="..\WooDev.Model\WooDev.Model.csproj" />
+    <ProjectReference Include="..\WooDev.Services\WooDev.Services.csproj" />
+    <ProjectReference Include="..\WooDev.ViewModel\WooDev.ViewModel.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -43,6 +43,13 @@ namespace WooDev.Model.Models
         public string LOGIN_NAME { get; set; }
 
         /// <summary>
+        /// 描    述:密码
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public string PWD { get; set; }
+
+        /// <summary>
         /// 描    述:身份证号
         /// 默 认 值:
         /// 是否空值:False
@@ -132,6 +139,13 @@ namespace WooDev.Model.Models
         /// 是否空值:False
         /// </summary>
         public DateTime UPDATE_TIME { get; set; }
+
+        /// <summary>
+        /// 描    述:微信账号，企业微信应用时可用
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public string WX_CODE { get; set; }
 
     }
 }

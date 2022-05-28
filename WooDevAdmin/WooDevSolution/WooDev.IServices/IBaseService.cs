@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SqlSugar;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
@@ -44,5 +45,15 @@ namespace WooDev.IServices
         /// <param name="t">修改对象</param>
         /// <returns>true:成功/false:失败</returns>
         int Update(T t);
+        /// <summary>
+        /// 查询所有
+        /// </summary>
+        /// <returns></returns>
+        ISugarQueryable<T> Query();
+        /// <summary>
+        /// 查询所有并返回集合
+        /// </summary>
+        /// <returns></returns>
+        List<T> AllList();
     }
 }
