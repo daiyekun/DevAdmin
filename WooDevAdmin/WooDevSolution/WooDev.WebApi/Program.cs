@@ -13,11 +13,14 @@ builder.Configuration.Bind("DbConn", dbconnoptions);
 //数据库连接对象
 builder.Services.AddDevDbServices(dbconnoptions);
 builder.Services.AddDevServices();
-
+builder.Services.AddDevOtherServices();
+builder.Services.AddDevLog4Net();
 #endregion
-builder.Services.AddControllers();
+
+
+//builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -26,23 +29,12 @@ builder.Services.AddSwaggerGen(c =>
 
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseAuthentication();//鉴权：解析信息--就是读取token，解密token
-
-#region 添加跨域中间件
-app.UseCors();
-#endregion
-
-app.UseAuthorization();
-
-app.MapControllers();
+ app.DevAppUse();
 
 
 app.Run();

@@ -103,3 +103,8 @@ E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\n
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\WooDev.WebApi.pdb
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\WooDev.WebApi.genruntimeconfig.cache
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\log4net.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\Config\log4net.config
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
