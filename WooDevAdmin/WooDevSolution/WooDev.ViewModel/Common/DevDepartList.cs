@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using WooDev.Model.Models;
 
-namespace WooDev.ViewModel.Common
+namespace WooDev.ViewModel
 {
     /// <summary>
     /// 部门列表
     /// </summary>
-    public class DevDepartListView: DEV_DEPARTMENT
+    public partial class DevDepartList
     {
 
     }

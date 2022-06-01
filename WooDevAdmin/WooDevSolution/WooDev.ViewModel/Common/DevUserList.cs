@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using WooDev.Model.Models;
 
-namespace WooDev.ViewModel.Common
+namespace WooDev.ViewModel
 {
 
     /// <summary>
     /// 用户列表list
     /// </summary>
-    public class DevUserListView:DEV_USER
+    public partial class DevUserList
     {
         /// <summary>
         /// 性别描述
