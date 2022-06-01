@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WooDev.Common.Models;
 using WooDev.Model.Models;
-using WooDev.ViewModel.Common;
+using WooDev.ViewModel;
 
 namespace WooDev.IServices
 {
@@ -25,7 +25,7 @@ namespace WooDev.IServices
         /// <param name="orderbyLambda"></param>
         /// <param name="isAsc"></param>
         /// <returns></returns>
-        AjaxListResult<DevUserListView> GetList<s>(PageInfo<DEV_USER> pageInfo, Expression<Func<DEV_USER, bool>> whereLambda,
+        AjaxListResult<DevUserList> GetList<s>(PageInfo<DEV_USER> pageInfo, Expression<Func<DEV_USER, bool>> whereLambda,
             Expression<Func<DEV_USER, object>> orderbyLambda, bool isAsc);
      }
 }

@@ -9,7 +9,7 @@ using WooDev.Common.Models;
 using WooDev.Common.Utility;
 using WooDev.IServices;
 using WooDev.Model.Models;
-using WooDev.ViewModel.Common;
+using WooDev.ViewModel;
 using WooDev.ViewModel.Enums;
 
 namespace WooDev.Services
@@ -31,7 +31,7 @@ namespace WooDev.Services
         /// <param name="orderbyLambda"></param>
         /// <param name="isAsc"></param>
         /// <returns></returns>
-        public AjaxListResult<DevUserListView> GetList<s>(PageInfo<DEV_USER> pageInfo, Expression<Func<DEV_USER, bool>> whereLambda,
+        public AjaxListResult<DevUserList> GetList<s>(PageInfo<DEV_USER> pageInfo, Expression<Func<DEV_USER, bool>> whereLambda,
              Expression<Func<DEV_USER, object>> orderbyLambda, bool isAsc)
         {
             
@@ -67,7 +67,7 @@ namespace WooDev.Services
             var list= query.ToPageList(pageInfo.PageIndex, pageInfo.PageSize, ref totalCount);
             pageInfo.TotalCount = totalCount;
             var local = from a in list
-                        select new DevUserListView
+                        select new DevUserList
                         {
                             ID = a.ID,
                             NAME = a.NAME,//显示名称
@@ -86,7 +86,7 @@ namespace WooDev.Services
                             SexDic= EmunUtility.GetDesc(typeof(UserSexEnum), a.SEX),
 
                         };
-            return new AjaxListResult<DevUserListView>()
+            return new AjaxListResult<DevUserList>()
             {
                 data = local.ToList(),
                 count = pageInfo.TotalCount,

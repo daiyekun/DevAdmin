@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using WooDev.Common.Models;
 using WooDev.IServices;
 using WooDev.Model.Models;
-using WooDev.ViewModel.Common;
+using WooDev.ViewModel;
 
 namespace WooDev.Services
 {
@@ -25,7 +25,7 @@ namespace WooDev.Services
         /// <param name="orderbyLambda">排序</param>
         /// <param name="isAsc">是否正序</param>
         /// <returns></returns>
-        public AjaxListResult<DevDataDicListView> GetList<s>(PageInfo<DEV_DATADIC> pageInfo, Expression<Func<DEV_DATADIC, bool>> whereLambda,
+        public AjaxListResult<DevDatadicList> GetList<s>(PageInfo<DEV_DATADIC> pageInfo, Expression<Func<DEV_DATADIC, bool>> whereLambda,
              Expression<Func<DEV_DATADIC, object>> orderbyLambda, bool isAsc)
         {
 
@@ -56,7 +56,7 @@ namespace WooDev.Services
             var list = query.ToPageList(pageInfo.PageIndex, pageInfo.PageSize, ref totalCount);
             pageInfo.TotalCount = totalCount;
             var local = from a in list
-                        select new DevDataDicListView
+                        select new DevDatadicList
                         {
                             ID = a.ID,
                             NAME = a.NAME,//显示名称
@@ -68,7 +68,7 @@ namespace WooDev.Services
                             SORT_NAME = a.SORT_NAME,//简称
 
                         };
-            return new AjaxListResult<DevDataDicListView>()
+            return new AjaxListResult<DevDatadicList>()
             {
                 data = local.ToList(),
                 count = pageInfo.TotalCount,

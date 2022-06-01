@@ -65,7 +65,12 @@
       "ProjectGuid": "fa748886-1dce-4cbd-aed1-ad946ad6fdae",
       "DisplayName": "WooDev.Auth",
       "ColorIndex": 11
+    },
+    "70339331-d644-48ac-be93-17c507e78139": {
+      "ProjectGuid": "70339331-d644-48ac-be93-17c507e78139",
+      "DisplayName": "WooDeV.UnitTest",
+      "ColorIndex": 12
     }
   },
-  "NextColorIndex": 12
+  "NextColorIndex": 13
 }

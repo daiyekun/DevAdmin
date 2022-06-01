@@ -11,4 +11,23 @@
     <ProjectReference Include="..\WooDev.Model\WooDev.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="ViewModel.cs">
+      <DependentUpon>ViewModel.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ViewModel.tt">
+      <LastGenOutput>ViewModel.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
 </Project>
