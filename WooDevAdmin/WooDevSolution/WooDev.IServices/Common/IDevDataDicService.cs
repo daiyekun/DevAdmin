@@ -8,13 +8,13 @@ using WooDev.Common.Models;
 using WooDev.Model.Models;
 using WooDev.ViewModel.Common;
 
-namespace WooDev.IServices.Common
+namespace WooDev.IServices
 {
 
     /// <summary>
     /// 数据字典
     /// </summary>
-    public interface IDevDataDicService:IBaseService<DEV_DATADIC>
+    public interface IDevDataDicService
     {
         /// <summary>
         /// 字典列表

@@ -14,7 +14,7 @@ namespace WooDev.IServices
     /// <summary>
     /// 系统用户
     /// </summary>
-     public partial  interface IDevUserService:IBaseService<DEV_USER>
+     public partial  interface IDevUserService
      {
         /// <summary>
         /// 用户列表

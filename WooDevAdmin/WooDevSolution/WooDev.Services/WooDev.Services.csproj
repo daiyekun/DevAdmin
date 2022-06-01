@@ -17,14 +17,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="DevService.tt">
+    <None Update="WooDevService.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DevService.cs</LastGenOutput>
+      <LastGenOutput>WooDevService.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="WooDevService.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WooDevService.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,104 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Data"#>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#
+    string solutionsPath = Host.ResolveAssemblyReference("$(SolutionDir)");//获取解决方案路径
+    var strmodepath=@$"{solutionsPath}WooDev.Model\Models";
+    var builder = new T4Builder(@strmodepath);
+
+#>
+using WooDev.IServices;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq.Expressions;
+using System.Data.Common;
+using System.Linq;
+using SqlSugar;
+using WooDev.Model.Models;
+///****************************************************
+///代码自动生成,需要修改builder里构造函数数据库连接字符串即可
+///如果有个性业务在建立一个public partial interface 
+///如有报错，添加引用NuGet  PetaPoco..NET6、T4 (2.0.1)
+///****************************************************
+namespace WooDev.Services
+{
+<#
+   foreach(var item in builder.TableList)
+   {
+    var cname=builder.ToStrHump(item);
+#> 
+ public partial class <#=cname#>Service : BaseService<<#=item#>>, I<#=cname#>Service
+    {
+         public <#=cname#>Service(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+    <#
+     }
+     #>
+
+}
+
+<#+
+        /// <summary>
+        /// 获取指定文件夹下的所有类文件名称
+        /// 
+        /// </summary>
+    public class T4Builder
+    {
+        public List<String> TableList = new List<String>();
+
+        public T4Builder(string folderpath)
+        {
+           
+            DirectoryInfo TheFolder = new DirectoryInfo(folderpath);
+            foreach (FileInfo wfile in TheFolder.GetFiles())
+            {
+                string fname = wfile.Name.Replace(".cs","");
+                 TableList.Add(fname);
+            }
+        }
+
+         /// <summary>
+        /// 字符串生成驼峰命名规则
+        /// 将DEV_USER_ROLE=>DevUserRole
+        /// </summary>
+        /// <param name="str">原始字符串 DEV_USER_ROLE</param>
+        /// <returns>返回 类似 DevUserRole</returns>
+        public  string ToStrHump(string str)
+        {
+            var str2 = str.ToLower();//先全部转小写
+            //var str3 = str.ToLowerInvariant();//先全部转小写
+            StringBuilder strb = new StringBuilder();
+
+            var arr = str2.Split('_');//先用字符串分割成数组
+            for (var i = 0; i < arr.Length; i++)
+            {
+                var tstr = arr[i];
+
+                strb.Append(tstr.Remove(1).ToUpper() + tstr.Substring(1));
+            }
+
+            return strb.ToString();
+        }
+
+       
+    }
+
+
+   
+
+
+#>

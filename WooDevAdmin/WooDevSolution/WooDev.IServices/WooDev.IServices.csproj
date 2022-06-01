@@ -21,6 +21,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>IDevService.cs</LastGenOutput>
     </None>
+    <None Update="IWooDevService.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IWooDevService.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +36,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>IDevService.tt</DependentUpon>
+    </Compile>
+    <Compile Update="IWooDevService.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IWooDevService.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 

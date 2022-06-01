@@ -55,7 +55,17 @@
       "ProjectGuid": "5cef8af4-4b40-4b22-bb04-b085c34e1868",
       "DisplayName": "WooDev.WebApp",
       "ColorIndex": 9
+    },
+    "53a22787-78ab-44ed-a8da-c4c9730eae80": {
+      "ProjectGuid": "53a22787-78ab-44ed-a8da-c4c9730eae80",
+      "DisplayName": "WooDev.AutoMapper",
+      "ColorIndex": 10
+    },
+    "fa748886-1dce-4cbd-aed1-ad946ad6fdae": {
+      "ProjectGuid": "fa748886-1dce-4cbd-aed1-ad946ad6fdae",
+      "DisplayName": "WooDev.Auth",
+      "ColorIndex": 11
     }
   },
-  "NextColorIndex": 10
+  "NextColorIndex": 12
 }

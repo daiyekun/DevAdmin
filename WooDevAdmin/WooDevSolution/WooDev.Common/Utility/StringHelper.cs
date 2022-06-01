@@ -354,5 +354,28 @@ namespace WooDev.Common.Utility
         {
             return stringData.Replace("Checked", "checked");
         }
+
+        /// <summary>
+        /// 字符串生成驼峰命名规则
+        /// 将DEV_USER_ROLE=>DevUserRole
+        /// </summary>
+        /// <param name="str">原始字符串 DEV_USER_ROLE</param>
+        /// <returns>返回 类似 DevUserRole</returns>
+        public static string ToStrHump(string str)
+        {
+            var str2 = str.ToLower();//先全部转小写
+            //var str3 = str.ToLowerInvariant();//先全部转小写
+            StringBuilder strb = new StringBuilder();
+
+            var arr = str2.Split('_');//先用字符串分割成数组
+            for (var i = 0; i < arr.Length; i++)
+            {
+                var tstr = arr[i];
+
+                strb.Append(tstr.Remove(1).ToUpper() + tstr.Substring(1));
+            }
+
+            return strb.ToString();
+        }
     }
 }

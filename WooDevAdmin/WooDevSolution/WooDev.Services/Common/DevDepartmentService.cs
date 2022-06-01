@@ -4,21 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WooDev.IServices.Common;
+using WooDev.IServices;
 using WooDev.Model.Models;
 
-namespace WooDev.Services.Common
+namespace WooDev.Services
 {
 
     /// <summary>
     /// 组织机构
     /// </summary>
-    public class DevDepartmentService : BaseService<DEV_DEPARTMENT>, IDevDepartmentService
+    public partial class DevDepartmentService 
     {
-        public DevDepartmentService(ISqlSugarClient DbClient): base(DbClient)
-        {
-
-        }
+        
 
 
 

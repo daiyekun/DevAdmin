@@ -6,18 +6,15 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using WooDev.Common.Models;
-using WooDev.IServices.Common;
+using WooDev.IServices;
 using WooDev.Model.Models;
 using WooDev.ViewModel.Common;
 
-namespace WooDev.Services.Common
+namespace WooDev.Services
 {
-    public class DevDataDicService:BaseService<DEV_DATADIC>, IDevDataDicService
+    public partial class DevDatadicService
     {
-        public DevDataDicService(ISqlSugarClient DbClient) : base(DbClient)
-        {
-
-        }
+       
 
         /// <summary>
         /// 字典列表

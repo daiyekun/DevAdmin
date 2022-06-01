@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using WooDev.Model.Models;
 
-namespace WooDev.IServices.Common
+namespace WooDev.IServices
 {
 
     /// <summary>
     /// 部门-组织机构
     /// </summary>
-    public interface IDevDepartmentService:IBaseService<DEV_DEPARTMENT>
+    public partial interface IDevDepartmentService
     {
     }
 }
