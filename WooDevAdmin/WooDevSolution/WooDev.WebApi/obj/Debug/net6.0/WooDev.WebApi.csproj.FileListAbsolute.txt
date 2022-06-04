@@ -6,6 +6,7 @@ E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\n
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\WooDev.WebApi.deps.json
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\WooDev.WebApi.runtimeconfig.json
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\WooDev.WebApi.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\ref\WooDev.WebApi.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\WooDev.WebApi.pdb
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\AutoMapper.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
@@ -118,4 +119,3 @@ E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\n
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\ref\WooDev.WebApi.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\WooDev.WebApi.pdb
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\WooDev.WebApi.genruntimeconfig.cache
-E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\refint\WooDev.WebApi.dll

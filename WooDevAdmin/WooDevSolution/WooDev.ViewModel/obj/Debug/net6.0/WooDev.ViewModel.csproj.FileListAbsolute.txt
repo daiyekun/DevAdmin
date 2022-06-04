@@ -1,5 +1,6 @@
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.ViewModel\bin\Debug\net6.0\WooDev.ViewModel.deps.json
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.ViewModel\bin\Debug\net6.0\WooDev.ViewModel.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.ViewModel\bin\Debug\net6.0\ref\WooDev.ViewModel.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.ViewModel\bin\Debug\net6.0\WooDev.ViewModel.pdb
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.ViewModel\bin\Debug\net6.0\WooDev.Common.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.ViewModel\bin\Debug\net6.0\WooDev.Model.dll
@@ -14,4 +15,3 @@ E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.ViewModel\obj\Debu
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.ViewModel\obj\Debug\net6.0\WooDev.ViewModel.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.ViewModel\obj\Debug\net6.0\ref\WooDev.ViewModel.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.ViewModel\obj\Debug\net6.0\WooDev.ViewModel.pdb
-E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.ViewModel\obj\Debug\net6.0\refint\WooDev.ViewModel.dll

@@ -83,6 +83,9 @@ export default {
     loginwarningTitle: '登录提示',
     loginwarningsDesc: '登录名或者密码错误',
 
+    loginInfoTitle: '友情提示',
+    loginInfoDesc: '该功能需要定制开发',
+
     // placeholder
     accountPlaceholder: '请输入账号',
     passwordPlaceholder: '请输入密码',

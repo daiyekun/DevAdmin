@@ -82,7 +82,7 @@ namespace WooDev.WebApi.Controllers.Common
         /// <returns></returns>
         [Route("getUserInfo")]
         [HttpGet]
-        [AllowAnonymous]//跳过授权验证
+        //[AllowAnonymous]//跳过授权验证
         [Authorize]
         public JsonResult GetUserInfo()
         {
@@ -96,5 +96,28 @@ namespace WooDev.WebApi.Controllers.Common
           };
             return new JsonResult(devResult);
         }
+
+        /// <summary>
+        /// 退出
+        /// </summary>
+        /// <returns></returns>
+        [Route("logout")]
+        [HttpGet]
+        [AllowAnonymous]//跳过授权验证
+        //[Authorize]
+        public JsonResult Logout()
+        {
+          var userId = HttpContext.User.Claims.GetTokenUserId();
+           //目前没有退出业务逻辑，未来再考虑添加
+          var   devResult = new DevResult
+            {
+             
+               
+
+            };
+            return new JsonResult(devResult);
+        }
+
+        
     }
 }
