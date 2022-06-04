@@ -91,8 +91,7 @@ export const useUserStore = defineStore({
       try {
         const { goHome = true, mode, ...loginParams } = params;
         const data = await loginApi(loginParams, mode);
-        console.log('登录的data');
-        console.log(data);
+        //console.log(data);
         const { token } = data;
         // save token
         this.setToken(token);
@@ -124,7 +123,7 @@ export const useUserStore = defineStore({
       return userInfo;
     },
     async getUserInfoAction(): Promise<UserInfo | null> {
-      console.log('getUserInfoAction token' + this.getToken);
+      //console.log('getUserInfoAction token' + this.getToken);
 
       if (!this.getToken) return null;
       const userInfo = await getUserInfo();
