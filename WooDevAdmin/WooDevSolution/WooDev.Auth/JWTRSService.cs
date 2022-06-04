@@ -11,6 +11,7 @@ using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using WooDev.Auth.Model;
 using WooDev.Auth.RSA;
 
 namespace WooDev.Auth

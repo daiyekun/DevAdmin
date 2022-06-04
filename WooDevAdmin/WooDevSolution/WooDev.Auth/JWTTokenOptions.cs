@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WooDev.Auth
+namespace WooDev.Auth.Model
 {
     public class JWTTokenOptions
     {

@@ -11,4 +11,9 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WooDev.Common\WooDev.Common.csproj" />
+    <ProjectReference Include="..\WooDev.ViewModel\WooDev.ViewModel.csproj" />
+  </ItemGroup>
+
 </Project>

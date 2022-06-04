@@ -1,4 +1,4 @@
-﻿namespace WooDev.Auth
+﻿namespace WooDev.Auth.Model
 {
     public class CurrentUserModel
     {

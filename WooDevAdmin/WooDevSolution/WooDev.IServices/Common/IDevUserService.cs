@@ -27,5 +27,12 @@ namespace WooDev.IServices
         /// <returns></returns>
         AjaxListResult<DevUserList> GetList<s>(PageInfo<DEV_USER> pageInfo, Expression<Func<DEV_USER, bool>> whereLambda,
             Expression<Func<DEV_USER, object>> orderbyLambda, bool isAsc);
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="LoginName">登录名称</param>
+        /// <param name="Pwd">密码</param>
+        /// <returns></returns>
+         LoginResult Login(string LoginName, string Pwd);
      }
 }

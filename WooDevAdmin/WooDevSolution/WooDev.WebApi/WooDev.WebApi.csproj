@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WooDev.Auth\WooDev.Auth.csproj" />
     <ProjectReference Include="..\WooDev.Common\WooDev.Common.csproj" />
     <ProjectReference Include="..\WooDev.IServices\WooDev.IServices.csproj" />
     <ProjectReference Include="..\WooDev.Model\WooDev.Model.csproj" />

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WooDev.Auth;
+using WooDev.Auth.Model;
 using WooDev.IServices;
 using WooDev.Services;
 
@@ -58,7 +60,7 @@ namespace WooDev.WebCommon.ServiceExtend
         public static void AddDevServices(this IServiceCollection services)
         {
             //services.Configure<HttpAPIInvokerOptions>(action);//配置给IOC  其他字段用默认值
-
+          
             services.AddTransient<IDevUserService, DevUserService>();
 
         }
