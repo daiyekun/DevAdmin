@@ -54,7 +54,7 @@ namespace WooDev.Auth
         {
             var claims = new[]
             {
-                 new Claim("LoginName", user.Name),
+                 new Claim("LoginName", user.LoginName),
                  new Claim("UserId", user.Id.ToString()),
                  new Claim("DeptId", user.DeptId.ToString()),
                   new Claim("Name", user.Name),

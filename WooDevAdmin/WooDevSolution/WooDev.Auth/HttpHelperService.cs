@@ -36,13 +36,13 @@ namespace WooDev.WebCommon.Utility
             if (sResult.IsSuccessStatusCode)
             {
                 string content = sResult.Content.ReadAsStringAsync().Result;
-                AjaxResult<LoginResult> remoteResult = Newtonsoft.Json.JsonConvert.DeserializeObject<AjaxResult<LoginResult>>(content);
-                ajaxResult = remoteResult;
-                new AjaxResult<LoginResult>()
+                LoginResult remoteResult = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginResult>(content);
+                //ajaxResult = remoteResult;
+                ajaxResult= new AjaxResult<LoginResult>()
                 {
                     code = (int)sResult.StatusCode,
                     Result = true,
-                    data = (LoginResult)remoteResult.data
+                    data = (LoginResult)remoteResult
                 };
             }
             else

@@ -140,6 +140,7 @@ const transform: AxiosTransform = {
   requestInterceptors: (config, options) => {
     // 请求之前处理config
     const token = getToken();
+
     if (token && (config as Recordable)?.requestOptions?.withToken !== false) {
       // jwt token
       (config as Recordable).headers.Authorization = options.authenticationScheme
@@ -153,6 +154,8 @@ const transform: AxiosTransform = {
    * @description: 响应拦截器处理
    */
   responseInterceptors: (res: AxiosResponse<any>) => {
+    console.log('responseInterceptors');
+    console.log(res);
     return res;
   },
 
@@ -208,9 +211,9 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
       {
         // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#authentication_schemes
         // authentication schemes，e.g: Bearer
-        // authenticationScheme: 'Bearer',
-        authenticationScheme: '',
-        timeout: 10 * 1000,
+        authenticationScheme: 'Bearer ',
+        //authenticationScheme: '',
+        timeout: 10 * 2000,
         // 基础接口地址
         // baseURL: globSetting.apiUrl,
 

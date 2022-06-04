@@ -1,6 +1,5 @@
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\bin\Debug\net6.0\WooDev.IServices.deps.json
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\bin\Debug\net6.0\WooDev.IServices.dll
-E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\bin\Debug\net6.0\ref\WooDev.IServices.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\bin\Debug\net6.0\WooDev.IServices.pdb
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\bin\Debug\net6.0\WooDev.Common.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\bin\Debug\net6.0\WooDev.Model.dll
@@ -17,3 +16,4 @@ E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\obj\Debu
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\obj\Debug\net6.0\WooDev.IServices.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\obj\Debug\net6.0\ref\WooDev.IServices.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\obj\Debug\net6.0\WooDev.IServices.pdb
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.IServices\obj\Debug\net6.0\refint\WooDev.IServices.dll

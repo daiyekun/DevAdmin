@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using WooDev.Auth.Model;
 using WooDev.IServices;
 using WooDev.ViewModel;
+using WooDev.WebCommon.Extend;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,7 +13,7 @@ namespace WooDev.WebApi.Controllers.Common
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("any")]
+    [EnableCors("default")]
     public class DevUserController : ControllerBase
     {
         private IDevUserService _IDevUserService;
@@ -71,9 +72,29 @@ namespace WooDev.WebApi.Controllers.Common
                 Result = true,
                 data = result
             };
-            return new JsonResult(ajaxResult);
+            return new JsonResult(result);
 
 
+        }
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <returns></returns>
+        [Route("getUserInfo")]
+        [HttpGet]
+        [AllowAnonymous]//跳过授权验证
+        [Authorize]
+        public JsonResult GetUserInfo()
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            DevResult<CurrLoginUser> devResult;
+          var user = _IDevUserService.GetUserInfoById(userId);
+          devResult = new DevResult<CurrLoginUser>
+          {
+              result = user
+            
+          };
+            return new JsonResult(devResult);
         }
     }
 }

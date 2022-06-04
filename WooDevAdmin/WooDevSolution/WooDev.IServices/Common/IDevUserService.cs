@@ -34,5 +34,12 @@ namespace WooDev.IServices
         /// <param name="Pwd">密码</param>
         /// <returns></returns>
          LoginResult Login(string LoginName, string Pwd);
+        /// <summary>
+        /// 根据用户ID获取用户部分信息
+        /// </summary>
+        /// <param name="userId">用户ID</param>
+        /// <returns>CurrLoginUser 登录以后返回的部分信息</returns>
+        CurrLoginUser GetUserInfoById(int userId);
+      
      }
 }

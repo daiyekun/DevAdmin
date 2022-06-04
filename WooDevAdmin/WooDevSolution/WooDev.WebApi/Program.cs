@@ -59,11 +59,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)//Sche
 
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = StatusCodes.Status200OK;
-            context.Response.WriteAsync(JsonConvert.SerializeObject(new AjaxResult()
+            context.Response.WriteAsync(JsonConvert.SerializeObject(new DevResult()
             {
-                msg = "没权限访问接口",
-                code = StatusCodes.Status401Unauthorized,
-                count = 0
+                 message= "没权限访问接口",
+                 code= StatusCodes.Status401Unauthorized,
+                
             }));
             return Task.FromResult(0);
 

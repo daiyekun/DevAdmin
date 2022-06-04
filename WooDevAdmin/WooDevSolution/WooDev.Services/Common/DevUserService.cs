@@ -112,12 +112,14 @@ namespace WooDev.Services
                 var encryptpwd = EncryptUtility.PwdToMD5(Pwd, LoginName);
                 if (userinfo.PWD == encryptpwd)
                 {
+                    loginResult.UserId= userinfo.ID;
                     loginResult.Reult = 0; //表示验证通过
+                    loginResult.Role = new RoleInfo { RoleName = "dev", Value = "100" };
                     var loginuser = new LoginUser();
                     loginuser.Id = userinfo.ID;
                     loginuser.LoginName = userinfo.LOGIN_NAME;
                     loginuser.Name = userinfo.NAME;
-                    loginuser.DeptId = userinfo.DEPART_ID ;
+                    loginuser.DeptId = userinfo.DEPART_ID;
                     loginuser.DeptName = RedisUtility.HashGet($"{RedisKeys.DepartHashKey}", "Name");
                     loginuser.RoleIds = GetRoleIdsByUserId(userinfo.ID);
                     loginResult.LoginUser = loginuser;
@@ -137,6 +139,9 @@ namespace WooDev.Services
 
         }
 
+
+     
+
         /// <summary>
         /// 根据用户获取角色Id集合
         /// </summary>
@@ -144,6 +149,28 @@ namespace WooDev.Services
         {
             var list = DbClient.Queryable<DEV_USER_ROLE>().Where(a => a.USER_ID == userId).Select(a => a.ROLE_ID).ToList();
             return StringHelper.ArrayInt2String(list);
+        }
+        /// <summary>
+        /// 根据用户ID获取用户信息
+        /// </summary>
+        /// <param name="userId">用户id</param>
+        /// <returns></returns>
+        public CurrLoginUser GetUserInfoById(int userId)
+        {
+             var loginuser= DbClient.Queryable<DEV_USER>().Where(a => a.ID == userId)
+                   .Select(a => new CurrLoginUser
+                   {
+                       UserId=a.ID,
+                       UserName=a.LOGIN_NAME,
+                       RealName=a.NAME,
+                       Avatar="",//头像
+                       Desc="",//描述
+
+                   }).First();
+
+            return loginuser;
+
+
         }
 
 
