@@ -145,6 +145,12 @@
           description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.realName}`,
           duration: 3,
         });
+      } else {
+        notification.warning({
+          message: t('sys.login.loginwarningTitle'),
+          description: `${t('sys.login.loginwarningsDesc')}`,
+          duration: 5,
+        });
       }
     } catch (error) {
       console.log((error as unknown as Error).message);

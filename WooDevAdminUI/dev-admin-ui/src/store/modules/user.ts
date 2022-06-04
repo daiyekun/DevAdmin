@@ -94,8 +94,6 @@ export const useUserStore = defineStore({
         console.log('登录的data');
         console.log(data);
         const { token } = data;
-        console.log(token);
-
         // save token
         this.setToken(token);
         return this.afterLoginAction(goHome);

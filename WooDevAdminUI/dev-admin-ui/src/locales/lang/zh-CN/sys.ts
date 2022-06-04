@@ -80,6 +80,9 @@ export default {
     loginSuccessTitle: '登录成功',
     loginSuccessDesc: '欢迎回来',
 
+    loginwarningTitle: '登录提示',
+    loginwarningsDesc: '登录名或者密码错误',
+
     // placeholder
     accountPlaceholder: '请输入账号',
     passwordPlaceholder: '请输入密码',
