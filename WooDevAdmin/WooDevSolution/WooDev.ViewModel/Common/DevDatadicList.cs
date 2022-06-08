@@ -13,5 +13,23 @@ namespace WooDev.ViewModel
     /// </summary>
     public partial class DevDatadicList
     {
+        
+
+    }
+
+    /// <summary>
+    /// 搜索对象
+    /// </summary>
+    public class SerachParam
+    {
+        /// <summary>
+        /// 类别ID
+        /// </summary>
+        public int LbId { get; set; }
+        /// <summary>
+        /// 名称
+        /// </summary>
+        public string? Name { get; set; }
+
     }
 }

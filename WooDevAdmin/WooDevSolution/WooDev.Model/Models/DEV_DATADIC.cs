@@ -68,7 +68,7 @@ namespace WooDev.Model.Models
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public string APP_TYPE { get; set; }
+        public int APP_TYPE { get; set; }
 
         /// <summary>
         /// 描    述:是否删除

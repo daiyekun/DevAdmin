@@ -9,6 +9,7 @@ using WooDev.Common.Models;
 using WooDev.IServices;
 using WooDev.Model.Models;
 using WooDev.ViewModel;
+using WooDev.ViewModel.ExtendModel;
 
 namespace WooDev.Services
 {
@@ -25,7 +26,7 @@ namespace WooDev.Services
         /// <param name="orderbyLambda">排序</param>
         /// <param name="isAsc">是否正序</param>
         /// <returns></returns>
-        public AjaxListResult<DevDatadicList> GetList<s>(PageInfo<DEV_DATADIC> pageInfo, Expression<Func<DEV_DATADIC, bool>> whereLambda,
+        public ResultPageData<DevDatadicList> GetList(PageInfo<DEV_DATADIC> pageInfo, Expression<Func<DEV_DATADIC, bool>>? whereLambda,
              Expression<Func<DEV_DATADIC, object>> orderbyLambda, bool isAsc)
         {
 
@@ -44,13 +45,13 @@ namespace WooDev.Services
                         {
                             ID = a.ID,
                             NAME = a.NAME,//显示名称
-                            ORDER_NUM=a.ORDER_NUM,//排序
-                            REMARK=a.REMARK,
-                            CODE=a.CODE,
-                            PID=a.PID,
-                            APP_TYPE=a.APP_TYPE,
-                            SORT_NAME=a.SORT_NAME,//简称
-                            
+                            ORDER_NUM = a.ORDER_NUM,//排序
+                            REMARK = a.REMARK,
+                            CODE = a.CODE,
+                            PID = a.PID,
+                            APP_TYPE = a.APP_TYPE,
+                            SORT_NAME = a.SORT_NAME,//简称
+
                         };
             int totalCount = 0;
             var list = query.ToPageList(pageInfo.PageIndex, pageInfo.PageSize, ref totalCount);
@@ -68,11 +69,12 @@ namespace WooDev.Services
                             SORT_NAME = a.SORT_NAME,//简称
 
                         };
-            return new AjaxListResult<DevDatadicList>()
+            return new ResultPageData<DevDatadicList>()
             {
-                data = local.ToList(),
-                count = pageInfo.TotalCount,
-                code = 0
+                items = local.ToList(),
+                total= pageInfo.TotalCount,
+                page = pageInfo.PageIndex,
+                pageSize = pageInfo.PageSize
 
 
             };

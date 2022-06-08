@@ -28,8 +28,8 @@ public partial class DevCurrencyView : DEV_CURRENCY
    
      
 //列表使用
-public partial class DevDatadicList : DEV_DATADIC
-{ }
+public partial class DevDatadicList: DEV_DATADIC
+    { }
 //提交数据库使用
 public partial class DevDatadicDTO : DEV_DATADIC
 { }

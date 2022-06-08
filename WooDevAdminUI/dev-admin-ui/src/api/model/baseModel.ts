@@ -7,3 +7,8 @@ export interface BasicFetchResult<T> {
   items: T[];
   total: number;
 }
+
+export interface ResultData {
+  code: number;
+  message: string;
+}

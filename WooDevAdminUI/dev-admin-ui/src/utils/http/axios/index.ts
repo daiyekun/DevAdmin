@@ -138,6 +138,8 @@ const transform: AxiosTransform = {
    * @description: 请求拦截器处理
    */
   requestInterceptors: (config, options) => {
+    console.log(config);
+
     // 请求之前处理config
     const token = getToken();
 
@@ -147,6 +149,11 @@ const transform: AxiosTransform = {
         ? `${options.authenticationScheme} ${token}`
         : token;
     }
+    if (config.method === 'get') {
+      // 这个是关键点，加入这行就可以了 Content-Type: application/json;charset=UTF-8
+      config.data = { unused: 0 };
+    }
+
     return config;
   },
 
@@ -211,7 +218,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
       {
         // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#authentication_schemes
         // authentication schemes，e.g: Bearer
-        authenticationScheme: 'Bearer ',
+        authenticationScheme: 'Bearer',
         //authenticationScheme: '',
         timeout: 10 * 2000,
         // 基础接口地址

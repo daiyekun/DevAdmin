@@ -36,7 +36,7 @@ namespace WooDev.Common.Models
        // private IList<T> _pageDtoList;
 
         public virtual int PageIndex { get => _pageIndex <= 0 ? 1 : _pageIndex; set => _pageIndex = value; }
-        public virtual int PageSize { get => _pageSize <= 0 ? 15 : _pageSize; set => _pageSize = value; }
+        public virtual int PageSize { get => _pageSize <= 0 ? 10: _pageSize; set => _pageSize = value; }
         public virtual int TotalCount { get => _totalCount; set => _totalCount = value; }
         public virtual IList<T> PageList { get => _pageList; set => _pageList = value; }
         

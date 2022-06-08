@@ -60,8 +60,9 @@ namespace WooDev.WebCommon.ServiceExtend
         public static void AddDevServices(this IServiceCollection services)
         {
             //services.Configure<HttpAPIInvokerOptions>(action);//配置给IOC  其他字段用默认值
-          
+            
             services.AddTransient<IDevUserService, DevUserService>();
+            services.AddTransient<IDevDatadicService, DevDatadicService>();
 
         }
 

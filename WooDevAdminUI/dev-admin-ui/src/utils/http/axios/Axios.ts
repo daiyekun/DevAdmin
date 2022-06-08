@@ -180,6 +180,9 @@ export class VAxios {
   }
 
   post<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
+    console.log('config');
+    console.log(config);
+
     return this.request({ ...config, method: 'POST' }, options);
   }
 
