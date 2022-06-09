@@ -27,6 +27,10 @@ namespace WooDev.Common.Models
         /// </summary>
         public static string DataDicHashKey= $"{BaseKey_Prefix}DataDic";
         /// <summary>
+        /// 字段哈希key
+        /// </summary>
+        public static string DataDicALLListKey = $"{BaseKey_Prefix}DataDicALLList";
+        /// <summary>
         /// 币种
         /// </summary>
         public static string CurrencyHashKey = $"{BaseKey_Prefix}Currency";

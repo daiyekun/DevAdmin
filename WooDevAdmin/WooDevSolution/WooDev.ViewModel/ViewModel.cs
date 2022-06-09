@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WooDev.Common.Models;
+
 
 ///****************************************************
 ///代码自动生成,需要修改builder里构造函Models路径
@@ -19,7 +21,7 @@ namespace WooDev.ViewModel
 public partial class DevCurrencyList : DEV_CURRENCY
 { }
 //提交数据库使用
-public partial class DevCurrencyDTO : DEV_CURRENCY
+public partial class DevCurrencyDTO : DEV_CURRENCY,IModelDTO
 { }
 //暂定--查看页面使用
 public partial class DevCurrencyView : DEV_CURRENCY
@@ -28,10 +30,10 @@ public partial class DevCurrencyView : DEV_CURRENCY
    
      
 //列表使用
-public partial class DevDatadicList: DEV_DATADIC
-    { }
+public partial class DevDatadicList : DEV_DATADIC
+{ }
 //提交数据库使用
-public partial class DevDatadicDTO : DEV_DATADIC
+public partial class DevDatadicDTO : DEV_DATADIC,IModelDTO
 { }
 //暂定--查看页面使用
 public partial class DevDatadicView : DEV_DATADIC
@@ -43,7 +45,7 @@ public partial class DevDatadicView : DEV_DATADIC
 public partial class DevDepartmentList : DEV_DEPARTMENT
 { }
 //提交数据库使用
-public partial class DevDepartmentDTO : DEV_DEPARTMENT
+public partial class DevDepartmentDTO : DEV_DEPARTMENT,IModelDTO
 { }
 //暂定--查看页面使用
 public partial class DevDepartmentView : DEV_DEPARTMENT
@@ -55,7 +57,7 @@ public partial class DevDepartmentView : DEV_DEPARTMENT
 public partial class DevDepartMainList : DEV_DEPART_MAIN
 { }
 //提交数据库使用
-public partial class DevDepartMainDTO : DEV_DEPART_MAIN
+public partial class DevDepartMainDTO : DEV_DEPART_MAIN,IModelDTO
 { }
 //暂定--查看页面使用
 public partial class DevDepartMainView : DEV_DEPART_MAIN
@@ -67,7 +69,7 @@ public partial class DevDepartMainView : DEV_DEPART_MAIN
 public partial class DevFunctionMenuList : DEV_FUNCTION_MENU
 { }
 //提交数据库使用
-public partial class DevFunctionMenuDTO : DEV_FUNCTION_MENU
+public partial class DevFunctionMenuDTO : DEV_FUNCTION_MENU,IModelDTO
 { }
 //暂定--查看页面使用
 public partial class DevFunctionMenuView : DEV_FUNCTION_MENU
@@ -79,7 +81,7 @@ public partial class DevFunctionMenuView : DEV_FUNCTION_MENU
 public partial class DevLoginLogList : DEV_LOGIN_LOG
 { }
 //提交数据库使用
-public partial class DevLoginLogDTO : DEV_LOGIN_LOG
+public partial class DevLoginLogDTO : DEV_LOGIN_LOG,IModelDTO
 { }
 //暂定--查看页面使用
 public partial class DevLoginLogView : DEV_LOGIN_LOG
@@ -91,7 +93,7 @@ public partial class DevLoginLogView : DEV_LOGIN_LOG
 public partial class DevOptionLogList : DEV_OPTION_LOG
 { }
 //提交数据库使用
-public partial class DevOptionLogDTO : DEV_OPTION_LOG
+public partial class DevOptionLogDTO : DEV_OPTION_LOG,IModelDTO
 { }
 //暂定--查看页面使用
 public partial class DevOptionLogView : DEV_OPTION_LOG
@@ -103,7 +105,7 @@ public partial class DevOptionLogView : DEV_OPTION_LOG
 public partial class DevRoleList : DEV_ROLE
 { }
 //提交数据库使用
-public partial class DevRoleDTO : DEV_ROLE
+public partial class DevRoleDTO : DEV_ROLE,IModelDTO
 { }
 //暂定--查看页面使用
 public partial class DevRoleView : DEV_ROLE
@@ -115,7 +117,7 @@ public partial class DevRoleView : DEV_ROLE
 public partial class DevRoleFunctionList : DEV_ROLE_FUNCTION
 { }
 //提交数据库使用
-public partial class DevRoleFunctionDTO : DEV_ROLE_FUNCTION
+public partial class DevRoleFunctionDTO : DEV_ROLE_FUNCTION,IModelDTO
 { }
 //暂定--查看页面使用
 public partial class DevRoleFunctionView : DEV_ROLE_FUNCTION
@@ -127,7 +129,7 @@ public partial class DevRoleFunctionView : DEV_ROLE_FUNCTION
 public partial class DevUserList : DEV_USER
 { }
 //提交数据库使用
-public partial class DevUserDTO : DEV_USER
+public partial class DevUserDTO : DEV_USER,IModelDTO
 { }
 //暂定--查看页面使用
 public partial class DevUserView : DEV_USER
@@ -139,7 +141,7 @@ public partial class DevUserView : DEV_USER
 public partial class DevUserFunctionList : DEV_USER_FUNCTION
 { }
 //提交数据库使用
-public partial class DevUserFunctionDTO : DEV_USER_FUNCTION
+public partial class DevUserFunctionDTO : DEV_USER_FUNCTION,IModelDTO
 { }
 //暂定--查看页面使用
 public partial class DevUserFunctionView : DEV_USER_FUNCTION
@@ -151,10 +153,22 @@ public partial class DevUserFunctionView : DEV_USER_FUNCTION
 public partial class DevUserOtherInfoList : DEV_USER_OTHER_INFO
 { }
 //提交数据库使用
-public partial class DevUserOtherInfoDTO : DEV_USER_OTHER_INFO
+public partial class DevUserOtherInfoDTO : DEV_USER_OTHER_INFO,IModelDTO
 { }
 //暂定--查看页面使用
 public partial class DevUserOtherInfoView : DEV_USER_OTHER_INFO
+{ }
+    
+   
+     
+//列表使用
+public partial class DevUserRoleList : DEV_USER_ROLE
+{ }
+//提交数据库使用
+public partial class DevUserRoleDTO : DEV_USER_ROLE,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevUserRoleView : DEV_USER_ROLE
 { }
     
    

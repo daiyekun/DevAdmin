@@ -19,6 +19,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WooDev.Common.Models;
+
 
 ///****************************************************
 ///代码自动生成,需要修改builder里构造函Models路径
@@ -37,7 +39,7 @@ namespace WooDev.ViewModel
 public partial class <#=cname#>List : <#=item#>
 { }
 //提交数据库使用
-public partial class <#=cname#>DTO : <#=item#>
+public partial class <#=cname#>DTO : <#=item#>,IModelDTO
 { }
 //暂定--查看页面使用
 public partial class <#=cname#>View : <#=item#>

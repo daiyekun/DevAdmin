@@ -5,7 +5,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using WooDev.Common.Extend;
 using WooDev.Common.Models;
+using WooDev.Common.Utility;
 using WooDev.IServices;
 using WooDev.Model.Models;
 using WooDev.ViewModel;
@@ -51,6 +53,8 @@ namespace WooDev.Services
                             PID = a.PID,
                             APP_TYPE = a.APP_TYPE,
                             SORT_NAME = a.SORT_NAME,//简称
+                            FILED1 = a.FILED1,//
+                            FILED2=a.FILED2
 
                         };
             int totalCount = 0;
@@ -67,6 +71,8 @@ namespace WooDev.Services
                             PID = a.PID,
                             APP_TYPE = a.APP_TYPE,
                             SORT_NAME = a.SORT_NAME,//简称
+                            FILED1 = a.FILED1,//
+                            FILED2 = a.FILED2
 
                         };
             return new ResultPageData<DevDatadicList>()
@@ -78,6 +84,80 @@ namespace WooDev.Services
 
 
             };
+        }
+
+        /// <summary>
+        /// 查询所有
+        /// </summary>
+        /// <param name="datadic">字典枚举值</param>
+        /// <returns>返回枚举</returns>
+        public IList<DevDatadicDTO> GetAll()
+        {
+            IList<DevDatadicDTO> list = RedisUtility.StringGetToList<DevDatadicDTO>($"{RedisKeys.DataDicALLListKey}");
+            if (list == null)
+            {
+                var query = from a in DbClient.Queryable<DEV_DATADIC>()
+                            select new
+                            {
+                                ID = a.ID,
+                                NAME = a.NAME,//名称
+                                PID = a.PID,//pid
+                                SORT_NAME = a.SORT_NAME,//简称
+                                APP_TYPE = a.APP_TYPE,//类别ID
+                                REMARK = a.REMARK,//备注
+                                IS_DELETE = a.IS_DELETE,//移动电话
+                                FILED1 = a.FILED1,//
+                                FILED2 = a.FILED2
+                            };
+                var local = from a in query
+                            select new DevDatadicDTO
+                            {
+
+                                ID = a.ID,
+                                NAME = a.NAME,//名称
+                                PID = a.PID,//pid
+                                SORT_NAME = a.SORT_NAME,//简称
+                                APP_TYPE = a.APP_TYPE,//类别ID
+                                REMARK = a.REMARK,//备注
+                                IS_DELETE = a.IS_DELETE,//移动电话
+                                FILED1 = a.FILED1,//
+                                FILED2 = a.FILED2
+
+                            };
+                list = local.ToList();
+                RedisUtility.ListObjToJsonStringSetAsync($"{RedisKeys.DataDicALLListKey}", list);
+            }
+
+            return list;
+
+        }
+
+        /// <summary>
+        /// 设置Redis
+        /// </summary>
+        /// <param name="datadic">字典枚举</param>
+        /// <returns></returns>
+        public void SetRedisHash()
+        {
+            try
+            {
+                var curdickey = $"{RedisKeys.DataDicHashKey}";
+                var list = GetAll();
+                foreach (var item in list)
+                {
+                    item.SetRedisHash<DevDatadicDTO>($"{curdickey}", (a, c) =>
+                    {
+                        return $"{a}:{c}";
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Log4netHelper.Error(ex.Message);
+            }
+
+
         }
     }
 }

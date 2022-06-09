@@ -28,6 +28,17 @@ namespace WooDev.IServices
         /// <returns></returns>
         public ResultPageData<DevDatadicList> GetList(PageInfo<DEV_DATADIC> pageInfo, Expression<Func<DEV_DATADIC, bool>>? whereLambda,
              Expression<Func<DEV_DATADIC, object>> orderbyLambda, bool isAsc);
+        /// <summary>
+        /// 设置数据字典
+        /// </summary>
+        /// <param name="datadic"></param>
+        void SetRedisHash();
+        /// <summary>
+        /// 查询所有
+        /// </summary>
+        /// <param name="datadic">字典枚举值</param>
+        /// <returns>返回枚举</returns>
+        IList<DevDatadicDTO> GetAll();
 
     }
 }

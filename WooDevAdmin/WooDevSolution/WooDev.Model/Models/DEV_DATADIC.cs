@@ -61,7 +61,7 @@ namespace WooDev.Model.Models
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public string IS_APP { get; set; }
+        public int IS_APP { get; set; }
 
         /// <summary>
         /// 描    述:应用类型
@@ -132,6 +132,13 @@ namespace WooDev.Model.Models
         /// 是否空值:True
         /// </summary>
         public string FILED2 { get; set; }
+
+        /// <summary>
+        /// 描    述:0收款，1付款，2手付款
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public int? RANGE_TYPE { get; set; }
 
     }
 }

@@ -27,3 +27,15 @@ export interface datadicSaveInfo {
   REMARK: string;
   ORDER_NUM: number;
 }
+/**
+ * 字典初始化新建参数
+ */
+export interface datadicAddInfo {
+  TypeInt: number;
+}
+/**
+ * 删除时数据对象ids
+ */
+export interface datadicdeldata {
+  Ids: string;
+}

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 using System.Linq.Expressions;
 using WooDev.Common.Models;
+using WooDev.Common.Utility;
 using WooDev.IServices;
 using WooDev.Model.Models;
 using WooDev.ViewModel;
@@ -77,6 +78,57 @@ namespace WooDev.WebApi.Controllers.Common
             return new DevResultJson(result);
 
 
+        }
+        /// <summary>
+        /// 新增
+        /// </summary>
+        /// <param name="datadicDTO">新增对象</param>
+        [Route("datadicAdd")]
+        [HttpGet]
+        [Authorize]
+        public IActionResult AddDataDic(int TypeInt)
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            var info = new DEV_DATADIC();
+            info.NAME = $"新增类别-{DateTime.Now.Ticks}";
+            info.APP_TYPE = TypeInt;
+            info.CREATE_TIME = DateTime.Now;
+            info.CREATE_USERID = userId;
+            info.UPDATE_TIME= DateTime.Now;
+            info.UPDATE_USERID = userId;
+            info.IS_APP = 1;
+            info.IS_DELETE = 0;
+
+            _IDevDatadicService.Add(info);
+            _IDevDatadicService.SetRedisHash();
+            RedisUtility.KeyDeleteAsync($"{RedisKeys.DataDicALLListKey}");
+            var result = new ResultData
+            {
+                code = 0,
+                message = "ok",
+            };
+            return new DevResultJson(result);
+        }
+
+        /// <summary>
+        /// 删除数据
+        /// </summary>
+        /// <param name="Ids">选中ID</param>
+        [Route("deleteDic")]
+        [HttpGet]
+        [Authorize]
+        public IActionResult DeleteDic(string Ids)
+        {
+            var arrIds=StringHelper.String2ArrayInt(Ids);
+            _IDevDatadicService.Delete(a => arrIds.Contains(a.ID));
+            _IDevDatadicService.SetRedisHash();
+            RedisUtility.KeyDeleteAsync($"{RedisKeys.DataDicALLListKey}");
+            var result = new ResultData
+            {
+                code = 0,
+                message = "ok",
+            };
+            return new DevResultJson(result);
         }
 
     }

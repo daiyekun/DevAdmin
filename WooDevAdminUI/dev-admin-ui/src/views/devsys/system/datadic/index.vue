@@ -9,13 +9,12 @@
       @edit-change="onEditChange"
     >
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate">新增字典</a-button>
+        <a-button type="primary" @click="handleCreate">新增</a-button>
       </template>
       <template #action="{ record, column }">
         <TableAction :actions="createActions(record, column)" />
       </template>
     </BasicTable>
-
     <DataDicModal @register="registerModal" @success="handleSuccess" />
   </PageWrapper>
 </template>
@@ -30,7 +29,7 @@
     BasicColumn,
     EditRecordRow,
   } from '/@/components/Table';
-  import { getdatadicList } from '/@/api/devsys/system/datadic';
+  import { getdatadicList, datadicAdd, datadicDel } from '/@/api/devsys/system/datadic';
   import { PageWrapper } from '/@/components/Page';
   import DeptTree from './DataDicTree.vue';
 
@@ -38,23 +37,24 @@
   import DataDicModal from './DataDicModal.vue';
 
   import { columns, searchFormSchema } from './datadic.data';
-  import { useGo } from '/@/hooks/web/usePage';
   import { cloneDeep } from 'lodash-es';
   import { useMessage } from '/@/hooks/web/useMessage';
+  import { devSystemStore } from '/@/store/modules/devsystem';
 
   export default defineComponent({
     name: 'DataDicManagement',
     components: { BasicTable, PageWrapper, DeptTree, DataDicModal, TableAction },
     setup() {
-      const go = useGo();
-      const [registerModal, { openModal }] = useModal();
+      const store = devSystemStore();
+      store.lbId = 0; //初始化
+      const [registerModal] = useModal();
       const searchInfo = reactive<Recordable>({});
       const { createMessage: msg } = useMessage();
       const currentEditKeyRef = ref('');
       const [registerTable, { reload, updateTableDataRecord }] = useTable({
         title: '字典列表',
         api: getdatadicList,
-        rowKey: 'id',
+        rowKey: 'ID',
         columns,
         formConfig: {
           labelWidth: 120,
@@ -69,33 +69,32 @@
           return info;
         },
         actionColumn: {
-          width: 120,
+          width: 130,
           title: '操作',
           dataIndex: 'action',
           slots: { customRender: 'action' },
         },
       });
 
-      function handleCreate() {
-        openModal(true, {
-          isUpdate: false,
-        });
+      async function handleCreate() {
+        if (store.lbId <= 0 || store.lbId == undefined) {
+          msg.error({ content: '请选择字典类别', key: 'saving' });
+        } else {
+          await datadicAdd({ TypeInt: store.lbId });
+          msg.success({ content: '数据保存成功', key: 'saving' });
+          reload();
+        }
       }
 
-      // function handleEdit(record: Recordable) {
-      //   console.log(record);
-      //   openModal(true, {
-      //     record,
-      //     isUpdate: true,
-      //   });
-      // }
       function handleEdit(record: EditRecordRow) {
         currentEditKeyRef.value = record.key;
         record.onEdit?.(true);
       }
 
-      function handleDelete(record: Recordable) {
-        console.log(record);
+      async function handleDelete(record: Recordable) {
+        await datadicDel({ Ids: record.ID.toString() });
+        msg.success({ content: '删除成功', key: 'saving' });
+        reload();
       }
 
       function handleSuccess({ isUpdate, values }) {
@@ -110,13 +109,9 @@
       }
 
       function handleSelect(deptId = '') {
-        console.log(deptId);
+        // console.log(deptId);
         searchInfo.LbId = deptId;
         reload();
-      }
-
-      function handleView(record: Recordable) {
-        go('/system/account_detail/' + record.id);
       }
 
       function handleCancel(record: EditRecordRow) {
@@ -153,8 +148,20 @@
           return [
             {
               label: '编辑',
+              tooltip: '编辑信息',
+              icon: 'clarity:note-edit-line',
               disabled: currentEditKeyRef.value ? currentEditKeyRef.value !== record.key : false,
               onClick: handleEdit.bind(null, record),
+            },
+            {
+              label: '删除',
+              icon: 'ant-design:delete-outlined',
+              color: 'error',
+              tooltip: '删除此信息',
+              popConfirm: {
+                title: '是否确认删除',
+                confirm: handleDelete.bind(null, record),
+              },
             },
           ];
         }
@@ -189,7 +196,6 @@
         handleDelete,
         handleSuccess,
         handleSelect,
-        handleView,
         searchInfo,
         createActions,
         onEditChange,
