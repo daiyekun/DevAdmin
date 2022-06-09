@@ -29,7 +29,12 @@
     BasicColumn,
     EditRecordRow,
   } from '/@/components/Table';
-  import { getdatadicList, datadicAdd, datadicDel } from '/@/api/devsys/system/datadic';
+  import {
+    getdatadicList,
+    datadicAddApi,
+    datadicDelApi,
+    datadicSaveApi,
+  } from '/@/api/devsys/system/datadic';
   import { PageWrapper } from '/@/components/Page';
   import DeptTree from './DataDicTree.vue';
 
@@ -78,10 +83,10 @@
 
       async function handleCreate() {
         if (store.lbId <= 0 || store.lbId == undefined) {
-          msg.error({ content: '请选择字典类别', key: 'saving' });
+          msg.error({ content: '请选择字典类别', key: 'adding' });
         } else {
-          await datadicAdd({ TypeInt: store.lbId });
-          msg.success({ content: '数据保存成功', key: 'saving' });
+          await datadicAddApi({ TypeInt: store.lbId });
+          msg.success({ content: '数据创建成功', key: 'adding' });
           reload();
         }
       }
@@ -92,8 +97,8 @@
       }
 
       async function handleDelete(record: Recordable) {
-        await datadicDel({ Ids: record.ID.toString() });
-        msg.success({ content: '删除成功', key: 'saving' });
+        await datadicDelApi({ Ids: record.ID.toString() });
+        msg.success({ content: '删除成功', key: 'deling' });
         reload();
       }
 
@@ -125,10 +130,13 @@
         const valid = await record.onValid?.();
         if (valid) {
           try {
-            const data = cloneDeep(record.editValueRefs);
+            let data = cloneDeep(record.editValueRefs);
             console.log(data);
+            console.log(record);
+            data.ID = record.ID;
             //TODO 此处将数据提交给服务器保存
-            // ...
+            await datadicSaveApi(data);
+
             // 保存之后提交编辑状态
             const pass = await record.onEdit?.(false, true);
             if (pass) {

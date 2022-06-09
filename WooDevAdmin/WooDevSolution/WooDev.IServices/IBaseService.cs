@@ -55,5 +55,11 @@ namespace WooDev.IServices
         /// </summary>
         /// <returns></returns>
         List<T> AllList();
+        /// <summary>
+        /// 根据ID获取对象
+        /// </summary>
+        /// <param name="Id">当前查询ID</param>
+        /// <returns>实体</returns>
+        T InSingle(int Id);
     }
 }

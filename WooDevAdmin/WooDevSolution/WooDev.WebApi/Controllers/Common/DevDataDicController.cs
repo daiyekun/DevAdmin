@@ -50,7 +50,7 @@ namespace WooDev.WebApi.Controllers.Common
                 whereexp = whereexp.And(a =>a.NAME.Contains(serachParam.Name));
             }
             Expression<Func<DEV_DATADIC, object>> orderbyLambda = a =>a.ORDER_NUM ;
-            var data= _IDevDatadicService.GetList(pageinfo, whereexp.ToExpression(), orderbyLambda, false);
+            var data= _IDevDatadicService.GetList(pageinfo, whereexp.ToExpression(), orderbyLambda, true);
             var result = new ResultData<DevDatadicList>
             {
                 result = data,
@@ -70,6 +70,12 @@ namespace WooDev.WebApi.Controllers.Common
         public IActionResult DatadicSave(DevDatadicDTO devDatadicDTO)
         {
             var userId = HttpContext.User.Claims.GetTokenUserId();
+            DEV_DATADIC devdic = _IDevDatadicService.InSingle(devDatadicDTO.ID);
+            devdic.NAME = devDatadicDTO.NAME;
+            devdic.SORT_NAME = devDatadicDTO.SORT_NAME;
+            devdic.REMARK = devDatadicDTO.REMARK;
+            devdic.ORDER_NUM = devDatadicDTO.ORDER_NUM;
+            _IDevDatadicService.Update(devdic);
             // _IDevDatadicService.Add();
 
             var result = new ResultData();

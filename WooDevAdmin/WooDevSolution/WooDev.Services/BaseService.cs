@@ -92,6 +92,15 @@ namespace WooDev.Services
         {
             return DbClient.Queryable<T>().ToList();
         }
+        /// <summary>
+        /// 根据ID获取对象
+        /// </summary>
+        /// <param name="Id">当前查询ID</param>
+        /// <returns>实体对象</returns>
+        public T InSingle(int Id)
+        {
+           return DbClient.Queryable<T>().InSingle(Id);
+        }
 
 
 

@@ -20,7 +20,7 @@ export const getdatadicList = (params: datadicParams) =>
 
 export const datadicSaveApi = (params: datadicSaveInfo) =>
   defHttp.post<ResultData>({ url: Api.datadicSave, params });
-export const datadicAdd = (params: datadicAddInfo) =>
+export const datadicAddApi = (params: datadicAddInfo) =>
   defHttp.get<ResultData>({ url: Api.datadicAdd, params });
-export const datadicDel = (params: datadicdeldata) =>
+export const datadicDelApi = (params: datadicdeldata) =>
   defHttp.get<ResultData>({ url: Api.datadicDelete, params });
