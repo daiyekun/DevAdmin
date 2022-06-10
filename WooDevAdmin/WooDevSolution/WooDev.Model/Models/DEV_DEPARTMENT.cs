@@ -29,6 +29,13 @@ namespace WooDev.Model.Models
         public int ID { get; set; }
 
         /// <summary>
+        /// 描    述:上级ID
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int PID { get; set; }
+
+        /// <summary>
         /// 描    述:名称
         /// 默 认 值:
         /// 是否空值:False
@@ -66,9 +73,9 @@ namespace WooDev.Model.Models
         /// <summary>
         /// 描    述:部门负责人
         /// 默 认 值:
-        /// 是否空值:False
+        /// 是否空值:True
         /// </summary>
-        public int DEP_HEAD { get; set; }
+        public int? DEP_HEAD { get; set; }
 
         /// <summary>
         /// 描    述:机构状态

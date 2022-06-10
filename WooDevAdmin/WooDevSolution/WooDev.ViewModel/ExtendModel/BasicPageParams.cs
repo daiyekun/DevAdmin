@@ -20,6 +20,10 @@ namespace WooDev.ViewModel.ExtendModel
         /// 页条数
         /// </summary>
         public int pageSize { get; set; } = 20;//每页条数
+        /// <summary>
+        /// 搜索关键字
+        /// </summary>
+        public string? keyword { get; set; }
       
 
     }
@@ -30,6 +34,7 @@ namespace WooDev.ViewModel.ExtendModel
 
     public class PageParams: BasicPageParams
     {
+
 
     }
 
@@ -96,6 +101,14 @@ namespace WooDev.ViewModel.ExtendModel
     /// </summary>
     public class ResultData: BaseResult
     {
+       
+    }
 
+    /// <summary>
+    /// 返回列表
+    /// </summary>
+    public class ResultListData<T> : BaseResult where T : class, new ()
+    {
+        public List<T>? result { get; set; }
     }
 }

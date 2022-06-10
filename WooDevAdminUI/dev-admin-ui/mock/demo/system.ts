@@ -63,6 +63,8 @@ const deptList = (() => {
       })(),
     });
   }
+  console.log(result);
+
   return result;
 })();
 

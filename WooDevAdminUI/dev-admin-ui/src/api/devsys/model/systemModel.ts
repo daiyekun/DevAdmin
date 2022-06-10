@@ -39,3 +39,20 @@ export interface datadicAddInfo {
 export interface datadicdeldata {
   Ids: string;
 }
+/**
+ * 部门列表
+ */
+export interface departListItem {
+  ID: number;
+  NAME: string;
+  SORT_NAME: string;
+  CODE: string;
+  ORDER_NUM: number;
+}
+/**
+ * @description: Request list return value
+ */
+export type departListGetResultModel = BasicFetchResult<departListItem>;
+export type departParams = BasicPageParams & {
+  keyword?: string;
+};

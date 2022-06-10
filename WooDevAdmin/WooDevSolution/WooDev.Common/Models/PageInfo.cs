@@ -73,16 +73,16 @@ namespace WooDev.Common.Models
         /// </summary>
         public override int PageSize
         {
-            get { return 0; }
-            set { }
+            get;
+            set;
         }
         /// <summary>
         /// 分页数
         /// </summary>
         public override int PageIndex
         {
-            get { return 0; }
-            set { }
+            get;
+            set;
         }
 
 
