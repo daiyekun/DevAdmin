@@ -30,10 +30,11 @@
   import { defineComponent } from 'vue';
 
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
-  import { getDepartList } from '/@/api/devsys/system/devsystem';
+  import { getDepartList, departDelApi } from '/@/api/devsys/system/devsystem';
 
   import { useModal } from '/@/components/Modal';
   import DeptModal from './DeptModal.vue';
+  import { useMessage } from '/@/hooks/web/useMessage';
 
   import { columns, searchFormSchema } from './dept.data';
 
@@ -65,7 +66,7 @@
           fixed: undefined,
         },
       });
-
+      const { createMessage: msg } = useMessage();
       function handleCreate() {
         openModal(true, {
           isUpdate: false,
@@ -79,8 +80,10 @@
         });
       }
 
-      function handleDelete(record: Recordable) {
-        console.log(record);
+      async function handleDelete(record: Recordable) {
+        await departDelApi({ Ids: record.ID.toString() });
+        msg.success({ content: '删除成功', key: 'deling' });
+        reload();
       }
 
       function handleSuccess() {

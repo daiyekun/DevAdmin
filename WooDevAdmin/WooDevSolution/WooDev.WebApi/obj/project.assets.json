@@ -1474,7 +1474,9 @@
           "AutoMapper": "11.0.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
-          "Microsoft.Extensions.DependencyInjection": "6.0.0"
+          "Microsoft.Extensions.DependencyInjection": "6.0.0",
+          "WooDev.Model": "1.0.0",
+          "WooDev.ViewModel": "1.0.0"
         },
         "compile": {
           "bin/placeholder/WooDev.AutoMapper.dll": {}

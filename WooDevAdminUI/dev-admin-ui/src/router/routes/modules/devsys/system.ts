@@ -56,7 +56,7 @@ const system: AppRouteModule = {
     },
     {
       path: 'dept',
-      name: 'DeptManagement',
+      name: 'DevDeptManagement',
       meta: {
         title: t('routes.demo.system.dept'),
         ignoreKeepAlive: true,

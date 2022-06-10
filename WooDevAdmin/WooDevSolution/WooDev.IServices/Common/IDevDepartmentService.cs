@@ -43,15 +43,6 @@ namespace WooDev.IServices
         /// <returns></returns>
         List<DeptTreeTable> GetTableTree(PageInfo<DEV_DEPARTMENT> pageInfo, Expression<Func<DEV_DEPARTMENT, bool>>? whereLambda,
             Expression<Func<DEV_DEPARTMENT, object>> orderbyLambda, bool isAsc);
-        /// <summary>
-        /// 查询tree table
-        /// </summary>
-        /// <param name="pageInfo"></param>
-        /// <param name="whereLambda"></param>
-        /// <param name="orderbyLambda"></param>
-        /// <param name="isAsc"></param>
-        /// <returns></returns>
-        ResultPageData<DeptTreeTable> GetDeptTreeList(PageInfo<DEV_DEPARTMENT> pageInfo, Expression<Func<DEV_DEPARTMENT, bool>>? whereLambda,
-          Expression<Func<DEV_DEPARTMENT, object>> orderbyLambda, bool isAsc);
+       
     }
 }

@@ -19,8 +19,11 @@ namespace WooDev.ViewModel
     /// 搜索对象
     /// </summary>
     public class SerachDepartData
-    {
-        
+    {  
+        /// <summary>
+        /// 搜索名称
+        /// </summary>
+        public string depName { get; set; }
 
     }
 

@@ -100,7 +100,14 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.Model\\WooDev.Model.csproj": {
+                "projectPath": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.Model\\WooDev.Model.csproj"
+              },
+              "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.ViewModel\\WooDev.ViewModel.csproj": {
+                "projectPath": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.ViewModel\\WooDev.ViewModel.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

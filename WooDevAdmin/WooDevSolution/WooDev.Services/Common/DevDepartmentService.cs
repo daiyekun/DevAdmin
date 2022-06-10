@@ -58,6 +58,7 @@ namespace WooDev.Services
                             DEP_HEAD=a.DEP_HEAD,//部门负责人
                             CREATE_TIME=a.CREATE_TIME,//创建时间
                             CREATE_USERID = a.CREATE_USERID,//创建人
+                            DSTATE=a.DSTATE,//启用/停用
                            
 
                         };
@@ -82,6 +83,7 @@ namespace WooDev.Services
                             DEP_HEAD = a.DEP_HEAD,//部门负责人
                             CREATE_TIME = a.CREATE_TIME,//创建时间
                             CREATE_USERID = a.CREATE_USERID,//创建人
+                            DSTATE = a.DSTATE,//启用/停用
 
                         };
             return new ResultPageData<DevDepartmentList>()
@@ -185,7 +187,12 @@ namespace WooDev.Services
             List<DeptTreeTable> listTree = new List<DeptTreeTable>();
             var listAll = GetList(pageInfo, whereLambda,orderbyLambda, isAsc);
             var list = listAll.items;
-            foreach (var item in list.Where(a => a.PID == 0))
+            var rootlist = list.Where(a => a.PID == 0);
+            if (rootlist.Count() <= 0)
+            {
+                rootlist = list;
+            }
+            foreach (var item in rootlist)
             {
                 DeptTreeTable treeInfo = new DeptTreeTable();
                 treeInfo.ID = item.ID;
@@ -194,6 +201,8 @@ namespace WooDev.Services
                 treeInfo.CREATE_TIME = item.CREATE_TIME;
                 treeInfo.IS_MAIN= item.IS_MAIN;
                 treeInfo.ORDER_NUM= item.ORDER_NUM;
+                treeInfo.DSTATE = item.DSTATE;
+                treeInfo.PID = item.PID;
                 RecursionChrenNode(list, treeInfo, item);
                 listTree.Add(treeInfo);
 
@@ -223,6 +232,8 @@ namespace WooDev.Services
                     treeInfotmp.CREATE_TIME = chrenItem.CREATE_TIME;
                     treeInfotmp.IS_MAIN = chrenItem.IS_MAIN;
                     treeInfotmp.ORDER_NUM = chrenItem.ORDER_NUM;
+                    treeInfotmp.DSTATE = chrenItem.DSTATE;
+                    treeInfotmp.PID = chrenItem.PID;
                     RecursionChrenNode(listDepts, treeInfotmp, chrenItem);
                     listchrennode.Add(treeInfotmp);
                 }
@@ -234,25 +245,7 @@ namespace WooDev.Services
 
         }
 
-        /// <summary>
-        /// 查询tree列表
-        /// </summary>
-        /// <returns></returns>
-        public ResultPageData<DeptTreeTable> GetDeptTreeList(PageInfo<DEV_DEPARTMENT> pageInfo, Expression<Func<DEV_DEPARTMENT, bool>>? whereLambda,
-             Expression<Func<DEV_DEPARTMENT, object>> orderbyLambda, bool isAsc)
-        {
-            var treedept = GetTableTree(pageInfo,  whereLambda,orderbyLambda,isAsc);
-            return new ResultPageData<DeptTreeTable>()
-            {
-                items = treedept,
-                total = pageInfo.TotalCount,
-                page = pageInfo.PageIndex,
-                pageSize = pageInfo.PageSize
-
-
-            };
-
-        }
+       
         #endregion
 
 

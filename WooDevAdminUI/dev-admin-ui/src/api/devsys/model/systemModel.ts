@@ -11,6 +11,12 @@ export interface datadicListItem {
   REMARK: string;
   ORDER_NUM: number;
 }
+/**
+ * 删除对象信息
+ */
+export interface deldataInfo {
+  Ids: string;
+}
 
 /**
  * @description: Request list return value
@@ -54,5 +60,17 @@ export interface departListItem {
  */
 export type departListGetResultModel = BasicFetchResult<departListItem>;
 export type departParams = BasicPageParams & {
-  keyword?: string;
+  depName?: string;
 };
+
+/**
+ * 新建部门对象
+ */
+export interface departSaveInfo {
+  ID: number;
+  NAME: string;
+  CODE: string;
+  IS_MAIN: number;
+  DSTATE: number;
+  ORDER_NUM: number;
+}

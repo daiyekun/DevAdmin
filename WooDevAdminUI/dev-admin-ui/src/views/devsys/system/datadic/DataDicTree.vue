@@ -34,7 +34,7 @@
 
       function handleSelect(keys) {
         store.lbId = keys[0];
-        console.log('设置：' + store.lbId);
+        // console.log('设置：' + store.lbId);
         emit('select', keys[0]);
       }
 

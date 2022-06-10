@@ -13,4 +13,9 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WooDev.Model\WooDev.Model.csproj" />
+    <ProjectReference Include="..\WooDev.ViewModel\WooDev.ViewModel.csproj" />
+  </ItemGroup>
+
 </Project>
