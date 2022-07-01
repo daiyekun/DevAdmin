@@ -192,15 +192,20 @@ namespace WooDev.Services
                 menuList0.MenuName = item0.RouteMate.TITLE;
                 menuList0.OrderNo = item0.RouteMate.ORDERNO ?? 0;
                 menuList0.Icon = item0.RouteMate.ICON;
+                menuList0.IsExt= item0.RouteMate.ISLINK??0;
+                //是否缓存
+                menuList0.Keepalive= item0.RouteMate.IGNORE_KEEPALIVE ?? 0;
+                menuList0.Show=(item0.RouteMate.HIDEMENU ?? 0);
             }
-           
+            menuList0.Name = item0.NAME;
             menuList0.Pid = item0.PID;
+            menuList0.ParentMenu= item0.PID;
             menuList0.Type = item0.M_TYPE ?? -1;
             menuList0.Permission = item0.PERMISSION;
             menuList0.Component = item0.COMPONENT;
             menuList0.Status = item0.IS_SHOW;
             menuList0.CreateTime = item0.CREATE_TIME;
-           
+            menuList0.RoutePath = item0.PATH;
             return menuList0;
         }
 

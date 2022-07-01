@@ -152,7 +152,6 @@ namespace WooDev.Model.Models
         /// 默 认 值:
         /// 是否空值:True
         /// </summary>
-           [SugarColumn(ColumnName="HideMENU")]
         public int? HIDEMENU { get; set; }
 
         /// <summary>

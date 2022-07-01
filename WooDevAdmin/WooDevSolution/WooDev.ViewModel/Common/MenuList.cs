@@ -17,6 +17,11 @@ namespace WooDev.ViewModel
         /// </summary>
         public int Id { get; set; }
         /// <summary>
+        /// 组件名称
+        /// </summary>
+        public string? Name { get; set; }
+        
+        /// <summary>
         /// 类型
         /// </summary>
         public int Type { get; set; }
@@ -60,6 +65,27 @@ namespace WooDev.ViewModel
         /// </summary>
 
         public int Pid { get; set; }
+        /// <summary>
+        /// 父类菜单
+        /// </summary>
+        public int ParentMenu { get; set; }
+        /// <summary>
+        /// 路由地址
+        /// </summary>
+        public string? RoutePath { get; set; }
+        /// <summary>
+        ///是否外连接
+        /// </summary>
+        public int IsExt { get; set; } = 0;
+        /// <summary>
+        /// 是否缓存
+        /// </summary>
+        public int Keepalive { get; set; }
+        /// <summary>
+        /// 是否显示
+        /// 
+        /// </summary>
+        public int Show { get; set; }
 
         /// <summary>
         /// 子菜单
@@ -69,5 +95,23 @@ namespace WooDev.ViewModel
 
 
 
+    }
+
+    /// <summary>
+    /// 查询
+    /// </summary>
+    public class SearMenu
+    {
+        /// <summary>
+        /// 名称
+        /// 标题
+        /// </summary>
+        public string? menuName{get;set;}
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public int status { get; set; } = -1;
+
+      
     }
 }

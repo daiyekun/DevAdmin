@@ -189,7 +189,7 @@ export interface OptionLogListItem {
 
 export type MenuParams = {
   menuName?: string;
-  status?: string;
+  status?: number;
 };
 
 export type MenuListGetResultModel = BasicFetchResult<MenuListItem>;
@@ -201,4 +201,23 @@ export interface MenuListItem {
   icon: string;
   component: string;
   permission: string;
+}
+
+/**
+ * 新建用户对象
+ */
+export interface menuSaveInfo {
+  id: number;
+  type: number;
+  menuName: string;
+  parentMenu: number;
+  orderNo: number;
+  icon: string;
+  routePath: string;
+  component: string;
+  permission: string;
+  status: number;
+  isExt: number;
+  keepalive: number;
+  show: number;
 }

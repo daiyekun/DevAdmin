@@ -16,7 +16,7 @@
   import { formSchema } from './menu.data';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
 
-  import { getMenuList } from '/@/api/devsys/system/devsystem';
+  import { getMenuList, menuSaveApi } from '/@/api/devsys/system/devsystem';
 
   export default defineComponent({
     name: 'MenuDrawer',
@@ -57,6 +57,7 @@
           setDrawerProps({ confirmLoading: true });
           // TODO custom api
           console.log(values);
+          await menuSaveApi(values);
           closeDrawer();
           emit('success');
         } finally {

@@ -66,7 +66,7 @@ namespace WooDev.Model.Models
         /// <summary>
         /// 描    述:PATH
         /// 默 认 值:
-        /// 是否空值:False
+        /// 是否空值:True
         /// </summary>
         public string PATH { get; set; }
 

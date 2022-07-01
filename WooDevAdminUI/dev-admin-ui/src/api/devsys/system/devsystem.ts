@@ -17,6 +17,7 @@ import {
   OptionLogResultModel,
   MenuParams,
   MenuListGetResultModel,
+  menuSaveInfo,
 } from '../model/systemModel';
 import { defHttp } from '/@/utils/http/axios';
 import { ResultData } from '/@/api/model/baseModel';
@@ -44,6 +45,8 @@ enum Api {
   optionlogList = '/DevOptionLog/getList', //登录日志
   //菜单
   MenuList = '/DevMenu/getMenuListTable',
+  MenuSave = '/DevMenu/menuSave',
+  MenuDelete = '/DevMenu/delmenu', //删除
 }
 
 export const getDepartList = (params?: departParams) =>
@@ -95,3 +98,9 @@ export const getOptionLogList = (params: optionlogSearchParams) =>
 
 export const getMenuList = (params?: MenuParams) =>
   defHttp.get<MenuListGetResultModel>({ url: Api.MenuList, params });
+
+export const menuSaveApi = (params: menuSaveInfo) =>
+  defHttp.post<ResultData>({ url: Api.MenuSave, params });
+
+export const menuDelApi = (params: deldataInfo) =>
+  defHttp.get<ResultData>({ url: Api.MenuDelete, params });
