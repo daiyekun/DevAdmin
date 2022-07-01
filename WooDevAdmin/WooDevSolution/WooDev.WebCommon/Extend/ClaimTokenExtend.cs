@@ -98,6 +98,24 @@ namespace WooDev.WebCommon.Extend
         }
 
         /// <summary>
+        /// 获取token 登录名称
+        /// </summary>
+        /// <param name="Claims">Token对象</param>
+        /// <returns></returns>
+        public static string GetTokenLoginName(this IEnumerable<Claim> Claims)
+        {
+
+            string loginname = "";
+            if (Claims != null && Claims.Count() > 0)
+            {
+                var claimsName = Claims.Where(a => a.Type == "LoginName").FirstOrDefault();
+
+                loginname = claimsName != null ? claimsName.Value : "";
+            }
+            return loginname;
+        }
+
+        /// <summary>
         /// 获取token 登录人员角色ID
         /// </summary>
         /// <param name="Claims">Token对象</param>

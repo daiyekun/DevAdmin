@@ -38,11 +38,22 @@ namespace WooDev.IServices
         /// <returns></returns>
         IList<DevDepartmentDTO> GetAll();
         /// <summary>
-        /// 查询tree列表
+        /// 查询treeTable列表
         /// </summary>
         /// <returns></returns>
         List<DeptTreeTable> GetTableTree(PageInfo<DEV_DEPARTMENT> pageInfo, Expression<Func<DEV_DEPARTMENT, bool>>? whereLambda,
             Expression<Func<DEV_DEPARTMENT, object>> orderbyLambda, bool isAsc);
-       
+        /// <summary>
+        /// 查询tree
+        /// </summary>
+        /// <param name="pageInfo"></param>
+        /// <param name="whereLambda"></param>
+        /// <param name="orderbyLambda"></param>
+        /// <param name="isAsc"></param>
+        /// <returns></returns>
+        List<DeptTree> GetDeptTree(PageInfo<DEV_DEPARTMENT> pageInfo, Expression<Func<DEV_DEPARTMENT, bool>>? whereLambda,
+           Expression<Func<DEV_DEPARTMENT, object>> orderbyLambda, bool isAsc);
+
+
     }
 }

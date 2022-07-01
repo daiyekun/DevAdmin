@@ -1,4 +1,4 @@
-using Dev.WooNet.Common.Models;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -7,10 +7,12 @@ using SqlSugar;
 using System.Text;
 using WooDev.Auth;
 using WooDev.Auth.Model;
+using WooDev.Common.Models;
 using WooDev.IServices;
 using WooDev.Services;
 using WooDev.WebCommon.ServiceExtend;
 using WooDev.WebCommon.Utility;
+using WooDev.WebCommon.Utiltiy.Quartz;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -23,6 +25,10 @@ builder.Services.AddTransient<HttpHelperService>();
 //数据库连接
 var dbconnoptions = new DbConnOptions();
 builder.Configuration.Bind("DbConn", dbconnoptions);
+#region 定时
+//日志
+QuartzUtility.QuarztLog(builder.Configuration["QuartzInfo:QuartzLogsCron"]);
+#endregion
 //数据库连接对象
 builder.Services.AddDevDbServices(dbconnoptions);
 builder.Services.AddDevServices();

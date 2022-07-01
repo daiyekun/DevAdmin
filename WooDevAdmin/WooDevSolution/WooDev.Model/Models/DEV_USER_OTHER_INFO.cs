@@ -38,21 +38,21 @@ namespace WooDev.Model.Models
         /// <summary>
         /// 描    述:说明
         /// 默 认 值:
-        /// 是否空值:False
+        /// 是否空值:True
         /// </summary>
         public string REMARK { get; set; }
 
         /// <summary>
         /// 描    述:头像路径
         /// 默 认 值:
-        /// 是否空值:False
+        /// 是否空值:True
         /// </summary>
         public string HEADPATH { get; set; }
 
         /// <summary>
         /// 描    述:地址
         /// 默 认 值:
-        /// 是否空值:False
+        /// 是否空值:True
         /// </summary>
         public string ADDRESS { get; set; }
 

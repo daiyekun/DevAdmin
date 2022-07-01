@@ -9,37 +9,37 @@ declare module 'vue-router' {
     dynamicLevel?: number;
     // dynamic router real route path (For performance).
     realPath?: string;
-    // Whether to ignore permissions
+    // Whether to ignore permissions--是否忽略权限
     ignoreAuth?: boolean;
     // role info
     roles?: RoleEnum[];
     // Whether not to cache
     ignoreKeepAlive?: boolean;
-    // Is it fixed on tab
+    // Is it fixed on tab-->是否固定在标签上
     affix?: boolean;
     // icon on tab
     icon?: string;
     frameSrc?: string;
-    // current page transition
+    // current page transition-->当前页面转换
     transitionName?: string;
-    // Whether the route has been dynamically added
+    // Whether the route has been dynamically added-->是否已动态添加路由
     hideBreadcrumb?: boolean;
-    // Hide submenu
+    // Hide submenu-->是否隐藏子菜单
     hideChildrenInMenu?: boolean;
-    // Carrying parameters
+    // Carrying parameters -->是否有参数
     carryParam?: boolean;
-    // Used internally to mark single-level menus
+    // Used internally to mark single-level menus--》内部用于标记单层菜单
     single?: boolean;
-    // Currently active menu
+    // Currently active menu--当前活动菜单
     currentActiveMenu?: string;
-    // Never show in tab
+    // Never show in tab--是否显示标签
     hideTab?: boolean;
-    // Never show in menu
+    // Never show in menu--是否显示菜单
     hideMenu?: boolean;
     isLink?: boolean;
-    // only build for Menu
+    // only build for Menu  --仅针对菜单生成
     ignoreRoute?: boolean;
-    // Hide path for children
+    // Hide path for children --隐藏子级路由
     hidePathForChildren?: boolean;
   }
 }

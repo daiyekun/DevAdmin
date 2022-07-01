@@ -43,6 +43,7 @@
     components: { BasicTable, DeptModal, TableAction },
     setup() {
       const [registerModal, { openModal }] = useModal();
+      const { createMessage: msg } = useMessage();
       const [registerTable, { reload }] = useTable({
         title: '部门列表',
         api: getDepartList,
@@ -66,7 +67,7 @@
           fixed: undefined,
         },
       });
-      const { createMessage: msg } = useMessage();
+
       function handleCreate() {
         openModal(true, {
           isUpdate: false,

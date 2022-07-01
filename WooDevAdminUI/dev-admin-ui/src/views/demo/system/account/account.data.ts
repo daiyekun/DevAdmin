@@ -54,7 +54,7 @@ export const accountFormSchema: FormSchema[] = [
     field: 'account',
     label: '用户名',
     component: 'Input',
-    helpMessage: ['本字段演示异步验证', '不能输入带有admin的用户名'],
+    helpMessage: ['本字段演示异步验证', '不能输入带有admin的用户名', '不区分大小写校验是否存在'],
     rules: [
       {
         required: true,
@@ -64,7 +64,9 @@ export const accountFormSchema: FormSchema[] = [
         validator(_, value) {
           return new Promise((resolve, reject) => {
             isAccountExist(value)
-              .then(() => resolve())
+              .then(() => {
+                resolve();
+              })
               .catch((err) => {
                 reject(err.message || '验证失败');
               });

@@ -140,6 +140,18 @@ namespace WooDev.ViewModel
         /// 描述
         /// </summary>
         public string? Desc { get; set; }
+        /// <summary>
+        /// 部门ID
+        /// </summary>
+        public int DepartId { get; set; }
+        /// <summary>
+        /// 部门名称
+        /// </summary>
+        public string DepartName { get; set; }
+        /// <summary>
+        /// 角色ID
+        /// </summary>
+        public int RoleId { get; set; }
 
     }
 

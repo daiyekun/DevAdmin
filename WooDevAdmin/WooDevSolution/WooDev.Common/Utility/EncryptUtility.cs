@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dev.WooNet.Common.Utility
+namespace WooDev.Common.Utility
 {
 
     /// <summary>

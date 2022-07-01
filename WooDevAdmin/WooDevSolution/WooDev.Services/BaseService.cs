@@ -77,6 +77,17 @@ namespace WooDev.Services
 
         }
         /// <summary>
+        /// 批量修改
+        /// </summary>
+        /// <param name="t">修改对象</param>
+        /// <returns>true:成功/false:失败</returns>
+        public int Update(List<T> updates)
+        {
+
+            return DbClient.Updateable(updates).ExecuteCommand();
+
+        }
+        /// <summary>
         /// 查询所有
         /// </summary>
         /// <returns></returns>
@@ -101,6 +112,27 @@ namespace WooDev.Services
         {
            return DbClient.Queryable<T>().InSingle(Id);
         }
+        /// <summary>
+        /// 执行sql语句
+        /// 改麻烦，能不用就别用了
+        /// </summary>
+        /// <param name="sql">sql 语句</param>
+        /// <returns></returns>
+        public int  ExecuteCommand(string sql)
+        {
+            return DbClient.Ado.ExecuteCommand(sql);
+        }
+        /// <summary>
+        /// 根据条件查询数据
+        /// </summary>
+        /// <param name="predicate">where 条件</param>
+        /// <returns>ISugarQueryable<T></returns>
+        public ISugarQueryable<T> Query(Expression<Func<T, bool>> predicate)
+        {
+           return DbClient.Queryable<T>().Where(predicate);
+        }
+
+
 
 
 

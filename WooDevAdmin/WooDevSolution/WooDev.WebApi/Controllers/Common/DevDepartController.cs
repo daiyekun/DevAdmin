@@ -151,5 +151,35 @@ namespace WooDev.WebApi.Controllers.Common
             };
             return new DevResultJson(result);
         }
+
+
+        /// <summary>
+        /// 列表
+        /// </summary>
+        /// <returns></returns>
+        [Route("getDeptTree")]
+        [HttpGet]
+        //[AllowAnonymous]//跳过授权验证
+        [Authorize]
+        public IActionResult GetDeptTree([FromQuery] PageParams pageParams, [FromQuery] SerachDepartData serachParam)
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            var pageinfo = new NoPageInfo<DEV_DEPARTMENT>() { PageIndex = pageParams.page, PageSize = pageParams.pageSize };
+            var whereexp = Expressionable.Create<DEV_DEPARTMENT>();
+            whereexp = whereexp.And(a => a.IS_DELETE == 0);
+
+            if (serachParam != null && !string.IsNullOrEmpty(serachParam.depName))
+            {//搜索名称
+                whereexp = whereexp.And(a => a.NAME.Contains(serachParam.depName));
+            }
+            Expression<Func<DEV_DEPARTMENT, object>> orderbyLambda = a => a.ORDER_NUM;
+            List <DeptTree> data= _IDevDepartmentService.GetDeptTree(pageinfo, whereexp.ToExpression(), orderbyLambda, true);
+            var result = new ResultListData<DeptTree>
+            {
+                result = data,
+            };
+
+            return new DevResultJson(data);
+        }
     }
 }

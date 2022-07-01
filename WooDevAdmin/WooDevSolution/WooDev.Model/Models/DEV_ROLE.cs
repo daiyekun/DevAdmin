@@ -84,5 +84,12 @@ namespace WooDev.Model.Models
         /// </summary>
         public DateTime UPDATE_TIME { get; set; }
 
+        /// <summary>
+        /// 描    述:状态标识
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int RUSTATE { get; set; }
+
     }
 }

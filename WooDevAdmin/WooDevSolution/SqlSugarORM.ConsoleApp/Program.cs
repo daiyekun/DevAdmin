@@ -8,7 +8,8 @@ try
     ConnectionConfig connectionConfig = new ConnectionConfig()
     {
         DbType = DbType.MySql,
-        ConnectionString="server=localhost;port=3306;database=woodevadmin;user id=root;password=Sasa123"
+        //ConnectionString="server=localhost;port=3306;database=woodevadmin;user id=root;password=Sasa123"
+        ConnectionString ="server=81.70.196.21;port=13306;database=woodevadmin;user id=wooroot;password=Wooroot123"
     };
     
     var baserdir = AppContext.BaseDirectory;

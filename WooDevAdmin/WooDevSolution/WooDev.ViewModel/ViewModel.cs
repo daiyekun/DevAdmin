@@ -126,6 +126,18 @@ public partial class DevRoleFunctionView : DEV_ROLE_FUNCTION
    
      
 //列表使用
+public partial class DevRoutemetaList : DEV_ROUTEMETA
+{ }
+//提交数据库使用
+public partial class DevRoutemetaDTO : DEV_ROUTEMETA,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevRoutemetaView : DEV_ROUTEMETA
+{ }
+    
+   
+     
+//列表使用
 public partial class DevUserList : DEV_USER
 { }
 //提交数据库使用

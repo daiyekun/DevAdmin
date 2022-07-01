@@ -59,6 +59,11 @@ public partial interface IDevRoleFunctionService : IBaseService<DEV_ROLE_FUNCTIO
     
    
      
+public partial interface IDevRoutemetaService : IBaseService<DEV_ROUTEMETA>
+{ }
+    
+   
+     
 public partial interface IDevUserService : IBaseService<DEV_USER>
 { }
     
@@ -70,6 +75,11 @@ public partial interface IDevUserFunctionService : IBaseService<DEV_USER_FUNCTIO
    
      
 public partial interface IDevUserOtherInfoService : IBaseService<DEV_USER_OTHER_INFO>
+{ }
+    
+   
+     
+public partial interface IDevUserRoleService : IBaseService<DEV_USER_ROLE>
 { }
     
    

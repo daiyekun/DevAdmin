@@ -52,7 +52,7 @@ namespace WooDev.Model.Models
         /// <summary>
         /// 描    述:身份证号
         /// 默 认 值:
-        /// 是否空值:False
+        /// 是否空值:True
         /// </summary>
         public string ID_NO { get; set; }
 
@@ -66,7 +66,7 @@ namespace WooDev.Model.Models
         /// <summary>
         /// 描    述:编号
         /// 默 认 值:
-        /// 是否空值:False
+        /// 是否空值:True
         /// </summary>
         public string CODE { get; set; }
 
@@ -94,7 +94,7 @@ namespace WooDev.Model.Models
         /// <summary>
         /// 描    述:邮箱
         /// 默 认 值:
-        /// 是否空值:False
+        /// 是否空值:True
         /// </summary>
         public string EMAIL { get; set; }
 
@@ -103,7 +103,7 @@ namespace WooDev.Model.Models
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public string USTATE { get; set; }
+        public int USTATE { get; set; }
 
         /// <summary>
         /// 描    述:是否删除
@@ -146,6 +146,13 @@ namespace WooDev.Model.Models
         /// 是否空值:True
         /// </summary>
         public string WX_CODE { get; set; }
+
+        /// <summary>
+        /// 描    述:角色ID
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int ROLE_ID { get; set; }
 
     }
 }

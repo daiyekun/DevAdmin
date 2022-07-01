@@ -98,5 +98,47 @@ namespace WooDev.Model.Models
         /// </summary>
         public DateTime UPDATE_TIME { get; set; }
 
+        /// <summary>
+        /// 描    述:操作标题
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public string ACTION_TITLE { get; set; }
+
+        /// <summary>
+        /// 描    述:方法
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public string ACTION_NAME { get; set; }
+
+        /// <summary>
+        /// 描    述:控制器
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public string CONTROLLER_NAME { get; set; }
+
+        /// <summary>
+        /// 描    述:请求类型get post等
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public int? REQ_METHOD { get; set; }
+
+        /// <summary>
+        /// 描    述:增加 删除 修改 查询等
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public int? OPTION_TYPE { get; set; }
+
+        /// <summary>
+        /// 描    述:描述
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public string REMARK { get; set; }
+
     }
 }

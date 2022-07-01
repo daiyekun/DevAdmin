@@ -132,6 +132,19 @@ namespace WooDev.Services
     
    
      
+ public partial class DevRoutemetaService : BaseService<DEV_ROUTEMETA>, IDevRoutemetaService
+    {
+         public DevRoutemetaService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
  public partial class DevUserService : BaseService<DEV_USER>, IDevUserService
     {
          public DevUserService(ISqlSugarClient DbClient)
@@ -161,6 +174,19 @@ namespace WooDev.Services
  public partial class DevUserOtherInfoService : BaseService<DEV_USER_OTHER_INFO>, IDevUserOtherInfoService
     {
          public DevUserOtherInfoService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevUserRoleService : BaseService<DEV_USER_ROLE>, IDevUserRoleService
+    {
+         public DevUserRoleService(ISqlSugarClient DbClient)
            : base(DbClient)
         {
            

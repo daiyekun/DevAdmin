@@ -36,4 +36,10 @@ export interface GetUserInfoModel {
   avatar: string;
   // 介绍
   desc?: string;
+  //所属部门名称
+  departName?: string;
+  //所属部门ID
+  departId: number;
+  //角色ID
+  roleId: number;
 }

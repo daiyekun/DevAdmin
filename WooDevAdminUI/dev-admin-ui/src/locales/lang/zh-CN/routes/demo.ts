@@ -165,10 +165,13 @@ export default {
     moduleName: '系统管理',
     account: '账号管理',
     account_detail: '账号详情',
+    account_build: '账号新增',
     password: '修改密码',
     dept: '部门管理',
     menu: '菜单管理',
     role: '角色管理',
+    loginlog: '登录日志',
+    optionlog: '操作日志',
   },
   table: {
     table: 'Table',

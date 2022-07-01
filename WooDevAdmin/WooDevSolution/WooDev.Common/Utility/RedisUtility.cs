@@ -139,7 +139,7 @@ namespace WooDev.Common.Utility
         /// <typeparam name="T">当前对象类型</typeparam>
         /// <param name="key">key</param>
         /// <returns>返回对象集合</returns>
-        public static IList<T> StringGetToList<T>(string key)
+        public static List<T> StringGetToList<T>(string key)
             where T : class
 
         {

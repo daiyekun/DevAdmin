@@ -108,7 +108,6 @@ E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\n
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\WooDev.WebApi.AssemblyInfoInputs.cache
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\WooDev.WebApi.AssemblyInfo.cs
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\WooDev.WebApi.csproj.CoreCompileInputs.cache
-E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\WooDev.WebApi.MvcApplicationPartsAssemblyInfo.cs
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\WooDev.WebApi.MvcApplicationPartsAssemblyInfo.cache
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\staticwebassets.build.json
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\staticwebassets.development.json
@@ -118,4 +117,13 @@ E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\n
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\ref\WooDev.WebApi.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\WooDev.WebApi.pdb
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\WooDev.WebApi.genruntimeconfig.cache
-E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\ref\WooDev.WebApi.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\Quartz.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\WooDev.WebApi.MvcApplicationPartsAssemblyInfo.cs
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\Microsoft.CodeAnalysis.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\Microsoft.CodeAnalysis.Razor.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\refint\WooDev.WebApi.dll

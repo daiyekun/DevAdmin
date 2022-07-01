@@ -7,7 +7,7 @@ enum Api {
   Login = '/DevAuth/login',
   Logout = '/DevUser/logout',
   GetUserInfo = '/DevUser/getUserInfo',
-  GetPermCode = '/getPermCode',
+  GetPermCode = '/DevUser/getPermCode',
   TestRetry = '/testRetry',
 }
 

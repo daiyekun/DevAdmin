@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace WooDev.Common.Utility
 {
@@ -45,8 +46,8 @@ namespace WooDev.Common.Utility
             //IsoDateTimeConverter timeConverter = new IsoDateTimeConverter { DateTimeFormat = "yyyy'-'MM'-'dd" };
             var settings = new JsonSerializerSettings();
             if (jonKeyLower)
-            {
-               // settings.ContractResolver = new LowercaseContractResolver();
+            {//首字母小写-驼峰命名
+              settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             }
             if (todateLong)
             {

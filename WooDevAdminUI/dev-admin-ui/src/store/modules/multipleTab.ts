@@ -148,6 +148,7 @@ export const useMultipleTabStore = defineStore({
         curTab.fullPath = fullPath || curTab.fullPath;
         this.tabList.splice(updateIndex, 1, curTab);
       } else {
+        //console.log('路由----', JSON.stringify(meta));
         // Add tab
         // 获取动态路由打开数，超过 0 即代表需要控制打开数
         const dynamicLevel = meta?.dynamicLevel ?? -1;

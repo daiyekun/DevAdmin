@@ -6,6 +6,10 @@ dist
 
 tests/server/static
 tests/server/static/upload
+  pnpm-lock.yaml
+	src/layouts/default/header/components/user-dropdown/index.vue
+	src/settings/projectSetting.ts
+	src/utils/http/axios/index.ts
 
 .local
 # local env files
@@ -27,3 +31,7 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+package-lock.json
+pnpm-lock.yaml
+

@@ -64,6 +64,15 @@ namespace WooDev.WebCommon.ServiceExtend
             services.AddTransient<IDevUserService, DevUserService>();
             services.AddTransient<IDevDatadicService, DevDatadicService>();
             services.AddTransient<IDevDepartmentService, DevDepartmentService>();
+            services.AddTransient<IDevRoleService, DevRoleService>();
+            services.AddTransient<IDevLoginLogService, DevLoginLogService>();
+            services.AddTransient<IDevOptionLogService, DevOptionLogService>();
+            services.AddTransient<IDevUserOtherInfoService, DevUserOtherInfoService>();
+            services.AddTransient<IDevFunctionMenuService, DevFunctionMenuService>();
+            services.AddTransient<IDevRoutemetaService, DevRoutemetaService>();
+
+
+
 
         }
 

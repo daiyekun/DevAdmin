@@ -245,7 +245,69 @@ namespace WooDev.Services
 
         }
 
-       
+
+        #endregion
+
+
+        #region tree
+        /// <summary>
+        /// 返回vue-Tree需要数据格式
+        /// </summary>
+        /// <returns></returns>
+        public List<DeptTree> GetDeptTree(PageInfo<DEV_DEPARTMENT> pageInfo, Expression<Func<DEV_DEPARTMENT, bool>>? whereLambda,
+             Expression<Func<DEV_DEPARTMENT, object>> orderbyLambda, bool isAsc)
+        {
+            List<DeptTree> listTree = new List<DeptTree>();
+            var listAll = GetList(pageInfo, whereLambda, orderbyLambda, isAsc);
+            var list = listAll.items;
+            var rootlist = list.Where(a => a.PID == 0);
+            if (rootlist.Count() <= 0)
+            {
+                rootlist = list;
+            }
+            foreach (var item in rootlist)
+            {
+                DeptTree treeInfo = new DeptTree();
+                treeInfo.key = item.ID.ToString();
+                treeInfo.title = item.NAME;
+                RecursionChrenTree(list, treeInfo, item);
+                listTree.Add(treeInfo);
+
+            }
+            return listTree;
+        }
+
+        /// <summary>
+        /// 递归
+        /// </summary>
+        /// <param name="listDepts">数据列表</param>
+        /// <param name="treeInfo">Tree对象</param>
+        /// <param name="item">父类对象</param>
+        public void RecursionChrenTree(IList<DevDepartmentList> listDepts, DeptTree treeInfo, DevDepartmentList item)
+        {
+            var listchren = listDepts.Where(a => a.PID == item.ID);
+            var listchrennode = new List<DeptTree>();
+            if (listchren.Any())
+            {
+                var chrenlist = listchren.ToList();
+                foreach (var chrenItem in chrenlist)
+                {
+                    DeptTree treeInfotmp = new DeptTree();
+                    treeInfotmp.key = chrenItem.ID.ToString();
+                    treeInfotmp.title = chrenItem.NAME;
+
+                    RecursionChrenTree(listDepts, treeInfotmp, chrenItem);
+                    listchrennode.Add(treeInfotmp);
+                }
+                treeInfo.children = listchrennode;
+
+            }
+
+
+
+        }
+
+
         #endregion
 
 

@@ -38,4 +38,29 @@ namespace WooDev.ViewModel
         public List<DeptTreeTable>? children { get; set; }
 
     }
+
+
+
+
+    /// <summary>
+    /// 组织机构表
+    /// </summary>
+    public class DeptTree
+    {
+
+        public string icon { get; set; } = "home|svg";
+        /// <summary>
+        /// 标题
+        /// </summary>
+        public string? title { get; set; }
+        /// <summary>
+        /// key
+        /// </summary>
+        public string? key { get; set; }
+        /// <summary>
+        /// 子类
+        /// </summary>
+        public List<DeptTree>? children { get; set; }
+
+    }
 }

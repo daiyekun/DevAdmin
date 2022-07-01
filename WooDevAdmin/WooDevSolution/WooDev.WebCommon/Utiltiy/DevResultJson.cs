@@ -8,7 +8,7 @@ using WooDev.Common.Utility;
 
 namespace WooDev.WebCommon.Utiltiy
 {
-    public class DevResultJson: IActionResult
+    public class DevResultJson : IActionResult
     {
         private object _Data = null;
         /// <summary>
@@ -66,13 +66,13 @@ namespace WooDev.WebCommon.Utiltiy
             context.HttpContext.Response.ContentType = "application/json";
             if (_func != null)
             {
-                var strjson = JsonUtility.SerializeObject(this._Data, this._logdate);
+                var strjson = JsonUtility.SerializeObject(this._Data, this._logdate, this._jsonKeylower);
                 byte[] bytes = Encoding.UTF8.GetBytes(this._func.Invoke(strjson));
                 return context.HttpContext.Response.Body.WriteAsync(bytes, 0, bytes.Count());
             }
             else
             {
-                byte[] bytes = Encoding.UTF8.GetBytes(JsonUtility.SerializeObject(this._Data, this._logdate, _jsonKeylower));
+                byte[] bytes = Encoding.UTF8.GetBytes(JsonUtility.SerializeObject(this._Data, this._logdate, this._jsonKeylower));
                 return context.HttpContext.Response.Body.WriteAsync(bytes, 0, bytes.Count());
 
             }
@@ -81,4 +81,36 @@ namespace WooDev.WebCommon.Utiltiy
 
         }
     }
+
+    /// <summary>
+    /// 返回json key 首字母小写。
+    /// 驼峰命名规则
+    /// 其他还说是用
+    /// DevResultJson
+    /// </summary>
+    public class DevResponseJson : IActionResult
+    {
+        private object Data;
+        public DevResponseJson(object data)
+        {
+            this.Data = data;
+        }
+
+        public Task ExecuteResultAsync(ActionContext context)
+        {
+            context.HttpContext.Response.ContentType = "application/json";
+
+            byte[] bytes = Encoding.UTF8.GetBytes(JsonUtility.SerializeObject(this.Data, false,true));
+            return context.HttpContext.Response.Body.WriteAsync(bytes, 0, bytes.Count());
+
+
+
+
+
+        }
+
+    }
+
+
+
 }

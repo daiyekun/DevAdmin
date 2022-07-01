@@ -9,7 +9,7 @@
     <template #footer>
       <a-tabs default-active-key="1">
         <a-tab-pane key="1" tab="详情" />
-        <a-tab-pane key="2" tab="规则" />
+        <!-- <a-tab-pane key="2" tab="操作日志" /> -->
       </a-tabs>
     </template>
 

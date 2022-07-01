@@ -21,6 +21,24 @@ namespace Dev.WooNet.AutoMapper.ProFiles
             #region  公共区域
             CreateMap<DevDepartmentDTO, DEV_DEPARTMENT>()
                 ;
+            CreateMap<DevUserDTO, DEV_USER>()
+            .ForMember(a => a.IS_DELETE, opt => opt.MapFrom(src => 0))
+            .ForMember(a => a.UPDATE_USERID, opt => opt.Ignore())
+            .ForMember(a => a.UPDATE_TIME, opt => opt.Ignore())
+            .ForMember(a => a.CREATE_TIME, opt => opt.Ignore())
+            .ForMember(a => a.CREATE_USERID, opt => opt.Ignore())
+            .ForMember(a => a.PWD, opt => opt.Ignore())
+            .ForMember(a => a.USTATE, opt => opt.Ignore())
+            ;
+
+            CreateMap<DevUserOtherInfoDTO, DEV_USER_OTHER_INFO>()
+           .ForMember(a => a.IS_DELETE, opt => opt.MapFrom(src => 0))
+           .ForMember(a => a.UPDATE_USERID, opt => opt.Ignore())
+           .ForMember(a => a.UPDATE_TIME, opt => opt.Ignore())
+           .ForMember(a => a.CREATE_TIME, opt => opt.Ignore())
+           .ForMember(a => a.CREATE_USERID, opt => opt.Ignore())
+         
+           ;
             #endregion
 
 

@@ -53,7 +53,8 @@ namespace WooDev.WebCommon.ServiceExtend
             //关闭模型验证否则会出现状态400：One or more validation errors occurred.
             services.Configure<ApiBehaviorOptions>(opt => opt.SuppressModelStateInvalidFilter = true);
             //services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
-            services.AddDevMapperFiles();
+            //services.AddDevMapperFiles();
+            services.AddAutoMapperProfiles();
 
 
         }

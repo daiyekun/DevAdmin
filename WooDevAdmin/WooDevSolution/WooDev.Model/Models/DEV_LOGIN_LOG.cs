@@ -91,5 +91,19 @@ namespace WooDev.Model.Models
         /// </summary>
         public DateTime UPDATE_TIME { get; set; }
 
+        /// <summary>
+        /// 描    述:登录结果
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int LOGIN_RES { get; set; }
+
+        /// <summary>
+        /// 描    述:登录描述 考虑未来存储失败信息
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public string REMARK { get; set; }
+
     }
 }

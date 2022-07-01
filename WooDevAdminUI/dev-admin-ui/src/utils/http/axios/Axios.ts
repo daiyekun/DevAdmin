@@ -61,7 +61,7 @@ export class VAxios {
   }
 
   /**
-   * @description: Interceptor configuration
+   * @description: Interceptor configuration 拦截器配置
    */
   private setupInterceptors() {
     const transform = this.getTransform();
@@ -180,9 +180,6 @@ export class VAxios {
   }
 
   post<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
-    console.log('config');
-    console.log(config);
-
     return this.request({ ...config, method: 'POST' }, options);
   }
 

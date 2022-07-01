@@ -34,5 +34,28 @@ namespace WooDev.Common.Models
         /// 币种
         /// </summary>
         public static string CurrencyHashKey = $"{BaseKey_Prefix}Currency";
+
+        /// <summary>
+        /// 角色哈希
+        /// </summary>
+        public static string RoleHashKey = $"{BaseKey_Prefix}Role";
+        /// <summary>
+        /// 角色list key
+        /// </summary>
+        public static string RoleAllListKey = $"{BaseKey_Prefix}RoleAllList";
+        /// <summary>
+        /// 用户哈希
+        /// </summary>
+        public static string UserHashKey = $"{BaseKey_Prefix}User";
+        /// <summary>
+        /// 操作日志
+        /// </summary>
+        public static string OptionLog = $"{BaseKey_Prefix}Sys:OptionLog";
+        /// <summary>
+        /// 登录日志
+        /// </summary>
+        public static string LoginLog = $"{BaseKey_Prefix}Sys:LoginLog";
+
+
     }
 }

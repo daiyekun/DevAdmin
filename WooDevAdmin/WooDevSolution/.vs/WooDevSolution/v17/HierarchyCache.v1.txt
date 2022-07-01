@@ -3,33 +3,39 @@ i:{00000000-0000-0000-0000-000000000000}:WooDevSolution.sln
 ++WooDev.WebApi
 i:{00000000-0000-0000-0000-000000000000}:WooDev.WebApi
 ++Connected Services 
-i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:>1530
+i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:>3146
 ++Properties
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webapi\properties\
 ++依赖项
-i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:>1529
-i:{f727e671-8273-48ea-a8ee-83e1e941e097}:>1330
-i:{70339331-d644-48ac-be93-17c507e78139}:>1331
-i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:>596
-i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:>698
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:>1329
-i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:>697
-i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:>490
-i:{7b679a0f-622b-4340-85cc-87be265df607}:>489
-i:{4b389afa-e612-426f-9826-0cea5ad45833}:>435
-i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:>491
+i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:>3355
+i:{f727e671-8273-48ea-a8ee-83e1e941e097}:>2934
+i:{4b389afa-e612-426f-9826-0cea5ad45833}:>2230
+i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:>2228
+i:{70339331-d644-48ac-be93-17c507e78139}:>3462
+i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:>2933
+i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:>3461
+i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:>3356
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:>3357
+i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:>2229
+i:{7b679a0f-622b-4340-85cc-87be265df607}:>2932
 ++Config
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webapi\config\
 ++Controllers
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webapi\controllers\
 ++Common
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webapi\controllers\common\
-i:{00000000-0000-0000-0000-000000000000}:Common
-i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\common\
 i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\common\
 i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\common\
+i:{00000000-0000-0000-0000-000000000000}:Common
+i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\common\
 ++DevAuthController.cs
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webapi\controllers\common\devauthcontroller.cs
+++DevDataDicController.cs
+i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webapi\controllers\common\devdatadiccontroller.cs
+++DevDepartController.cs
+i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webapi\controllers\common\devdepartcontroller.cs
+++DevRoleController.cs
+i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webapi\controllers\common\devrolecontroller.cs
 ++DevUserController.cs
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webapi\controllers\common\devusercontroller.cs
 ++Test
@@ -44,51 +50,54 @@ i:{f727e671-8273-48ea-a8ee-83e1e941e097}:e:\wooadminproject\wooadmin\woodevadmin
 i:{70339331-d644-48ac-be93-17c507e78139}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.unittest\program.cs
 ++ReadMi.txt
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webapi\readmi.txt
+++web.config
+i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webapi\web.config
 ++未发现任何服务依赖项
-i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:>1531
+i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:>3147
 ++launchSettings.json
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webapi\properties\launchsettings.json
 ++包
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:包
 i:{f727e671-8273-48ea-a8ee-83e1e941e097}:包
-i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:包
-i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:包
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:包
-i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:包
-i:{7b679a0f-622b-4340-85cc-87be265df607}:包
 i:{4b389afa-e612-426f-9826-0cea5ad45833}:包
 i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:包
+i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:包
+i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:包
+i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:包
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:包
+i:{7b679a0f-622b-4340-85cc-87be265df607}:包
 ++分析器
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:分析器
 i:{f727e671-8273-48ea-a8ee-83e1e941e097}:分析器
+i:{4b389afa-e612-426f-9826-0cea5ad45833}:分析器
+i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:分析器
 i:{70339331-d644-48ac-be93-17c507e78139}:分析器
 i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:分析器
 i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:分析器
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:分析器
 i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:分析器
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:分析器
 i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:分析器
 i:{7b679a0f-622b-4340-85cc-87be265df607}:分析器
-i:{4b389afa-e612-426f-9826-0cea5ad45833}:分析器
-i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:分析器
 ++框架
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:框架
 i:{f727e671-8273-48ea-a8ee-83e1e941e097}:框架
+i:{4b389afa-e612-426f-9826-0cea5ad45833}:框架
+i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:框架
 i:{70339331-d644-48ac-be93-17c507e78139}:框架
 i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:框架
 i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:框架
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:框架
 i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:框架
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:框架
 i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:框架
 i:{7b679a0f-622b-4340-85cc-87be265df607}:框架
-i:{4b389afa-e612-426f-9826-0cea5ad45833}:框架
-i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:框架
 ++项目
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:项目
-i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:项目
-i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:项目
 i:{4b389afa-e612-426f-9826-0cea5ad45833}:项目
 i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:项目
+i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:项目
+i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:项目
 i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:项目
+i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:项目
 ++log4net.config
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webapi\config\log4net.config
 ++TestController.cs
@@ -98,12 +107,12 @@ i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin
 ++.dockerignore
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\.dockerignore
 ++Microsoft.VisualStudio.Azure.Containers.Tools.Targets (1.14.0)
-i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:>1593
+i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:>3602
 ++SqlSugarCore (5.0.8.6)
-i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:>1592
-i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:>1663
+i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:>3601
+i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:>3486
 ++Swashbuckle.AspNetCore (6.2.3)
-i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:>1591
+i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:>3600
 ++Microsoft.AspNetCore.Analyzers
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
 ++Microsoft.AspNetCore.App.Analyzers
@@ -123,27 +132,27 @@ i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:c:\program files\dotnet\sdk\6.0.300\sdk
 ++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
 i:{f727e671-8273-48ea-a8ee-83e1e941e097}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{4b389afa-e612-426f-9826-0cea5ad45833}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
 i:{70339331-d644-48ac-be93-17c507e78139}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
 i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
 i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
 i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
 i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
 i:{7b679a0f-622b-4340-85cc-87be265df607}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
-i:{4b389afa-e612-426f-9826-0cea5ad45833}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
-i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
 ++Microsoft.CodeAnalysis.NetAnalyzers
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
 i:{f727e671-8273-48ea-a8ee-83e1e941e097}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{4b389afa-e612-426f-9826-0cea5ad45833}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
 i:{70339331-d644-48ac-be93-17c507e78139}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
 i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
 i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
 i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
 i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
 i:{7b679a0f-622b-4340-85cc-87be265df607}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
-i:{4b389afa-e612-426f-9826-0cea5ad45833}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
-i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:c:\program files\dotnet\sdk\6.0.300\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
 ++Microsoft.Extensions.Logging.Generators
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.5\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
 i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.5\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
@@ -153,58 +162,64 @@ i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:c:\program files\dotnet\sdk\6.0.300\sdk
 ++System.Text.Json.SourceGeneration
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.5\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
 i:{f727e671-8273-48ea-a8ee-83e1e941e097}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.5\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{4b389afa-e612-426f-9826-0cea5ad45833}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.5\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.5\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
 i:{70339331-d644-48ac-be93-17c507e78139}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.5\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
 i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.5\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
 i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.5\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.5\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
 i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.5\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.5\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
 i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.5\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
 i:{7b679a0f-622b-4340-85cc-87be265df607}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.5\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
-i:{4b389afa-e612-426f-9826-0cea5ad45833}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.5\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
-i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.5\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
 ++Microsoft.AspNetCore.App
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webapi\microsoft.aspnetcore.app
 ++Microsoft.NETCore.App
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webapi\microsoft.netcore.app
 i:{f727e671-8273-48ea-a8ee-83e1e941e097}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\sqlsugarorm.consoleapp\microsoft.netcore.app
+i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\microsoft.netcore.app
+i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\microsoft.netcore.app
 i:{70339331-d644-48ac-be93-17c507e78139}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.unittest\microsoft.netcore.app
 i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\microsoft.netcore.app
 i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webcommon\microsoft.netcore.app
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\microsoft.netcore.app
 i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.automapper\microsoft.netcore.app
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\microsoft.netcore.app
 i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\microsoft.netcore.app
 i:{7b679a0f-622b-4340-85cc-87be265df607}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.model\microsoft.netcore.app
-i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\microsoft.netcore.app
-i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\microsoft.netcore.app
+++WooDev.Auth
+i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\bin\debug\net6.0\woodev.auth.dll
+i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\bin\debug\net6.0\woodev.auth.dll
+i:{77dd5a0c-bc4f-4b8c-8aeb-fa946dce89ae}:WooDev.Auth
 ++WooDev.Common
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\bin\debug\net6.0\woodev.common.dll
-i:{77dd5a0c-bc4f-4b8c-8aeb-fa946dce89ae}:WooDev.Common
-i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\bin\debug\net6.0\woodev.common.dll
 i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\bin\debug\net6.0\woodev.common.dll
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\woodev.common.csproj
+i:{77dd5a0c-bc4f-4b8c-8aeb-fa946dce89ae}:WooDev.Common
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\bin\debug\net6.0\woodev.common.dll
+i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\bin\debug\net6.0\woodev.common.dll
 ++WooDev.IServices
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\bin\debug\net6.0\woodev.iservices.dll
-i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\bin\debug\net6.0\woodev.iservices.dll
 i:{48e7d102-86d6-4027-a9b4-bde6b696a3b4}:WooDev.IServices
 i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\bin\debug\net6.0\woodev.iservices.dll
+i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\bin\debug\net6.0\woodev.iservices.dll
 ++WooDev.Model
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.model\bin\debug\net6.0\woodev.model.dll
-i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.model\bin\debug\net6.0\woodev.model.dll
-i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.model\bin\debug\net6.0\woodev.model.dll
-i:{88cfa9ba-ac19-4749-a641-360afbccdf87}:WooDev.Model
 i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.model\bin\debug\net6.0\woodev.model.dll
 i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.model\bin\debug\net6.0\woodev.model.dll
+i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.model\bin\debug\net6.0\woodev.model.dll
+i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.model\bin\debug\net6.0\woodev.model.dll
+i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.model\bin\debug\net6.0\woodev.model.dll
+i:{88cfa9ba-ac19-4749-a641-360afbccdf87}:WooDev.Model
 ++WooDev.Services
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\bin\debug\net6.0\woodev.services.dll
-i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\bin\debug\net6.0\woodev.services.dll
 i:{48e7d102-86d6-4027-a9b4-bde6b696a3b4}:WooDev.Services
+i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\bin\debug\net6.0\woodev.services.dll
 ++WooDev.ViewModel
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\bin\debug\net6.0\woodev.viewmodel.dll
-i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\bin\debug\net6.0\woodev.viewmodel.dll
-i:{88cfa9ba-ac19-4749-a641-360afbccdf87}:WooDev.ViewModel
 i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\bin\debug\net6.0\woodev.viewmodel.dll
 i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\bin\debug\net6.0\woodev.viewmodel.dll
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\woodev.viewmodel.csproj
+i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\bin\debug\net6.0\woodev.viewmodel.dll
+i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\bin\debug\net6.0\woodev.viewmodel.dll
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\bin\debug\net6.0\woodev.viewmodel.dll
+i:{88cfa9ba-ac19-4749-a641-360afbccdf87}:WooDev.ViewModel
 ++WooDev.WebCommon
 i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webcommon\bin\debug\net6.0\woodev.webcommon.dll
 i:{77dd5a0c-bc4f-4b8c-8aeb-fa946dce89ae}:WooDev.WebCommon
@@ -213,10 +228,43 @@ i:{00000000-0000-0000-0000-000000000000}:SqlSugarORM.ConsoleApp
 ++EntityHelper.cs
 i:{f727e671-8273-48ea-a8ee-83e1e941e097}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\sqlsugarorm.consoleapp\entityhelper.cs
 ++SqlSugarCore (5.0.8.4)
-i:{f727e671-8273-48ea-a8ee-83e1e941e097}:>1551
-i:{7b679a0f-622b-4340-85cc-87be265df607}:>1637
-i:{4b389afa-e612-426f-9826-0cea5ad45833}:>1539
-i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:>1607
+i:{f727e671-8273-48ea-a8ee-83e1e941e097}:>3557
+i:{4b389afa-e612-426f-9826-0cea5ad45833}:>3579
+i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:>3537
+i:{7b679a0f-622b-4340-85cc-87be265df607}:>3549
+++Service
+i:{00000000-0000-0000-0000-000000000000}:Service
+++IDevDatadicService.cs
+i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\common\idevdatadicservice.cs
+++IDevDepartmentService.cs
+i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\common\idevdepartmentservice.cs
+++IDevRoleService.cs
+i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\common\idevroleservice.cs
+++IDevUserService.cs
+i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\common\idevuserservice.cs
+++IBaseService.cs
+i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\ibaseservice.cs
+++IWooDevService.tt
+i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\iwoodevservice.tt
+++IWooDevService.cs
+i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\iwoodevservice.cs
+++DevDatadicService.cs
+i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\common\devdatadicservice.cs
+++DevDepartmentService.cs
+i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\common\devdepartmentservice.cs
+++DevRoleService.cs
+i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\common\devroleservice.cs
+++DevUserService.cs
+i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\common\devuserservice.cs
+++BaseService.cs
+i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\baseservice.cs
+++ReadMI.md
+i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\readmi.md
+i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\readmi.md
+++WooDevService.tt
+i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\woodevservice.tt
+++WooDevService.cs
+i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\woodevservice.cs
 ++WooDeV.UnitTest
 i:{00000000-0000-0000-0000-000000000000}:WooDeV.UnitTest
 ++StringUnitTest.cs
@@ -230,8 +278,26 @@ i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin
 i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\models\ajaxresult.cs
 ++JsonHelpExtend.cs
 i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\extend\jsonhelpextend.cs
+++ModelToRedisUtility.cs
+i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\extend\modeltoredisutility.cs
 ++HttpApiExtend
 i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\httpapiextend\
+++Models
+i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\models\
+i:{7b679a0f-622b-4340-85cc-87be265df607}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.model\models\
+++IModelDTO.cs
+i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\models\imodeldto.cs
+i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\extendmodel\imodeldto.cs
+++PageInfo.cs
+i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\models\pageinfo.cs
+++RedisKeys.cs
+i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\models\rediskeys.cs
+++RequestBaseData.cs
+i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\models\requestbasedata.cs
+++ResultData.cs
+i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\models\resultdata.cs
+++Utility
+i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\utility\
 ++HttpAPIInvoker.cs
 i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\httpapiextend\httpapiinvoker.cs
 ++HttpAPIInvokerExtension.cs
@@ -240,17 +306,6 @@ i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin
 i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\httpapiextend\httpapiinvokeroptions.cs
 ++IHttpAPIInvoker.cs
 i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\httpapiextend\ihttpapiinvoker.cs
-++Models
-i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\models\
-i:{7b679a0f-622b-4340-85cc-87be265df607}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.model\models\
-++PageInfo.cs
-i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\models\pageinfo.cs
-++RedisKeys.cs
-i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\models\rediskeys.cs
-++RequestBaseData.cs
-i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\models\requestbasedata.cs
-++Utility
-i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\utility\
 ++DevConfigurationManager.cs
 i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\utility\devconfigurationmanager.cs
 ++EmunUtility.cs
@@ -270,40 +325,29 @@ i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin
 ++StringHelper.cs
 i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.common\utility\stringhelper.cs
 ++log4net (2.0.14)
-i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:>1578
+i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:>3567
 ++Microsoft.Extensions.Configuration (6.0.1)
-i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:>1581
+i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:>3569
 ++Microsoft.Extensions.Configuration.Abstractions (6.0.0)
-i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:>1574
+i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:>3565
 ++Microsoft.Extensions.Configuration.Json (6.0.0)
-i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:>1580
+i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:>3568
 ++Microsoft.Extensions.Options (6.0.0)
-i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:>1585
-i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:>1664
+i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:>3571
+i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:>3487
 ++Newtonsoft.Json (13.0.1)
-i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:>1576
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:>1628
+i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:>3566
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:>3511
 ++StackExchange.Redis (2.5.61)
-i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:>1583
+i:{a525b9fd-4cd4-4864-b794-2f1d05a6639e}:>3570
 ++FilterExtend
 i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webcommon\filterextend\
 ++Middleware
 i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webcommon\middleware\
 ++ServiceExtend
 i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webcommon\serviceextend\
-++ConfigInformation.cs
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\model\configinformation.cs
-++CustomHSJWTService.cs
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\customhsjwtservice.cs
-++CustomRSSJWTervice.cs
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\customrssjwtervice.cs
-++HttpHelperService.cs
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\httphelperservice.cs
-++ICustomJWTService.cs
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\icustomjwtservice.cs
-++RSAHelper.cs
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\rsa\rsahelper.cs
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\rsahelper.cs
+++Utiltiy
+i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webcommon\utiltiy\
 ++ClaimTokenExtend.cs
 i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webcommon\extend\claimtokenextend.cs
 ++CORSFilter.cs
@@ -328,39 +372,19 @@ i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin
 i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webcommon\serviceextend\devservicesextension.cs
 ++WebApplicationExtend.cs
 i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webcommon\serviceextend\webapplicationextend.cs
+++DevResultJson.cs
+i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webcommon\utiltiy\devresultjson.cs
 ++Microsoft.AspNetCore.Mvc.Abstractions (2.2.0)
-i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:>1662
+i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:>3485
 ++Microsoft.AspNetCore.Mvc.NewtonsoftJson (6.0.5)
-i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:>1661
+i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:>3484
 ++Microsoft.Extensions.Logging.Abstractions (6.0.1)
-i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:>1659
+i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:>3482
 ++Microsoft.Extensions.Options.ConfigurationExtensions (6.0.0)
-i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:>1660
+i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:>3483
 ++WooDev.AutoMapper
 i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.automapper\bin\debug\net6.0\woodev.automapper.dll
 i:{77dd5a0c-bc4f-4b8c-8aeb-fa946dce89ae}:WooDev.AutoMapper
-++WooDev.Auth
-i:{77dd5a0c-bc4f-4b8c-8aeb-fa946dce89ae}:WooDev.Auth
-i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\woodev.auth.csproj
-i:{44430f06-c2c3-43d8-a973-4859e62fe88e}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\woodev.auth.csproj
-++Model
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\model\
-i:{00000000-0000-0000-0000-000000000000}:Model
-++CurrentUserModel.cs
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\model\currentusermodel.cs
-++DevUserinfoDTO.cs
-++RSA
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\rsa\
-++IJWTService.cs
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\ijwtservice.cs
-++JWTHSService.cs
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\jwthsservice.cs
-++JWTRSService.cs
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\jwtrsservice.cs
-++JWTTokenOptions.cs
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\jwttokenoptions.cs
-++Microsoft.AspNetCore.Authentication.JwtBearer (6.0.5)
-i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:>1629
 ++ProFiles
 i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.automapper\profiles\
 ++IProfile.cs
@@ -376,36 +400,67 @@ i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:e:\wooadminproject\wooadmin\woodevadmin
 ++DevProContractFile.cs
 i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.automapper\profiles\devprocontractfile.cs
 ++AutoMapper (11.0.1)
-i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:>1647
+i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:>3525
 ++AutoMapper.Extensions.Microsoft.DependencyInjection (11.0.0)
-i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:>1645
+i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:>3523
 ++Microsoft.AspNetCore.Http.Abstractions (2.2.0)
-i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:>1648
+i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:>3526
 ++Microsoft.Extensions.DependencyInjection (6.0.0)
-i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:>1646
-++DevDatadicList.cs
-i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\common\devdatadiclist.cs
-++DevDepartList.cs
-i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\common\devdepartlist.cs
-++DevUserList.cs
-i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\common\devuserlist.cs
+i:{53a22787-78ab-44ed-a8da-c4c9730eae80}:>3524
+++Model
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\model\
+i:{00000000-0000-0000-0000-000000000000}:Model
+++RSA
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\rsa\
+++CustomHSJWTService.cs
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\customhsjwtservice.cs
+++CustomRSSJWTervice.cs
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\customrssjwtervice.cs
+++HttpHelperService.cs
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\httphelperservice.cs
+++ICustomJWTService.cs
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\icustomjwtservice.cs
+++IJWTService.cs
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\ijwtservice.cs
+++JWTHSService.cs
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\jwthsservice.cs
+++JWTRSService.cs
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\jwtrsservice.cs
+++JWTTokenOptions.cs
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\jwttokenoptions.cs
+++RSAHelper.cs
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\rsahelper.cs
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\rsa\rsahelper.cs
+++ConfigInformation.cs
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\model\configinformation.cs
+++CurrentUserModel.cs
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.auth\model\currentusermodel.cs
+++Microsoft.AspNetCore.Authentication.JwtBearer (6.0.5)
+i:{fa748886-1dce-4cbd-aed1-ad946ad6fdae}:>3512
 ++Enums
 i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\enums\
-++DevUserEnums.cs
-i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\enums\devuserenums.cs
 ++ExtendModel
 i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\extendmodel\
+++ViewModel.tt
+i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\viewmodel.tt
+++BaseSearch.cs
+i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\common\basesearch.cs
+++DevDatadicList.cs
+i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\common\devdatadiclist.cs
+++DevDepartmentList.cs
+i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\common\devdepartmentlist.cs
+++DevLoginInfo.cs
+i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\common\devlogininfo.cs
+++DevUserList.cs
+i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\common\devuserlist.cs
+++DevUserEnums.cs
+i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\enums\devuserenums.cs
+++DevBaseModel.cs
+i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\extendmodel\devbasemodel.cs
 ++FieldInfo.cs
 i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\extendmodel\fieldinfo.cs
 ++IDevEntityHandle.cs
 i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\extendmodel\ideventityhandle.cs
-++IModelDTO.cs
-i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\extendmodel\imodeldto.cs
-++ReadMI.md
-i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\readmi.md
-i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\readmi.md
-++ViewModel.tt
-i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\viewmodel.tt
 ++ViewModel.cs
 i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\viewmodel.cs
 ++DEV_CURRENCY.cs
@@ -432,36 +487,5 @@ i:{7b679a0f-622b-4340-85cc-87be265df607}:e:\wooadminproject\wooadmin\woodevadmin
 i:{7b679a0f-622b-4340-85cc-87be265df607}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.model\models\dev_user_function.cs
 ++DEV_USER_OTHER_INFO.cs
 i:{7b679a0f-622b-4340-85cc-87be265df607}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.model\models\dev_user_other_info.cs
-++Service
-i:{00000000-0000-0000-0000-000000000000}:Service
-++IBaseService.cs
-i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\ibaseservice.cs
-++IWooDevService.tt
-i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\iwoodevservice.tt
-++IDevDatadicService.cs
-i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\common\idevdatadicservice.cs
-++IDevDepartmentService.cs
-i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\common\idevdepartmentservice.cs
-++IDevUserService.cs
-i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\common\idevuserservice.cs
-++IWooDevService.cs
-i:{4b389afa-e612-426f-9826-0cea5ad45833}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.iservices\iwoodevservice.cs
-++BaseService.cs
-i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\baseservice.cs
-++WooDevService.tt
-i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\woodevservice.tt
-++DevDatadicService.cs
-i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\common\devdatadicservice.cs
-++DevDepartmentService.cs
-i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\common\devdepartmentservice.cs
-++DevUserService.cs
-i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\common\devuserservice.cs
-++WooDevService.cs
-i:{ec0a0786-4e02-496d-8d5c-2ce3c4bfaf07}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.services\woodevservice.cs
 ++DEV_USER_ROLE.cs
 i:{7b679a0f-622b-4340-85cc-87be265df607}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.model\models\dev_user_role.cs
-++web.config
-i:{fbed4e9c-85fb-44ff-ba44-c1e532aeed88}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.webapi\web.config
-++DevLoginInfo.cs
-i:{5efad6be-e665-464e-887b-9b7f4d4b41f1}:e:\wooadminproject\wooadmin\woodevadmin\woodevsolution\woodev.viewmodel\common\devlogininfo.cs
-++JWT (9.0.2)

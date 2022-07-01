@@ -12,3 +12,8 @@ export interface ResultData {
   code: number;
   message: string;
 }
+export interface ResultviewData<T> {
+  result: T;
+  code: number;
+  message: string;
+}

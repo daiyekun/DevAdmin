@@ -46,6 +46,12 @@ namespace WooDev.IServices
         /// <returns>true:成功/false:失败</returns>
         int Update(T t);
         /// <summary>
+        /// 批量修改
+        /// </summary>
+        /// <param name="t">修改对象</param>
+        /// <returns>true:成功/false:失败</returns>
+        int Update(List<T> updates);
+        /// <summary>
         /// 查询所有
         /// </summary>
         /// <returns></returns>
@@ -61,5 +67,19 @@ namespace WooDev.IServices
         /// <param name="Id">当前查询ID</param>
         /// <returns>实体</returns>
         T InSingle(int Id);
+        /// <summary>
+        /// 执行sql语句
+        /// 改麻烦，能不用就别用了
+        /// </summary>
+        /// <param name="sql">sql 语句</param>
+        /// <returns></returns>
+        int ExecuteCommand(string sql);
+
+        /// <summary>
+        /// 根据条件查询数据
+        /// </summary>
+        /// <param name="predicate">where 条件</param>
+        /// <returns>ISugarQueryable<T></returns>
+        ISugarQueryable<T> Query(Expression<Func<T, bool>> predicate);
     }
 }
