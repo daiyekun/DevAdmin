@@ -126,4 +126,4 @@ E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\n
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\Microsoft.CodeAnalysis.Razor.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
-E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\refint\WooDev.WebApi.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\ref\WooDev.WebApi.dll

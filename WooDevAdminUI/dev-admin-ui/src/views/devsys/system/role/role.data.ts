@@ -120,10 +120,11 @@ export const formSchema: FormSchema[] = [
     component: 'InputTextArea',
     colProps: { span: 24 },
   },
-  // {
-  //   label: ' ',
-  //   field: 'menu',
-  //   slot: 'menu',
-  //   component: 'Input',
-  // },
+  {
+    label: ' ',
+    field: 'menu',
+    slot: 'menu',
+    component: 'Input',
+    colProps: { span: 24 },
+  },
 ];

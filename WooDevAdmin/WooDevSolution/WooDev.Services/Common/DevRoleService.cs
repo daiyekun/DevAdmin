@@ -32,7 +32,7 @@ namespace WooDev.Services
             Expression<Func<DEV_ROLE, object>> orderbyLambda, bool isAsc)
           {
 
-            var tempquery = DbClient.Queryable<DEV_ROLE>().Where(whereLambda);
+            var tempquery = DbClient.Queryable<DEV_ROLE>().Includes(a=>a.Menus).Where(whereLambda);
             if (isAsc)
             {
                 tempquery = tempquery.OrderBy(orderbyLambda, OrderByType.Asc);
@@ -42,27 +42,36 @@ namespace WooDev.Services
                 tempquery = tempquery.OrderBy(orderbyLambda, OrderByType.Desc);
             }
 
-            var query = from a in tempquery
-                        select new
-                        {
-                            ID = a.ID,
-                            NAME = a.NAME,//名称
-                            CODE = a.CODE,//编号
-                            REMARK=a.REMARK,//备注
-                            RUSTATE=a.RUSTATE,//状态
-                            CREATE_TIME = a.CREATE_TIME,//创建时间
-                            CREATE_USERID = a.CREATE_USERID,//创建人
-                           
+            //var query = from a in tempquery
+            //            select new
+            //            {
+            //                ID = a.ID,
+            //                NAME = a.NAME,//名称
+            //                CODE = a.CODE,//编号
+            //                REMARK=a.REMARK,//备注
+            //                RUSTATE=a.RUSTATE,//状态
+            //                CREATE_TIME = a.CREATE_TIME,//创建时间
+            //                CREATE_USERID = a.CREATE_USERID,//创建人
+            //                menu=a.Menus.ToList()//菜单
 
 
-                        };
+            //            };
             int totalCount = 0;
             if ((pageInfo is NoPageInfo<DEV_ROLE>))
             { //分页
                 pageInfo.PageSize = 2000;
                 pageInfo.PageIndex = 0;
             }
-            var list = query.ToPageList(pageInfo.PageIndex, pageInfo.PageSize, ref totalCount);
+            var list = tempquery.ToPageList(pageInfo.PageIndex, pageInfo.PageSize, ref totalCount, a => new {
+                ID = a.ID,
+                NAME = a.NAME,//名称
+                CODE = a.CODE,//编号
+                REMARK = a.REMARK,//备注
+                RUSTATE = a.RUSTATE,//状态
+                CREATE_TIME = a.CREATE_TIME,//创建时间
+                CREATE_USERID = a.CREATE_USERID,//创建人
+                menu = a.Menus.ToList()//菜单
+            });
             pageInfo.TotalCount = totalCount;
             var local = from a in list
                         select new DevRoleList
@@ -74,7 +83,7 @@ namespace WooDev.Services
                             REMARK = a.REMARK,//备注
                             CREATE_TIME = a.CREATE_TIME,//创建时间
                             CREATE_USERID = a.CREATE_USERID,//创建人
-
+                            menu = a.menu.Select(a=>a.FUNCTION_ID).ToList()
                         };
             return new ResultPageData<DevRoleList>()
             {

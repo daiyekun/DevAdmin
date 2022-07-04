@@ -8,5 +8,5 @@ E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Model\obj\Debug\ne
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Model\obj\Debug\net6.0\WooDev.Model.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Model\obj\Debug\net6.0\ref\WooDev.Model.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Model\obj\Debug\net6.0\WooDev.Model.pdb
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Model\bin\Debug\net6.0\ref\WooDev.Model.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Model\obj\Debug\net6.0\WooDev.Model.csproj.AssemblyReference.cache
-E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.Model\obj\Debug\net6.0\refint\WooDev.Model.dll

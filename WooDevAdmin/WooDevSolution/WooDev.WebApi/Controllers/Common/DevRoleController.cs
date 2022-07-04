@@ -25,10 +25,13 @@ namespace WooDev.WebApi.Controllers.Common
     {
         private IDevRoleService _IDevRoleService;
         private IMapper _IMapper;
-        public DevRoleController(IMapper IMapper, IDevRoleService IDevRoleService)
+        private IDevRoleFunctionService _IDevRoleFunctionService;
+        public DevRoleController(IMapper IMapper, IDevRoleService IDevRoleService
+            , IDevRoleFunctionService iDevRoleFunctionService)
         {
             _IMapper = IMapper;
             _IDevRoleService = IDevRoleService;
+            _IDevRoleFunctionService = iDevRoleFunctionService;
 
         }
 
@@ -70,13 +73,19 @@ namespace WooDev.WebApi.Controllers.Common
         public IActionResult roleSave([FromBody] DevRoleDTO roleDTO)
         {
             var userId = HttpContext.User.Claims.GetTokenUserId();
+            var rolenum= new RoleMenuDTO();
+            rolenum.MenuIds = roleDTO.menu;
+            rolenum.UserId = userId;
+            rolenum.RoleId = roleDTO.ID;
             if (roleDTO.ID > 0)
             {
                 var deprinfo = _IDevRoleService.InSingle(roleDTO.ID);
                 var saveinfo = _IMapper.Map<DevRoleDTO, DEV_ROLE>(roleDTO);
                 saveinfo.UPDATE_TIME = DateTime.Now;
                 saveinfo.UPDATE_USERID = userId;
+               
                 _IDevRoleService.Update(saveinfo);
+                _IDevRoleFunctionService.SaveRoleMenus(rolenum);
 
             }
             else
@@ -86,7 +95,9 @@ namespace WooDev.WebApi.Controllers.Common
                 info.UPDATE_TIME = DateTime.Now;
                 info.CREATE_USERID = userId;
                 info.UPDATE_USERID = userId;
-                _IDevRoleService.Add(info);
+                var saveinfo=_IDevRoleService.Add(info);
+                rolenum.RoleId = saveinfo.ID;
+                _IDevRoleFunctionService.SaveRoleMenus(rolenum);
             }
 
             _IDevRoleService.SetRedisHash();

@@ -1,8 +1,9 @@
 <template>
   <div>
-    <BasicTable @register="registerTable">
+    <BasicTable @register="registerTable" rowKey="ID" :rowSelection="{ type: 'checkbox' }">
       <template #toolbar>
         <a-button type="primary" @click="handleCreate"> 新增角色 </a-button>
+        <!-- <a-button type="primary" @click="handleMenusPermission"> 菜单分配 </a-button> -->
       </template>
       <template #action="{ record }">
         <TableAction
@@ -23,7 +24,7 @@
         />
       </template>
     </BasicTable>
-    <!-- <RoleDrawer @register="registerDrawer" @success="handleSuccess" /> -->
+    <RoleDrawer @register="registerDrawer" @success="handleSuccess" />
     <RoleModal @register="registerModal" @success="handleSuccess" />
   </div>
 </template>
@@ -33,19 +34,19 @@
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { getRoleList, roleDelApi } from '/@/api/devsys/system/devsystem';
   import { useMessage } from '/@/hooks/web/useMessage';
-  // import { useDrawer } from '/@/components/Drawer';
-  import { useModal } from '/@/components/Modal';
-  // import RoleDrawer from './RoleDrawer.vue';
+  import { useDrawer } from '/@/components/Drawer';
+  // import { useModal } from '/@/components/Modal';
+  import RoleDrawer from './RoleDrawer.vue';
   import RoleModal from './RoleModal.vue';
 
   import { columns, searchFormSchema } from './role.data';
 
   export default defineComponent({
     name: 'DevRoleManagement',
-    components: { BasicTable, RoleModal, TableAction },
+    components: { BasicTable, RoleModal, RoleDrawer, TableAction },
     setup() {
-      //const [registerDrawer, { openDrawer }] = useDrawer();
-      const [registerModal, { openModal }] = useModal();
+      const [registerDrawer, { openDrawer }] = useDrawer();
+      // const [registerModal, { openModal }] = useModal();
       const { createMessage: msg } = useMessage();
       const [registerTable, { reload }] = useTable({
         title: '角色列表',
@@ -68,14 +69,26 @@
         },
       });
 
+      // function handleCreate() {
+      //   openModal(true, {
+      //     isUpdate: false,
+      //   });
+      // }
+
+      // function handleEdit(record: Recordable) {
+      //   openModal(true, {
+      //     record,
+      //     isUpdate: true,
+      //   });
+      // }
       function handleCreate() {
-        openModal(true, {
+        openDrawer(true, {
           isUpdate: false,
         });
       }
 
       function handleEdit(record: Recordable) {
-        openModal(true, {
+        openDrawer(true, {
           record,
           isUpdate: true,
         });
@@ -90,15 +103,26 @@
       function handleSuccess() {
         reload();
       }
+      //菜单分配
+      // function handleMenusPermission() {
+      //   // const selkeys = getSelectRowKeys();
+      //   // console.log('kes', selkeys.length);
+      //   const record = getRowSelection();
+      //   openDrawer(true, {
+      //     record,
+      //     isUpdate: true,
+      //   });
+      // }
 
       return {
         registerTable,
-        //registerDrawer,
-        registerModal,
+        registerDrawer,
+        // registerModal,
         handleCreate,
         handleEdit,
         handleDelete,
         handleSuccess,
+        // handleMenusPermission,
       };
     },
   });

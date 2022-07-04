@@ -21,4 +21,16 @@ namespace WooDev.ViewModel
         /// </summary>
         public int status { get; set; }
     }
+
+    /// <summary>
+    /// 角色
+    /// </summary>
+    public partial class DevRoleDTO
+    {
+        /// <summary>
+        /// 菜单权限
+        /// </summary>
+        public List<int> menu { get; set; }
+
+    }
 }
