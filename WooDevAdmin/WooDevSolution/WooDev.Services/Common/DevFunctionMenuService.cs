@@ -202,6 +202,7 @@ namespace WooDev.Services
             menuList0.ParentMenu= item0.PID;
             menuList0.Type = item0.M_TYPE ?? -1;
             menuList0.Permission = item0.PERMISSION;
+            menuList0.Permdisc = item0.PERMDIC;
             menuList0.Component = item0.COMPONENT;
             menuList0.Status = item0.IS_SHOW;
             menuList0.CreateTime = item0.CREATE_TIME;
@@ -210,7 +211,117 @@ namespace WooDev.Services
         }
 
 
-        #endregion 
+        #endregion
+
+        #region 权限分配查询
+
+        /// <summary>
+        /// 查询菜单大列表权限
+        /// </summary>
+        /// <param name="whereLambda">where 条件</param>
+        /// <returns></returns>
+        public List<RoleMenuList> GetRolePermissionList(Expression<Func<DEV_FUNCTION_MENU, bool>> whereLambda)
+        {
+            IList<DEV_FUNCTION_MENU> listAll = GetListByWhere(whereLambda).OrderBy(a => a.RouteMate.ORDERNO).ToList();
+            var menuLists = GetRoleMenus(listAll, 0);
+            return menuLists;
+
+        }
+
+        /// <summary>
+        /// 递归查询菜单
+        /// </summary>
+        /// <param name="listAll">所需遍历的集合</param>
+        /// <param name="Pid">父节点ID</param>
+        /// <returns></returns>
+        public List<RoleMenuList> GetRoleMenus(IList<DEV_FUNCTION_MENU> listAll, int Pid)
+        {
+            List<RoleMenuList> menuLists = new List<RoleMenuList>();
+            var listmenus = listAll.Where(a => a.PID == Pid).ToList();
+            foreach (var item0 in listmenus)
+            {  
+                RoleMenuList menu0 = GetRoleMenuObj(item0);
+                var chidmenus = listAll.Where(a => a.PID == item0.ID).ToList();
+                if (chidmenus.Count > 0)
+                {
+                    var chidlist = GetRoleMenus(listAll, item0.ID);
+                    menu0.Children = chidlist;
+                }
+                //if (item0.DYPESSION == 1)
+                //{
+                    menuLists.Add(menu0);
+                //}
+                
+
+            }
+
+            return menuLists;
+
+        }
+
+        /// <summary>
+        /// 获取对象
+        /// </summary>
+        /// <param name="item0"></param>
+        /// <returns></returns>
+        private RoleMenuList GetRoleMenuObj(DEV_FUNCTION_MENU item0)
+        {
+            RoleMenuList menuList0 = new RoleMenuList();
+            menuList0.Id = item0.ID;
+            if (item0.RouteMate != null)
+            {
+                menuList0.MenuName = item0.RouteMate.TITLE;
+            }
+            menuList0.Name = item0.NAME;
+            menuList0.Pid = item0.PID;
+            menuList0.Type = item0.M_TYPE ?? -1;
+            menuList0.Permission = item0.PERMISSION;
+            menuList0.Permdisc = item0.PERMDIC;
+            menuList0.Dypession= item0.DYPESSION??0;
+            menuList0.Pssionlb = 1;
+            return menuList0;
+        }
+        #endregion
+
+
+        #region 查询权限列表
+        /// <summary>
+        /// 查询菜单大列表权限
+        /// </summary>
+        /// <param name="whereLambda">where 条件</param>
+        /// <returns></returns>
+        public List<PermissionList> GetPermissionList(Expression<Func<DEV_FUNCTION_MENU, bool>> whereLambda,int roleId)
+        {
+            List<PermissionList> listdata = new List<PermissionList>();
+            var listPerms = DbClient.Queryable<DEV_ROLE_PERMISSION>()
+                .Where(a => a.R_ID == roleId).ToList(it =>new MenuPermission
+                {
+                    Id=it.ID,
+                    MenuId=it.M_ID,
+                    PerIdex=it.P_IDEN,
+                 
+                });
+            IList<DEV_FUNCTION_MENU> listAll = GetListByWhere(whereLambda)
+                .OrderBy(a => a.RouteMate.ORDERNO).ToList();
+            foreach (var item in listAll)
+            {
+                var pession = new PermissionList();
+                pession.Id= item.ID;
+                pession.MenuName= item.RouteMate.TITLE;
+                pession.Permdisc = item.PERMDIC;
+                pession.Type = item.M_TYPE??-1;
+                pession.Pid = item.PID;
+                var psinfo = listPerms.Where(a => a.MenuId == item.ID).FirstOrDefault();
+                pession.Pssionlb = psinfo != null ? psinfo.PerIdex : -1;
+                pession.Permission = item.PERMISSION;
+                listdata.Add(pession);
+
+            }
+            
+            return listdata;
+
+        }
+        #endregion
 
 
 

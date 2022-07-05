@@ -132,5 +132,24 @@ namespace WooDev.WebCommon.Extend
             }
             return roleIds;
         }
+        /// <summary>
+        /// 获取token UserId
+        /// </summary>
+        /// <param name="Claims">Token对象</param>
+        /// <returns></returns>
+
+        public static int GetTokenRoleId(this IEnumerable<Claim> Claims)
+        {
+
+            var devroleId = 0;
+            if (Claims != null && Claims.Count() > 0)
+            {
+                var claimsroleId = Claims.Where(a => a.Type == "RoleIds").FirstOrDefault();
+                int.TryParse((claimsroleId != null ? claimsroleId.Value : "0"), out devroleId);
+
+            }
+            return devroleId;
+        }
+
     }
 }

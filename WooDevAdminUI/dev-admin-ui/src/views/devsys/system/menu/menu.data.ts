@@ -25,6 +25,11 @@ export const columns: BasicColumn[] = [
     width: 180,
   },
   {
+    title: '权限描述',
+    dataIndex: 'permdisc',
+    width: 180,
+  },
+  {
     title: '组件',
     dataIndex: 'component',
   },
@@ -79,6 +84,13 @@ export const searchFormSchema: FormSchema[] = [
 
 export const formSchema: FormSchema[] = [
   {
+    field: 'id',
+    label: 'id',
+    component: 'InputNumber',
+    defaultValue: 0,
+    show: false, //不要用 ifShow: false,
+  },
+  {
     field: 'type',
     label: '菜单类型',
     component: 'RadioButtonGroup',
@@ -128,7 +140,7 @@ export const formSchema: FormSchema[] = [
     field: 'icon',
     label: '图标',
     component: 'IconPicker',
-    required: true,
+    //required: true,
     ifShow: ({ values }) => !isButton(values.type),
   },
 
@@ -136,18 +148,24 @@ export const formSchema: FormSchema[] = [
     field: 'routePath',
     label: '路由地址',
     component: 'Input',
-    required: true,
-    ifShow: ({ values }) => !isButton(values.type),
+    // required: true,
+    // ifShow: ({ values }) => !isButton(values.type),
   },
   {
     field: 'component',
     label: '组件路径',
     component: 'Input',
-    ifShow: ({ values }) => isMenu(values.type),
+    // ifShow: ({ values }) => isMenu(values.type),
   },
   {
     field: 'permission',
     label: '权限标识',
+    component: 'Input',
+    ifShow: ({ values }) => !isDir(values.type),
+  },
+  {
+    field: 'permdisc',
+    label: '权限描述',
     component: 'Input',
     ifShow: ({ values }) => !isDir(values.type),
   },
@@ -162,6 +180,19 @@ export const formSchema: FormSchema[] = [
         { label: '禁用', value: 0 },
       ],
     },
+  },
+  {
+    field: 'dypession',
+    label: '功能权限设置',
+    component: 'RadioButtonGroup',
+    defaultValue: 1,
+    componentProps: {
+      options: [
+        { label: '需要', value: 1 },
+        { label: '不需要', value: 0 },
+      ],
+    },
+    ifShow: ({ values }) => !isDir(values.type),
   },
   {
     field: 'isExt',

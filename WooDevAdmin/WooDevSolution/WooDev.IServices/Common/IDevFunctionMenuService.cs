@@ -35,5 +35,18 @@ namespace WooDev.IServices
         /// <param name="whereLambda">where 条件</param>
         /// <returns></returns>
         List<MenuList> GetList(Expression<Func<DEV_FUNCTION_MENU, bool>> whereLambda);
+        /// <summary>
+        /// 查询菜单大列表权限
+        /// </summary>
+        /// <param name="whereLambda">where 条件</param>
+        /// <returns></returns>
+        List<RoleMenuList> GetRolePermissionList(Expression<Func<DEV_FUNCTION_MENU, bool>> whereLambda);
+        /// <summary>
+        /// 查询菜单大列表权限
+        /// </summary>
+        /// <param name="whereLambda">where 条件</param>
+        /// <param name="roleId">角色ID</param>
+        /// <returns></returns>
+        List<PermissionList> GetPermissionList(Expression<Func<DEV_FUNCTION_MENU, bool>> whereLambda, int roleId);
     }
 }

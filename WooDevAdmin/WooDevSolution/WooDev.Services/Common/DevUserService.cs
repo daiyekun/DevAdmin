@@ -123,6 +123,7 @@ namespace WooDev.Services
                     loginuser.LoginName = userinfo.LOGIN_NAME;
                     loginuser.Name = userinfo.NAME;
                     loginuser.DeptId = userinfo.DEPART_ID;
+                    loginuser.RoleId = userinfo.ROLE_ID;
                     loginuser.DeptName = RedisUtility.HashGet($"{RedisKeys.DepartHashKey}", "Name");
                     loginuser.RoleIds = GetRoleIdsByUserId(userinfo.ID);
                     loginResult.LoginUser = loginuser;

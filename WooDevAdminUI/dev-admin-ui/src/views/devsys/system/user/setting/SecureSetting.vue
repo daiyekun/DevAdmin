@@ -36,7 +36,7 @@
         // const userinfo = userStore.getUserInfo;
         switch (key) {
           case '1':
-            go('/devsystem/devchangePassword');
+            go('/devsystem/account/devchangePassword');
             break;
         }
       }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 using System.Linq.Expressions;
 using WooDev.Common.Models;
+using WooDev.Common.Utility;
 using WooDev.IServices;
 using WooDev.Model.Models;
 using WooDev.ViewModel;
@@ -23,10 +24,13 @@ namespace WooDev.WebApi.Controllers.Common
     {
         private IDevFunctionMenuService _IDevFunctionMenuService;
         private IDevRoutemetaService _IDevRoutemetaService;
-        public DevMenuController(IDevFunctionMenuService iDevFunctionMenuService, IDevRoutemetaService iDevRoutemetaService)
+        private IDevRolePermissionService _IDevRolePermissionService;
+        public DevMenuController(IDevFunctionMenuService iDevFunctionMenuService, 
+            IDevRoutemetaService iDevRoutemetaService, IDevRolePermissionService iDevRolePermissionService)
         {
             _IDevFunctionMenuService = iDevFunctionMenuService;
             _IDevRoutemetaService = iDevRoutemetaService;
+            _IDevRolePermissionService = iDevRolePermissionService;
 
         }
         /// <summary>
@@ -192,6 +196,8 @@ namespace WooDev.WebApi.Controllers.Common
             info.COMPONENT = menuSaveDTO.component;
             info.PID = menuSaveDTO.parentMenu;
             info.M_TYPE = menuSaveDTO.type;
+            info.PERMDIC = menuSaveDTO.permdisc;
+            info.DYPESSION = menuSaveDTO.dypession;
             if (menuSaveDTO.type == 0)
             {
                 info.COMPONENT = "LAYOUT";
@@ -217,8 +223,107 @@ namespace WooDev.WebApi.Controllers.Common
             routmate.UPDATE_TIME = DateTime.Now;
             routmate.IS_DELETE = 0;
             routmate.UPDATE_USERID = userId;
+            
             return routmate;
         }
+
+        /// <summary>
+        /// 删除数据
+        /// </summary>
+        /// <param name="Ids">选中ID</param>
+        [Route("delmenu")]
+        [HttpGet]
+        [Authorize]
+        public IActionResult Delmenu(string Ids)
+        {
+            var arrIds = StringHelper.String2ArrayInt(Ids);
+            var mateids = _IDevFunctionMenuService.Query(a => arrIds.Contains(a.ID))
+                .Select(a => a.META_ID ?? -1).ToList();
+            _IDevFunctionMenuService.Delete(a => arrIds.Contains(a.ID));
+            _IDevRoutemetaService.Delete(a => mateids.Contains(a.ID));
+
+            var result = new ResultData
+            {
+                code = 0,
+                message = "ok",
+            };
+            return new DevResultJson(result);
+        }
+
+        /// <summary>
+        /// 权限列表
+        /// </summary>
+        /// <returns></returns>
+        [Route("getMenuPersion")]
+        [HttpGet]
+        //[AllowAnonymous]//跳过授权验证
+        [Authorize]
+        public IActionResult GetMenuPersion([FromQuery] SearChMenu serachParam)
+        {
+            //var userId = HttpContext.User.Claims.GetTokenUserId();
+            //var roleId= HttpContext.User.Claims.GetTokenRoleId();
+            
+            var whereexp = Expressionable.Create<DEV_FUNCTION_MENU>();
+            whereexp = whereexp.And(a => a.IS_DELETE == 0 && a.IS_SHOW == 1&&a.DYPESSION==1);
+            if (!string.IsNullOrEmpty(serachParam.MenuName))
+            {
+                whereexp = whereexp.And(a=>a.RouteMate.TITLE.Contains(serachParam.MenuName));
+            }
+            if (!string.IsNullOrEmpty(serachParam.Persiondic))
+            {
+                whereexp = whereexp.And(a => a.PERMDIC.Contains(serachParam.Persiondic));
+            }
+            Expression<Func<DEV_FUNCTION_MENU, object>> orderbyLambda = a => a.ID;
+            var data = _IDevFunctionMenuService.GetPermissionList(whereexp.ToExpression(), serachParam.RoleId);
+            var result = new ResultListData<PermissionList>
+            {
+                result = data,
+            };
+            return new DevResultJson(result, keyL: true);
+        }
+
+
+        /// <summary>
+        /// 保存权限
+        /// </summary>
+        /// <param name="menuSaveDTO">菜单对象</param>
+        /// <returns></returns>
+        [Route("permssionSave")]
+        [HttpPost]
+        [Authorize]
+        public IActionResult PermssionSave([FromBody] List<PermissionInfo> permissions)
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            
+            var result = new ResultData
+            {
+                code = 0,
+                message = "ok",
+            };
+            List<DEV_ROLE_PERMISSION> listpession = new List<DEV_ROLE_PERMISSION>();
+            foreach (var item in permissions)
+            {
+                var info = new DEV_ROLE_PERMISSION();
+                info.M_CODE = item.Permission;
+                info.M_ID = item.Id;
+                info.R_ID = item.RoleId;
+                info.P_IDEN = item.Pssionlb;
+                info.CREATE_TIME = DateTime.Now;
+                info.CREATE_USERID = userId;
+                listpession.Add(info);
+
+            }
+            if (listpession.Count > 0)
+            {
+                _IDevRolePermissionService.Delete(a => a.R_ID == permissions[0].RoleId);//删除角色对应的权限
+                _IDevRolePermissionService.Add(listpession);
+            }
+            
+            return new DevResponseJson(result);
+
+        }
+
+        
 
 
 

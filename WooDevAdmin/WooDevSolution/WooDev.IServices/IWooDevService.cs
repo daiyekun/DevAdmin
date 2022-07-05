@@ -59,6 +59,11 @@ public partial interface IDevRoleFunctionService : IBaseService<DEV_ROLE_FUNCTIO
     
    
      
+public partial interface IDevRolePermissionService : IBaseService<DEV_ROLE_PERMISSION>
+{ }
+    
+   
+     
 public partial interface IDevRoutemetaService : IBaseService<DEV_ROUTEMETA>
 { }
     

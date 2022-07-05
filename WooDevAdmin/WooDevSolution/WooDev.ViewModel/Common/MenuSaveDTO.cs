@@ -73,6 +73,18 @@ namespace WooDev.ViewModel
         /// 菜单名称
         /// </summary>
         public string name { get; set; }
+        /// <summary>
+        /// 功能权限设置
+        /// 目录不需要（代码已经过滤，不然选择）
+        /// 有些菜单不需要（手动设置）
+        /// </summary>
+        public int dypession { get; set; } = 0;
+        /// <summary>
+        /// 权限描述
+        /// 比如XX列表
+        /// XX新增
+        /// </summary>
+        public string permdisc { get; set; }
 
     }
 }

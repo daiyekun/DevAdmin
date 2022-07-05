@@ -108,7 +108,12 @@ namespace WooDev.ViewModel
         /// </summary>
 
         public string RoleIds { get; set; }
-        
+        /// <summary>
+        /// 角色ID-目前用这个
+        /// </summary>
+        public int RoleId { get; set; }
+
+
     }
 
     /// <summary>

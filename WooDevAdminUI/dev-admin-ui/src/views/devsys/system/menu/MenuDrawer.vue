@@ -40,7 +40,9 @@
         if (unref(isUpdate)) {
           setFieldsValue({
             ...data.record,
+            id: data.record.id,
           });
+          // console.log('id:==', data.record.id);
         }
         const treeData = await getMenuList();
         updateSchema({
@@ -56,7 +58,7 @@
           const values = await validate();
           setDrawerProps({ confirmLoading: true });
           // TODO custom api
-          console.log(values);
+          //console.log(values);
           await menuSaveApi(values);
           closeDrawer();
           emit('success');

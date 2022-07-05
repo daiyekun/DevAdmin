@@ -48,7 +48,8 @@ namespace Dev.WooNet.WebAPI.Utility
                   new Claim("Id", user.Id.ToString()),
                   new Claim("DeptId", user.DeptId.ToString()),
                   new Claim("DeptName", user.DeptName),
-                  new Claim("Name", user.Name)
+                  new Claim("Name", user.Name),
+                  new Claim("RoleId", user.RoleIds)
             };
 
             SigningCredentials credentials = new SigningCredentials(new RsaSecurityKey(keyParams), SecurityAlgorithms.RsaSha256Signature);

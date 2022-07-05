@@ -204,7 +204,7 @@ export interface MenuListItem {
 }
 
 /**
- * 新建用户对象
+ * 新建菜单对象
  */
 export interface menuSaveInfo {
   id: number;
@@ -220,4 +220,11 @@ export interface menuSaveInfo {
   isExt: number;
   keepalive: number;
   show: number;
+  dypession: number;
+  permdisc: string;
 }
+export type MenuSearchParams = {
+  MenuName?: string;
+  Persiondic?: string;
+  RoleId: number;
+};

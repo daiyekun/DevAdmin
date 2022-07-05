@@ -83,7 +83,7 @@
       }
 
       async function handleDelete(record: Recordable) {
-        await menuDelApi({ Ids: record.ID.toString() });
+        await menuDelApi({ Ids: record.id.toString() });
         msg.success({ content: '删除成功', key: 'deling' });
         reload();
         //console.log(record);

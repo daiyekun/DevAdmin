@@ -126,6 +126,18 @@ public partial class DevRoleFunctionView : DEV_ROLE_FUNCTION
    
      
 //列表使用
+public partial class DevRolePermissionList : DEV_ROLE_PERMISSION
+{ }
+//提交数据库使用
+public partial class DevRolePermissionDTO : DEV_ROLE_PERMISSION,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevRolePermissionView : DEV_ROLE_PERMISSION
+{ }
+    
+   
+     
+//列表使用
 public partial class DevRoutemetaList : DEV_ROUTEMETA
 { }
 //提交数据库使用

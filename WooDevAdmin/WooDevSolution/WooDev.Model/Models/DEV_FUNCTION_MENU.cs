@@ -154,5 +154,19 @@ namespace WooDev.Model.Models
         /// </summary>
         public string PERMISSION { get; set; }
 
+        /// <summary>
+        /// 描    述:是否需要权限标识
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public int? DYPESSION { get; set; }
+
+        /// <summary>
+        /// 描    述:权限描述
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public string PERMDIC { get; set; }
+
     }
 }

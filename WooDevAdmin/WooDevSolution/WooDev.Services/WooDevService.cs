@@ -132,6 +132,19 @@ namespace WooDev.Services
     
    
      
+ public partial class DevRolePermissionService : BaseService<DEV_ROLE_PERMISSION>, IDevRolePermissionService
+    {
+         public DevRolePermissionService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
  public partial class DevRoutemetaService : BaseService<DEV_ROUTEMETA>, IDevRoutemetaService
     {
          public DevRoutemetaService(ISqlSugarClient DbClient)

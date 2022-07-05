@@ -18,6 +18,7 @@ import {
   MenuParams,
   MenuListGetResultModel,
   menuSaveInfo,
+  MenuSearchParams,
 } from '../model/systemModel';
 import { defHttp } from '/@/utils/http/axios';
 import { ResultData } from '/@/api/model/baseModel';
@@ -47,6 +48,8 @@ enum Api {
   MenuList = '/DevMenu/getMenuListTable',
   MenuSave = '/DevMenu/menuSave',
   MenuDelete = '/DevMenu/delmenu', //删除
+  RoleMenuList = '/DevMenu/getMenuPersion', //角色权限分配
+  PermssionSave = '/DevMenu/permssionSave', //保存权限
 }
 
 export const getDepartList = (params?: departParams) =>
@@ -104,3 +107,9 @@ export const menuSaveApi = (params: menuSaveInfo) =>
 
 export const menuDelApi = (params: deldataInfo) =>
   defHttp.get<ResultData>({ url: Api.MenuDelete, params });
+
+export const getRoleMenuList = (params?: MenuSearchParams) =>
+  defHttp.get<MenuListGetResultModel>({ url: Api.RoleMenuList, params });
+
+export const permssionSaveApi = (params: any) =>
+  defHttp.post<ResultData>({ url: Api.PermssionSave, params });

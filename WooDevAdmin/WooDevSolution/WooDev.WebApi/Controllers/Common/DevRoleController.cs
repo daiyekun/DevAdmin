@@ -178,7 +178,35 @@ namespace WooDev.WebApi.Controllers.Common
 
         }
 
-        
+        /// <summary>
+        /// 列表
+        /// </summary>
+        /// <returns></returns>
+        [Route("getAllRoles")]
+        [HttpGet]
+        //[AllowAnonymous]//跳过授权验证
+        [Authorize]
+        public IActionResult GetAllRoles([FromQuery] BaseSearch serachParam)
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            var pageinfo = new NoPageInfo<DEV_ROLE>() {  };
+            var whereexp = Expressionable.Create<DEV_ROLE>();
+            whereexp = whereexp.And(a => a.IS_DELETE == 0);
+
+            if (!string.IsNullOrEmpty(serachParam.KeyWord))
+            {//搜索
+                whereexp = whereexp.And(a => a.NAME.Contains(serachParam.KeyWord) || a.CODE.Contains(serachParam.KeyWord));
+            }
+            Expression<Func<DEV_ROLE, object>> orderbyLambda = a => a.ID;
+            var data = _IDevRoleService.GetList(pageinfo, whereexp.ToExpression(), orderbyLambda, false);
+            var result = new ResultData<DevRoleList>
+            {
+                result = data,
+            };
+            return new DevResultJson(result);
+        }
+
+
 
     }
 }
