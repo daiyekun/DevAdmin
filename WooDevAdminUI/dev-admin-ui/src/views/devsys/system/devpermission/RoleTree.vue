@@ -29,10 +29,10 @@
         treeData.value = (await getAllRoleList()) as unknown as TreeItem[];
       }
 
-      function handleSelect(keys) {
-        debugger;
-        console.log('keID', keys[0]);
-        emit('select', keys[0]);
+      function handleSelect(keys, node) {
+        var title = node.node.NAME.el.innerText;
+        //console.log('keID', keys[0], title);
+        emit('select', keys[0], title);
       }
 
       onMounted(() => {

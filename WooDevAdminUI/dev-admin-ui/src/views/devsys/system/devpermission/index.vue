@@ -39,7 +39,6 @@
 
   import { BasicTable, useTable } from '/@/components/Table';
   import { getRoleMenuList, permssionSaveApi } from '/@/api/devsys/system/devsystem';
-  // import { useMessage } from '/@/hooks/web/useMessage';
   import RoleTree from './RoleTree.vue';
   import { columns, searchFormSchema, permssionInfo } from './pessionmenu.data';
   import { PageWrapper } from '/@/components/Page';
@@ -50,7 +49,8 @@
     setup() {
       //const { createMessage: msg } = useMessage();
       const searchInfo = reactive<Recordable>({});
-      const { createMessage: msg } = useMessage();
+      //let ntitle = '';
+      const { createMessage: msg, createConfirm } = useMessage();
       const [registerTable, { reload, expandAll, getDataSource }] = useTable({
         title: '权限列表',
         api: getRoleMenuList,
@@ -79,26 +79,38 @@
         },
       });
 
-      function handleSelect(RoleId = 0) {
+      function handleSelect(RoleId = 0, title = '') {
         searchInfo.RoleId = RoleId;
+        searchInfo.ntitle = title;
         reload();
       }
 
-      async function handleSave() {
-        let array: Array<permssionInfo> = [];
-        let data1 = getDataSource();
-        for (let i = 0; i < data1.length; i++) {
-          let persInfo: permssionInfo = {
-            Id: data1[i].id,
-            Permission: data1[i].permission,
-            Pssionlb: data1[i].pssionlb,
-            RoleId: searchInfo.RoleId,
-          };
+      function handleSave() {
+        if (searchInfo.RoleId == undefined || searchInfo.RoleId <= 0) {
+          msg.warn({ content: '请选择角色......', key: 'saving' });
+        } else {
+          createConfirm({
+            iconType: 'warning',
+            title: '系统提示',
+            content: '您设置角色是:' + searchInfo.ntitle,
+            onOk() {
+              let array: Array<permssionInfo> = [];
+              let data1 = getDataSource();
+              for (let i = 0; i < data1.length; i++) {
+                let persInfo: permssionInfo = {
+                  Id: data1[i].id,
+                  Permission: data1[i].permission,
+                  Pssionlb: data1[i].pssionlb,
+                  RoleId: searchInfo.RoleId,
+                };
 
-          array.push(persInfo);
+                array.push(persInfo);
+              }
+              permssionSaveApi(array);
+              msg.success({ content: '权限保存成功', key: 'saveing' });
+            },
+          });
         }
-        await permssionSaveApi(array);
-        msg.success({ content: '权限保存成功', key: 'saveing' });
         // var data2 = getRawDataSource();
         // console.log('数据---->', data1, '数据2-->', data2);
       }
