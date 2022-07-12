@@ -8,7 +8,7 @@
       <FileBuildTable ref="tableFileRef" />
     </a-card>
     <a-card title="客户联系人" :bordered="false" class="!mt-5">
-      <PersonTable ref="tableRef" />
+      <ContactBuild ref="tableRef" />
     </a-card>
     <UserSelectModel @register="registerUserModel" @rowUserDbclick="SelleadUser" />
     <!-- <a-button type="primary" class="my-4" @click="openModal1"> 打开弹窗 </a-button> -->
@@ -23,7 +23,7 @@
   import { BasicForm, useForm, FormSchema } from '/@/components/Form';
   import { defineComponent, ref } from 'vue'; //ComponentOptions
   import FileBuildTable from './FileBuild.vue';
-  import PersonTable from './PersonTable.vue';
+  import ContactBuild from './ContactBuild.vue';
   import { PageWrapper } from '/@/components/Page';
   //import { schemas, taskSchemas } from './build.data';
   import { taskSchemas } from './build.data';
@@ -39,7 +39,7 @@
     name: 'CustomerBuild',
     components: {
       BasicForm,
-      PersonTable,
+      ContactBuild,
       PageWrapper,
       UserSelectModel,
       FileBuildTable,
@@ -200,7 +200,7 @@
           component: 'Input',
           label: '负责人',
           componentProps: {
-            onclick: (e: any) => {
+            onclick: () => {
               //console.log(e, '点击了。。。。。');
               openModal1();
             },

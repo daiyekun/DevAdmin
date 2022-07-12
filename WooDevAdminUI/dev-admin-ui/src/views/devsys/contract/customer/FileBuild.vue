@@ -11,7 +11,7 @@
           :value="fileList"
           class="my-5"
           :showPreviewNumber="showPreviewNumber"
-          :accept="['.doc,', 'docx', '*.pdf', '*.xlsx', 'application/msword', 'image/*']"
+          :accept="devconfig.devupload.accept"
         />
       </template>
       <template #action="{ record }">
@@ -46,6 +46,7 @@
   import { devuploadApi } from '/@/api/devsys/system/devupload';
   import { uploadInfo } from '/@/api/devsys/model/uploadModel';
   import { devUpdateField } from '/@/api/devsys/model/devCommonModel';
+  import { devconfig } from '/@/api/devsys/model/devConfig.data';
   import { useMessage } from '/@/hooks/web/useMessage';
   import {
     uploadfileSaveApi,
@@ -54,6 +55,7 @@
     custFileDelApi,
   } from '/@/api/devsys/contract/customer';
   import { getdataListApi } from '/@/api/devsys/system/datadic';
+  import { downloadByUrl } from '/@/utils/file/download';
   const uploadparam = { FolderIndex: 2 };
   const fileList = ref<string[]>([]);
   const showPreviewNumber = false;
@@ -112,7 +114,13 @@
       //   record.onEdit?.(true);
       // }
       //下载
-      function handleDownload() {}
+      function handleDownload(record: Recordable) {
+        const loadurl = devconfig.devupload.baseurl + record.PATH;
+        downloadByUrl({
+          url: loadurl,
+          target: '_self',
+        });
+      }
       //删除
       async function handleDelete(record: Recordable) {
         await custFileDelApi({ Ids: record.ID.toString() });
@@ -180,6 +188,8 @@
         showPreviewNumber,
         handleChange,
         handleEditEnd,
+        downloadByUrl,
+        devconfig,
       };
     },
   });

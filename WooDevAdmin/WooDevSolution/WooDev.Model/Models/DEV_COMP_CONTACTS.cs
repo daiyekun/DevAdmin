@@ -52,9 +52,9 @@ namespace WooDev.Model.Models
         /// <summary>
         /// 描    述:所属部门
         /// 默 认 值:
-        /// 是否空值:False
+        /// 是否空值:True
         /// </summary>
-        public int DEPART { get; set; }
+        public string DEPART { get; set; }
 
         /// <summary>
         /// 描    述:电话-座机

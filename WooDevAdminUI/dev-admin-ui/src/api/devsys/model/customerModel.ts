@@ -80,3 +80,36 @@ export type custFileListGetResultModel = BasicFetchResult<custFileListItem>;
 export type custFileParams = {
   CustId?: number;
 };
+
+/**
+ * 联系人列表
+ */
+export interface custContactListItem {
+  ID: number;
+  NAME: string;
+  POSITION: string;
+  DEPART: string;
+  TEL: string;
+  PHONE: string;
+  CREATE_ID: string;
+  QQ: string;
+  EMAIL: string;
+  REMARK: string;
+}
+export type custContactListGetResultModel = BasicFetchResult<custContactListItem>;
+
+/**
+ * 联系人新建对象
+ */
+export interface custContactSaveInfo {
+  ID: number;
+  NAME: string;
+  POSITION: string;
+  DEPART: string;
+  TEL: string;
+  PHONE: string;
+  QQ: string;
+  EMAIL: string;
+  REMARK: string;
+  COMP_ID: number;
+}
