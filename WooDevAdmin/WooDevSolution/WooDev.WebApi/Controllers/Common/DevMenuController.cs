@@ -59,6 +59,7 @@ namespace WooDev.WebApi.Controllers.Common
 
         /// <summary>
         /// 列表
+        /// 登录以后左侧菜单
         /// </summary>
         /// <returns></returns>
         [Route("getRoleMenuList")]
@@ -69,9 +70,11 @@ namespace WooDev.WebApi.Controllers.Common
         {
 
             var userId = HttpContext.User.Claims.GetTokenUserId();
-
+            var roleId = HttpContext.User.Claims.GetTokenRoleId();
+            var listids = _IDevRolePermissionService.GetMenuIdByRoleId(roleId);
             var whereexp = Expressionable.Create<DEV_FUNCTION_MENU>();
             whereexp = whereexp.And(a => a.IS_DELETE == 0 && a.IS_SHOW == 1&&(a.M_TYPE==0||a.M_TYPE==1));
+            whereexp = whereexp.And(a=> listids.Contains(a.ID));//菜单权限--未来redis
             Expression<Func<DEV_FUNCTION_MENU, object>> orderbyLambda = a => a.ID;
             var data = _IDevFunctionMenuService.GetMenus(whereexp.ToExpression());
             var result = new ResultListData<MenuItem>

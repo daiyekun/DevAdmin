@@ -90,6 +90,9 @@ export const datatreeData: TreeItem[] = [
       { title: '合同附件', key: 'htfj', id: 3 },
       { title: '客户附件', key: 'khfj', id: 4 },
       { title: '供应商附件', key: 'gysfj', id: 5 },
+      { title: '客户类别', key: 'kflb', id: 6 },
+      { title: '客户级别', key: 'khjb', id: 7 },
+      { title: '客户信用等级', key: 'khxydj', id: 8 },
     ],
   },
 ];

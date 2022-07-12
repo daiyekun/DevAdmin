@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Net;
 using System.Net.Http.Headers;
 using WooDev.Common.Models;
+using WooDev.Common.Utility;
 using WooDev.IServices;
 using WooDev.ViewModel.ExtendModel;
 using WooDev.WebCommon.Extend;
@@ -46,43 +47,51 @@ namespace WooDev.WebApi.Controllers.Common
             var userId = HttpContext.User.Claims.GetTokenUserId();
             FormValueProvider formModel;
             UploadFileInfo uploadFileInfo = new UploadFileInfo();
-           
-            formModel = await Request.StreamFilesUploadFileInfo(uploadFileInfo);
+            var tempfolder = 0;
+            var foleder = HttpContext.Request.Form["FolderIndex"];
+            int.TryParse(foleder, out  tempfolder);
+            if (tempfolder == 0)
+            {//上传头像
+                formModel = await Request.StreamFilesUploadFileInfo(uploadFileInfo);
+                switch (uploadFileInfo.FolderIndex)
+                {
+                    case 1://头像
+                        var strsql = $"update dev_user_other_info set HEADPATH='/Uploads/{uploadFileInfo.FolderPath}' where USER_ID={userId};";
+                        _IDevUserOtherInfoService.ExecuteCommand(strsql);
 
-            //var viewModel = new MyViewModel();
+                        break;
 
-            //var bindingSuccessful = await TryUpdateModelAsync(viewModel, prefix: "",
-            //    valueProvider: formModel);
+                }
+               
+                var result = new HeadUploadData
+                {
+                    code = 0,
+                    message = "ok",
+                    src = $"{Request.Host}/Uploads/{uploadFileInfo.FolderPath}"
+                };
+                return new DevResultJson(result);
+            }
+            else
+            {//其他文件上传
+                uploadFileInfo.FolderIndex = tempfolder;
+                formModel = await Request.DevStreamFiles(uploadFileInfo);
+                var result = new UploadResultData<UploadFileInfo>
+                {
+                    code = 0,
+                    message = "ok",
+                    result = uploadFileInfo,
+                    url = JsonUtility.SerializeObject(uploadFileInfo)
 
-            //if (!bindingSuccessful)
-            //{
-            //    //if (!ModelState.IsValid)
-            //    //{
-            //    //    return BadRequest(ModelState);
-            //    //}
-            //}
-
-            switch (uploadFileInfo.FolderIndex)
-            {
-                case 1://头像
-                    var strsql = $"update dev_user_other_info set HEADPATH='/Uploads/{uploadFileInfo.FolderPath}' where USER_ID={userId};";
-                    _IDevUserOtherInfoService.ExecuteCommand(strsql);
-
-                    break;
+                };
+                return new DevResultJson(result);
 
             }
 
-            var result = new HeadUploadData
-            {
-                code = 0,
-                message = "ok",
-                src = $"{Request.Host}/Uploads/{uploadFileInfo.FolderPath}" 
-            };
-            return new DevResultJson(result);
 
 
-          
-        }
+
+            }
+
 
 
      

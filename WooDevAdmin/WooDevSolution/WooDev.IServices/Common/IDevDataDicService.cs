@@ -39,6 +39,16 @@ namespace WooDev.IServices
         /// <param name="datadic">字典枚举值</param>
         /// <returns>返回枚举</returns>
         IList<DevDatadicDTO> GetAll();
+        /// <summary>
+        /// 查询字典
+        /// </summary>
+        /// <typeparam name="s"></typeparam>
+        /// <param name="whereLambda">where 条件</param>
+        /// <param name="orderbyLambda">排序</param>
+        /// <param name="isAsc">是否正序</param>
+        /// <returns></returns>
+        List<DevDatadicList> GetDataList(Expression<Func<DEV_DATADIC, bool>>? whereLambda,
+            Expression<Func<DEV_DATADIC, object>> orderbyLambda, bool isAsc);
 
     }
 }

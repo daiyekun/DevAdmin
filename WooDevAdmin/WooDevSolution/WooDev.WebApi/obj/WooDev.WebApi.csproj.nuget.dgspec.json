@@ -398,6 +398,9 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+              "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.AutoMapper\\WooDev.AutoMapper.csproj": {
+                "projectPath": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.AutoMapper\\WooDev.AutoMapper.csproj"
+              },
               "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.IServices\\WooDev.IServices.csproj": {
                 "projectPath": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.IServices\\WooDev.IServices.csproj"
               },

@@ -159,5 +159,61 @@ namespace WooDev.Services
 
 
         }
+
+        /// <summary>
+        /// 查询字典
+        /// </summary>
+        /// <typeparam name="s"></typeparam>
+        /// <param name="whereLambda">where 条件</param>
+        /// <param name="orderbyLambda">排序</param>
+        /// <param name="isAsc">是否正序</param>
+        /// <returns></returns>
+        public List<DevDatadicList> GetDataList(Expression<Func<DEV_DATADIC, bool>>? whereLambda,
+             Expression<Func<DEV_DATADIC, object>> orderbyLambda, bool isAsc)
+        {
+
+            var tempquery = DbClient.Queryable<DEV_DATADIC>().Where(whereLambda);
+            if (isAsc)
+            {
+                tempquery = tempquery.OrderBy(orderbyLambda, OrderByType.Asc);
+            }
+            else
+            {
+                tempquery = tempquery.OrderBy(orderbyLambda, OrderByType.Desc);
+            }
+
+            var query = from a in tempquery
+                        select new
+                        {
+                            ID = a.ID,
+                            NAME = a.NAME,//显示名称
+                            ORDER_NUM = a.ORDER_NUM,//排序
+                            REMARK = a.REMARK,
+                            CODE = a.CODE,
+                            PID = a.PID,
+                            APP_TYPE = a.APP_TYPE,
+                            SORT_NAME = a.SORT_NAME,//简称
+                            FILED1 = a.FILED1,//
+                            FILED2 = a.FILED2
+
+                        };
+            var list = query.ToList();
+            var local = from a in list
+                        select new DevDatadicList
+                        {
+                            ID = a.ID,
+                            NAME = a.NAME,//显示名称
+                            ORDER_NUM = a.ORDER_NUM,//排序
+                            REMARK = a.REMARK,
+                            CODE = a.CODE,
+                            PID = a.PID,
+                            APP_TYPE = a.APP_TYPE,
+                            SORT_NAME = a.SORT_NAME,//简称
+                            FILED1 = a.FILED1,//
+                            FILED2 = a.FILED2
+
+                        };
+            return local.ToList();
+        }
     }
 }

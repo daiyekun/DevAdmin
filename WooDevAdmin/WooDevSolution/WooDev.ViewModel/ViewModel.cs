@@ -18,6 +18,54 @@ namespace WooDev.ViewModel
 {
  
 //列表使用
+public partial class DevCompanyList : DEV_COMPANY
+{ }
+//提交数据库使用
+public partial class DevCompanyDTO : DEV_COMPANY,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevCompanyView : DEV_COMPANY
+{ }
+    
+   
+     
+//列表使用
+public partial class DevCompContactsList : DEV_COMP_CONTACTS
+{ }
+//提交数据库使用
+public partial class DevCompContactsDTO : DEV_COMP_CONTACTS,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevCompContactsView : DEV_COMP_CONTACTS
+{ }
+    
+   
+     
+//列表使用
+public partial class DevCompFileList : DEV_COMP_FILE
+{ }
+//提交数据库使用
+public partial class DevCompFileDTO : DEV_COMP_FILE,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevCompFileView : DEV_COMP_FILE
+{ }
+    
+   
+     
+//列表使用
+public partial class DevCompRecordList : DEV_COMP_RECORD
+{ }
+//提交数据库使用
+public partial class DevCompRecordDTO : DEV_COMP_RECORD,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevCompRecordView : DEV_COMP_RECORD
+{ }
+    
+   
+     
+//列表使用
 public partial class DevCurrencyList : DEV_CURRENCY
 { }
 //提交数据库使用

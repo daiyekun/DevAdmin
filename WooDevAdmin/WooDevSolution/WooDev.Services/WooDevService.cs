@@ -15,6 +15,58 @@ using WooDev.Model.Models;
 namespace WooDev.Services
 {
  
+ public partial class DevCompanyService : BaseService<DEV_COMPANY>, IDevCompanyService
+    {
+         public DevCompanyService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevCompContactsService : BaseService<DEV_COMP_CONTACTS>, IDevCompContactsService
+    {
+         public DevCompContactsService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevCompFileService : BaseService<DEV_COMP_FILE>, IDevCompFileService
+    {
+         public DevCompFileService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevCompRecordService : BaseService<DEV_COMP_RECORD>, IDevCompRecordService
+    {
+         public DevCompRecordService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
  public partial class DevCurrencyService : BaseService<DEV_CURRENCY>, IDevCurrencyService
     {
          public DevCurrencyService(ISqlSugarClient DbClient)

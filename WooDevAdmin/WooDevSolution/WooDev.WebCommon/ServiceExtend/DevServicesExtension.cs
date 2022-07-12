@@ -72,8 +72,13 @@ namespace WooDev.WebCommon.ServiceExtend
             services.AddTransient<IDevRoutemetaService, DevRoutemetaService>();
             services.AddTransient<IDevRoleFunctionService, DevRoleFunctionService>();
             services.AddTransient<IDevRolePermissionService, DevRolePermissionService>();
-            
-
+         
+            #region 合同对方
+            services.AddTransient<IDevCompanyService,DevCompanyService>();
+            services.AddTransient<IDevCompContactsService, DevCompContactsService>();
+            services.AddTransient<IDevCompFileService, DevCompFileService>();
+            services.AddTransient<IDevCompRecordService, DevCompRecordService>();
+            #endregion
 
         }
 

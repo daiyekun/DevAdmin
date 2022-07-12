@@ -4,6 +4,86 @@
     "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.Services\\WooDev.Services.csproj": {}
   },
   "projects": {
+    "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.AutoMapper\\WooDev.AutoMapper.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.AutoMapper\\WooDev.AutoMapper.csproj",
+        "projectName": "WooDev.AutoMapper",
+        "projectPath": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.AutoMapper\\WooDev.AutoMapper.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.AutoMapper\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://packages.nuget.org/v1/FeedService.svc/": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.Model\\WooDev.Model.csproj": {
+                "projectPath": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.Model\\WooDev.Model.csproj"
+              },
+              "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.ViewModel\\WooDev.ViewModel.csproj": {
+                "projectPath": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.ViewModel\\WooDev.ViewModel.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.Common\\WooDev.Common.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -246,6 +326,9 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+              "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.AutoMapper\\WooDev.AutoMapper.csproj": {
+                "projectPath": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.AutoMapper\\WooDev.AutoMapper.csproj"
+              },
               "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.IServices\\WooDev.IServices.csproj": {
                 "projectPath": "E:\\WooAdminProject\\WooAdmin\\WooDevAdmin\\WooDevSolution\\WooDev.IServices\\WooDev.IServices.csproj"
               },

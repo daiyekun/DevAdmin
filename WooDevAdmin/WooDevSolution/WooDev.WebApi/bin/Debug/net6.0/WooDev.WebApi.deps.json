@@ -2061,6 +2061,7 @@
       "WooDev.Services/1.0.0": {
         "dependencies": {
           "SqlSugarCore": "5.0.8.6",
+          "WooDev.AutoMapper": "1.0.0",
           "WooDev.IServices": "1.0.0",
           "WooDev.Model": "1.0.0",
           "WooDev.ViewModel": "1.0.0"

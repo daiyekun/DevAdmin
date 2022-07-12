@@ -3289,6 +3289,7 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "SqlSugarCore": "5.0.8.4",
+          "WooDev.AutoMapper": "1.0.0",
           "WooDev.IServices": "1.0.0",
           "WooDev.Model": "1.0.0",
           "WooDev.ViewModel": "1.0.0"

@@ -131,8 +131,8 @@
         if (valid) {
           try {
             let data = cloneDeep(record.editValueRefs);
-            console.log(data);
-            console.log(record);
+            // console.log(data);
+            // console.log(record);
             data.ID = record.ID;
             //TODO 此处将数据提交给服务器保存
             await datadicSaveApi(data);

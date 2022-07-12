@@ -13,6 +13,7 @@ enum Api {
   datadicSave = '/DevDataDic/datadicSave', //保存字典列表
   datadicAdd = '/DevDataDic/datadicAdd', //初始新增字典列表
   datadicDelete = '/DevDataDic/deleteDic', //删除
+  dataList = '/DevDataDic/getdiclist', //查询字典列表
 }
 
 export const getdatadicList = (params: datadicParams) =>
@@ -24,3 +25,5 @@ export const datadicAddApi = (params: datadicAddInfo) =>
   defHttp.get<ResultData>({ url: Api.datadicAdd, params });
 export const datadicDelApi = (params: datadicdeldata) =>
   defHttp.get<ResultData>({ url: Api.datadicDelete, params });
+export const getdataListApi = (params: datadicParams) =>
+  defHttp.get<datadicListGetResultModel>({ url: Api.dataList, params });

@@ -15,6 +15,11 @@ namespace WooDev.ViewModel.Enums
     public enum UserStateEnum
     {
         /// <summary>
+        /// ""：-1
+        /// </summary>
+        [EnumItem(Value = -1, Desc = "")]
+        EMPTY = -1,
+        /// <summary>
         /// 禁用：0
         /// </summary>
         [EnumItem(Value = 0, Desc = "禁用")]

@@ -154,6 +154,20 @@ namespace WooDev.Common.Models
     public class ResultObjData<T> : BaseResult
     {
         public T? result { get; set; }
+  
+
+
+
+    }
+    /// <summary>
+    /// 上传文件时返回
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class UploadResultData<T> : BaseResult
+    {
+        public T? result { get; set; }
+
+        public string? url { get; set; }
 
 
 

@@ -46,5 +46,14 @@ namespace WooDev.Common.Utility
         {
             return RedisUtility.HashGet($"{RedisKeys.UserHashKey}:{userId}", field).ToString();
         }
+        /// <summary>
+        /// 获取数据字典
+        /// </summary>
+        /// <param name="dataId">字典ID</param>
+        /// <returns>用户字段字</returns>
+        public static string GetDataField(int dataId, string field = "NAME")
+        {
+            return RedisUtility.HashGet($"{RedisKeys.DataDicHashKey}:{dataId}", field).ToString();
+        }
     }
 }

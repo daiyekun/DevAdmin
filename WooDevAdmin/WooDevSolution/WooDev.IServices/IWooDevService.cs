@@ -14,6 +14,26 @@ using System.Threading.Tasks;
 namespace WooDev.IServices
 {
  
+public partial interface IDevCompanyService : IBaseService<DEV_COMPANY>
+{ }
+    
+   
+     
+public partial interface IDevCompContactsService : IBaseService<DEV_COMP_CONTACTS>
+{ }
+    
+   
+     
+public partial interface IDevCompFileService : IBaseService<DEV_COMP_FILE>
+{ }
+    
+   
+     
+public partial interface IDevCompRecordService : IBaseService<DEV_COMP_RECORD>
+{ }
+    
+   
+     
 public partial interface IDevCurrencyService : IBaseService<DEV_CURRENCY>
 { }
     
