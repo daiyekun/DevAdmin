@@ -93,12 +93,23 @@
   ];
   export default defineComponent({
     components: { BasicTable, TableAction, BasicUpload }, //FileModal
-    setup() {
+    props: {
+      custid: {
+        type: Number,
+        default: 0,
+      },
+    },
+    setup(props: any) {
+      const currcustid = Number(props.custid);
       const { createMessage } = useMessage();
       const [registerTable, { getDataSource, reload }] = useTable({
         columns: columns,
         showIndexColumn: false,
         api: getCustFileListApi,
+        beforeFetch: (t) => {
+          t.CustId = currcustid;
+        },
+
         bordered: false,
         rowKey: 'ID',
         actionColumn: {
@@ -163,6 +174,7 @@
             GuidFileName: objinfo.GuidFileName,
             RemGuidName: objinfo.RemGuidName,
             SourceFileName: objinfo.SourceFileName,
+            TempId: currcustid,
           };
           array.push(uploadinfo);
           //createMessage.info(`单文件-->${objinfo}`);

@@ -114,7 +114,7 @@ namespace WooDev.WebApi.Controllers.Constact.Company
             //}
             devCompanyDTO.CREATE_ID = userId;
             
-            _IDevCompanyService.CompanySave(devCompanyDTO);
+            _IDevCompanyService.CompanySave(devCompanyDTO, userId);
 
 
             var result = new ResultData
@@ -127,6 +127,66 @@ namespace WooDev.WebApi.Controllers.Constact.Company
 
         }
 
-        
+        /// <summary>
+        /// 清理数据
+        /// </summary>
+        /// <param name="Ids">选中ID</param>
+        [Route("CustomerClear")]
+        [HttpGet]
+        public IActionResult CustomerClear()
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            var result = new ResultData
+            {
+                code = 0,
+                message = "ok",
+            };
+            _IDevCompanyService.ClearData(userId);
+            return new DevResultJson(result);
+        }
+        /// <summary>
+        /// 删除数据
+        /// </summary>
+        /// <param name="Ids">选中ID</param>
+        [Route("CustomerDel")]
+        [HttpGet]
+        public IActionResult CustomerDel(string ids)
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            var result = new ResultData
+            {
+                code = 0,
+                message = "ok",
+            };
+            _IDevCompanyService.SoftDelete(ids);
+            return new DevResultJson(result);
+        }
+
+        /// <summary>
+        /// 修改状态
+        /// </summary>
+        /// <param name="roleDTO">角色对象</param>
+        /// <returns></returns>
+        [Route("customerView")]
+        [HttpGet]
+        public IActionResult CustomerView(int id)
+        {
+
+
+            var data = _IDevCompanyService.ShowDetail(id);
+
+            var result = new ResultViewData<DevCompanyView>
+            {
+                code = 0,
+                message = "ok",
+                result = data
+            };
+            return new DevResultJson(result);
+
+
+        }
+
+
+
     }
 }

@@ -81,5 +81,10 @@ namespace WooDev.IServices
         /// <param name="predicate">where 条件</param>
         /// <returns>ISugarQueryable<T></returns>
         ISugarQueryable<T> Query(Expression<Func<T, bool>> predicate);
+        /// <summary>
+        /// 软删除 将修改IS_DELETE=1
+        /// </summary>
+        /// <param name="Ids">软删除ID字符传 “,”分开</param>
+        int SoftDelete(string Ids);
     }
 }

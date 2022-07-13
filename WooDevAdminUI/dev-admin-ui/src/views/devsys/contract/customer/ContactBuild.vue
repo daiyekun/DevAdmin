@@ -72,11 +72,25 @@
 
   export default defineComponent({
     components: { BasicTable, TableAction },
-    setup() {
+    props: {
+      custid: {
+        type: Number,
+        default: 0,
+      },
+    },
+    setup(props: any) {
+      //debugger;
+      // console.log('获取值props--->', props.custid);
+      const currcustid = props.custid; //toRef(props, 'custid');
+      // console.log('props--->', custid.value);
+      // console.log(`测试客户ID ${custid.value}`);
       const [registerTable, { getDataSource, reload }] = useTable({
         columns: columns,
         showIndexColumn: false,
         api: getCustContactListApi,
+        beforeFetch: (t) => {
+          t.CustId = currcustid;
+        },
         rowKey: 'ID',
         actionColumn: {
           width: 160,
@@ -86,7 +100,7 @@
         },
         pagination: false,
       });
-      const { createMessage: msg } = useMessage();
+      const { createMessage: msg, createConfirm } = useMessage();
       const currentEditKeyRef = ref('');
       function handleEdit(record: EditRecordRow) {
         record.onEdit?.(true);
@@ -124,7 +138,7 @@
               EMAIL: data.EMAIL,
               REMARK: data.REMARK,
               QQ: '',
-              COMP_ID: 0,
+              COMP_ID: currcustid,
             };
             await custContactSaveApi(tsavedata);
             // 保存之后提交编辑状态
@@ -144,39 +158,20 @@
         reload();
       }
 
-      // function handleEditRowEnd() {
-      //   //debugger;
-      //   const data = getDataSource();
-      //   var length = data.length;
-      //   var savedata = data[length - 1];
-      //   let tsavedata: custContactSaveInfo = {
-      //     ID: savedata.ID,
-      //     NAME: savedata.NAME,
-      //     POSITION: savedata.POSITION,
-      //     DEPART: savedata.DEPART,
-      //     TEL: savedata.TEL,
-      //     PHONE: savedata.PHONE,
-      //     EMAIL: savedata.EMAIL,
-      //     REMARK: savedata.REMARK,
-      //     QQ: '',
-      //     COMP_ID: 0,
-      //   };
-      //   // debugger;
-      //   setTimeout(function () {
-      //     custContactSaveApi(tsavedata);
-      //     reload();
-      //   }, 1000);
-
-      //   //createMessage.info(JSON.stringify(data));
-      // }
-
       function handleEditChange(data: Recordable) {
         console.log(data);
       }
-      async function handleDel(data: Recordable) {
-        await custContactDelApi({ Ids: data.ID.toString() });
-        createMessage.success({ content: '删除成功', key: 'deling' });
-        reload();
+      function handleDel(data: Recordable) {
+        createConfirm({
+          iconType: 'warning',
+          title: '系统提示',
+          content: '您确定要删除此数据吗？删除将无法恢复',
+          onOk() {
+            custContactDelApi({ Ids: data.ID.toString() });
+            msg.success({ content: '删除成功', key: 'deling' });
+            reload();
+          },
+        });
       }
 
       function handleAdd() {
@@ -234,6 +229,7 @@
         handleDel,
 
         handleSuccess,
+        currcustid,
       };
     },
   });

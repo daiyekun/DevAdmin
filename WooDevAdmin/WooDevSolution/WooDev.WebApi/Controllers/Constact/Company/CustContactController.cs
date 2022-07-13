@@ -92,7 +92,7 @@ namespace WooDev.WebApi.Controllers.Constact.Company
                 info.IS_DELETE = 0;
                 info.CREATE_TIME = DateTime.Now;
                 info.CREATE_USERID = userId;
-                info.COMP_ID = -userId;
+                info.COMP_ID = contactsDTO.COMP_ID<=0? - userId: contactsDTO.COMP_ID;
                 _IDevCompContactsService.Add(info);
             }
             

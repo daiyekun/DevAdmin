@@ -44,6 +44,10 @@ namespace WooDev.ViewModel.ExtendModel
         /// 文件夹枚举值
         /// </summary>
         public int? FolderIndex { get; set; }
+        /// <summary>
+        /// 额外ID ，可能是主表ID
+        /// </summary>
+        public int TempId { get; set; } = 0;
 
     }
 

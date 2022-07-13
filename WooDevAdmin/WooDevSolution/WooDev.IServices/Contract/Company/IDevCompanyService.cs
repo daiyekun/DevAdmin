@@ -31,7 +31,24 @@ namespace WooDev.IServices
         /// 保存
         /// </summary>
         /// <param name="devCompanyDTO">合同对方字段</param>
-        void CompanySave(DevCompanyDTO devCompanyDTO);
+        /// <param name="userId">当前登录人</param>
+        void CompanySave(DevCompanyDTO devCompanyDTO, int userId);
+        /// <summary>
+        /// 清理垃圾个人数据
+        /// </summary>
+        void ClearData(int userId);
+        /// <summary>
+        /// 清洗数据
+        /// </summary>
+        /// <param name="compId">对方ID</param>
+        /// <param name="userId">当前用户ID</param>
+        void UpdateItemData(int compId, int userId);
+        /// <summary>
+        /// 查看详情
+        /// </summary>
+        /// <param name="Id">客户ID</param>
+        /// <returns></returns>
+        DevCompanyView ShowDetail(int Id);
 
     }
 }

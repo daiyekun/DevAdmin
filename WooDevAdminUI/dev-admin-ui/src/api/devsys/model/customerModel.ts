@@ -113,3 +113,16 @@ export interface custContactSaveInfo {
   REMARK: string;
   COMP_ID: number;
 }
+
+/*
+ *修改查看信息载体
+ */
+export type CustomerViewInfo = customerSaveInfo & {
+  StateDic?: string;
+  CreateUserName?: string;
+  WfState?: string;
+  LeadUserName?: string;
+  CateName?: string;
+  LevelName?: string;
+  CrateName?: string;
+};

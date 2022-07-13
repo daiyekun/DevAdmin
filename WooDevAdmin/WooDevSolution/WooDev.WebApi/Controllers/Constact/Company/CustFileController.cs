@@ -57,7 +57,7 @@ namespace WooDev.WebApi.Controllers.Constact.Company
             foreach (var item in uploadFiles)
             {
                 var info = new DEV_COMP_FILE();
-                info.COMP_ID = -userId;
+                info.COMP_ID = item.TempId<=0? - userId: item.TempId;
                 info.NAME = item.SourceFileName;
                 info.FILE_NAME = item.GuidFileName;
                 info.PATH = item.FolderPath;

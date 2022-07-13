@@ -5,10 +5,10 @@
       <BasicForm @register="register" />
     </a-card>
     <a-card title="客户附件" :bordered="false" class="!mt-5">
-      <FileBuildTable ref="tableFileRef" />
+      <FileBuildTable ref="tableFileRef" :custid="coustomerid" />
     </a-card>
     <a-card title="客户联系人" :bordered="false" class="!mt-5">
-      <ContactBuild ref="tableRef" />
+      <ContactBuild ref="tableRef" :custid="coustomerid" />
     </a-card>
     <UserSelectModel @register="registerUserModel" @rowUserDbclick="SelleadUser" />
     <!-- <a-button type="primary" class="my-4" @click="openModal1"> 打开弹窗 </a-button> -->
@@ -21,7 +21,7 @@
   import { getdataListApi } from '/@/api/devsys/system/datadic';
   //import { FormSchema } from '/@/components/Form';
   import { BasicForm, useForm, FormSchema } from '/@/components/Form';
-  import { defineComponent, ref } from 'vue'; //ComponentOptions
+  import { defineComponent, ref,reactive } from 'vue'; //ComponentOptions
   import FileBuildTable from './FileBuild.vue';
   import ContactBuild from './ContactBuild.vue';
   import { PageWrapper } from '/@/components/Page';
@@ -35,6 +35,8 @@
   import { useGo } from '/@/hooks/web/usePage';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { useRoute } from 'vue-router';
+  import { CustomerViewInfo } from '/@/api/devsys/model/customerModel';
+  import { CustomerViewApi } from '/@/api/devsys/contract/customer';
   export default defineComponent({
     name: 'CustomerBuild',
     components: {
@@ -52,7 +54,7 @@
       const [registerUserModel, { openModal: openModal1, closeModal }] = useModal();
       const go = useGo();
       const route = useRoute();
-      const customerId = ref(route.params?.id);
+      
       const schemas1: FormSchema[] = [
         {
           field: 'ID',
@@ -227,6 +229,19 @@
         schemas: schemas1, //schemas,
         showActionButtonGroup: false,
       });
+      //修改时给表单赋值
+      const customerId = ref(route.params?.id);
+       const customerdata = reactive({
+        viewdata:<CustomerViewInfo>{}
+      });
+      const coustomerid=Number(customerId.value);
+      if(coustomerid>0){
+      const reqdata= CustomerViewApi(Number(customerId.value));
+      reqdata.then((values) => {
+        customerdata.viewdata = values;
+      });
+      setFieldsValue(customerdata.viewdata);
+      }
 
       const [registerTask, { validate: validateTaskForm }] = useForm({
         layout: 'vertical',
@@ -286,6 +301,8 @@
         openModal1,
         SelleadUser,
         tableFileRef,
+        customerdata,
+        coustomerid
       };
     },
   });

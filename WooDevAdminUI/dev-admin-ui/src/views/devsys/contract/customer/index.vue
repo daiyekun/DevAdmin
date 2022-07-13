@@ -96,11 +96,10 @@
         console.log('点击了删除', record);
       }
       function handleView(record: Recordable) {
-        console.log('点击了查看', record);
+        go('/company/customer/customer_detail/' + record.ID);
       }
       function handleEdit(record: Recordable) {
-        console.log('点击了删除', record);
-        reload();
+        go('/company/customer/customer_build/' + record.ID);
       }
       function onSelectChange(selectedRowKeys: (string | number)[]) {
         console.log(selectedRowKeys);

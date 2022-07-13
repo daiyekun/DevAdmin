@@ -132,6 +132,16 @@ namespace WooDev.Services
            return DbClient.Queryable<T>().Where(predicate);
         }
 
+        /// <summary>
+        /// 软删除
+        /// </summary>
+        /// <param name="Ids">软删除ID字符传 “,”分开</param>
+        public int SoftDelete(string Ids)
+        {
+            string sqlstr = $"UPDATE {typeof(T).Name} SET IS_DELETE=1 WHERE ID IN({Ids})";
+            return DbClient.Ado.ExecuteCommand(sqlstr);
+        }
+
 
 
 

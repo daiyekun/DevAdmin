@@ -20,4 +20,5 @@ export type uploadInfo = {
   GuidFileName?: string;
   RemGuidName?: Boolean;
   SourceFileName?: string;
+  TempId: number;
 };
