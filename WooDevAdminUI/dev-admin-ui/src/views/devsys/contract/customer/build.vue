@@ -26,7 +26,7 @@
   import ContactBuild from './ContactBuild.vue';
   import { PageWrapper } from '/@/components/Page';
   //import { schemas, taskSchemas } from './build.data';
-  import { taskSchemas } from './build.data';
+  //import { taskSchemas } from './build.data';
   import { Card } from 'ant-design-vue';
   import { useModal } from '/@/components/Modal';
   import { useTabs } from '/@/hooks/web/useTabs';
@@ -36,7 +36,7 @@
   import { useMessage } from '/@/hooks/web/useMessage';
   import { useRoute } from 'vue-router';
   import { CustomerViewInfo } from '/@/api/devsys/model/customerModel';
-  import { CustomerViewApi } from '/@/api/devsys/contract/customer';
+  import { CustomerViewApi,customerClearDataApi } from '/@/api/devsys/contract/customer';
   export default defineComponent({
     name: 'CustomerBuild',
     components: {
@@ -233,24 +233,27 @@
       const customerId = ref(route.params?.id);
        const customerdata = reactive({
         viewdata:<CustomerViewInfo>{}
-      });
+        });
       const coustomerid=Number(customerId.value);
       if(coustomerid>0){
       const reqdata= CustomerViewApi(Number(customerId.value));
       reqdata.then((values) => {
         customerdata.viewdata = values;
+        setFieldsValue(values);
       });
-      setFieldsValue(customerdata.viewdata);
+      
+      }else{
+        customerClearDataApi();
       }
 
-      const [registerTask, { validate: validateTaskForm }] = useForm({
-        layout: 'vertical',
-        baseColProps: {
-          span: 6,
-        },
-        schemas: taskSchemas,
-        showActionButtonGroup: false,
-      });
+      // const [registerTask, { validate: validateTaskForm }] = useForm({
+      //   layout: 'vertical',
+      //   baseColProps: {
+      //     span: 6,
+      //   },
+      //   schemas: taskSchemas,
+      //   showActionButtonGroup: false,
+      // });
       const { createMessage: msg } = useMessage();
       const { setTitle, closeCurrent } = useTabs();
       if (customerId.value !== '' && customerId.value !== '0') {
@@ -266,8 +269,9 @@
             console.log('table data:', tableRef.value.getDataSource());
           }
 
-          const [values, taskValues] = await Promise.all([validate(), validateTaskForm()]);
-          console.log('form data:', values, taskValues);
+         // const [values, taskValues] = await Promise.all([validate(), validateTaskForm()]);
+         const [values] = await Promise.all([validate()]);
+          console.log('form data:', values);
           await customerSaveApi(values);
           msg.success({ content: '数据已保存', key: 'saving' });
           closeCurrent();
@@ -294,7 +298,7 @@
 
       return {
         register,
-        registerTask,
+       // registerTask,
         submitAll,
         tableRef,
         registerUserModel,
@@ -309,6 +313,4 @@
 </script>
 <style lang="less" scoped>
   .high-form {
-    padding-bottom: 48px;
-  }
-</style>
+    padding-bottom

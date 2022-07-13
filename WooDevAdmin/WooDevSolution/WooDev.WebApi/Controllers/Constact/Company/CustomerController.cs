@@ -131,7 +131,7 @@ namespace WooDev.WebApi.Controllers.Constact.Company
         /// 清理数据
         /// </summary>
         /// <param name="Ids">选中ID</param>
-        [Route("CustomerClear")]
+        [Route("customerClear")]
         [HttpGet]
         public IActionResult CustomerClear()
         {

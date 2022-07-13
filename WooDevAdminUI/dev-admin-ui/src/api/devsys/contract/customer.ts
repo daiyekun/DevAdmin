@@ -16,6 +16,7 @@ enum Api {
   customerList = '/Customer/getCustomerList', //查询列表
   customerSave = '/Customer/customerSave', //新建修改保存用户
   customerView = '/Customer/customerView', //客户详情
+  customerClearData = '/Customer/customerClear', //清理客户数据
   customerFileSave = '/CustFile/customerFileSave', //附件保存
   customerFileList = '/CustFile/getCustFileList', //附件列表
   custUpdateField = '/CustFile/custUpdateField', //修改附件字段
@@ -49,3 +50,4 @@ export const custContactSaveApi = (params: custContactSaveInfo) =>
   defHttp.post<ResultData>({ url: Api.custContactSave, params });
 export const custContactDelApi = (params: deldataInfo) =>
   defHttp.get<ResultData>({ url: Api.custContactDel, params });
+export const customerClearDataApi = () => defHttp.get<ResultData>({ url: Api.customerClearData });
