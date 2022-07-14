@@ -57,6 +57,11 @@
   // import { Alert } from 'ant-design-vue';
   import { useGo } from '/@/hooks/web/usePage';
   import { getCusertomerListApi, customerDelApi } from '/@/api/devsys/contract/customer';
+  import {
+    GetCreatePermissionApi,
+    GetDeletePermissionApi,
+    GetUpdatePermissionApi,
+  } from '/@/api/devsys/system/devpermission';
   import { useMessage } from '/@/hooks/web/useMessage';
   export default defineComponent({
     name: 'DevCustomer',
@@ -87,30 +92,56 @@
       });
 
       function handleCreate() {
-        go('/company/customer/customer_build/0');
+        try {
+          const reqdata = GetCreatePermissionApi({ PerCode: 'customerbuild' });
+
+          reqdata.then(() => {
+            go('/company/customer/customer_build/0');
+          });
+        } catch (error) {
+          msg.error({ content: '' + error, key: 'adding' });
+        }
       }
 
       function getFormValues() {
         console.log(getForm().getFieldsValue());
       }
+      function deleCustomer(record: Recordable) {
+        customerDelApi({ Ids: record.ID.toString() });
+        msg.success({ content: '删除成功', key: 'deling' });
+        reload();
+      }
       function handleDelete(record: Recordable) {
         try {
-          customerDelApi({ Ids: record.ID.toString() });
-          msg.success({ content: '删除成功', key: 'deling' });
-          reload();
+          const reqdata = GetDeletePermissionApi({
+            PerCode: 'customerdelete',
+            Ids: record.ID.toString(),
+          });
+          reqdata.then(() => {
+            deleCustomer(record);
+          });
         } catch (error) {
-          msg.error({ content: '删除失败,' + error, key: 'deling' });
+          msg.error({ content: '' + error, key: 'deling' });
         }
+      }
+      function CustomerDelRows() {
+        var _ids = checkedKeys.value.toString();
+        customerDelApi({ Ids: _ids });
+        msg.success({ content: '删除成功', key: 'deling' });
+        reload();
       }
       function handleDelrolws() {
         try {
           if (checkedKeys.value.length <= 0) {
             msg.info({ content: '请选择数据', key: 'deling' });
           } else {
-            var _ids = checkedKeys.value.toString();
-            customerDelApi({ Ids: _ids });
-            msg.success({ content: '删除成功', key: 'deling' });
-            reload();
+            const reqdata = GetDeletePermissionApi({
+              PerCode: 'customerdelete',
+              Ids: checkedKeys.value.toString(),
+            });
+            reqdata.then(() => {
+              CustomerDelRows();
+            });
           }
         } catch (error) {
           msg.error({ content: '删除失败,' + error, key: 'deling' });
@@ -120,7 +151,18 @@
         go('/company/customer/customer_detail/' + record.ID);
       }
       function handleEdit(record: Recordable) {
-        go('/company/customer/customer_build/' + record.ID);
+        try {
+          const reqdata = GetUpdatePermissionApi({
+            PerCode: 'customerbuild',
+            Id: Number(record.ID),
+          });
+
+          reqdata.then(() => {
+            go('/company/customer/customer_build/' + record.ID);
+          });
+        } catch (error) {
+          msg.error({ content: '' + error, key: 'editing' });
+        }
       }
       function onSelectChange(selectedRowKeys: (string | number)[]) {
         console.log(selectedRowKeys);
