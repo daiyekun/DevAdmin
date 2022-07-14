@@ -144,7 +144,7 @@ namespace WooDev.WebCommon.Extend
             var devroleId = 0;
             if (Claims != null && Claims.Count() > 0)
             {
-                var claimsroleId = Claims.Where(a => a.Type == "RoleIds").FirstOrDefault();
+                var claimsroleId = Claims.Where(a => a.Type == "RoleId").FirstOrDefault();
                 int.TryParse((claimsroleId != null ? claimsroleId.Value : "0"), out devroleId);
 
             }

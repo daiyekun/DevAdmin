@@ -62,6 +62,7 @@ namespace WooDev.WebApi.Controllers.Common
                     var oploginfo = JsonUtility.DeserializeObject<DEV_OPTION_LOG>(optionlogstr);
                     if (oploginfo != null)
                     {
+                        oploginfo.NAME= oploginfo.ACTION_TITLE;
                         _IDevOptionLogService.Add(oploginfo);
                     }
                 }

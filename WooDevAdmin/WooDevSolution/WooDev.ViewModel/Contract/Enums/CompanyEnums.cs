@@ -7,14 +7,12 @@ using WooDev.Common.Utility;
 
 namespace WooDev.ViewModel.Contract.Enums
 {
+   
     /// <summary>
-    /// 状态枚举
-    /// </summary>
-    /// <summary>
-    /// 用户状态
+    /// 合同对方状态
     /// </summary>
     [EnumClass(Max = 5, Min = 0, None = -1)]
-    public enum StateEnums
+    public enum CompanyStateEnums
     {
         /// <summary>
         /// 未审核：0

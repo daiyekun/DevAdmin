@@ -28,7 +28,7 @@
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
   import { BasicTree, TreeItem } from '/@/components/Tree';
   import { roleSaveApi } from '/@/api/devsys/system/devsystem';
-  import { getRoleMenuList } from '/@/api/sys/menu';
+  import { getMenuList } from '/@/api/sys/menu';
 
   export default defineComponent({
     name: 'RoleDrawer',
@@ -49,7 +49,7 @@
         setDrawerProps({ confirmLoading: false });
         // 需要在setFieldsValue之前先填充treeData，否则Tree组件可能会报key not exist警告
         if (unref(treeData).length === 0) {
-          treeData.value = (await getRoleMenuList()) as any as TreeItem[];
+          treeData.value = (await getMenuList()) as any as TreeItem[];
         }
         isUpdate.value = !!data?.isUpdate;
 

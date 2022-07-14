@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 using System.Linq.Expressions;
+using WooDev.Common.Extend;
 using WooDev.Common.Models;
 using WooDev.Common.Utility;
 using WooDev.IServices;
@@ -12,6 +13,7 @@ using WooDev.ViewModel;
 using WooDev.ViewModel.Common;
 using WooDev.ViewModel.ExtendModel;
 using WooDev.WebCommon.Extend;
+using WooDev.WebCommon.FilterExtend;
 using WooDev.WebCommon.Utiltiy;
 
 namespace WooDev.WebApi.Controllers.Common
@@ -68,6 +70,7 @@ namespace WooDev.WebApi.Controllers.Common
         /// </summary>
         /// <param name="roleDTO">角色对象</param>
         /// <returns></returns>
+        [DevOptionLogActionFilter("新增角色", OptionLogEnum.Add, "新增角色", true)]
         [Route("roleSave")]
         [HttpPost]
         public IActionResult roleSave([FromBody] DevRoleDTO roleDTO)
@@ -115,6 +118,7 @@ namespace WooDev.WebApi.Controllers.Common
         /// 删除数据
         /// </summary>
         /// <param name="Ids">选中ID</param>
+        [DevOptionLogActionFilter("删除角色", OptionLogEnum.Del, "删除角色", true)]
         [Route("delRole")]
         [HttpGet]
         [Authorize]
@@ -151,6 +155,7 @@ namespace WooDev.WebApi.Controllers.Common
         /// </summary>
         /// <param name="roleDTO">角色对象</param>
         /// <returns></returns>
+        [DevOptionLogActionFilter("修改角色状态", OptionLogEnum.Update, "修改角色状态", true)]
         [Route("setRoleStatus")]
         [HttpPost]
         public IActionResult SetRoleStatus(DevStatusInfo roleStatus)

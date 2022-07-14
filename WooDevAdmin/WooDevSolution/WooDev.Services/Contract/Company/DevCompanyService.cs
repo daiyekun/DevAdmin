@@ -88,7 +88,7 @@ namespace WooDev.Services
                             CREATE_USERID = a.CREATE_USERID,//创建人
                             CREATE_TIME = a.CREATE_TIME,//创建时间
                             LEAD_USERID = a.LEAD_USERID,//负责人
-                            StateDic = EmunUtility.GetDesc(typeof(StateEnums), a.C_STATE),
+                            StateDic = EmunUtility.GetDesc(typeof(CompanyStateEnums), a.C_STATE),
                             CreateUserName = DevRedisUtility.GetUserField(a.CREATE_USERID),
                             LeadUserName= DevRedisUtility.GetUserField(a.LEAD_USERID??-1),
                             WfState = EmunUtility.GetDesc(typeof(WorkFlowStateEnums), a.WF_STATE??-1),
@@ -113,19 +113,27 @@ namespace WooDev.Services
         /// <param name="userId">当前登录人ID </param>
         public void CompanySave(DevCompanyDTO devCompanyDTO,int userId)
         {
-            var info = AutoMapperHelper.Map<DevCompanyDTO, DEV_COMPANY>(devCompanyDTO);
+            
             
             if (devCompanyDTO.ID>0)
             {
-               
-               Update(info);
-               UpdateItemData(info.ID, userId);
+                var saveinfo = DbClient.Queryable<DEV_COMPANY>().Where(a=>a.ID== devCompanyDTO.ID).Single();
+                AutoMapperHelper.Map<DevCompanyDTO, DEV_COMPANY>(devCompanyDTO, saveinfo);
+                saveinfo.C_TYPE = 0;
+                saveinfo.UPDATE_USERID = userId;
+                saveinfo.UPDATE_TIME = DateTime.Now;
+               Update(saveinfo);
+               UpdateItemData(saveinfo.ID, userId);
 
             }
             else
             {
+                var info = AutoMapperHelper.Map<DevCompanyDTO, DEV_COMPANY>(devCompanyDTO);
                 info.CREATE_TIME = DateTime.Now;
                 info.UPDATE_TIME = DateTime.Now;
+                info.C_TYPE = 0;
+                info.CREATE_USERID = userId;
+                info.UPDATE_USERID= userId;
                 var currinfo=Add(info);
                 UpdateItemData(currinfo.ID, userId);
             }
@@ -138,9 +146,9 @@ namespace WooDev.Services
         public void ClearData(int userId)
         {
             StringBuilder sqlstr = new StringBuilder();
-            sqlstr.Append($"DELETE DEV_COMP_FILE WHERE COMP_ID={-userId};");
-            sqlstr.Append($"DELETE DEV_COMP_CONTACTS WHERE COMP_ID={-userId};");
-            sqlstr.Append($"DELETE DEV_COMP_RECORD WHERE COMP_ID={-userId};");
+            sqlstr.Append($"DELETE FROM DEV_COMP_FILE WHERE COMP_ID={-userId};");
+            sqlstr.Append($"DELETE FROM DEV_COMP_CONTACTS WHERE COMP_ID={-userId};");
+            sqlstr.Append($"DELETE FROM DEV_COMP_RECORD WHERE COMP_ID={-userId};");
 
             ExecuteCommand(sqlstr.ToString()) ;
         }
@@ -211,7 +219,7 @@ namespace WooDev.Services
                             CREATE_USERID = a.CREATE_USERID,//创建人
                             CREATE_TIME = a.CREATE_TIME,//创建时间
                             LEAD_USERID = a.LEAD_USERID,//负责人
-                            StateDic = EmunUtility.GetDesc(typeof(StateEnums), a.C_STATE),
+                            StateDic = EmunUtility.GetDesc(typeof(CompanyStateEnums), a.C_STATE),
                             CreateUserName = DevRedisUtility.GetUserField(a.CREATE_USERID),
                             LeadUserName = DevRedisUtility.GetUserField(a.LEAD_USERID ?? -1),
                             WfState = EmunUtility.GetDesc(typeof(WorkFlowStateEnums), a.WF_STATE ?? -1),

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 using System.Linq.Expressions;
+using WooDev.Common.Extend;
 using WooDev.Common.Models;
 using WooDev.Common.Utility;
 using WooDev.IServices;
@@ -12,6 +13,7 @@ using WooDev.Model.Models;
 using WooDev.ViewModel;
 using WooDev.ViewModel.ExtendModel;
 using WooDev.WebCommon.Extend;
+using WooDev.WebCommon.FilterExtend;
 using WooDev.WebCommon.Utiltiy;
 
 namespace WooDev.WebApi.Controllers.Constact.Company
@@ -28,11 +30,14 @@ namespace WooDev.WebApi.Controllers.Constact.Company
         private IDevCompanyService _IDevCompanyService;
         private IMapper _IMapper;
         private IDevCompFileService _IDevCompFileService;
-        public CustomerController(IDevCompanyService iDevCompanyService, IMapper iMapper, IDevCompFileService iDevCompFileService)
+        private IDevRolePermissionService _IDevRolePermissionService;
+        public CustomerController(IDevCompanyService iDevCompanyService, IMapper iMapper, IDevCompFileService iDevCompFileService
+            , IDevRolePermissionService iDevRolePermissionService)
         {
             _IDevCompanyService = iDevCompanyService;
             _IMapper = iMapper;
             _IDevCompFileService = iDevCompFileService;
+            _IDevRolePermissionService = iDevRolePermissionService;
         }
 
 
@@ -45,10 +50,8 @@ namespace WooDev.WebApi.Controllers.Constact.Company
         [Authorize]
         public IActionResult GetList([FromQuery] PageParams pageParams, [FromQuery] DevCompanySearch serachParam)
         {
-            var userId = HttpContext.User.Claims.GetTokenUserId();
             var pageinfo = new PageInfo<DEV_COMPANY>() { PageIndex = pageParams.page, PageSize = pageParams.pageSize };
             var whereexp = GetFilterExpress(serachParam);
-            whereexp = whereexp.And(a => a.IS_DELETE == 0);
             Expression<Func<DEV_COMPANY, object>> orderbyLambda = a => a.ID;
             var data = _IDevCompanyService.GetList(pageinfo, whereexp.ToExpression(), orderbyLambda, false);
             var result = new ResultData<DevCompanyList>
@@ -58,10 +61,20 @@ namespace WooDev.WebApi.Controllers.Constact.Company
             return new DevResultJson(result);
         }
 
+        /// <summary>
+        /// 获取查询条件
+        /// 
+        /// </summary>
+        /// <param name="serachParam"></param>
+        /// <returns></returns>
         private Expressionable<DEV_COMPANY> GetFilterExpress(DevCompanySearch serachParam)
         {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            var deptId = HttpContext.User.Claims.GetTokenDeptId();
+            var roleId = HttpContext.User.Claims.GetTokenRoleId();
+            //var predicateAnd = PredicateBuilder.True<DEV_COMPANY>();
             var whereexp = Expressionable.Create<DEV_COMPANY>();
-            whereexp = whereexp.And(a=>a.C_TYPE==0);//客户
+           
             if (!string.IsNullOrEmpty(serachParam.Name))
             {//搜索名称
                 whereexp = whereexp.And(a => a.NAME.Contains(serachParam.Name));
@@ -74,8 +87,13 @@ namespace WooDev.WebApi.Controllers.Constact.Company
             {//部门ID
                 whereexp = whereexp.And(a => a.CATE_ID == serachParam.CateId);
             }
+            var pession = _IDevRolePermissionService.GetCompanyListPermissionExpression(whereexp,"customerlist", userId, deptId, roleId);
+            //whereexp = whereexp.And(pession);
+            //predicateAnd = predicateAnd.And(predicateAnd.ToExpression());
+            pession = pession.And(a => a.C_TYPE == 0);//客户
+            pession = pession.And(a => a.IS_DELETE == 0);
+            return pession;
 
-            return whereexp;
         }
 
         /// <summary>
@@ -83,36 +101,15 @@ namespace WooDev.WebApi.Controllers.Constact.Company
         /// </summary>
         /// <param name="roleDTO">角色对象</param>
         /// <returns></returns>
+        [DevOptionLogActionFilter("新建客户或者修改客户", OptionLogEnum.UpdateOrAdd, "新建客户或者修改客户", true)]
         [Route("customerSave")]
         [HttpPost]
         public IActionResult CustomerSave([FromBody] DevCompanyDTO devCompanyDTO)
         {
 
             var userId = HttpContext.User.Claims.GetTokenUserId();
-            //if (devCompanyDTO.ID > 0)
-            //{
-
-            //    var  customerinfo = _IDevCompanyService.InSingle(devCompanyDTO.ID);
-            //    var saveinfo = _IMapper.Map<DevCompanyDTO, DEV_COMPANY>(devCompanyDTO, customerinfo);
-            //    saveinfo.UPDATE_TIME = DateTime.Now;
-            //    saveinfo.UPDATE_USERID = userId;
-            //    saveinfo.C_STATE = 0;//
-
-            //    _IDevCompanyService.Update(saveinfo);
-
-
-            //}
-            //else
-            //{
-            //    var info = _IMapper.Map<DEV_COMPANY>(devCompanyDTO);
-            //    info.CREATE_TIME = DateTime.Now;
-            //    info.UPDATE_TIME = DateTime.Now;
-            //    info.CREATE_USERID = userId;
-            //    info.UPDATE_USERID = userId;
-            //    info.C_STATE = 0;//
-
-            //}
-            devCompanyDTO.CREATE_ID = userId;
+           
+          //  devCompanyDTO.CREATE_ID = userId;
             
             _IDevCompanyService.CompanySave(devCompanyDTO, userId);
 
@@ -148,7 +145,8 @@ namespace WooDev.WebApi.Controllers.Constact.Company
         /// 删除数据
         /// </summary>
         /// <param name="Ids">选中ID</param>
-        [Route("CustomerDel")]
+        [DevOptionLogActionFilter("删除客户", OptionLogEnum.Del, "删除客户", true)]
+        [Route("customerDel")]
         [HttpGet]
         public IActionResult CustomerDel(string ids)
         {
@@ -163,9 +161,9 @@ namespace WooDev.WebApi.Controllers.Constact.Company
         }
 
         /// <summary>
-        /// 修改状态
+        /// 查询详情
         /// </summary>
-        /// <param name="roleDTO">角色对象</param>
+        /// <param name="id">当前ID</param>
         /// <returns></returns>
         [Route("customerView")]
         [HttpGet]

@@ -16,6 +16,7 @@ enum Api {
   customerList = '/Customer/getCustomerList', //查询列表
   customerSave = '/Customer/customerSave', //新建修改保存用户
   customerView = '/Customer/customerView', //客户详情
+  customerDel = '/Customer/customerDel', //客户详情
   customerClearData = '/Customer/customerClear', //清理客户数据
   customerFileSave = '/CustFile/customerFileSave', //附件保存
   customerFileList = '/CustFile/getCustFileList', //附件列表
@@ -33,6 +34,8 @@ export const customerSaveApi = (params: customerSaveInfo) =>
   defHttp.post<ResultData>({ url: Api.customerSave, params });
 export const CustomerViewApi = (id: number) =>
   defHttp.get<CustomerViewInfo>({ url: Api.customerView, params: { id } });
+export const customerDelApi = (params: deldataInfo) =>
+  defHttp.get<ResultData>({ url: Api.customerDel, params });
 
 export const uploadfileSaveApi = (params: any) =>
   defHttp.post<ResultData>({ url: Api.customerFileSave, params });

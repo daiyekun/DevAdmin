@@ -16,7 +16,7 @@
     </template> -->
     <template #toolbar>
       <a-button type="primary" @click="handleCreate">新增客户</a-button>
-      <a-button type="primary" @click="getFormValues">批量删除</a-button>
+      <a-button type="primary" @click="handleDelrolws">批量删除</a-button>
     </template>
     <!-- <template #bodyCell="{ column }">
       <template v-if="column.key === 'operation'">
@@ -56,13 +56,14 @@
   import { customercolumns, getFormConfig } from './index.data';
   // import { Alert } from 'ant-design-vue';
   import { useGo } from '/@/hooks/web/usePage';
-  import { getCusertomerListApi } from '/@/api/devsys/contract/customer';
-
+  import { getCusertomerListApi, customerDelApi } from '/@/api/devsys/contract/customer';
+  import { useMessage } from '/@/hooks/web/useMessage';
   export default defineComponent({
     name: 'DevCustomer',
     components: { BasicTable, TableAction }, //TableAction
     setup() {
       const go = useGo();
+      const { createMessage: msg } = useMessage();
       const checkedKeys = ref<Array<string | number>>([]);
       const [registerTable, { getForm, reload }] = useTable({
         title: '客户列表',
@@ -93,7 +94,27 @@
         console.log(getForm().getFieldsValue());
       }
       function handleDelete(record: Recordable) {
-        console.log('点击了删除', record);
+        try {
+          customerDelApi({ Ids: record.ID.toString() });
+          msg.success({ content: '删除成功', key: 'deling' });
+          reload();
+        } catch (error) {
+          msg.error({ content: '删除失败,' + error, key: 'deling' });
+        }
+      }
+      function handleDelrolws() {
+        try {
+          if (checkedKeys.value.length <= 0) {
+            msg.info({ content: '请选择数据', key: 'deling' });
+          } else {
+            var _ids = checkedKeys.value.toString();
+            customerDelApi({ Ids: _ids });
+            msg.success({ content: '删除成功', key: 'deling' });
+            reload();
+          }
+        } catch (error) {
+          msg.error({ content: '删除失败,' + error, key: 'deling' });
+        }
       }
       function handleView(record: Recordable) {
         go('/company/customer/customer_detail/' + record.ID);
@@ -115,6 +136,7 @@
         handleView,
         handleEdit,
         handleCreate,
+        handleDelrolws,
       };
     },
   });

@@ -313,4 +313,6 @@
 </script>
 <style lang="less" scoped>
   .high-form {
-    padding-bottom
+    padding-bottom: 48px;
+  }
+</style>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using WooDev.Common.Extend;
 using WooDev.Common.Models;
 using WooDev.Common.Utility;
 using WooDev.Model.Models;
@@ -76,6 +77,7 @@ namespace WooDev.Services
                             ACTION_NAME = a.ACTION_NAME,
                             REQ_METHOD=a.REQ_METHOD,//request 方法 get post ..
                             OPTION_TYPE=a.OPTION_TYPE,//操作类型 增加 删 改
+                            OpTypeDic= EmunUtility.GetDesc(typeof(OptionLogEnum), a.OPTION_TYPE??-1),
                             IP = a.IP,
                             REMARK=a.REMARK,//描述
                             LoginName= DevRedisUtility.GetUserField(a.CREATE_USERID,"LOGIN_NAME"),

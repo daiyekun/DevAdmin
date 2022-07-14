@@ -21,5 +21,11 @@ namespace WooDev.ViewModel
         /// </summary>
 
         public string? ShowName { get; set; }
+        /// <summary>
+        ///操作类型-
+        ///新增
+        ///修改
+        /// </summary>
+        public string? OpTypeDic { get; set; }
     }
 }

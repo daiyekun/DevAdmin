@@ -42,5 +42,14 @@ namespace Dev.WooNet.AutoMapper.Extend
 
             return mapper.Map<TDestination>(source);
         }
+        public static TDestination Map<TSource, TDestination>(TSource source, TDestination destination)
+        {
+            var mapper = ServiceProvider.GetRequiredService<IMapper>();
+
+            return mapper.Map<TSource, TDestination>(source, destination);
+        }
+
+
+        
     }
 }

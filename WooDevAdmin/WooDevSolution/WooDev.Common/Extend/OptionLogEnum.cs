@@ -63,6 +63,16 @@ namespace WooDev.Common.Extend
         /// </summary>
         [EnumItem(Value = 8, Desc = "变更")]
         Change =8,
+        /// <summary>
+        /// 权限分配:9
+        /// </summary>
+        [EnumItem(Value = 9, Desc = "权限分配")]
+        Perssion = 9,
+        /// <summary>
+        /// 新建/修改:10
+        /// </summary>
+        [EnumItem(Value = 10, Desc = "新建/修改")]
+        UpdateOrAdd = 10,
 
     }
 }

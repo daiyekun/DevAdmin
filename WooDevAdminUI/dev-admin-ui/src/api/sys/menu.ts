@@ -9,7 +9,7 @@ enum Api {
 /**
  * @description: Get user menu based on id
  */
-
+//查询所有菜单
 export const getMenuList = () => {
   return defHttp.get<getMenuListResultModel>({ url: Api.GetMenuList });
 };

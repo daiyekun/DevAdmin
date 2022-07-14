@@ -59,7 +59,8 @@ namespace WooDev.Auth
                  new Claim("DeptId", user.DeptId.ToString()),
                   new Claim("Name", user.Name),
                  new Claim("DeptName",string.IsNullOrEmpty(user.DeptName)?"": user.DeptName),
-                 new Claim("RoleIds", user.RoleIds)
+                 new Claim("RoleIds", user.RoleIds),
+                 new Claim("RoleId", user.RoleId.ToString())
             };
 
             //需要加密：需要加密key:
