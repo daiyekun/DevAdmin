@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WooDev.ViewModel.ExtendModel;
 
 namespace WooDev.ViewModel
 {
@@ -40,12 +41,14 @@ namespace WooDev.ViewModel
         /// 信用等级
         /// </summary>
         public string? CrateName { get; set; }
+
+       
     }
 
     /// <summary>
     /// 合同对方列表
     /// </summary>
-    public partial class DevCompanyList
+    public partial class DevCompanyList : IDevEntityHandle
     {
         /// <summary>
         /// 状态
@@ -75,6 +78,19 @@ namespace WooDev.ViewModel
         /// 信用等级
         /// </summary>
         public string? CrateName { get; set; }
+        /// <summary>
+        /// 导出excel使用
+        /// </summary>
+        /// <param name="propName"></param>
+        /// <returns></returns>
+        public FieldInfo GetPropValue(string propName)
+        {
+            var fieldinfo = new FieldInfo();
+            var obj = this.GetType().GetProperty(propName);
+            fieldinfo.FileType = obj.PropertyType;
+            fieldinfo.FileValue = obj.GetValue(this, null);
+            return fieldinfo;
+        }
 
     }
 }

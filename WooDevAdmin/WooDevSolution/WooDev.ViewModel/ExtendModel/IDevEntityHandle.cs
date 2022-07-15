@@ -26,7 +26,7 @@ namespace WooDev.ViewModel.ExtendModel
         /// <summary>
         /// 约束必须有ID
         /// </summary>
-       int Id { get; set; }
+       int ID { get; set; }
        
     }
    

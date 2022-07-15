@@ -17,12 +17,9 @@
     <template #toolbar>
       <a-button type="primary" @click="handleCreate">新增客户</a-button>
       <a-button type="primary" @click="handleDelrolws">批量删除</a-button>
+      <a-button type="primary" @click="handleExcel">导出Excel</a-button>
     </template>
-    <!-- <template #bodyCell="{ column }">
-      <template v-if="column.key === 'operation'">
-        <a>action</a>
-      </template>
-    </template> -->
+
     <template #action="{ record }">
       <TableAction
         :actions="[
@@ -49,6 +46,8 @@
       />
     </template>
   </BasicTable>
+
+  <ExportExcelModel @register="registerExcelModel" />
 </template>
 <script lang="ts">
   import { defineComponent, ref } from 'vue';
@@ -64,14 +63,19 @@
     GetDetailPermissionApi,
   } from '/@/api/devsys/system/devpermission';
   import { useMessage } from '/@/hooks/web/useMessage';
+  import { useModal } from '/@/components/Modal';
+  import ExportExcelModel from '/@/views/devsys/contract/common/ExportExcelModel.vue';
   export default defineComponent({
     name: 'DevCustomer',
-    components: { BasicTable, TableAction }, //TableAction
+    components: { BasicTable, TableAction, ExportExcelModel }, //TableAction
     setup() {
+      const [registerExcelModel, { openModal: openExcelModal }] = useModal();
       const go = useGo();
       const { createMessage: msg } = useMessage();
       const checkedKeys = ref<Array<string | number>>([]);
-      const [registerTable, { getForm, reload }] = useTable({
+      // const seardata = ref({});
+      // var cols = reactive([]);
+      const [registerTable, { getForm, reload, getColumns }] = useTable({
         title: '客户列表',
         api: getCusertomerListApi,
         columns: customercolumns,
@@ -180,6 +184,21 @@
         console.log(selectedRowKeys);
         checkedKeys.value = selectedRowKeys;
       }
+      function handleExcel() {
+        const coloums = getColumns();
+        var formvalues = getForm().getFieldsValue();
+        openExcelModal(true, { selkey: checkedKeys, colums: coloums, seardata: formvalues });
+      }
+      // function selCondtion(values) {
+      //   //customerExcelApi();
+      //   debugger;
+      //   console.log('执行了父组件...', JSON.stringify(values));
+      //   const coloums = getColumns();
+      //   console.log('执行了表格列...', JSON.stringify(coloums));
+      //   var formvalues = getForm().getFieldsValue();
+      //   console.log('执行了表格表单...', JSON.stringify(formvalues));
+      //   closeModal();
+      // }
 
       return {
         registerTable,
@@ -191,6 +210,8 @@
         handleEdit,
         handleCreate,
         handleDelrolws,
+        handleExcel,
+        registerExcelModel,
       };
     },
   });

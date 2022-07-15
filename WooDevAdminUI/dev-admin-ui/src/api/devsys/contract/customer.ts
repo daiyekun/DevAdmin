@@ -12,11 +12,15 @@ import {
 import { devUpdateField, deldataInfo } from '../model/devCommonModel';
 import { defHttp } from '/@/utils/http/axios';
 import { ResultData } from '/@/api/model/baseModel';
+//import { ResponseType } from 'axios';
+
 enum Api {
   customerList = '/Customer/getCustomerList', //查询列表
   customerSave = '/Customer/customerSave', //新建修改保存用户
   customerView = '/Customer/customerView', //客户详情
   customerDel = '/Customer/customerDel', //客户详情
+  customerExcel = '/Customer/exportexcel', //导出excel
+
   customerClearData = '/Customer/customerClear', //清理客户数据
   customerFileSave = '/CustFile/customerFileSave', //附件保存
   customerFileList = '/CustFile/getCustFileList', //附件列表
@@ -36,6 +40,9 @@ export const CustomerViewApi = (id: number) =>
   defHttp.get<CustomerViewInfo>({ url: Api.customerView, params: { id } });
 export const customerDelApi = (params: deldataInfo) =>
   defHttp.get<ResultData>({ url: Api.customerDel, params });
+
+export const customerExcelApi = (params: customerParams) =>
+  defHttp.post<ResultData>({ responseType: 'blob', url: Api.customerExcel, params });
 
 export const uploadfileSaveApi = (params: any) =>
   defHttp.post<ResultData>({ url: Api.customerFileSave, params });

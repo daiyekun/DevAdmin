@@ -52,6 +52,9 @@ export function getFormConfig(): Partial<FormProps> {
           xl: 8,
           xxl: 8,
         },
+        componentProps: {
+          style: { width: '100%' },
+        },
       },
       {
         field: 'EndDate',
@@ -60,6 +63,9 @@ export function getFormConfig(): Partial<FormProps> {
         colProps: {
           xl: 8,
           xxl: 8,
+        },
+        componentProps: {
+          style: { width: '100%' },
         },
       },
     ],
@@ -161,6 +167,9 @@ export function getOptionFormConfig(): Partial<FormProps> {
           xl: 8,
           xxl: 8,
         },
+        componentProps: {
+          style: { width: '100%' },
+        },
       },
       {
         field: 'EndDate',
@@ -169,6 +178,9 @@ export function getOptionFormConfig(): Partial<FormProps> {
         colProps: {
           xl: 8,
           xxl: 8,
+        },
+        componentProps: {
+          style: { width: '100%' },
         },
       },
     ],

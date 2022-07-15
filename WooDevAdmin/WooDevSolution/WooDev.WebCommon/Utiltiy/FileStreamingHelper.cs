@@ -467,7 +467,26 @@ namespace WooDev.WebCommon.Utiltiy
 
 
         #endregion 文件帮助工具类
+        #region 下载使用
+        public static DownLoadInfo Download(string fileName)
+        {
+            var addrUrl = fileName;
+            var stream = System.IO.File.OpenRead(addrUrl);
+            string exten = Path.GetExtension(fileName);
+            string fileExt = exten.Substring(exten.IndexOf('.'));//需要不含.
+            //获取文件的ContentType
+            var provider = new Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider();
+            var memi = provider.Mappings[fileExt];
+            //return File(stream, memi, Path.GetFileName(addrUrl));
 
+            return new DownLoadInfo
+            {
+                NfFileStream = stream,
+                Memi = memi,
+                FileName = Path.GetFileName(addrUrl)
+            };
+        }
+        #endregion
 
 
 

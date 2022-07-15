@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WooDev.ViewModel.Common;
 
 namespace WooDev.ViewModel
 {
@@ -10,7 +11,7 @@ namespace WooDev.ViewModel
     /// <summary>
     /// 合同对方搜索
     /// </summary>
-    public class DevCompanySearch
+    public class DevCompanySearch: ISearData
     {  
         /// <summary>
         /// 名称

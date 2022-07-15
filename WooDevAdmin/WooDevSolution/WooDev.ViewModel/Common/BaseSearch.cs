@@ -25,5 +25,12 @@ namespace WooDev.ViewModel.Common
     {
         public int id { get; set; } = 0;
     }
+
+    /// <summary>
+    /// 筛选接口
+    /// </summary>
+    public interface ISearData 
+    { 
+    }
          
 }

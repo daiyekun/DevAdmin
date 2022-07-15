@@ -63,5 +63,10 @@ namespace WooDev.ViewModel.Enums
         /// </summary>
         [EnumItem(Value = 9, Desc = "ActualFile")]
         ActualFile = 9,
+        /// <summary>
+        /// 导出文件
+        /// </summary>
+        [EnumItem(Value = 10, Desc = "ExportFile")]
+        ExportFile = 10,
     }
 }

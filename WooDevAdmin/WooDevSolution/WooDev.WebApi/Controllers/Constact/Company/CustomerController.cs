@@ -184,6 +184,45 @@ namespace WooDev.WebApi.Controllers.Constact.Company
 
         }
 
+        /// <summary>
+        /// 导出Excel
+        /// </summary>
+        /// <returns></returns>
+        [Route("exportexcel")]
+        [HttpPost]
+        public IActionResult ExportExcel([FromBody] ExportRequestInfo exportRequestInfo, [FromQuery] DevCompanySearch serachParam)
+        {
+
+            var pageInfo = new NoPageInfo<DEV_COMPANY>();
+            //var predicateAnd = PredBuilder.True<DevCompany>();
+            ////predicateAnd = predicateAnd.And(GetQueryExpression(pageInfo, exportRequestInfo.KeyWord));
+            //if (exportRequestInfo.SelRow)
+            //{//选择行
+            //    predicateAnd = predicateAnd.And(p => exportRequestInfo.GetSelectListIds().Contains(p.Id));
+            //}
+            var whereexp = GetFilterExpress(serachParam);
+            var layPage = _IDevCompanyService.GetList(pageInfo, whereexp.ToExpression(), a => a.ID, true);
+            var downInfo = DevExportDataHelper.ExportExcelExtend(exportRequestInfo, "客户列表", layPage.items);
+
+
+            var excelfile = new ExportFileInfo
+            {
+                FileName = downInfo.FileName,
+                Memi = downInfo.Memi,
+               // FilePath = $"Uploads/{EmunUtility.GetDesc(typeof(DevFoldersEnum), 3)}",
+               // DowIp = _Configuration["DevAppSeting:filedownIp"]
+
+
+            };
+            var ajaxResult = new AjaxResult<ExportFileInfo>()
+            {
+                Result = true,
+                data = excelfile
+            };
+            return new JsonResult(ajaxResult);
+
+        }
+
 
 
     }
