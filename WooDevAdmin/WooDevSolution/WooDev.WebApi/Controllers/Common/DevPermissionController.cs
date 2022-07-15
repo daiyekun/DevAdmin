@@ -113,6 +113,34 @@ namespace WooDev.WebApi.Controllers.Common
             return new DevResultJson(result);
         }
 
+        /// <summary>
+        /// 修改权限
+        /// </summary>
+        /// <returns></returns>
+        [Route("detailPermission")]
+        [HttpGet]
+        public IActionResult GetDetailPermission([FromQuery] DevReqUpdatePermission reqUpdatePermission)
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            var deptId = HttpContext.User.Claims.GetTokenDeptId();
+            var roleId = HttpContext.User.Claims.GetTokenRoleId();
+
+            var result = new ResultData
+            {
+                code = 0,
+                message = "ok",
+            };
+            PermissionDicEnum res = _IDevRolePermissionService.GetCompanyUpdatePermission(reqUpdatePermission.PerCode, userId, deptId, roleId, reqUpdatePermission.Id ?? 0);
+            if (res != PermissionDicEnum.OK)
+            {
+                result.code = -1;
+                result.message = EmunUtility.GetDesc(typeof(PermissionDicEnum), (int)res);//EmunUtility.GetDefaultDesc(typeof(PermissionDicEnum));
+
+            }
+
+            return new DevResultJson(result);
+        }
+
 
 
 

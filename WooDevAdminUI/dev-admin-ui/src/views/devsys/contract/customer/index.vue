@@ -61,6 +61,7 @@
     GetCreatePermissionApi,
     GetDeletePermissionApi,
     GetUpdatePermissionApi,
+    GetDetailPermissionApi,
   } from '/@/api/devsys/system/devpermission';
   import { useMessage } from '/@/hooks/web/useMessage';
   export default defineComponent({
@@ -148,7 +149,18 @@
         }
       }
       function handleView(record: Recordable) {
-        go('/company/customer/customer_detail/' + record.ID);
+        try {
+          const reqdata = GetDetailPermissionApi({
+            PerCode: 'customerdetail',
+            Id: Number(record.ID),
+          });
+
+          reqdata.then(() => {
+            go('/company/customer/customer_detail/' + record.ID);
+          });
+        } catch (error) {
+          msg.error({ content: '' + error, key: 'detailing' });
+        }
       }
       function handleEdit(record: Recordable) {
         try {

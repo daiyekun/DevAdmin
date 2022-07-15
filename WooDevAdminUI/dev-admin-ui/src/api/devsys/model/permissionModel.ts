@@ -18,3 +18,11 @@ export interface UpdatePermission {
   PerCode: string; //权限标识
   Id: number; //修改ID
 }
+
+/***
+ * 查看权限
+ */
+export interface detailPermission {
+  PerCode: string; //权限标识
+  Id: number; //修改ID
+}

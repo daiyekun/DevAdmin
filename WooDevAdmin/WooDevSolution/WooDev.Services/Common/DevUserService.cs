@@ -275,8 +275,8 @@ namespace WooDev.Services
         {
             try
             {
-                var curdickey = $"{RedisKeys.RoleHashKey}";
-                RedisUtility.KeyDeleteAsync(RedisKeys.RoleAllListKey);
+                var curdickey = $"{RedisKeys.UserHashKey}";
+                RedisUtility.KeyDeleteAsync(RedisKeys.UserAllListKey);
                 var list = GetAll();
                 foreach (var item in list)
                 {

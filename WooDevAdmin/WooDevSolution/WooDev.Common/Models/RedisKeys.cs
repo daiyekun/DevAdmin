@@ -48,6 +48,10 @@ namespace WooDev.Common.Models
         /// </summary>
         public static string UserHashKey = $"{BaseKey_Prefix}User";
         /// <summary>
+        /// 用户所有
+        /// </summary>
+        public static string UserAllListKey = $"{BaseKey_Prefix}UserAllList";
+        /// <summary>
         /// 操作日志
         /// </summary>
         public static string OptionLog = $"{BaseKey_Prefix}Sys:OptionLog";

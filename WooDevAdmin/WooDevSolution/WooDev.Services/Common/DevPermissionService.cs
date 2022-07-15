@@ -394,6 +394,65 @@ namespace WooDev.Services
             }
 
         }
+        /// <summary>
+        /// 判断当前用户是否有查看合同对方的权限
+        /// </summary>
+        /// <param name="userId">当前用户</param>
+        /// <param name="funcCode">功能点标识</param>
+        /// <param name="deptId">部门ID</param>
+        /// <param name="roleId">角色ID</param>
+        /// <param name="updateObjId">修改数据的ID</param>
+        /// <returns>PermissionDicEnum</returns>
+        public PermissionDicEnum GetCompanyViewPermission(string funcCode, int userId, int deptId, int roleId, int updateObjId)
+        {
+            var predicate = PredicateBuilder.True<DEV_COMPANY>();
+            if (userId == -10000)
+            {//超级管理员
+                predicate = predicate.And(a => true);
+                return PermissionDicEnum.OK;
+            }
+            else
+            {
+
+                var datainfo = DbClient.Queryable<DEV_COMPANY>().Includes(a => a.CreateUser).First(a => a.ID == updateObjId); //Db.Set<Company>().Find(updateObjId);
+                //if (datainfo == null && datainfo.C_STATE != (int)CompanyStateEnums.WSH
+                //    )
+                //{
+                //    return PermissionDicEnum.NotState;
+                //}
+                var pession = GetPession(roleId, funcCode, userId);
+                switch (pession)
+                {
+                    case PerissionEnums.All:
+
+                        return PermissionDicEnum.OK;
+                    case PerissionEnums.DepartTree:
+                        {
+                            var listIds = GetDeptChids(deptId);
+                            if (listIds.Contains(datainfo.CreateUser.DEPART_ID))
+                                return PermissionDicEnum.OK;
+                            return PermissionDicEnum.None;
+                        }
+                    case PerissionEnums.Depart:
+                        {
+                            if (datainfo.CreateUser != null && deptId == datainfo.CreateUser.DEPART_ID)
+
+                                return PermissionDicEnum.OK;
+                            return PermissionDicEnum.None;
+                        }
+                    case PerissionEnums.personal:
+                        {
+                            if (datainfo.CREATE_ID == userId || datainfo.LEAD_USERID == userId)
+                                return PermissionDicEnum.OK;
+                            return PermissionDicEnum.None;
+                        }
+
+
+                }
+                return PermissionDicEnum.None;
+            }
+
+        }
 
         #endregion 合同对方权限
 

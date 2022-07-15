@@ -72,6 +72,17 @@ namespace WooDev.IServices
         /// <param name="listdelIds">删除IDs</param>
         /// <returns>权限对象</returns>
         PermissionDataInfo GetCompanyDeletePermission(string funcCode, int userId, int deptId, int roleId, IList<int> listdelIds);
+        /// <summary>
+        /// 判断当前用户是否有查看合同对方的权限
+        /// </summary>
+        /// <param name="userId">当前用户</param>
+        /// <param name="funcCode">功能点标识</param>
+        /// <param name="deptId">部门ID</param>
+        /// <param name="roleId">角色ID</param>
+        /// <param name="updateObjId">修改数据的ID</param>
+        /// <returns>PermissionDicEnum</returns>
+        PermissionDicEnum GetCompanyViewPermission(string funcCode, int userId, int deptId, int roleId, int updateObjId);
+
         #endregion 合同对方权限
 
     }
