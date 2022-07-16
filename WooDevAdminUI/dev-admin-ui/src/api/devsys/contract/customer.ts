@@ -9,7 +9,7 @@ import {
   custContactSaveInfo,
   CustomerViewInfo,
 } from '../model/customerModel';
-import { devUpdateField, deldataInfo } from '../model/devCommonModel';
+import { devUpdateField, deldataInfo, ExcelReqData } from '../model/devCommonModel';
 import { defHttp } from '/@/utils/http/axios';
 import { ResultData } from '/@/api/model/baseModel';
 //import { ResponseType } from 'axios';
@@ -41,8 +41,10 @@ export const CustomerViewApi = (id: number) =>
 export const customerDelApi = (params: deldataInfo) =>
   defHttp.get<ResultData>({ url: Api.customerDel, params });
 
-export const customerExcelApi = (params: customerParams) =>
-  defHttp.post<ResultData>({ responseType: 'blob', url: Api.customerExcel, params });
+// export const customerExcelApi = (params: ExcelReqData) =>
+//   defHttp.post<ResultData>({ responseType: 'blob', url: Api.customerExcel, params });
+export const customerExcelApi = (params: ExcelReqData) =>
+  defHttp.post<ResultData>({ url: Api.customerExcel, params });
 
 export const uploadfileSaveApi = (params: any) =>
   defHttp.post<ResultData>({ url: Api.customerFileSave, params });

@@ -65,6 +65,7 @@
   import { useMessage } from '/@/hooks/web/useMessage';
   import { useModal } from '/@/components/Modal';
   import ExportExcelModel from '/@/views/devsys/contract/common/ExportExcelModel.vue';
+  import { ExportExcelData } from '/@/api/devsys/model/devCommonModel';
   export default defineComponent({
     name: 'DevCustomer',
     components: { BasicTable, TableAction, ExportExcelModel }, //TableAction
@@ -184,21 +185,18 @@
         console.log(selectedRowKeys);
         checkedKeys.value = selectedRowKeys;
       }
+      //弹窗excel
       function handleExcel() {
         const coloums = getColumns();
-        var formvalues = getForm().getFieldsValue();
-        openExcelModal(true, { selkey: checkedKeys, colums: coloums, seardata: formvalues });
+        const formvalues = getForm().getFieldsValue();
+        const opendata: ExportExcelData = {
+          selkey: checkedKeys.value,
+          colums: coloums,
+          seardata: formvalues,
+          extype: 'customer',
+        };
+        openExcelModal(true, opendata);
       }
-      // function selCondtion(values) {
-      //   //customerExcelApi();
-      //   debugger;
-      //   console.log('执行了父组件...', JSON.stringify(values));
-      //   const coloums = getColumns();
-      //   console.log('执行了表格列...', JSON.stringify(coloums));
-      //   var formvalues = getForm().getFieldsValue();
-      //   console.log('执行了表格表单...', JSON.stringify(formvalues));
-      //   closeModal();
-      // }
 
       return {
         registerTable,

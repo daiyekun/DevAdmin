@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using WooDev.Common.Utility;
+using WooDev.ViewModel.Common;
 
 namespace WooDev.ViewModel.ExtendModel
 {
@@ -91,8 +92,36 @@ namespace WooDev.ViewModel.ExtendModel
         /// 选择信息
         /// </summary>
         public ExcelInfo Seldata { get; set; }
+        ///// <summary>
+        ///// 搜索条件
+        ///// </summary>
+        //public DevSearData SearData { get; set; }
 
 
+        /// <summary>
+        /// 返回选择的列头
+        /// </summary>
+        /// <returns></returns>
+        public IList<string> GetCellsTitleList()
+        {
+            return StringHelper.Strint2ArrayString(this.Seldata.CellNames);
+        }
+        /// <summary>
+        /// 返回选择的ID集合
+        /// </summary>
+        /// <returns></returns>
+        public IList<int> GetSelectListIds()
+        {
+            return StringHelper.String2ArrayInt(this.Seldata.Ids);
+        }
+        /// <summary>
+        /// 返回选择的字段集合
+        /// </summary>
+        /// <returns></returns>
+        public IList<string> GetCellsFieldList()
+        {
+            return StringHelper.Strint2ArrayString(this.Seldata.CelKeys);
+        }
 
     }
 

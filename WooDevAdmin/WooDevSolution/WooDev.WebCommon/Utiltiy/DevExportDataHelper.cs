@@ -25,7 +25,7 @@ namespace WooDev.WebCommon.Utiltiy
         /// <param name="fileName">导出文件名称及Excel工作簿名称</param>
         /// <param name="listData">导出数据集合</param>
         /// <returns>返回导出文件对象</returns>
-        public static DownLoadInfo ExportExcelExtend<T>(ExportRequestInfo exportRequestInfo, string fileName, List<T> listData)
+        public static DownLoadInfo ExportExcelExtend<T>(ExportExcelInfo exportRequestInfo, string fileName, List<T> listData)
             where T : class, IDevEntityHandle
         {
 
@@ -64,16 +64,19 @@ namespace WooDev.WebCommon.Utiltiy
         /// <returns>FileInfo：文件信息对象</returns>
         private static FileInfo CreateExportFile(string fileName)
         {
-           var  pathf = Path.Combine(
-                            Directory.GetCurrentDirectory(), "Uploads", EmunUtility.GetDesc(typeof(DevFolderEnums), 10),
-                           $"{fileName}{System.DateTime.Now.Ticks}.xlsx"  + "");
-
+           //var  pathf = Path.Combine(
+           //                 Directory.GetCurrentDirectory(), "Uploads", EmunUtility.GetDesc(typeof(DevFolderEnums), 10),
+           //                $"{fileName}{System.DateTime.Now.Ticks}.xlsx"  + "");
+            var pathf = Path.Combine(
+                            AppDomain.CurrentDomain.BaseDirectory, "Uploads", EmunUtility.GetDesc(typeof(DevFolderEnums), 10),
+                           $"{fileName}{System.DateTime.Now.Ticks}.xlsx" + "");
+            
             if (File.Exists(pathf))
             {
                 File.Delete(pathf);
             }
             var dicpathf = Path.Combine(
-              Directory.GetCurrentDirectory(), "Uploads", EmunUtility.GetDesc(typeof(DevFolderEnums), 10));
+              AppDomain.CurrentDomain.BaseDirectory, "Uploads", EmunUtility.GetDesc(typeof(DevFolderEnums), 10));
 
             if (!Directory.Exists(dicpathf))
             {

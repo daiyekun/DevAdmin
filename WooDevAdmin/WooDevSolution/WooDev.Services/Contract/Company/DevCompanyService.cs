@@ -67,6 +67,11 @@ namespace WooDev.Services
 
                         };
             int totalCount = 0;
+            if ((pageInfo is NoPageInfo<DEV_COMPANY>))
+            { //分页
+                pageInfo.PageSize = 2000000;
+                pageInfo.PageIndex = 0;
+            }
             var list = query.ToPageList(pageInfo.PageIndex, pageInfo.PageSize, ref totalCount);
             pageInfo.TotalCount = totalCount;
             var local = from a in list

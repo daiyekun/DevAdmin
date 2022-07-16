@@ -11,6 +11,8 @@ using WooDev.Common.Utility;
 using WooDev.IServices;
 using WooDev.Model.Models;
 using WooDev.ViewModel;
+using WooDev.ViewModel.Contract.ExcelModel;
+using WooDev.ViewModel.Enums;
 using WooDev.ViewModel.ExtendModel;
 using WooDev.WebCommon.Extend;
 using WooDev.WebCommon.FilterExtend;
@@ -190,9 +192,9 @@ namespace WooDev.WebApi.Controllers.Constact.Company
         /// <returns></returns>
         [Route("exportexcel")]
         [HttpPost]
-        public IActionResult ExportExcel([FromBody] ExportRequestInfo exportRequestInfo, [FromQuery] DevCompanySearch serachParam)
+        public IActionResult ExportExcel([FromBody] CustomerExcel Seldata)
         {
-
+            
             var pageInfo = new NoPageInfo<DEV_COMPANY>();
             //var predicateAnd = PredBuilder.True<DevCompany>();
             ////predicateAnd = predicateAnd.And(GetQueryExpression(pageInfo, exportRequestInfo.KeyWord));
@@ -200,26 +202,31 @@ namespace WooDev.WebApi.Controllers.Constact.Company
             //{//选择行
             //    predicateAnd = predicateAnd.And(p => exportRequestInfo.GetSelectListIds().Contains(p.Id));
             //}
-            var whereexp = GetFilterExpress(serachParam);
+            var whereexp = GetFilterExpress(Seldata.SearData);
+            if (Seldata.Seldata.Srow==1)
+            {//选择行
+                whereexp = whereexp.And(p => Seldata.GetSelectListIds().Contains(p.ID));
+            }
             var layPage = _IDevCompanyService.GetList(pageInfo, whereexp.ToExpression(), a => a.ID, true);
-            var downInfo = DevExportDataHelper.ExportExcelExtend(exportRequestInfo, "客户列表", layPage.items);
+            var downInfo = DevExportDataHelper.ExportExcelExtend(Seldata, "客户列表", layPage.items);
 
 
             var excelfile = new ExportFileInfo
             {
                 FileName = downInfo.FileName,
                 Memi = downInfo.Memi,
-               // FilePath = $"Uploads/{EmunUtility.GetDesc(typeof(DevFoldersEnum), 3)}",
+                FilePath = $"{EmunUtility.GetDesc(typeof(DevFolderEnums), 10)}/{downInfo.FileName}",
                // DowIp = _Configuration["DevAppSeting:filedownIp"]
 
 
             };
-            var ajaxResult = new AjaxResult<ExportFileInfo>()
+
+            var result = new ResultObjData<ExportFileInfo>
             {
-                Result = true,
-                data = excelfile
+                result = excelfile
             };
-            return new JsonResult(ajaxResult);
+            return new DevResultJson(result);
+            
 
         }
 

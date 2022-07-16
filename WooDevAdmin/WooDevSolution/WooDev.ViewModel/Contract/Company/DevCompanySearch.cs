@@ -11,7 +11,7 @@ namespace WooDev.ViewModel
     /// <summary>
     /// 合同对方搜索
     /// </summary>
-    public class DevCompanySearch: ISearData
+    public class DevCompanySearch: DevSearData
     {  
         /// <summary>
         /// 名称

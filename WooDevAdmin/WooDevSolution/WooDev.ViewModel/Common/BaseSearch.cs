@@ -29,7 +29,7 @@ namespace WooDev.ViewModel.Common
     /// <summary>
     /// 筛选接口
     /// </summary>
-    public interface ISearData 
+    public class DevSearData 
     { 
     }
          
