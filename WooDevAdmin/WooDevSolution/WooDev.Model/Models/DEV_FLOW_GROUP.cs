@@ -8,15 +8,15 @@ using SqlSugar;
 namespace WooDev.Model.Models
 {
     /// <summary>
-    /// 附件
+    /// 审批模板-组
     /// </summary>
-    [SugarTable("dev_comp_file")]
-    public partial class DEV_COMP_FILE
+    [SugarTable("dev_flow_group")]
+    public partial class DEV_FLOW_GROUP
     {
         /// <summary>
-        /// DEV_COMP_FILE构造函数
+        /// DEV_FLOW_GROUP构造函数
         /// </summary>
-        public DEV_COMP_FILE()
+        public DEV_FLOW_GROUP()
         {
 
         }
@@ -29,13 +29,6 @@ namespace WooDev.Model.Models
         public int ID { get; set; }
 
         /// <summary>
-        /// 描    述:公司ID 来自于Company表
-        /// 默 认 值:
-        /// 是否空值:False
-        /// </summary>
-        public int COMP_ID { get; set; }
-
-        /// <summary>
         /// 描    述:名称
         /// 默 认 值:
         /// 是否空值:False
@@ -43,53 +36,25 @@ namespace WooDev.Model.Models
         public string NAME { get; set; }
 
         /// <summary>
-        /// 描    述:附件类型
-        /// 默 认 值:
-        /// 是否空值:True
-        /// </summary>
-        public int? CATE_ID { get; set; }
-
-        /// <summary>
-        /// 描    述:文件路径
+        /// 描    述:编号
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public string PATH { get; set; }
+        public string CODE { get; set; }
 
         /// <summary>
-        /// 描    述:下载次数
+        /// 描    述:状态 //状态0:启用 1：禁用
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public int DOWN_NUM { get; set; }
+        public int G_STATE { get; set; }
 
         /// <summary>
-        /// 描    述:文件名称
+        /// 描    述:排序
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public string FILE_NAME { get; set; }
-
-        /// <summary>
-        /// 描    述:扩展名
-        /// 默 认 值:
-        /// 是否空值:True
-        /// </summary>
-        public string EXTEND { get; set; }
-
-        /// <summary>
-        /// 描    述:IP
-        /// 默 认 值:
-        /// 是否空值:True
-        /// </summary>
-        public string IP { get; set; }
-
-        /// <summary>
-        /// 描    述:备注
-        /// 默 认 值:
-        /// 是否空值:True
-        /// </summary>
-        public string REMARK { get; set; }
+        public int ORDER_NUM { get; set; }
 
         /// <summary>
         /// 描    述:是否删除
@@ -97,6 +62,13 @@ namespace WooDev.Model.Models
         /// 是否空值:False
         /// </summary>
         public int IS_DELETE { get; set; }
+
+        /// <summary>
+        /// 描    述:备注
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public string REMARK { get; set; }
 
         /// <summary>
         /// 描    述:创建人

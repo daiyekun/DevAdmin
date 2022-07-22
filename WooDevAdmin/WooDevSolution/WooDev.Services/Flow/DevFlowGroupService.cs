@@ -10,14 +10,14 @@ using WooDev.Common.Models;
 using WooDev.Common.Utility;
 using WooDev.Model.Models;
 using WooDev.ViewModel;
-using WooDev.ViewModel.ExtendModel;
 
 namespace WooDev.Services
 {
+
     /// <summary>
-    /// 角色管理
+    /// 审批流程组
     /// </summary>
-    public partial class DevRoleService
+    public partial class DevFlowGroupService
     {
         /// <summary>
         /// 列表
@@ -28,11 +28,11 @@ namespace WooDev.Services
         /// <param name="orderbyLambda">排序</param>
         /// <param name="isAsc">是否正序</param>
         /// <returns></returns>
-        public ResultPageData<DevRoleList> GetList(PageInfo<DEV_ROLE> pageInfo, Expression<Func<DEV_ROLE, bool>>? whereLambda,
-            Expression<Func<DEV_ROLE, object>> orderbyLambda, bool isAsc)
-          {
+        public ResultPageData<DevFlowGroupList> GetList(PageInfo<DEV_FLOW_GROUP> pageInfo, Expression<Func<DEV_FLOW_GROUP, bool>>? whereLambda,
+            Expression<Func<DEV_FLOW_GROUP, object>> orderbyLambda, bool isAsc)
+        {
 
-            var tempquery = DbClient.Queryable<DEV_ROLE>().Includes(a=>a.Menus).Where(whereLambda);
+            var tempquery = DbClient.Queryable<DEV_FLOW_GROUP>().Where(whereLambda);
             if (isAsc)
             {
                 tempquery = tempquery.OrderBy(orderbyLambda, OrderByType.Asc);
@@ -42,24 +42,11 @@ namespace WooDev.Services
                 tempquery = tempquery.OrderBy(orderbyLambda, OrderByType.Desc);
             }
 
-            //var query = from a in tempquery
-            //            select new
-            //            {
-            //                ID = a.ID,
-            //                NAME = a.NAME,//名称
-            //                CODE = a.CODE,//编号
-            //                REMARK=a.REMARK,//备注
-            //                RUSTATE=a.RUSTATE,//状态
-            //                CREATE_TIME = a.CREATE_TIME,//创建时间
-            //                CREATE_USERID = a.CREATE_USERID,//创建人
-            //                menu=a.Menus.ToList()//菜单
-
-
-            //            };
+           
             int totalCount = 0;
-            if ((pageInfo is NoPageInfo<DEV_ROLE>))
+            if ((pageInfo is NoPageInfo<DEV_FLOW_GROUP>))
             { //分页
-                pageInfo.PageSize = 2000;
+                pageInfo.PageSize = 20000;
                 pageInfo.PageIndex = 0;
             }
             var list = tempquery.ToPageList(pageInfo.PageIndex, pageInfo.PageSize, ref totalCount, a => new {
@@ -67,25 +54,25 @@ namespace WooDev.Services
                 NAME = a.NAME,//名称
                 CODE = a.CODE,//编号
                 REMARK = a.REMARK,//备注
-                RUSTATE = a.RUSTATE,//状态
+                G_STATE = a.G_STATE,//状态
                 CREATE_TIME = a.CREATE_TIME,//创建时间
                 CREATE_USERID = a.CREATE_USERID,//创建人
-                menu = a.Menus.ToList()//菜单
+                //menu = a.Menus.ToList()//菜单
             });
             pageInfo.TotalCount = totalCount;
             var local = from a in list
-                        select new DevRoleList
+                        select new DevFlowGroupList
                         {
                             ID = a.ID,
                             NAME = a.NAME,//名称
                             CODE = a.CODE,//编号
-                            RUSTATE = a.RUSTATE,//状态
+                            G_STATE = a.G_STATE,//状态
                             REMARK = a.REMARK,//备注
                             CREATE_TIME = a.CREATE_TIME,//创建时间
                             CREATE_USERID = a.CREATE_USERID,//创建人
-                            menu = a.menu.Select(a=>a.FUNCTION_ID).ToList()
+                            //menu = a.menu.Select(a => a.FUNCTION_ID).ToList()
                         };
-            return new ResultPageData<DevRoleList>()
+            return new ResultPageData<DevFlowGroupList>()
             {
                 items = local.ToList(),
                 total = pageInfo.TotalCount,
@@ -99,12 +86,12 @@ namespace WooDev.Services
         /// 获取所有
         /// </summary>
         /// <returns></returns>
-        public List<DevRoleDTO> GetAll()
+        public List<DevFlowGroupDTO> GetAll()
         {
-            List<DevRoleDTO> list = RedisUtility.StringGetToList<DevRoleDTO>(RedisKeys.RoleAllListKey);
+            List<DevFlowGroupDTO> list = RedisUtility.StringGetToList<DevFlowGroupDTO>(RedisKeys.FlowGroupAllListKey);
             if (list == null)
             {
-                var query = from a in DbClient.Queryable<DEV_ROLE>()
+                var query = from a in DbClient.Queryable<DevFlowGroupDTO>()
                             select new
                             {
                                 ID = a.ID,
@@ -113,12 +100,12 @@ namespace WooDev.Services
                                 REMARK = a.REMARK,//备注
                                 CREATE_TIME = a.CREATE_TIME,//创建时间
                                 CREATE_USERID = a.CREATE_USERID,//创建人
-                                RUSTATE=a.RUSTATE,//状态0:启用 1：禁用
+                                G_STATE = a.G_STATE,//状态0:启用 1：禁用
 
 
                             };
                 var local = from a in query
-                            select new DevRoleDTO
+                            select new DevFlowGroupDTO
                             {
                                 ID = a.ID,
                                 NAME = a.NAME,//名称
@@ -126,7 +113,7 @@ namespace WooDev.Services
                                 REMARK = a.REMARK,//备注
                                 CREATE_TIME = a.CREATE_TIME,//创建时间
                                 CREATE_USERID = a.CREATE_USERID,//创建人
-                                RUSTATE = a.RUSTATE,//状态0:启用 1：禁用
+                                G_STATE = a.G_STATE,//状态0:启用 1：禁用
 
                             };
                 list = local.ToList();
@@ -147,12 +134,12 @@ namespace WooDev.Services
         {
             try
             {
-                var curdickey = $"{RedisKeys.RoleHashKey}";
-                RedisUtility.KeyDeleteAsync(RedisKeys.RoleAllListKey);
+                var curdickey = $"{RedisKeys.FlowGroupHashKey}";
+                RedisUtility.KeyDeleteAsync(RedisKeys.FlowGroupAllListKey);
                 var list = GetAll();
                 foreach (var item in list)
                 {
-                    item.SetRedisHash<DevRoleDTO>($"{curdickey}", (a, c) =>
+                    item.SetRedisHash<DevFlowGroupDTO>($"{curdickey}", (a, c) =>
                     {
                         return $"{a}:{c}";
                     });
@@ -166,7 +153,6 @@ namespace WooDev.Services
 
 
         }
-       
 
     }
 }

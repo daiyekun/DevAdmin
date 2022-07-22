@@ -60,6 +60,14 @@ namespace WooDev.Common.Models
         /// </summary>
         public static string LoginLog = $"{BaseKey_Prefix}Sys:LoginLog";
 
+        /// <summary>
+        /// 审批模板组哈希
+        /// </summary>
+        public static string FlowGroupHashKey = $"{BaseKey_Prefix}FlowGroup";
+        /// <summary>
+        /// 审批模板组所有
+        /// </summary>
+        public static string FlowGroupAllListKey = $"{BaseKey_Prefix}FlowGroupAllList";
 
     }
 }

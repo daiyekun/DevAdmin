@@ -54,6 +54,56 @@ public partial interface IDevDepartMainService : IBaseService<DEV_DEPART_MAIN>
     
    
      
+public partial interface IDevFlowtempEdgeService : IBaseService<DEV_FLOWTEMP_EDGE>
+{ }
+    
+   
+     
+public partial interface IDevFlowtempEdgeHistService : IBaseService<DEV_FLOWTEMP_EDGE_HIST>
+{ }
+    
+   
+     
+public partial interface IDevFlowtempNodeService : IBaseService<DEV_FLOWTEMP_NODE>
+{ }
+    
+   
+     
+public partial interface IDevFlowtempNodeHistService : IBaseService<DEV_FLOWTEMP_NODE_HIST>
+{ }
+    
+   
+     
+public partial interface IDevFlowtempNodeInfoService : IBaseService<DEV_FLOWTEMP_NODE_INFO>
+{ }
+    
+   
+     
+public partial interface IDevFlowtempNodeInfoHistService : IBaseService<DEV_FLOWTEMP_NODE_INFO_HIST>
+{ }
+    
+   
+     
+public partial interface IDevFlowGroupService : IBaseService<DEV_FLOW_GROUP>
+{ }
+    
+   
+     
+public partial interface IDevFlowGroupuserService : IBaseService<DEV_FLOW_GROUPUSER>
+{ }
+    
+   
+     
+public partial interface IDevFlowTempService : IBaseService<DEV_FLOW_TEMP>
+{ }
+    
+   
+     
+public partial interface IDevFlowTempHistService : IBaseService<DEV_FLOW_TEMP_HIST>
+{ }
+    
+   
+     
 public partial interface IDevFunctionMenuService : IBaseService<DEV_FUNCTION_MENU>
 { }
     

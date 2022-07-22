@@ -119,6 +119,136 @@ namespace WooDev.Services
     
    
      
+ public partial class DevFlowtempEdgeService : BaseService<DEV_FLOWTEMP_EDGE>, IDevFlowtempEdgeService
+    {
+         public DevFlowtempEdgeService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowtempEdgeHistService : BaseService<DEV_FLOWTEMP_EDGE_HIST>, IDevFlowtempEdgeHistService
+    {
+         public DevFlowtempEdgeHistService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowtempNodeService : BaseService<DEV_FLOWTEMP_NODE>, IDevFlowtempNodeService
+    {
+         public DevFlowtempNodeService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowtempNodeHistService : BaseService<DEV_FLOWTEMP_NODE_HIST>, IDevFlowtempNodeHistService
+    {
+         public DevFlowtempNodeHistService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowtempNodeInfoService : BaseService<DEV_FLOWTEMP_NODE_INFO>, IDevFlowtempNodeInfoService
+    {
+         public DevFlowtempNodeInfoService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowtempNodeInfoHistService : BaseService<DEV_FLOWTEMP_NODE_INFO_HIST>, IDevFlowtempNodeInfoHistService
+    {
+         public DevFlowtempNodeInfoHistService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowGroupService : BaseService<DEV_FLOW_GROUP>, IDevFlowGroupService
+    {
+         public DevFlowGroupService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowGroupuserService : BaseService<DEV_FLOW_GROUPUSER>, IDevFlowGroupuserService
+    {
+         public DevFlowGroupuserService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowTempService : BaseService<DEV_FLOW_TEMP>, IDevFlowTempService
+    {
+         public DevFlowTempService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowTempHistService : BaseService<DEV_FLOW_TEMP_HIST>, IDevFlowTempHistService
+    {
+         public DevFlowTempHistService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
  public partial class DevFunctionMenuService : BaseService<DEV_FUNCTION_MENU>, IDevFunctionMenuService
     {
          public DevFunctionMenuService(ISqlSugarClient DbClient)

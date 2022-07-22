@@ -8,15 +8,15 @@ using SqlSugar;
 namespace WooDev.Model.Models
 {
     /// <summary>
-    /// 附件
+    /// 流程模板接节点信息历史
     /// </summary>
-    [SugarTable("dev_comp_file")]
-    public partial class DEV_COMP_FILE
+    [SugarTable("dev_flowtemp_node_info_hist")]
+    public partial class DEV_FLOWTEMP_NODE_INFO_HIST
     {
         /// <summary>
-        /// DEV_COMP_FILE构造函数
+        /// DEV_FLOWTEMP_NODE_INFO_HIST构造函数
         /// </summary>
-        public DEV_COMP_FILE()
+        public DEV_FLOWTEMP_NODE_INFO_HIST()
         {
 
         }
@@ -29,67 +29,46 @@ namespace WooDev.Model.Models
         public int ID { get; set; }
 
         /// <summary>
-        /// 描    述:公司ID 来自于Company表
+        /// 描    述:模板历史 ID
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public int COMP_ID { get; set; }
+        public int TEMP_HIST_ID { get; set; }
 
         /// <summary>
-        /// 描    述:名称
+        /// 描    述:节点ID
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public string NAME { get; set; }
+        public int NODE_HIST_ID { get; set; }
 
         /// <summary>
-        /// 描    述:附件类型
-        /// 默 认 值:
-        /// 是否空值:True
-        /// </summary>
-        public int? CATE_ID { get; set; }
-
-        /// <summary>
-        /// 描    述:文件路径
+        /// 描    述:节点字符串ID
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public string PATH { get; set; }
+        public string NODE_STRID { get; set; }
 
         /// <summary>
-        /// 描    述:下载次数
+        /// 描    述:是否允许修改文本 0 否默认 1是
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public int DOWN_NUM { get; set; }
+        public int RE_TEXT { get; set; }
 
         /// <summary>
-        /// 描    述:文件名称
+        /// 描    述:审批规则 1全部通过 2任意通过
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public string FILE_NAME { get; set; }
+        public int NRULE { get; set; }
 
         /// <summary>
-        /// 描    述:扩展名
+        /// 描    述:审批组ID
         /// 默 认 值:
-        /// 是否空值:True
+        /// 是否空值:False
         /// </summary>
-        public string EXTEND { get; set; }
-
-        /// <summary>
-        /// 描    述:IP
-        /// 默 认 值:
-        /// 是否空值:True
-        /// </summary>
-        public string IP { get; set; }
-
-        /// <summary>
-        /// 描    述:备注
-        /// 默 认 值:
-        /// 是否空值:True
-        /// </summary>
-        public string REMARK { get; set; }
+        public int GROUP_ID { get; set; }
 
         /// <summary>
         /// 描    述:是否删除

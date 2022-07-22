@@ -8,15 +8,15 @@ using SqlSugar;
 namespace WooDev.Model.Models
 {
     /// <summary>
-    /// 附件
+    /// 流程模板历史
     /// </summary>
-    [SugarTable("dev_comp_file")]
-    public partial class DEV_COMP_FILE
+    [SugarTable("dev_flow_temp_hist")]
+    public partial class DEV_FLOW_TEMP_HIST
     {
         /// <summary>
-        /// DEV_COMP_FILE构造函数
+        /// DEV_FLOW_TEMP_HIST构造函数
         /// </summary>
-        public DEV_COMP_FILE()
+        public DEV_FLOW_TEMP_HIST()
         {
 
         }
@@ -29,11 +29,11 @@ namespace WooDev.Model.Models
         public int ID { get; set; }
 
         /// <summary>
-        /// 描    述:公司ID 来自于Company表
+        /// 描    述:模板ID
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public int COMP_ID { get; set; }
+        public int TEMP_ID { get; set; }
 
         /// <summary>
         /// 描    述:名称
@@ -43,53 +43,67 @@ namespace WooDev.Model.Models
         public string NAME { get; set; }
 
         /// <summary>
-        /// 描    述:附件类型
-        /// 默 认 值:
-        /// 是否空值:True
-        /// </summary>
-        public int? CATE_ID { get; set; }
-
-        /// <summary>
-        /// 描    述:文件路径
+        /// 描    述:编号
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public string PATH { get; set; }
+        public string CODE { get; set; }
 
         /// <summary>
-        /// 描    述:下载次数
+        /// 描    述:版本
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public int DOWN_NUM { get; set; }
+        public int VERSION { get; set; }
 
         /// <summary>
-        /// 描    述:文件名称
+        /// 描    述:审批对象
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public string FILE_NAME { get; set; }
+        public int OBJ_TYPE { get; set; }
 
         /// <summary>
-        /// 描    述:扩展名
+        /// 描    述:机构ID 豆号隔开
         /// 默 认 值:
         /// 是否空值:True
         /// </summary>
-        public string EXTEND { get; set; }
+        public string DEPART_IDS { get; set; }
 
         /// <summary>
-        /// 描    述:IP
+        /// 描    述:审批事项 豆号隔开
         /// 默 认 值:
         /// 是否空值:True
         /// </summary>
-        public string IP { get; set; }
+        public string FLOW_ITEMS { get; set; }
 
         /// <summary>
-        /// 描    述:备注
+        /// 描    述:类别ID 豆号隔开
         /// 默 认 值:
         /// 是否空值:True
         /// </summary>
-        public string REMARK { get; set; }
+        public string CATE_IDS { get; set; }
+
+        /// <summary>
+        /// 描    述:开始金额
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public decimal MIN_MONERY { get; set; }
+
+        /// <summary>
+        /// 描    述:结束金额
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public decimal MAX_MONERY { get; set; }
+
+        /// <summary>
+        /// 描    述:排序
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int ORDER_NUM { get; set; }
 
         /// <summary>
         /// 描    述:是否删除

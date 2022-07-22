@@ -79,7 +79,7 @@ namespace WooDev.Services
                             CREATE_USERID = a.CREATE_USERID,//创建人
                             CREATE_TIME = a.CREATE_TIME,//创建时间
                             CreateUserName = DevRedisUtility.GetUserField(a.CREATE_USERID),
-                            CateName= DevRedisUtility.GetDataField(a.CATE_ID),
+                            CateName= DevRedisUtility.GetDataField(a.CATE_ID??0),
                         };
             return new ResultPageData<DevCompFileList>()
             {

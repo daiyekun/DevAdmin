@@ -114,6 +114,126 @@ public partial class DevDepartMainView : DEV_DEPART_MAIN
    
      
 //列表使用
+public partial class DevFlowtempEdgeList : DEV_FLOWTEMP_EDGE
+{ }
+//提交数据库使用
+public partial class DevFlowtempEdgeDTO : DEV_FLOWTEMP_EDGE,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowtempEdgeView : DEV_FLOWTEMP_EDGE
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowtempEdgeHistList : DEV_FLOWTEMP_EDGE_HIST
+{ }
+//提交数据库使用
+public partial class DevFlowtempEdgeHistDTO : DEV_FLOWTEMP_EDGE_HIST,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowtempEdgeHistView : DEV_FLOWTEMP_EDGE_HIST
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowtempNodeList : DEV_FLOWTEMP_NODE
+{ }
+//提交数据库使用
+public partial class DevFlowtempNodeDTO : DEV_FLOWTEMP_NODE,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowtempNodeView : DEV_FLOWTEMP_NODE
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowtempNodeHistList : DEV_FLOWTEMP_NODE_HIST
+{ }
+//提交数据库使用
+public partial class DevFlowtempNodeHistDTO : DEV_FLOWTEMP_NODE_HIST,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowtempNodeHistView : DEV_FLOWTEMP_NODE_HIST
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowtempNodeInfoList : DEV_FLOWTEMP_NODE_INFO
+{ }
+//提交数据库使用
+public partial class DevFlowtempNodeInfoDTO : DEV_FLOWTEMP_NODE_INFO,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowtempNodeInfoView : DEV_FLOWTEMP_NODE_INFO
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowtempNodeInfoHistList : DEV_FLOWTEMP_NODE_INFO_HIST
+{ }
+//提交数据库使用
+public partial class DevFlowtempNodeInfoHistDTO : DEV_FLOWTEMP_NODE_INFO_HIST,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowtempNodeInfoHistView : DEV_FLOWTEMP_NODE_INFO_HIST
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowGroupList : DEV_FLOW_GROUP
+{ }
+//提交数据库使用
+public partial class DevFlowGroupDTO : DEV_FLOW_GROUP,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowGroupView : DEV_FLOW_GROUP
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowGroupuserList : DEV_FLOW_GROUPUSER
+{ }
+//提交数据库使用
+public partial class DevFlowGroupuserDTO : DEV_FLOW_GROUPUSER,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowGroupuserView : DEV_FLOW_GROUPUSER
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowTempList : DEV_FLOW_TEMP
+{ }
+//提交数据库使用
+public partial class DevFlowTempDTO : DEV_FLOW_TEMP,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowTempView : DEV_FLOW_TEMP
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowTempHistList : DEV_FLOW_TEMP_HIST
+{ }
+//提交数据库使用
+public partial class DevFlowTempHistDTO : DEV_FLOW_TEMP_HIST,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowTempHistView : DEV_FLOW_TEMP_HIST
+{ }
+    
+   
+     
+//列表使用
 public partial class DevFunctionMenuList : DEV_FUNCTION_MENU
 { }
 //提交数据库使用
