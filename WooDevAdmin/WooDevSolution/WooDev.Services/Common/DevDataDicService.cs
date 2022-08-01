@@ -215,5 +215,75 @@ namespace WooDev.Services
                         };
             return local.ToList();
         }
+
+        #region treetable
+        /// <summary>
+        /// 返回vue-tabletree需要数据格式
+        /// </summary>
+        /// <returns></returns>
+        public List<DataDicTree> GetDicTree(Expression<Func<DEV_DATADIC, bool>>? whereLambda,
+             Expression<Func<DEV_DATADIC, object>> orderbyLambda, bool isAsc)
+        {
+            List<DataDicTree> listTree = new List<DataDicTree>();
+            var listAll = DbClient.Queryable<DEV_DATADIC>().Where(whereLambda).ToList();
+            var list = listAll;
+            var rootlist = list.Where(a => a.PID == 0);
+            if (rootlist.Count() <= 0)
+            {
+                rootlist = list;
+            }
+            foreach (var item in rootlist)
+            {
+                DataDicTree treeInfo = new DataDicTree();
+                treeInfo.ID = item.ID;
+                treeInfo.NAME = item.NAME;
+                treeInfo.CODE = item.CODE;
+                treeInfo.CREATE_TIME = item.CREATE_TIME;
+                
+                treeInfo.ORDER_NUM = item.ORDER_NUM;
+                
+                treeInfo.PID = item.PID;
+                RecursionChrenNode(list, treeInfo, item);
+                listTree.Add(treeInfo);
+
+            }
+            return listTree;
+        }
+
+        /// <summary>
+        /// 递归
+        /// </summary>
+        /// <param name="listDepts">数据列表</param>
+        /// <param name="treeInfo">Tree对象</param>
+        /// <param name="item">父类对象</param>
+        public void RecursionChrenNode(IList<DEV_DATADIC> listDepts, DataDicTree treeInfo, DEV_DATADIC item)
+        {
+            var listchren = listDepts.Where(a => a.PID == item.ID);
+            var listchrennode = new List<DataDicTree>();
+            if (listchren.Any())
+            {
+                var chrenlist = listchren.ToList();
+                foreach (var chrenItem in chrenlist)
+                {
+                    DataDicTree treeInfotmp = new DataDicTree();
+                    treeInfotmp.ID = chrenItem.ID;
+                    treeInfotmp.NAME = chrenItem.NAME;
+                    treeInfotmp.CODE = chrenItem.CODE;
+                    treeInfotmp.CREATE_TIME = chrenItem.CREATE_TIME;
+                    treeInfotmp.ORDER_NUM = chrenItem.ORDER_NUM;
+                    treeInfotmp.PID = chrenItem.PID;
+                    RecursionChrenNode(listDepts, treeInfotmp, chrenItem);
+                    listchrennode.Add(treeInfotmp);
+                }
+                treeInfo.children = listchrennode;
+
+            }
+
+
+
+        }
+
+
+        #endregion
     }
 }

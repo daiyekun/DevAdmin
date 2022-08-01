@@ -21,6 +21,8 @@
   } from '/@/components/Table';
   import UserSelectModel from '/@/views/devsys/contract/common/UserModel.vue';
   import { useModal } from '/@/components/Modal';
+  import { getGroupUserList } from '/@/api/devsys/flow/flowgroup';
+  //import {  UserParams } from '/@api/devsys/model/systemModel';
   const columns: BasicColumn[] = [
     {
       title: '登录名',
@@ -34,14 +36,27 @@
     },
   ];
 
-  const data: any[] = [];
+  //const data: any[] = [];
   export default defineComponent({
     components: { BasicTable, TableAction, UserSelectModel },
-    setup() {
+    props: {
+      currgroupId: {
+        type: Number,
+        default: 0,
+      },
+    },
+    setup(props: any) {
+      debugger;
+      const groupId = Number(props.currgroupId);
+      // const gparams:UserParams= {}
       const [registerTable, { getDataSource, deleteTableDataRecord }] = useTable({
         columns: columns,
         showIndexColumn: false,
-        dataSource: data,
+        //dataSource: data,
+        api: getGroupUserList,
+        beforeFetch: (t) => {
+          t.GroupId = groupId;
+        },
         actionColumn: {
           width: 160,
           title: '操作',
@@ -131,6 +146,7 @@
         handleEditChange,
         registerUserModel,
         SelleadUser,
+        groupId,
       };
     },
   });

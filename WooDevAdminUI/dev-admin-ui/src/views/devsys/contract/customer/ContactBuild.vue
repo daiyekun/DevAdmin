@@ -81,7 +81,7 @@
     setup(props: any) {
       //debugger;
       // console.log('获取值props--->', props.custid);
-      const currcustid = props.custid; //toRef(props, 'custid');
+      const currcustid = Number(props.custid); //toRef(props, 'custid');
       // console.log('props--->', custid.value);
       // console.log(`测试客户ID ${custid.value}`);
       const [registerTable, { getDataSource, reload }] = useTable({

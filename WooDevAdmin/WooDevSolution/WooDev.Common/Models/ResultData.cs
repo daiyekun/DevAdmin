@@ -133,7 +133,7 @@ namespace WooDev.Common.Models
     /// </summary>
     public class ResultListData<T> : BaseResult where T : class, new()
     {
-        public List<T>? result { get; set; }
+        public IList<T>? result { get; set; }
     }
     /// <summary>
     /// 返回result

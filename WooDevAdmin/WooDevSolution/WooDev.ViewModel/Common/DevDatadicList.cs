@@ -32,4 +32,16 @@ namespace WooDev.ViewModel
         public string? Name { get; set; }
 
     }
+    /// <summary>
+    /// 组织机构表
+    /// </summary>
+    public class DataDicTree : DevDatadicList
+    {
+        /// <summary>
+        /// 子类
+        /// </summary>
+        public List<DataDicTree>? children { get; set; }
+
+    }
+
 }

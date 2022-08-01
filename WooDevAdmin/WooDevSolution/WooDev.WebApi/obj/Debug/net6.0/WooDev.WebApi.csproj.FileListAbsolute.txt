@@ -130,4 +130,4 @@ E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\n
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\EPPlus.Interfaces.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\EPPlus.System.Drawing.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
-E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\bin\Debug\net6.0\ref\WooDev.WebApi.dll
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi\obj\Debug\net6.0\refint\WooDev.WebApi.dll

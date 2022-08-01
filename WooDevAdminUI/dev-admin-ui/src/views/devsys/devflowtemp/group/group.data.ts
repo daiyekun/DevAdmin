@@ -18,14 +18,14 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '状态',
-    dataIndex: 'RUSTATE',
+    dataIndex: 'G_STATE',
     width: 120,
     customRender: ({ record }) => {
       if (!Reflect.has(record, 'pendingStatus')) {
         record.pendingStatus = false;
       }
       return h(Switch, {
-        checked: record.RUSTATE == 0,
+        checked: record.G_STATE == 0,
         checkedChildren: '已启用',
         unCheckedChildren: '已禁用',
         loading: record.pendingStatus,
@@ -35,7 +35,7 @@ export const columns: BasicColumn[] = [
           const { createMessage } = useMessage();
           setRoleStatus(record.ID, newStatus)
             .then(() => {
-              record.RUSTATE = newStatus;
+              record.G_STATE = newStatus;
               createMessage.success(`已成功修改组状态`);
             })
             .catch(() => {
@@ -103,14 +103,14 @@ export const formSchema: FormSchema[] = [
     colProps: { span: 24 },
   },
   {
-    field: 'RUSTATE',
+    field: 'G_STATE',
     label: '状态',
     component: 'RadioButtonGroup',
-    defaultValue: '0',
+    defaultValue: 0,
     componentProps: {
       options: [
-        { label: '启用', value: '0' },
-        { label: '停用', value: '1' },
+        { label: '启用', value: 0 },
+        { label: '停用', value: 1 },
       ],
     },
   },
@@ -121,10 +121,10 @@ export const formSchema: FormSchema[] = [
     colProps: { span: 24 },
   },
   {
-    label: ' ',
-    field: 'menu',
-    slot: 'menu',
+    field: 'UserIds',
+    label: 'UserIds',
     component: 'Input',
+    show: false,
     colProps: { span: 24 },
   },
 ];

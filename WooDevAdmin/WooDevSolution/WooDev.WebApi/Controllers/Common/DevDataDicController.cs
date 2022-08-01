@@ -163,6 +163,32 @@ namespace WooDev.WebApi.Controllers.Common
             return new DevResultJson(result);
         }
 
+        /// <summary>
+        /// 列表
+        /// </summary>
+        /// <returns></returns>
+        [Route("getTreeList")]
+        [HttpGet]
+        //[AllowAnonymous]//跳过授权验证
+        [Authorize]
+        public IActionResult GetTreeList(int dtype)
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            
+            var whereexp = Expressionable.Create<DEV_DATADIC>();
+            whereexp = whereexp.And(a => a.IS_DELETE == 0);
+            whereexp = whereexp.And(a => a.APP_TYPE == dtype);
+
+            Expression<Func<DEV_DATADIC, object>> orderbyLambda = a => a.ID;
+            var data = _IDevDatadicService.GetDicTree(whereexp.ToExpression(), orderbyLambda, false);
+            var result = new ResultListData<DataDicTree>
+            {
+                result = data,
+            };
+
+            return new DevResultJson(result);
+        }
+
 
 
 

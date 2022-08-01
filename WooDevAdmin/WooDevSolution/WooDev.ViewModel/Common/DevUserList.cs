@@ -40,6 +40,10 @@ namespace WooDev.ViewModel
         /// 组织ID
         /// </summary>
         public int deptId { get; set; } = 0;
+        /// <summary>
+        /// 组ID-用户组使用
+        /// </summary>
+        public int GroupId { get; set; }
     }
     /// <summary>
     /// 账号对象

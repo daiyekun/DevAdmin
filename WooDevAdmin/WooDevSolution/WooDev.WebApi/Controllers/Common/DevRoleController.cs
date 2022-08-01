@@ -104,7 +104,7 @@ namespace WooDev.WebApi.Controllers.Common
             }
 
             _IDevRoleService.SetRedisHash();
-            RedisUtility.KeyDeleteAsync($"{RedisKeys.DataDicALLListKey}");
+            RedisUtility.KeyDeleteAsync($"{RedisKeys.RoleAllListKey}");
             var result = new ResultData
             {
                 code = 0,
@@ -126,6 +126,7 @@ namespace WooDev.WebApi.Controllers.Common
         {
             var arrIds = StringHelper.String2ArrayInt(Ids);
             _IDevRoleService.Delete(a => arrIds.Contains(a.ID));
+            _IDevRoleFunctionService.Delete(a => arrIds.Contains(a.ROLE));
              RedisUtility.KeyDeleteAsync($"{RedisKeys.RoleAllListKey}");
             _IDevRoleService.SetRedisHash();
            

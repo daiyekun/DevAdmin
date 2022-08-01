@@ -2,6 +2,11 @@ import { BasicPageParams, BasicFetchResult, ResultviewData } from '/@/api/model/
 
 export type datadicParams = BasicPageParams & {
   name?: string;
+  dtype?: number;
+};
+
+export type datadictreeParams = {
+  dtype?: number;
 };
 
 export interface datadicListItem {
@@ -108,6 +113,7 @@ export type roleParams = BasicPageParams & {
 export type UserParams = BasicPageParams & {
   NAME?: string;
   LOGIN_NAME?: string;
+  GroupId?: number;
 };
 export type UserListGetResultModel = BasicFetchResult<UserListItem>;
 export interface UserListItem {

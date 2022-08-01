@@ -5,6 +5,7 @@ import {
   datadicSaveInfo,
   datadicAddInfo,
   datadicdeldata,
+  datadictreeParams,
 } from '../model/systemModel';
 import { defHttp } from '/@/utils/http/axios';
 import { ResultData } from '/@/api/model/baseModel';
@@ -14,9 +15,10 @@ enum Api {
   datadicAdd = '/DevDataDic/datadicAdd', //初始新增字典列表
   datadicDelete = '/DevDataDic/deleteDic', //删除
   dataList = '/DevDataDic/getdiclist', //查询字典列表
+  datatreeList = '/DevDataDic/getTreeList', //查询字典列表
 }
 
-export const getdatadicList = (params: datadicParams) =>
+export const getdatadicList = (params?: datadicParams) =>
   defHttp.get<datadicListGetResultModel>({ url: Api.datadicList, params });
 
 export const datadicSaveApi = (params: datadicSaveInfo) =>
@@ -27,3 +29,6 @@ export const datadicDelApi = (params: datadicdeldata) =>
   defHttp.get<ResultData>({ url: Api.datadicDelete, params });
 export const getdataListApi = (params: datadicParams) =>
   defHttp.get<datadicListGetResultModel>({ url: Api.dataList, params });
+
+export const getdatadictreeList = (params?: datadictreeParams) =>
+  defHttp.get<datadicListGetResultModel>({ url: Api.datadicList, params });

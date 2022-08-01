@@ -49,6 +49,14 @@ namespace WooDev.IServices
         /// <returns></returns>
         List<DevDatadicList> GetDataList(Expression<Func<DEV_DATADIC, bool>>? whereLambda,
             Expression<Func<DEV_DATADIC, object>> orderbyLambda, bool isAsc);
-
+        /// <summary>
+        /// 查询字段树
+        /// </summary>
+        /// <param name="whereLambda">条件</param>
+        /// <param name="orderbyLambda">排序</param>
+        /// <param name="isAsc">是否升序</param>
+        /// <returns></returns>
+         List<DataDicTree> GetDicTree(Expression<Func<DEV_DATADIC, bool>>? whereLambda,
+            Expression<Func<DEV_DATADIC, object>> orderbyLambda, bool isAsc);
     }
 }

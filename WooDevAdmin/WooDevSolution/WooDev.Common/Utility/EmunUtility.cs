@@ -247,7 +247,7 @@ namespace WooDev.Common.Utility
         /// <summary>
         /// 描述
         /// </summary>
-        public string Desc { get; set; }
+        public string? Desc { get; set; }
        /// <summary>
        /// 值
        /// </summary>

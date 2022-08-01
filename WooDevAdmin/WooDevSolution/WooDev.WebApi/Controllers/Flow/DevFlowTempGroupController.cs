@@ -28,13 +28,18 @@ namespace WooDev.WebApi.Controllers.Flow
     {
         private IDevFlowGroupService _IDevFlowGroupService;
         private IMapper _IMapper;
+        private IDevFlowGroupuserService _IDevFlowGroupuserService;
+        private IDevUserService _IDevUserService;
 
         public DevFlowTempGroupController(IMapper IMapper, IDevFlowGroupService iDevFlowGroupService
-           )
+           , IDevFlowGroupuserService iDevFlowGroupuserService, IDevUserService iDevUserService)
         {
             _IMapper = IMapper;
             _IDevFlowGroupService = iDevFlowGroupService;
-            
+            _IDevFlowGroupuserService = iDevFlowGroupuserService;
+            _IDevUserService = iDevUserService;
+
+
 
         }
 
@@ -74,39 +79,37 @@ namespace WooDev.WebApi.Controllers.Flow
         [DevOptionLogActionFilter("新增审批组", OptionLogEnum.Add, "新增审批组", true)]
         [Route("flowGroupSave")]
         [HttpPost]
-        public IActionResult FlowGroupSave([FromBody] DevFlowGroupDTO roleDTO)
+        public IActionResult FlowGroupSave([FromBody] DevFlowGroupDTO flowGroupDTO)
         {
-            //var userId = HttpContext.User.Claims.GetTokenUserId();
-            //var rolenum = new RoleMenuDTO();
-            //rolenum.MenuIds = roleDTO.menu;
-            //rolenum.UserId = userId;
-            //rolenum.RoleId = roleDTO.ID;
-            //if (roleDTO.ID > 0)
-            //{
-            //    var deprinfo = _IDevFlowGroupService.InSingle(roleDTO.ID);
-            //    var saveinfo = _IMapper.Map<DevRoleDTO, DEV_FLOW_GROUP>(roleDTO);
-            //    saveinfo.UPDATE_TIME = DateTime.Now;
-            //    saveinfo.UPDATE_USERID = userId;
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            var groupUserDto = new DevFlowGroupuserDTO();
+            groupUserDto.GROUP_ID = flowGroupDTO.ID;
+            groupUserDto.UserIds = StringHelper.String2ArrayInt(flowGroupDTO.UserIds);
+            if (flowGroupDTO.ID > 0)
+            {
+                var groupinfo = _IDevFlowGroupService.InSingle(flowGroupDTO.ID);
+                var saveinfo = _IMapper.Map<DevFlowGroupDTO, DEV_FLOW_GROUP>(flowGroupDTO, groupinfo);
+                saveinfo.UPDATE_TIME = DateTime.Now;
+                saveinfo.UPDATE_USERID = userId;
+                _IDevFlowGroupService.Update(saveinfo);
+                _IDevFlowGroupuserService.SaveGroupUsers(groupUserDto);
 
-            //    _IDevFlowGroupService.Update(saveinfo);
-               
+            }
+            else
+            {
+                var info = _IMapper.Map<DEV_FLOW_GROUP>(flowGroupDTO);
+                info.CREATE_TIME = DateTime.Now;
+                info.UPDATE_TIME = DateTime.Now;
+                info.CREATE_USERID = userId;
+                info.UPDATE_USERID = userId;
+                var saveinfo = _IDevFlowGroupService.Add(info);
+                groupUserDto.GROUP_ID = saveinfo.ID;
+                _IDevFlowGroupuserService.SaveGroupUsers(groupUserDto);
+            }
 
-            //}
-            //else
-            //{
-            //    var info = _IMapper.Map<DEV_FLOW_GROUP>(roleDTO);
-            //    info.CREATE_TIME = DateTime.Now;
-            //    info.UPDATE_TIME = DateTime.Now;
-            //    info.CREATE_USERID = userId;
-            //    info.UPDATE_USERID = userId;
-            //    var saveinfo = _IDevFlowGroupService.Add(info);
-            //    rolenum.RoleId = saveinfo.ID;
-            //    _IDevRoleFunctionService.SaveRoleMenus(rolenum);
-            //}
+            _IDevFlowGroupService.SetRedisHash();
+            RedisUtility.KeyDeleteAsync($"{RedisKeys.FlowGroupAllListKey}");
 
-            //_IDevFlowGroupService.SetRedisHash();
-            //RedisUtility.KeyDeleteAsync($"{RedisKeys.DataDicALLListKey}");
-           
             var result = new ResultData
             {
                 code = 0,
@@ -128,6 +131,7 @@ namespace WooDev.WebApi.Controllers.Flow
         {
             var arrIds = StringHelper.String2ArrayInt(Ids);
             _IDevFlowGroupService.Delete(a => arrIds.Contains(a.ID));
+            _IDevFlowGroupuserService.Delete(a => arrIds.Contains(a.GROUP_ID));
             RedisUtility.KeyDeleteAsync($"{RedisKeys.FlowGroupAllListKey}");
             _IDevFlowGroupService.SetRedisHash();
 
@@ -138,10 +142,10 @@ namespace WooDev.WebApi.Controllers.Flow
             };
             return new DevResultJson(result);
         }
-        [Route("getAllRoleList")]
+        [Route("getAllFlowGroupList")]
         [HttpGet]
         [Authorize]
-        public IActionResult GetAllRoleList()
+        public IActionResult GetAllFlowGroupList()
         {
             var data = _IDevFlowGroupService.GetAll().Where(a => a.G_STATE == 0).ToList();//只要启用的
             var result = new ResultListData<DevFlowGroupDTO>
@@ -163,17 +167,17 @@ namespace WooDev.WebApi.Controllers.Flow
         public IActionResult SetFlowGroupStatus(DevStatusInfo roleStatus)
         {
             var userId = HttpContext.User.Claims.GetTokenUserId();
-            //if (roleStatus.id > 0)
-            //{
-            //    var deprinfo = _IDevFlowGroupService.InSingle(roleStatus.id);
-            //    deprinfo.RUSTATE = roleStatus.status;
-            //    deprinfo.UPDATE_TIME = DateTime.Now;
-            //    deprinfo.UPDATE_USERID = userId;
-            //    _IDevFlowGroupService.Update(deprinfo);
-
-            //}
-            //RedisUtility.KeyDeleteAsync($"{RedisKeys.RoleAllListKey}");
-            //_IDevFlowGroupService.SetRedisHash();
+            if (roleStatus.id > 0)
+            {
+                var deprinfo = _IDevFlowGroupService.InSingle(roleStatus.id);
+                deprinfo.G_STATE = roleStatus.status;
+                deprinfo.UPDATE_TIME = DateTime.Now;
+                deprinfo.UPDATE_USERID = userId;
+                _IDevFlowGroupService.Update(deprinfo);
+;
+            }
+            RedisUtility.KeyDeleteAsync($"{RedisKeys.RoleAllListKey}");
+            _IDevFlowGroupService.SetRedisHash();
 
             var result = new ResultData
             {
@@ -207,6 +211,43 @@ namespace WooDev.WebApi.Controllers.Flow
             Expression<Func<DEV_FLOW_GROUP, object>> orderbyLambda = a => a.ID;
             var data = _IDevFlowGroupService.GetList(pageinfo, whereexp.ToExpression(), orderbyLambda, false);
             var result = new ResultData<DevFlowGroupList>
+            {
+                result = data,
+            };
+            return new DevResultJson(result);
+        }
+
+        /// <summary>
+        /// 列表
+        /// </summary>
+        /// <returns></returns>
+        [Route("getUserList")]
+        [HttpGet]
+        [Authorize]
+        public IActionResult GetList([FromQuery] PageParams pageParams, [FromQuery] DevUserSearch serachParam)
+        {
+            var userIds=_IDevFlowGroupuserService.Query(a => a.GROUP_ID == serachParam.GroupId).Select(a => a.USER_ID).ToList();
+           
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            var pageinfo = new PageInfo<DEV_USER>() { PageIndex = pageParams.page, PageSize = pageParams.pageSize };
+            var whereexp = Expressionable.Create<DEV_USER>();
+            whereexp = whereexp.And(a => a.IS_DELETE == 0);
+            whereexp = whereexp.And(a => userIds.Contains(a.ID));//过滤组用户
+            if (!string.IsNullOrEmpty(serachParam.NAME))
+            {//搜索名称
+                whereexp = whereexp.And(a => a.NAME.Contains(serachParam.NAME));
+            }
+            if (!string.IsNullOrEmpty(serachParam.LOGIN_NAME))
+            {//搜索名称
+                whereexp = whereexp.And(a => a.LOGIN_NAME.Contains(serachParam.LOGIN_NAME));
+            }
+            if (serachParam.deptId > 0)
+            {//部门ID
+                whereexp = whereexp.And(a => a.DEPART_ID == serachParam.deptId);
+            }
+            Expression<Func<DEV_USER, object>> orderbyLambda = a => a.ID;
+            var data = _IDevUserService.GetList(pageinfo, whereexp.ToExpression(), orderbyLambda, false);
+            var result = new ResultData<DevUserList>
             {
                 result = data,
             };
