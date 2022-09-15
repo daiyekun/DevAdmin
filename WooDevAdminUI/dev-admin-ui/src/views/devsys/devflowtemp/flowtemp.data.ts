@@ -5,6 +5,8 @@ import { Switch } from 'ant-design-vue';
 import { setRoleStatus } from '/@/api/devsys/system/devsystem';
 import { getFlowItemList, getFlowObjectist } from '/@/api/devsys/flow/flowtemp';
 import { useMessage } from '/@/hooks/web/useMessage';
+import { getFlowdataListApi } from '/@/api/devsys/system/datadic';
+// import { breadcrumbItemProps } from 'ant-design-vue/lib/breadcrumb/BreadcrumbItem';
 const selflowobj = ref(0); //默认客户
 export const columns: BasicColumn[] = [
   {
@@ -18,6 +20,11 @@ export const columns: BasicColumn[] = [
     width: 160,
   },
   {
+    title: '审批对象',
+    dataIndex: 'ObjTypeDic',
+    width: 160,
+  },
+  {
     title: '状态',
     dataIndex: 'RUSTATE',
     width: 120,
@@ -26,13 +33,13 @@ export const columns: BasicColumn[] = [
         record.pendingStatus = false;
       }
       return h(Switch, {
-        checked: record.RUSTATE == 0,
+        checked: record.RUSTATE == 1,
         checkedChildren: '已启用',
         unCheckedChildren: '已禁用',
         loading: record.pendingStatus,
         onChange(checked: boolean) {
           record.pendingStatus = true;
-          const newStatus = checked ? 0 : 1;
+          const newStatus = checked ? 1 : 0;
           const { createMessage } = useMessage();
           setRoleStatus(record.ID, newStatus)
             .then(() => {
@@ -53,10 +60,6 @@ export const columns: BasicColumn[] = [
     title: '创建时间',
     dataIndex: 'CREATE_TIME',
     width: 180,
-  },
-  {
-    title: '备注',
-    dataIndex: 'REMARK',
   },
 ];
 
@@ -104,34 +107,10 @@ export const formSchema: FormSchema[] = [
     colProps: { span: 24 },
   },
   {
-    field: 'FlowObj',
+    field: 'OBJ_TYPE',
     component: 'ApiSelect',
     label: '审批对象',
     required: true,
-    // componentProps: {
-    //   api: getFlowObjectist,
-    //   // params: {
-    //   //   objEnum: 0,
-    //   // },
-    //   resultField: 'result',
-    //   // use name as label
-    //   labelField: 'Desc',
-    //   // use id as value
-    //   valueField: 'Value',
-    //   // not request untill to select
-    //   immediate: false,
-    //   onChange: (e) => {
-    //     //selflowobj.value = e; //设置选择值
-    //     //debugger;
-    //     console.log('selected:', e);
-    //   },
-    //   // atfer request callback
-    //   onOptionsChange: (options) => {
-    //     selflowobj.value = options;
-    //     console.log('get options', options.length, options);
-    //   },
-    //   // mode: 'multiple',
-    // },
     componentProps: ({ formModel, formActionType }) => {
       return {
         api: getFlowObjectist,
@@ -143,15 +122,46 @@ export const formSchema: FormSchema[] = [
         // not request untill to select
         immediate: false,
         onChange: (e: any) => {
-          console.log(e);
-          formModel.flowitem = undefined; //  reset city value
+          const sel = Number(e);
+          //console.log(e);
+          formModel.FLOW_ITEMS_LIST = undefined; //  reset city value
           const { updateSchema } = formActionType;
           updateSchema({
-            field: 'flowitem',
+            field: 'FLOW_ITEMS_LIST',
             componentProps: {
               params: { objEnum: e },
             },
           });
+          formModel.CATE_IDS_LIST = undefined; //  reset city value
+          updateSchema({
+            field: 'CATE_IDS_LIST',
+            componentProps: {
+              params: { FlowObj: e },
+            },
+          });
+
+          switch (sel) {
+            case 3: //合同
+              {
+                formModel.MIN_MONERY = undefined;
+                formModel.MAX_MONERY = undefined;
+                updateSchema({
+                  field: 'MIN_MONERY',
+                  componentProps: {
+                    ifShow: true,
+                  },
+                });
+                updateSchema({
+                  field: 'MAX_MONERY',
+                  componentProps: {
+                    ifShow: true,
+                  },
+                });
+              }
+              break;
+            default:
+              break;
+          }
         },
       };
     },
@@ -162,19 +172,19 @@ export const formSchema: FormSchema[] = [
     defaultValue: 0,
   },
   {
-    field: 'RUSTATE',
+    field: 'F_STATE',
     label: '状态',
     component: 'RadioButtonGroup',
-    defaultValue: '0',
+    defaultValue: 1,
     componentProps: {
       options: [
-        { label: '启用', value: '0' },
-        { label: '停用', value: '1' },
+        { label: '启用', value: 1 },
+        { label: '禁用', value: 0 },
       ],
     },
   },
   {
-    field: 'flowitem',
+    field: 'FLOW_ITEMS_LIST',
     component: 'ApiSelect',
     label: '审批事项',
     required: true,
@@ -205,24 +215,66 @@ export const formSchema: FormSchema[] = [
     },
     // defaultValue: '0',
   },
-  {
-    label: '备注',
-    field: 'REMARK',
-    component: 'InputTextArea',
-    colProps: { span: 24 },
-  },
+
   {
     label: ' ',
-    field: 'menu',
-    slot: 'menu',
+    field: 'DEPART_IDS_LIST',
+    slot: 'DEPART_IDS_LIST',
     component: 'Input',
     colProps: { span: 24 },
   },
+  // {
+  //   label: ' ',
+  //   field: 'category',
+  //   slot: 'category',
+  //   component: 'Input',
+  //   colProps: { span: 24 },
+  // },
+
   {
-    label: ' ',
-    field: 'category',
-    slot: 'category',
-    component: 'Input',
+    field: 'CATE_IDS_LIST',
+    component: 'ApiSelect',
+    label: '类别',
+    required: true,
+    componentProps: {
+      // more details see /src/components/Form/src/components/ApiSelect.vue
+      api: getFlowdataListApi,
+      params: { FlowObj: -1 },
+      resultField: 'result',
+      // use name as label
+      labelField: 'NAME',
+      // use id as value
+      valueField: 'ID',
+      // not request untill to select
+      immediate: false,
+      onChange: (e) => {
+        console.log('selected:', e);
+      },
+      // atfer request callback
+      onOptionsChange: (options) => {
+        console.log('get options 测试', options.length, options, selflowobj.value);
+      },
+      mode: 'multiple',
+    },
+    colProps: {
+      span: 24,
+    },
+    // defaultValue: '0',
+  },
+  {
+    field: 'MIN_MONERY',
+    label: '开始金额',
+    // required: true,
+    ifShow: false,
+    component: 'InputNumber',
+    colProps: { span: 24 },
+  },
+  {
+    field: 'MAX_MONERY',
+    label: '结束金额',
+    // required: true,
+    ifShow: false,
+    component: 'InputNumber',
     colProps: { span: 24 },
   },
 ];

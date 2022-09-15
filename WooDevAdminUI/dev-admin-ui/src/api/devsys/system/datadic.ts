@@ -15,6 +15,8 @@ enum Api {
   datadicAdd = '/DevDataDic/datadicAdd', //初始新增字典列表
   datadicDelete = '/DevDataDic/deleteDic', //删除
   dataList = '/DevDataDic/getdiclist', //查询字典列表
+  flowobjdataList = '/DevDataDic/getflowdic', //根据审批对象查询类别
+
   datatreeList = '/DevDataDic/getTreeList', //查询字典列表
 }
 
@@ -29,6 +31,8 @@ export const datadicDelApi = (params: datadicdeldata) =>
   defHttp.get<ResultData>({ url: Api.datadicDelete, params });
 export const getdataListApi = (params: datadicParams) =>
   defHttp.get<datadicListGetResultModel>({ url: Api.dataList, params });
+export const getFlowdataListApi = (params: datadicParams) =>
+  defHttp.get<datadicListGetResultModel>({ url: Api.flowobjdataList, params });
 
 export const getdatadictreeList = (params?: datadictreeParams) =>
   defHttp.get<datadicListGetResultModel>({ url: Api.datadicList, params });

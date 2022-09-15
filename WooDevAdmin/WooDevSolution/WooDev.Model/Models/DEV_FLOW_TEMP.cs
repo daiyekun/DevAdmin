@@ -133,5 +133,12 @@ namespace WooDev.Model.Models
         /// </summary>
         public DateTime UPDATE_TIME { get; set; }
 
+        /// <summary>
+        /// 描    述:状态 启用 禁用
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int F_STATE { get; set; }
+
     }
 }

@@ -87,6 +87,7 @@ namespace WooDev.Common.Utility
                 {
                     
                     return itemAtt.Desc;
+                    
                 }
             }
             return "";
@@ -206,6 +207,31 @@ namespace WooDev.Common.Utility
             }
         }
 
+        /// <summary>
+        /// 得到枚举上得一个类别int值
+        /// </summary>
+        /// <param name="enumType">枚举类型</param>
+        /// <param name="value">枚举值</param>
+        /// <returns></returns>
+        public static int GetCateValue(Type enumType, int value)
+        {
+            var clsAttr = GetClassAttribute(enumType);
+            MemberInfo[] members = enumType.GetMembers();
+            foreach (MemberInfo member in members)
+            {
+                EnumItemExAttribute itemAtt = (EnumItemExAttribute)Attribute.GetCustomAttribute(member, typeof(EnumItemAttribute));
+                if (itemAtt == null)
+                    continue;
+                if (itemAtt.Value == value)
+                {
+
+                    return itemAtt.CateValue;
+
+                }
+            }
+            return -100;
+        }
+
 
 
     }
@@ -280,5 +306,9 @@ namespace WooDev.Common.Utility
         /// 类型
         /// </summary>
         public Type TypeValue { get; set; }
+        /// <summary>
+        /// 类别-ID
+        /// </summary>
+        public int CateValue { get; set; }
     }
 }

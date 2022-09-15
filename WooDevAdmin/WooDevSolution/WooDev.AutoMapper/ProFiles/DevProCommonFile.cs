@@ -430,6 +430,29 @@ namespace Dev.WooNet.AutoMapper.ProFiles
             // #endregion
 
 
+            #region 流程模板
+            CreateMap<DevFlowTempSaveInfo, DEV_FLOW_TEMP>()
+          .ForMember(a => a.IS_DELETE, opt => opt.MapFrom(src => 0))
+          .ForMember(a => a.UPDATE_USERID, opt => opt.Ignore())
+          .ForMember(a => a.UPDATE_TIME, opt => opt.Ignore())
+          .ForMember(a => a.CREATE_TIME, opt => opt.Ignore())
+          .ForMember(a => a.CREATE_USERID, opt => opt.Ignore())
+          .ForMember(a => a.CATE_IDS, opt => opt.Ignore())
+          .ForMember(a => a.DEPART_IDS, opt => opt.Ignore())
+           .ForMember(a => a.FLOW_ITEMS, opt => opt.Ignore())
+          ;
+
+          CreateMap<DEV_FLOW_TEMP, DEV_FLOW_TEMP_HIST>()
+         .ForMember(a => a.IS_DELETE, opt => opt.MapFrom(src => 0))
+         .ForMember(a => a.UPDATE_USERID, opt => opt.Ignore())
+         .ForMember(a => a.UPDATE_TIME, opt => opt.Ignore())
+         .ForMember(a => a.CREATE_TIME, opt => opt.Ignore())
+         .ForMember(a => a.CREATE_USERID, opt => opt.Ignore())
+         
+         ;
+            #endregion
+
+
 
         }
 

@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://localhost:5000/v3/index.json": {},
           "http://packages.nuget.org/v1/FeedService.svc/": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -107,6 +108,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://localhost:5000/v3/index.json": {},
           "http://packages.nuget.org/v1/FeedService.svc/": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -168,6 +170,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://localhost:5000/v3/index.json": {},
           "http://packages.nuget.org/v1/FeedService.svc/": {},
           "https://api.nuget.org/v3/index.json": {}
         },

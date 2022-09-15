@@ -30,6 +30,10 @@ namespace WooDev.ViewModel
         /// 名称
         /// </summary>
         public string? Name { get; set; }
+        /// <summary>
+        /// 流程对象
+        /// </summary>
+        public int? FlowObj { get; set; }
 
     }
     /// <summary>

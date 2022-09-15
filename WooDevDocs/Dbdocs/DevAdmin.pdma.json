@@ -4,7 +4,7 @@
   "avatar": "",
   "version": "4.1.1",
   "createdTime": "2022-5-23 09:09:48",
-  "updatedTime": "2022-7-22 19:26:06",
+  "updatedTime": "2022-8-4 15:23:21",
   "dbConns": [],
   "profile": {
     "default": {
@@ -7176,6 +7176,23 @@
           "id": "65D5C58A-5324-4166-864E-2F2937A8DB1B"
         },
         {
+          "defKey": "F_STATE",
+          "defName": "状态，启用 禁用",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "id": "15967D0B-C1CD-4BC1-81B4-092C3B748B30"
+        },
+        {
           "defKey": "ORDER_NUM",
           "defName": "排序",
           "comment": "",
@@ -7554,6 +7571,23 @@
           "refDict": "",
           "extProps": {},
           "id": "23E4855D-47BC-44B2-A938-62E31EE02275"
+        },
+        {
+          "defKey": "F_STATE",
+          "defName": "状态 启用 禁用",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "id": "341F1FF6-C282-4D6D-B153-F3C17AA27DA1"
         },
         {
           "defKey": "ORDER_NUM",

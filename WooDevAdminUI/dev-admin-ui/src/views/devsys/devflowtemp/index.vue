@@ -37,7 +37,7 @@
   import { defineComponent } from 'vue';
 
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
-  import { getRoleList, roleDelApi } from '/@/api/devsys/system/devsystem';
+  import { getFlowTempList, flowTempDelApi } from '/@/api/devsys/flow/flowtemp';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { useDrawer } from '/@/components/Drawer';
   // import { useModal } from '/@/components/Modal';
@@ -55,7 +55,7 @@
       const { createMessage: msg } = useMessage();
       const [registerTable, { reload }] = useTable({
         title: '流程模板列表',
-        api: getRoleList,
+        api: getFlowTempList,
         columns,
         formConfig: {
           labelWidth: 120,
@@ -100,7 +100,7 @@
       }
 
       async function handleDelete(record: Recordable) {
-        await roleDelApi({ Ids: record.ID.toString() });
+        await flowTempDelApi({ Ids: record.ID.toString() });
         msg.success({ content: '删除成功', key: 'deling' });
         reload();
       }

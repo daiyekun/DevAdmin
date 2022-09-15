@@ -9,6 +9,7 @@ using WooDev.Common.Utility;
 using WooDev.IServices;
 using WooDev.Model.Models;
 using WooDev.ViewModel;
+using WooDev.ViewModel.Enums;
 using WooDev.ViewModel.ExtendModel;
 using WooDev.WebCommon.Extend;
 using WooDev.WebCommon.Utiltiy;
@@ -162,6 +163,35 @@ namespace WooDev.WebApi.Controllers.Common
             };
             return new DevResultJson(result);
         }
+
+        /// <summary>
+        /// 字典列表
+        /// </summary>
+        /// <returns></returns>
+        [Route("getflowdic")]
+        [HttpGet]
+        [Authorize]
+        public IActionResult GetFlowDic([FromQuery] SerachParam serachParam)
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            var cateid = serachParam.LbId;
+            var catetype= cateid>0? cateid:EmunUtility.GetCateValue(typeof(FlowObjEnums), serachParam.FlowObj ?? -1);
+            var whereexp = Expressionable.Create<DEV_DATADIC>();
+            whereexp = whereexp.And(a => a.IS_DELETE == 0);
+            whereexp = whereexp.And(a => a.APP_TYPE == catetype);
+            if (!string.IsNullOrEmpty(serachParam.Name))
+            {//搜索名称
+                whereexp = whereexp.And(a => a.NAME.Contains(serachParam.Name));
+            }
+            Expression<Func<DEV_DATADIC, object>> orderbyLambda = a => a.ORDER_NUM;
+            var data = _IDevDatadicService.GetDataList(whereexp.ToExpression(), orderbyLambda, true);
+            var result = new ResultListData<DevDatadicList>
+            {
+                result = data,
+            };
+            return new DevResultJson(result);
+        }
+
 
         /// <summary>
         /// 列表

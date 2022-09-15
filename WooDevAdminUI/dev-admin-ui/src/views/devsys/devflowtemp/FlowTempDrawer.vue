@@ -8,7 +8,7 @@
     @ok="handleSubmit"
   >
     <BasicForm @register="registerForm">
-      <template #menu="{ model, field }">
+      <template #DEPART_IDS_LIST="{ model, field }">
         <BasicTree
           v-model:value="model[field]"
           :treeData="treeData"
@@ -39,9 +39,9 @@
           title="审批事项"
         />
       </template> -->
-      <template #flowitem="{ model, field }">
+      <!-- <template #flowitem="{ model, field }">
         <a-select :options="options" mode="multiple" v-model:value="model[field]" allowClear />
-      </template>
+      </template> -->
       <!-- <template #category="{ model, field }">
         <ApiSelect
           :api="optionsListApi"
@@ -72,8 +72,7 @@
   import { formSchema } from './flowtemp.data';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
   import { BasicTree, TreeItem } from '/@/components/Tree';
-  import { roleSaveApi } from '/@/api/devsys/system/devsystem';
-  // import { getMenuList } from '/@/api/sys/menu';
+  import { flowTempSaveApi } from '/@/api/devsys/flow/flowtemp';
   import { getDepartList } from '/@/api/devsys/system/devsystem';
   import { getdatadictreeList } from '/@/api/devsys/system/datadic';
   // import { cloneDeep } from 'lodash-es';
@@ -115,15 +114,6 @@
         console.log(`selected ${value}`);
       };
 
-      const options = ref<Recordable[]>([]);
-      for (let i = 1; i < 10; i++) options.value.push({ label: '选项' + i, value: `${i}` });
-
-      // const optionsA = computed(() => {
-      //   return cloneDeep(unref(options)).map((op) => {
-      //     return op;
-      //   });
-      // });
-
       const getTitle = computed(() => (!unref(isUpdate) ? '新增流程模板' : '编辑流程模板'));
 
       async function handleSubmit() {
@@ -132,7 +122,8 @@
           setDrawerProps({ confirmLoading: true });
           // TODO custom api
           console.log(values);
-          await roleSaveApi(values);
+          debugger;
+          await flowTempSaveApi(values);
           closeDrawer();
           emit('success');
         } finally {

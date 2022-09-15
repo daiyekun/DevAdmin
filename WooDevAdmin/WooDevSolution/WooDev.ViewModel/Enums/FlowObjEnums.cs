@@ -14,7 +14,7 @@ namespace WooDev.ViewModel.Enums
         /// <summary>
         /// 客户：0
         /// </summary>
-        [EnumItemExAttribute(Value = 0, Desc = "客户", TypeValue = typeof(CommpanyFlowItemsEnum))]
+        [EnumItemExAttribute(Value = 0, Desc = "客户", TypeValue = typeof(CommpanyFlowItemsEnum), CateValue =6)]
         Customer = 0,
         /// <summary>
         /// 供应商：1
@@ -29,7 +29,7 @@ namespace WooDev.ViewModel.Enums
         /// <summary>
         /// 合同：3
         /// </summary>
-        [EnumItemExAttribute(Value = 3, Desc = "合同", TypeValue = typeof(ContFlowItemsEnum))]
+        [EnumItemExAttribute(Value = 3, Desc = "合同", TypeValue = typeof(ContFlowItemsEnum), CateValue =2)]
         Contract = 3,
         /// <summary>
         /// 收票：4
