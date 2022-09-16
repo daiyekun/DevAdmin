@@ -18,6 +18,7 @@ enum Api {
   flowTempList = '/DevFlowTemp/getList', //审批模板列表
   flowTempDelete = '/DevFlowTemp/delFlowTemp', //删除
   flowTempView = '/Customer/flowTempView', //审批模板详情
+  setFlowTempStatus = '/DevFlowTemp/setFlowTempStatus', //修改状态
 }
 
 export const getFlowItemList = (params?: flowitemParams) =>
@@ -36,3 +37,6 @@ export const flowTempDelApi = (params: deldataInfo) =>
 
 export const flowTempomerViewApi = (id: number) =>
   defHttp.get<FlowTempViewInfo>({ url: Api.flowTempView, params: { id } });
+
+export const setFlowTempStatus = (id: number, status: number) =>
+  defHttp.post({ url: Api.setFlowTempStatus, params: { id, status } });

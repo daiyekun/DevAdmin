@@ -2,8 +2,7 @@ import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
 import { h, ref } from 'vue';
 import { Switch } from 'ant-design-vue';
-import { setRoleStatus } from '/@/api/devsys/system/devsystem';
-import { getFlowItemList, getFlowObjectist } from '/@/api/devsys/flow/flowtemp';
+import { getFlowItemList, getFlowObjectist, setFlowTempStatus } from '/@/api/devsys/flow/flowtemp';
 import { useMessage } from '/@/hooks/web/useMessage';
 import { getFlowdataListApi } from '/@/api/devsys/system/datadic';
 // import { breadcrumbItemProps } from 'ant-design-vue/lib/breadcrumb/BreadcrumbItem';
@@ -26,14 +25,14 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '状态',
-    dataIndex: 'RUSTATE',
+    dataIndex: 'F_STATE',
     width: 120,
     customRender: ({ record }) => {
       if (!Reflect.has(record, 'pendingStatus')) {
         record.pendingStatus = false;
       }
       return h(Switch, {
-        checked: record.RUSTATE == 1,
+        checked: record.F_STATE == 1,
         checkedChildren: '已启用',
         unCheckedChildren: '已禁用',
         loading: record.pendingStatus,
@@ -41,9 +40,9 @@ export const columns: BasicColumn[] = [
           record.pendingStatus = true;
           const newStatus = checked ? 1 : 0;
           const { createMessage } = useMessage();
-          setRoleStatus(record.ID, newStatus)
+          setFlowTempStatus(record.ID, newStatus)
             .then(() => {
-              record.RUSTATE = newStatus;
+              record.F_STATE = newStatus;
               createMessage.success(`已成功修改模板状态`);
             })
             .catch(() => {
