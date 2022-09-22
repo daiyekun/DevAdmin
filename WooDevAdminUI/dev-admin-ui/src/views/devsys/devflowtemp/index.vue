@@ -74,18 +74,6 @@
         },
       });
 
-      // function handleCreate() {
-      //   openModal(true, {
-      //     isUpdate: false,
-      //   });
-      // }
-
-      // function handleEdit(record: Recordable) {
-      //   openModal(true, {
-      //     record,
-      //     isUpdate: true,
-      //   });
-      // }
       function handleCreate() {
         openDrawer(true, {
           isUpdate: false,
@@ -108,16 +96,6 @@
       function handleSuccess() {
         reload();
       }
-      //菜单分配
-      // function handleMenusPermission() {
-      //   // const selkeys = getSelectRowKeys();
-      //   // console.log('kes', selkeys.length);
-      //   const record = getRowSelection();
-      //   openDrawer(true, {
-      //     record,
-      //     isUpdate: true,
-      //   });
-      // }
 
       return {
         registerTable,

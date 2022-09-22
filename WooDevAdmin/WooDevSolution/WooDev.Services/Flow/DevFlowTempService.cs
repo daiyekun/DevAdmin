@@ -56,6 +56,7 @@ namespace WooDev.Services
                 OBJ_TYPE=a.OBJ_TYPE,//审批对象
                 CREATE_TIME = a.CREATE_TIME,//创建时间
                 CREATE_USERID = a.CREATE_USERID,//创建人
+                DEPART_IDS=a.DEPART_IDS,//部门
                
             });
             pageInfo.TotalCount = totalCount;
@@ -70,7 +71,7 @@ namespace WooDev.Services
                             CREATE_TIME = a.CREATE_TIME,//创建时间
                             CREATE_USERID = a.CREATE_USERID,//创建人
                             ObjTypeDic = EmunUtility.GetDesc(typeof(FlowObjEnums), a.OBJ_TYPE),
-                             
+                            DEPART_IDS_LIST=StringHelper.String2ArrayInt(a.DEPART_IDS),
                         };
             return new ResultPageData<DevFlowTempList>()
             {
@@ -99,6 +100,7 @@ namespace WooDev.Services
                 saveinfo.VERSION = saveinfo.VERSION+ 1;
                 saveinfo.FLOW_ITEMS = StringHelper.ArrayInt2String(devFlowTempDTO.FLOW_ITEMS_LIST);
                 saveinfo.CATE_IDS = StringHelper.ArrayInt2String(devFlowTempDTO.CATE_IDS_LIST);
+                saveinfo.DEPART_IDS= StringHelper.ArrayInt2String(devFlowTempDTO.DEPART_IDS_LIST);
                 Update(saveinfo);
                 CreateFlowTempHist(saveinfo, saveinfo.ID);
 

@@ -25,7 +25,7 @@
       </template>
     </BasicTable>
     <RoleDrawer @register="registerDrawer" @success="handleSuccess" />
-    <RoleModal @register="registerModal" @success="handleSuccess" />
+    <!-- <RoleModal @register="registerModal" @success="handleSuccess" /> -->
   </div>
 </template>
 <script lang="ts">
@@ -37,13 +37,13 @@
   import { useDrawer } from '/@/components/Drawer';
   // import { useModal } from '/@/components/Modal';
   import RoleDrawer from './RoleDrawer.vue';
-  import RoleModal from './RoleModal.vue';
+  //import RoleModal from './RoleModal.vue';
 
   import { columns, searchFormSchema } from './role.data';
 
   export default defineComponent({
     name: 'DevRoleManagement',
-    components: { BasicTable, RoleModal, RoleDrawer, TableAction },
+    components: { BasicTable, RoleDrawer, TableAction }, //RoleModal
     setup() {
       const [registerDrawer, { openDrawer }] = useDrawer();
       // const [registerModal, { openModal }] = useModal();

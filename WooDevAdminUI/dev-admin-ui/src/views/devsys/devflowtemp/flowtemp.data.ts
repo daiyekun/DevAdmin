@@ -149,16 +149,34 @@ export const formSchema: FormSchema[] = [
                   componentProps: {
                     ifShow: true,
                   },
+                  ifShow: true,
                 });
                 updateSchema({
                   field: 'MAX_MONERY',
                   componentProps: {
                     ifShow: true,
                   },
+                  ifShow: true,
                 });
               }
               break;
             default:
+              {
+                {
+                  formModel.MIN_MONERY = undefined;
+                  formModel.MAX_MONERY = undefined;
+                  updateSchema({
+                    field: 'MIN_MONERY',
+                    componentProps: {},
+                    ifShow: false,
+                  });
+                  updateSchema({
+                    field: 'MAX_MONERY',
+                    componentProps: {},
+                    ifShow: false,
+                  });
+                }
+              }
               break;
           }
         },

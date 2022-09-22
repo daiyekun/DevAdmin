@@ -16,6 +16,7 @@
           checkable
           toolbar
           title="经办机构"
+          checkStrictly="true"
         />
       </template>
 
@@ -104,6 +105,7 @@
         isUpdate.value = !!data?.isUpdate;
 
         if (unref(isUpdate)) {
+          debugger;
           setFieldsValue({
             ...data.record,
           });

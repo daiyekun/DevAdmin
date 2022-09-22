@@ -16,5 +16,10 @@ namespace WooDev.ViewModel
         /// 审批对象描述
         /// </summary>
         public string? ObjTypeDic { get; set; }
+        /// <summary>
+        /// 部门
+        /// </summary>
+
+        public IList<int>? DEPART_IDS_LIST { get; set; }
     }
 }
