@@ -6,7 +6,7 @@ import { getFlowItemList, getFlowObjectist, setFlowTempStatus } from '/@/api/dev
 import { useMessage } from '/@/hooks/web/useMessage';
 import { getFlowdataListApi } from '/@/api/devsys/system/datadic';
 // import { breadcrumbItemProps } from 'ant-design-vue/lib/breadcrumb/BreadcrumbItem';
-const selflowobj = ref(0); //默认客户
+export const selflowobj = ref(0); //默认客户
 export const columns: BasicColumn[] = [
   {
     title: '模板名称',
@@ -110,7 +110,9 @@ export const formSchema: FormSchema[] = [
     component: 'ApiSelect',
     label: '审批对象',
     required: true,
+
     componentProps: ({ formModel, formActionType }) => {
+      // console.log('OBJ_TYPE 执行');
       return {
         api: getFlowObjectist,
         resultField: 'result',
@@ -120,6 +122,7 @@ export const formSchema: FormSchema[] = [
         valueField: 'Value',
         // not request untill to select
         immediate: false,
+        numberToString: false,
         onChange: (e: any) => {
           const sel = Number(e);
           //console.log(e);
@@ -146,16 +149,12 @@ export const formSchema: FormSchema[] = [
                 formModel.MAX_MONERY = undefined;
                 updateSchema({
                   field: 'MIN_MONERY',
-                  componentProps: {
-                    ifShow: true,
-                  },
+                  componentProps: {},
                   ifShow: true,
                 });
                 updateSchema({
                   field: 'MAX_MONERY',
-                  componentProps: {
-                    ifShow: true,
-                  },
+                  componentProps: {},
                   ifShow: true,
                 });
               }
@@ -186,7 +185,6 @@ export const formSchema: FormSchema[] = [
     colProps: {
       span: 24,
     },
-    defaultValue: 0,
   },
   {
     field: 'F_STATE',
@@ -222,9 +220,9 @@ export const formSchema: FormSchema[] = [
         console.log('selected:', e);
       },
       // atfer request callback
-      onOptionsChange: (options) => {
-        console.log('get options 测试', options.length, options, selflowobj.value);
-      },
+      // onOptionsChange: (options) => {
+      //   console.log('get options 测试', options.length, options, selflowobj.value);
+      // },
       mode: 'multiple',
     },
     colProps: {
@@ -256,7 +254,7 @@ export const formSchema: FormSchema[] = [
     componentProps: {
       // more details see /src/components/Form/src/components/ApiSelect.vue
       api: getFlowdataListApi,
-      params: { FlowObj: -1 },
+      params: { FlowObj: selflowobj.value },
       resultField: 'result',
       // use name as label
       labelField: 'NAME',
@@ -268,9 +266,9 @@ export const formSchema: FormSchema[] = [
         console.log('selected:', e);
       },
       // atfer request callback
-      onOptionsChange: (options) => {
-        console.log('get options 测试', options.length, options, selflowobj.value);
-      },
+      // onOptionsChange: (options) => {
+      //   //console.log('get options 测试', options.length, options, selflowobj.value);
+      // },
       mode: 'multiple',
     },
     colProps: {

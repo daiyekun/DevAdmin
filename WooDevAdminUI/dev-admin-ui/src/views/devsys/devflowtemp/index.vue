@@ -24,7 +24,7 @@
             {
               icon: 'ant-design:branches-outlined',
               tooltip: '设置流程图',
-              onClick: handleEdit.bind(null, record),
+              onClick: handSetFlow.bind(null, record),
             },
           ]"
         />
@@ -43,13 +43,14 @@
   // import { useModal } from '/@/components/Modal';
   import FlowTempDrawer from './FlowTempDrawer.vue';
   // import RoleModal from './RoleModal.vue';
-
+  import { useGo } from '/@/hooks/web/usePage';
   import { columns, searchFormSchema } from './flowtemp.data';
 
   export default defineComponent({
     name: 'DevFlowTemp',
     components: { BasicTable, FlowTempDrawer, TableAction },
     setup() {
+      const go = useGo();
       const [registerDrawer, { openDrawer }] = useDrawer();
       // const [registerModal, { openModal }] = useModal();
       const { createMessage: msg } = useMessage();
@@ -86,6 +87,12 @@
           isUpdate: true,
         });
       }
+      /***
+       * 跳转流程图界面
+       */
+      function handSetFlow(record: Recordable) {
+        go('/devflow/flowtemp/flowtemp_set/' + record.ID);
+      }
 
       async function handleDelete(record: Recordable) {
         await flowTempDelApi({ Ids: record.ID.toString() });
@@ -105,6 +112,7 @@
         handleEdit,
         handleDelete,
         handleSuccess,
+        handSetFlow,
         // handleMenusPermission,
       };
     },

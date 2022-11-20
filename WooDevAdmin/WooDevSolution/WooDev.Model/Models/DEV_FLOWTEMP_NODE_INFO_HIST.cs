@@ -8,7 +8,7 @@ using SqlSugar;
 namespace WooDev.Model.Models
 {
     /// <summary>
-    /// 流程模板接节点信息历史
+    /// 流程模板节点信息历史
     /// </summary>
     [SugarTable("dev_flowtemp_node_info_hist")]
     public partial class DEV_FLOWTEMP_NODE_INFO_HIST
@@ -29,7 +29,7 @@ namespace WooDev.Model.Models
         public int ID { get; set; }
 
         /// <summary>
-        /// 描    述:模板历史 ID
+        /// 描    述:模板ID
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
@@ -50,6 +50,27 @@ namespace WooDev.Model.Models
         public string NODE_STRID { get; set; }
 
         /// <summary>
+        /// 描    述:个人、审批组、角色、直接上级
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int O_TYPE { get; set; }
+
+        /// <summary>
+        /// 描    述:操作对象ID 比如用户ID，直接上级ID，审批组ID
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int OPT_ID { get; set; }
+
+        /// <summary>
+        /// 描    述:当前状态0默认，1审批中 2通过
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int INFO_STATE { get; set; }
+
+        /// <summary>
         /// 描    述:是否允许修改文本 0 否默认 1是
         /// 默 认 值:
         /// 是否空值:False
@@ -62,13 +83,6 @@ namespace WooDev.Model.Models
         /// 是否空值:False
         /// </summary>
         public int NRULE { get; set; }
-
-        /// <summary>
-        /// 描    述:审批组ID
-        /// 默 认 值:
-        /// 是否空值:False
-        /// </summary>
-        public int GROUP_ID { get; set; }
 
         /// <summary>
         /// 描    述:是否删除

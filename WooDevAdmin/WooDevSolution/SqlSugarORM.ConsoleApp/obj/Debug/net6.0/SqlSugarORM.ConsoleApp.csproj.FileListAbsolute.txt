@@ -2,7 +2,6 @@ E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\SqlSugarORM.ConsoleApp\bi
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\SqlSugarORM.ConsoleApp\bin\Debug\net6.0\SqlSugarORM.ConsoleApp.deps.json
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\SqlSugarORM.ConsoleApp\bin\Debug\net6.0\SqlSugarORM.ConsoleApp.runtimeconfig.json
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\SqlSugarORM.ConsoleApp\bin\Debug\net6.0\SqlSugarORM.ConsoleApp.dll
-E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\SqlSugarORM.ConsoleApp\bin\Debug\net6.0\ref\SqlSugarORM.ConsoleApp.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\SqlSugarORM.ConsoleApp\bin\Debug\net6.0\SqlSugarORM.ConsoleApp.pdb
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\SqlSugarORM.ConsoleApp\bin\Debug\net6.0\BouncyCastle.Crypto.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\SqlSugarORM.ConsoleApp\bin\Debug\net6.0\Google.Protobuf.dll
@@ -78,3 +77,5 @@ E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\SqlSugarORM.ConsoleApp\ob
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\SqlSugarORM.ConsoleApp\obj\Debug\net6.0\ref\SqlSugarORM.ConsoleApp.dll
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\SqlSugarORM.ConsoleApp\obj\Debug\net6.0\SqlSugarORM.ConsoleApp.pdb
 E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\SqlSugarORM.ConsoleApp\obj\Debug\net6.0\SqlSugarORM.ConsoleApp.genruntimeconfig.cache
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\SqlSugarORM.ConsoleApp\obj\Debug\net6.0\SqlSugarORM.ConsoleApp.csproj.AssemblyReference.cache
+E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\SqlSugarORM.ConsoleApp\obj\Debug\net6.0\refint\SqlSugarORM.ConsoleApp.dll

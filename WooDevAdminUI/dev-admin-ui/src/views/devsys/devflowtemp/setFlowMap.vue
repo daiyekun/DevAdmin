@@ -1,10 +1,19 @@
 <template>
-  <div class="container" ref="container"></div>
+  <div>
+    <PageWrapper contentBackground contentFullHeight="true">
+      <div class="container" ref="container" style="height: 900px"> </div>
+      <div>hahh</div>
+    </PageWrapper>
+    <BasicModal @register="register" title="流程数据" width="50%">
+      <JsonPreview :data="graphData" />
+    </BasicModal>
+  </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref, onMounted } from 'vue';
+  import { defineComponent, ref, onMounted, unref } from 'vue';
   import LogicFlow from '@logicflow/core';
+  import { JsonPreview } from '/@/components/CodeEditor';
   import {
     DndPanel,
     SelectionSelect,
@@ -17,11 +26,16 @@
   import '@logicflow/extension/lib/style/index.css';
   import './css/devflowcustom.css';
   import { useMessage } from '/@/hooks/web/useMessage';
+  import { PageWrapper } from '/@/components/Page';
+  import { useModal, BasicModal } from '/@/components/Modal';
   export default defineComponent({
-    name: 'DevFlowTemp',
+    name: 'DevSetFlowTemp',
+    components: { PageWrapper, JsonPreview, BasicModal },
     setup() {
       const container = ref();
       const { createMessage: msg } = useMessage();
+      const [register, { openModal }] = useModal();
+      const graphData = ref({});
       onMounted(() => {
         LogicFlow.use(Control);
         LogicFlow.use(Menu);
@@ -29,6 +43,10 @@
           container: container.value,
           grid: true,
           plugins: [BpmnElement, DndPanel, SelectionSelect, Control, MiniMap, Menu],
+        });
+        lf.on('node:click,edge:click', (tdata) => {
+          debugger;
+          msg.info(tdata);
         });
         lf.setPatternItems([
           // {
@@ -77,10 +95,12 @@
           title: '查看数据',
           text: '数据',
           onClick: (lf) => {
-            var strdata = JSON.stringify(lf.getGraphData());
-            msg.info({ content: strdata, key: 'editing' });
+            //var strdata = JSON.stringify(lf.getGraphData());
+            // msg.info({ content: strdata, key: 'editing' });
             // debugger;
             // console.log(JSON.stringify(lf.getGraphData()));
+            graphData.value = unref(lf).getGraphData();
+            openModal();
           },
         });
         lf.extension.control.addItem({
@@ -98,6 +118,8 @@
 
       return {
         container,
+        register,
+        graphData,
       };
     },
   });

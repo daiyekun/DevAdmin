@@ -8,7 +8,7 @@ using SqlSugar;
 namespace WooDev.Model.Models
 {
     /// <summary>
-    /// 流程模板节点历史
+    /// 流程模板历史节点
     /// </summary>
     [SugarTable("dev_flowtemp_node_hist")]
     public partial class DEV_FLOWTEMP_NODE_HIST
@@ -29,11 +29,18 @@ namespace WooDev.Model.Models
         public int ID { get; set; }
 
         /// <summary>
-        /// 描    述:节点ID-来自节点表
+        /// 描    述:模板ID
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public int NODE_ID { get; set; }
+        public int TEMP_ID { get; set; }
+
+        /// <summary>
+        /// 描    述:模板历史ID
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int TEMP_HIST_ID { get; set; }
 
         /// <summary>
         /// 描    述:节点字符串ID
@@ -43,11 +50,53 @@ namespace WooDev.Model.Models
         public string NODE_STRID { get; set; }
 
         /// <summary>
-        /// 描    述:节点数据
+        /// 描    述:节点类型
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public string NODE_DATA { get; set; }
+        public int N_TYPE { get; set; }
+
+        /// <summary>
+        /// 描    述:X轴 确定位置
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public decimal X { get; set; }
+
+        /// <summary>
+        /// 描    述:Y轴 确定位置
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public decimal Y { get; set; }
+
+        /// <summary>
+        /// 描    述:文本X轴
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public decimal TEXT_X { get; set; }
+
+        /// <summary>
+        /// 描    述:文本Y轴
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public decimal TEXT_Y { get; set; }
+
+        /// <summary>
+        /// 描    述:文本内容
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public string TEXT_VALUE { get; set; }
+
+        /// <summary>
+        /// 描    述:节点状态
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int NODE_STATE { get; set; }
 
         /// <summary>
         /// 描    述:排序

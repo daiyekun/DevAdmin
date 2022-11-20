@@ -70,7 +70,7 @@
 <script lang="ts">
   import { defineComponent, ref, computed, unref } from 'vue';
   import { BasicForm, useForm } from '/@/components/Form/index';
-  import { formSchema } from './flowtemp.data';
+  import { formSchema, selflowobj } from './flowtemp.data';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
   import { BasicTree, TreeItem } from '/@/components/Tree';
   import { flowTempSaveApi } from '/@/api/devsys/flow/flowtemp';
@@ -105,10 +105,21 @@
         isUpdate.value = !!data?.isUpdate;
 
         if (unref(isUpdate)) {
+          //debugger;
+          console.log('setFieldsValue 绑定。。。。。');
+          // updateSchema({
+          //   field: 'OBJ_TYPE',
+          //   componentProps: {
+          //     value: data.record.OBJ_TYPE,
+          //   },
+          // });
           debugger;
           setFieldsValue({
             ...data.record,
+            OBJ_TYPE: data.record.ObjTypeDic,
+            //data.record.OBJ_TYPE,//ObjTypeDic
           });
+          selflowobj.value = data.record.OBJ_TYPE;
         }
       });
 
@@ -142,7 +153,6 @@
         treeDataCate,
         handleChange,
         // optionsA,
-        value: ref(['a1', 'b2']),
       };
     },
   });

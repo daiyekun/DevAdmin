@@ -29,6 +29,20 @@ namespace WooDev.Model.Models
         public int ID { get; set; }
 
         /// <summary>
+        /// 描    述:模板ID
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int TEMP_ID { get; set; }
+
+        /// <summary>
+        /// 描    述:状态
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int EDGE_STATE { get; set; }
+
+        /// <summary>
         /// 描    述:连接线字符串ID
         /// 默 认 值:
         /// 是否空值:False
@@ -36,11 +50,60 @@ namespace WooDev.Model.Models
         public string EDGE_STRID { get; set; }
 
         /// <summary>
-        /// 描    述:连接线数据
+        /// 描    述:线类型
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public string EDGE_DATA { get; set; }
+        public int EDGE_TYPE { get; set; }
+
+        /// <summary>
+        /// 描    述:链接开始节点ID
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public string SOURCENODEID { get; set; }
+
+        /// <summary>
+        /// 描    述:链接目标节点ID
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public string TARGETNODEID { get; set; }
+
+        /// <summary>
+        /// 描    述:开始X轴
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public decimal STARTPORT_X { get; set; }
+
+        /// <summary>
+        /// 描    述:开始Y轴
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public decimal STARTPORT_Y { get; set; }
+
+        /// <summary>
+        /// 描    述:结束X轴
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public decimal ENDPORT_X { get; set; }
+
+        /// <summary>
+        /// 描    述:介绍Y轴
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public decimal ENDPORT_Y { get; set; }
+
+        /// <summary>
+        /// 描    述:线条拐角以及开始结束点XY坐标 JSON字符串
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public string PONTSLIST { get; set; }
 
         /// <summary>
         /// 描    述:是否删除
