@@ -1,8 +1,8 @@
 <template>
   <div>
     <PageWrapper contentBackground contentFullHeight="true">
-      <div class="container" ref="container" style="height: 900px"> </div>
-      <div>hahh</div>
+      <div class="container" ref="container" style="height: 1000px"> </div>
+      <NodeDrawer @register="registerNodeInfo" />
     </PageWrapper>
     <BasicModal @register="register" title="流程数据" width="50%">
       <JsonPreview :data="graphData" />
@@ -25,16 +25,19 @@
   import '@logicflow/core/dist/style/index.css';
   import '@logicflow/extension/lib/style/index.css';
   import './css/devflowcustom.css';
-  import { useMessage } from '/@/hooks/web/useMessage';
+  //import { useMessage } from '/@/hooks/web/useMessage';
   import { PageWrapper } from '/@/components/Page';
   import { useModal, BasicModal } from '/@/components/Modal';
+  import { useDrawer } from '/@/components/Drawer';
+  import NodeDrawer from './NodeDrawer.vue';
   export default defineComponent({
     name: 'DevSetFlowTemp',
-    components: { PageWrapper, JsonPreview, BasicModal },
+    components: { PageWrapper, JsonPreview, BasicModal, NodeDrawer },
     setup() {
       const container = ref();
-      const { createMessage: msg } = useMessage();
+      // const { createMessage: msg } = useMessage();
       const [register, { openModal }] = useModal();
+      const [registerNodeInfo, { openDrawer: openNodeDrawer }] = useDrawer();
       const graphData = ref({});
       onMounted(() => {
         LogicFlow.use(Control);
@@ -44,9 +47,27 @@
           grid: true,
           plugins: [BpmnElement, DndPanel, SelectionSelect, Control, MiniMap, Menu],
         });
+        var clickFlag = null; //是否点击标识（定时器编号）
         lf.on('node:click,edge:click', (tdata) => {
-          debugger;
-          msg.info(tdata);
+          console.log('node:click,edge:click');
+          if (clickFlag) {
+            //取消上次延时未执行的方法
+            clickFlag = clearTimeout(clickFlag);
+          }
+
+          clickFlag = setTimeout(function () {
+            openNodeDrawer(true, {
+              data: tdata,
+              //info: 'Info',
+            });
+          }, 300); //延时300毫秒执行
+        });
+        lf.on('node:dbclick,edge:dbclick', () => {
+          console.log('node:dbclick,edge:dbclick');
+          if (clickFlag) {
+            //取消上次延时未执行的方法
+            clickFlag = clearTimeout(clickFlag);
+          }
         });
         lf.setPatternItems([
           // {
@@ -120,6 +141,8 @@
         container,
         register,
         graphData,
+        registerNodeInfo,
+        openNodeDrawer,
       };
     },
   });
