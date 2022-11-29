@@ -119,5 +119,12 @@ namespace WooDev.Model.Models
         /// </summary>
         public DateTime UPDATE_TIME { get; set; }
 
+        /// <summary>
+        /// 描    述:
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public string OPT_NAME { get; set; }
+
     }
 }

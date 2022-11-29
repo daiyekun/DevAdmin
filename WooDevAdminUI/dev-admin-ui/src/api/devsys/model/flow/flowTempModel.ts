@@ -77,3 +77,25 @@ export interface FlowChartTempSaveInfo {
   TempId: number;
   FlowData: string;
 }
+/**
+ *节点
+ */
+export type FlowNodeParams = {
+  NodeStr?: string;
+};
+
+/**
+ * 节点信息表
+ */
+export interface FlowNodeInfoListItem {
+  ID: number;
+  OPT_ID: number;
+  OPT_NAME: string;
+  NODE_ID: number;
+  NODE_STRID: string;
+  O_TYPE: number;
+  RE_TEXT: number;
+  INFO_STATE: number;
+  NRULE: number;
+}
+export type FlowNodeInfoListGetResultModel = BasicFetchResult<FlowNodeInfoListItem>;

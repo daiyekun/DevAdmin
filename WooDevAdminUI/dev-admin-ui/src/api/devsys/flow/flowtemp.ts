@@ -9,6 +9,8 @@ import {
   deldataInfo,
   FlowTempViewInfo,
   FlowChartTempSaveInfo,
+  FlowNodeParams,
+  FlowNodeInfoListGetResultModel,
 } from '../model/flow/flowTempModel';
 import { defHttp } from '/@/utils/http/axios';
 import { ResultData } from '/@/api/model/baseModel';
@@ -22,6 +24,7 @@ enum Api {
   setFlowTempStatus = '/DevFlowTemp/setFlowTempStatus', //修改状态
   flowChartTempSave = '/DevFlowTemp/flowChartTempSave', //保持模板流程图
   getFlowTempChart = '/DevFlowTemp/getFlowChartData', //根据模板ID获取流出图
+  getNodeInfoByNodeId = '/DevFlowTemp/getNodeInfoByNodeId', //根据节点ID查询节点信息
 }
 
 export const getFlowItemList = (params?: flowitemParams) =>
@@ -49,3 +52,6 @@ export const flowChartTempSaveApi = (params: FlowChartTempSaveInfo) =>
 
 export const flowTempChartViewApi = (tempId: number) =>
   defHttp.get<string>({ url: Api.getFlowTempChart, params: { tempId } });
+
+export const getNodeInfoByNodeIdApi = (params: FlowNodeParams) =>
+  defHttp.get<FlowNodeInfoListGetResultModel>({ url: Api.getNodeInfoByNodeId, params });

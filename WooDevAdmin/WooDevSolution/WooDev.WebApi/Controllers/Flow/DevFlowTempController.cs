@@ -34,13 +34,16 @@ namespace WooDev.WebApi.Controllers.Flow
         private IDevFlowTempService _IDevFlowTempService;
         private IDevFlowtempNodeService _IDevFlowtempNodeService;
         private IDevFlowtempEdgeService _IDevFlowtempEdgeService;
+        private IDevFlowtempNodeInfoService _IDevFlowtempNodeInfoService;
         public DevFlowTempController(IDevFlowTempService iDevFlowTempService, 
             IDevFlowtempNodeService iDevFlowtempNodeService,
-            IDevFlowtempEdgeService iDevFlowtempEdgeService)
+            IDevFlowtempEdgeService iDevFlowtempEdgeService,
+            IDevFlowtempNodeInfoService iDevFlowtempNodeInfoService)
         {
             _IDevFlowTempService = iDevFlowTempService;
             _IDevFlowtempNodeService = iDevFlowtempNodeService;
             _IDevFlowtempEdgeService = iDevFlowtempEdgeService;
+            _IDevFlowtempNodeInfoService = iDevFlowtempNodeInfoService;
         }
 
         /// <summary>
@@ -259,6 +262,34 @@ namespace WooDev.WebApi.Controllers.Flow
             };
             return new DevResultJson(resultdata);
         }
+
+
+        /// <summary>
+        /// 列表
+        /// </summary>
+        /// <returns></returns>
+        [Route("getNodeInfoByNodeId")]
+        [HttpGet]
+        //[AllowAnonymous]//跳过授权验证
+        [Authorize]
+        public IActionResult GetNodeInfoByNodeId([FromQuery] PageParams pageParams, [FromQuery] DevFlowInfoSearch serachParam)
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            var pageinfo = new NoPageInfo<DEV_FLOWTEMP_NODE_INFO> { PageIndex = pageParams.page, PageSize = pageParams.pageSize };
+            var whereexp = Expressionable.Create<DEV_FLOWTEMP_NODE_INFO>();
+            whereexp = whereexp.And(a => a.IS_DELETE == 0&&a.NODE_STRID== serachParam.NodeStr);
+            Expression<Func<DEV_FLOWTEMP_NODE_INFO, object>> orderbyLambda = a => a.ID;
+            var data = _IDevFlowtempNodeInfoService.GetList(pageinfo, whereexp.ToExpression(), orderbyLambda, false);
+            var result = new ResultData<DevFlowTempNodeInfoList>
+            {
+                result = data,
+            };
+            return new DevResultJson(result);
+        }
+
+
+
+
         #endregion
 
 

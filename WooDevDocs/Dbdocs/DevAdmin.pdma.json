@@ -4,7 +4,7 @@
   "avatar": "",
   "version": "4.2.0",
   "createdTime": "2022-5-23 09:09:48",
-  "updatedTime": "2022-11-28 19:00:00",
+  "updatedTime": "2022-11-29 18:58:20",
   "dbConns": [],
   "profile": {
     "default": {
@@ -8257,6 +8257,23 @@
           "id": "E6F31529-3A48-479C-9073-3AC47B5D7608"
         },
         {
+          "defKey": "OPT_NAME",
+          "defName": "操作名称",
+          "comment": "",
+          "type": "VARCHAR",
+          "len": 100,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "",
+          "id": "F951B9E3-385F-49EC-860B-BAB3FE805063"
+        },
+        {
           "defKey": "INFO_STATE",
           "defName": "当前状态0默认，1审批中 2通过",
           "comment": "",
@@ -10275,6 +10292,23 @@
           "extProps": {},
           "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
           "id": "E6F31529-3A48-479C-9073-3AC47B5D7608"
+        },
+        {
+          "defKey": "OPT_NAME",
+          "defName": "操作名称",
+          "comment": "",
+          "type": "VARCHAR",
+          "len": 100,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "",
+          "id": "79EEEBF1-9393-452E-B5FD-DCCAB6440225"
         },
         {
           "defKey": "INFO_STATE",

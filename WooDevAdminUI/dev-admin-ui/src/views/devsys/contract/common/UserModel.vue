@@ -5,9 +5,29 @@
     :helpMessage="['选择用户信息', '双击选择用户']"
     width="700px"
   >
-    <BasicTable @register="registerTable" :searchInfo="searchInfo" @row-dbClick="onRowDbClick" />
+    <BasicTable
+      @register="registerTable"
+      :rowSelection="{ type: 'checkbox' }"
+      size="small"
+      @row-dbClick="onRowDbClick"
+    >
+      <template #toolbar>
+        <!-- <a-button type="primary" @click="searchHand"> 增加 </a-button> -->
+        <div style="margin-bottom: 12px; text-align: left">
+          <a-input-search
+            v-model="search_word"
+            placeholder="请输入用户名"
+            enter-button="搜索"
+            size="large"
+            style="width: 240px; height: 22px"
+            @search="onSearch"
+          />
+        </div>
+      </template>
+    </BasicTable>
   </BasicModal>
 </template>
+
 <script lang="ts">
   import { defineComponent, reactive, ref } from 'vue';
   import { BasicModal } from '/@/components/Modal';
@@ -15,20 +35,22 @@
   import { getUserList } from '/@/api/devsys/system/devsystem';
   import { h } from 'vue';
   import { Tag } from 'ant-design-vue';
-  import { FormSchema } from '/@/components/Table';
+  //import { FormSchema } from '/@/components/Table';
+  //:searchInfo="searchInfo" 列表属性
   export default defineComponent({
     components: { BasicModal, BasicTable },
     emits: ['rowUserDbclick'],
     setup(_, { emit }) {
       const searchInfo = reactive<Recordable>({});
-      const searchFormSchema: FormSchema[] = [
-        {
-          field: 'LOGIN_NAME',
-          label: '登录名',
-          component: 'Input',
-          colProps: { span: 12 },
-        },
-      ];
+      const search_word = ref('');
+      // const searchFormSchema: FormSchema[] = [
+      //   {
+      //     field: 'LOGIN_NAME',
+      //     label: '登录名',
+      //     component: 'Input',
+      //     colProps: { span: 12 },
+      //   },
+      // ];
       const columns: BasicColumn[] = [
         {
           title: '登录名',
@@ -77,18 +99,21 @@
           width: 140,
         },
       ];
-      const [registerTable] = useTable({
+      const [registerTable, { reload }] = useTable({
         //{ reload, updateTableDataRecord }
         title: '用户列表',
         api: getUserList,
+        beforeFetch: (t) => {
+          t.LOGIN_NAME = search_word.value;
+        },
         rowKey: 'ID',
         columns,
         formConfig: {
           labelWidth: 120,
-          schemas: searchFormSchema,
+          //schemas: searchFormSchema,
           autoSubmitOnEnter: true,
         },
-        useSearchForm: true,
+        useSearchForm: false,
         showTableSetting: true,
         bordered: true,
         handleSearchInfoFn(info) {
@@ -101,7 +126,13 @@
         emit('rowUserDbclick', record);
         //console.log('onRowDbClick', event);
       }
-      return { registerTable, searchInfo, onRowDbClick };
+      /***
+       * 查询按钮
+       ***/
+      function onSearch() {
+        reload();
+      }
+      return { registerTable, searchInfo, onRowDbClick, onSearch, search_word };
     },
   });
 </script>
