@@ -40,5 +40,12 @@ namespace WooDev.IServices
         /// <param name="Id">ID</param>
         /// <returns></returns>
         DevFlowTempView ShowDetail(int Id);
-    }
+        /// <summary>
+        /// 根据模板ID获取流出图
+        /// </summary>
+        /// <param name="tempId">模板ID</param>
+        /// <returns></returns>
+        FlowTempChartData GetFlowChart(int tempId);
+        
+        }
 }

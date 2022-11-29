@@ -178,6 +178,21 @@ namespace WooDev.Services
             return local.FirstOrDefault();
 
         }
+        /// <summary>
+        /// 根据模板ID获取流出图
+        /// </summary>
+        /// <param name="tempId">模板ID</param>
+        /// <returns></returns>
+        public FlowTempChartData GetFlowChart(int tempId)
+        {
+            List<DEV_FLOWTEMP_NODE> FlowNodes = new List<DEV_FLOWTEMP_NODE>();
+            List<DEV_FLOWTEMP_EDGE> FlowEdges = new List<DEV_FLOWTEMP_EDGE>();
+            var listnodes = DbClient.Queryable<DEV_FLOWTEMP_NODE>().Where(a => a.TEMP_ID == tempId).ToList();
+            var listedges= DbClient.Queryable<DEV_FLOWTEMP_EDGE>().Where(a => a.TEMP_ID == tempId).ToList();
+
+            return new FlowTempChartData { FlowNodes = listnodes, FlowEdges = listedges };
+
+        }
 
     }
 }

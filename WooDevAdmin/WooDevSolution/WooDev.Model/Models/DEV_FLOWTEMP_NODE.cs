@@ -47,35 +47,35 @@ namespace WooDev.Model.Models
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public int N_TYPE { get; set; }
+        public string N_TYPE { get; set; }
 
         /// <summary>
         /// 描    述:X轴 确定位置
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public decimal X { get; set; }
+        public int X { get; set; }
 
         /// <summary>
         /// 描    述:Y轴 确定位置
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public decimal Y { get; set; }
+        public int Y { get; set; }
 
         /// <summary>
         /// 描    述:文本X轴
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public decimal TEXT_X { get; set; }
+        public int TEXT_X { get; set; }
 
         /// <summary>
         /// 描    述:文本Y轴
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public decimal TEXT_Y { get; set; }
+        public int TEXT_Y { get; set; }
 
         /// <summary>
         /// 描    述:文本内容

@@ -70,3 +70,10 @@ export interface deldataInfo {
  *修改查看信息载体
  */
 export type FlowTempViewInfo = FlowTempSaveInfo & {};
+/***
+ * 流程图
+ */
+export interface FlowChartTempSaveInfo {
+  TempId: number;
+  FlowData: string;
+}

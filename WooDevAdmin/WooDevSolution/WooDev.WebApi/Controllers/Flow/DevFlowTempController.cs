@@ -9,10 +9,12 @@ using WooDev.Common.Models;
 using WooDev.Common.Utility;
 using WooDev.IServices;
 using WooDev.Model.Models;
+using WooDev.Services;
 using WooDev.ViewModel;
 using WooDev.ViewModel.Common;
 using WooDev.ViewModel.Enums;
 using WooDev.ViewModel.ExtendModel;
+using WooDev.ViewModel.Flow;
 using WooDev.WebCommon.Extend;
 using WooDev.WebCommon.FilterExtend;
 using WooDev.WebCommon.Utiltiy;
@@ -30,9 +32,15 @@ namespace WooDev.WebApi.Controllers.Flow
     public class DevFlowTempController : ControllerBase
     {
         private IDevFlowTempService _IDevFlowTempService;
-        public DevFlowTempController(IDevFlowTempService iDevFlowTempService)
+        private IDevFlowtempNodeService _IDevFlowtempNodeService;
+        private IDevFlowtempEdgeService _IDevFlowtempEdgeService;
+        public DevFlowTempController(IDevFlowTempService iDevFlowTempService, 
+            IDevFlowtempNodeService iDevFlowtempNodeService,
+            IDevFlowtempEdgeService iDevFlowtempEdgeService)
         {
             _IDevFlowTempService = iDevFlowTempService;
+            _IDevFlowtempNodeService = iDevFlowtempNodeService;
+            _IDevFlowtempEdgeService = iDevFlowtempEdgeService;
         }
 
         /// <summary>
@@ -203,6 +211,55 @@ namespace WooDev.WebApi.Controllers.Flow
 
 
         }
+
+        #region 流程图操作相关
+
+        /// <summary>
+        /// 新增，修改保存
+        /// </summary>
+        /// <param name="roleDTO">角色对象</param>
+        /// <returns></returns>
+        [DevOptionLogActionFilter("流程图保存", OptionLogEnum.UpdateOrAdd, "流程图保存", true)]
+        [Route("flowChartTempSave")]
+        [HttpPost]
+        public IActionResult FlowChartTempSave([FromBody] FlowChatData flowChartTempDTO)
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            var data= FlowTempUtility.GetFlowChartData(flowChartTempDTO, userId);
+            _IDevFlowtempNodeService.Delete(a => a.TEMP_ID == flowChartTempDTO.TempId);
+            _IDevFlowtempEdgeService.Delete(a => a.TEMP_ID == flowChartTempDTO.TempId);
+            _IDevFlowtempNodeService.Add(data.FlowNodes);
+            _IDevFlowtempEdgeService.Add(data.FlowEdges);
+            var result = new ResultData
+            {
+                code = 0,
+                message = "ok",
+            };
+            return new DevResultJson(result);
+
+
+        }
+        /// <summary>
+        /// 根据模板ID获取流出图数据
+        /// </summary>
+        /// <param name="tempId">模板ID</param>
+        /// <returns></returns>
+        [Route("getFlowChartData")]
+        [HttpGet]
+        public IActionResult GetFlowChartData(int tempId)
+        {
+            var data = _IDevFlowTempService.GetFlowChart(tempId);
+            DevFlowChartInfo flowchartdata = FlowTempUtility.GetFlowCharData(data);
+            var resultdata = new ResultViewData<DevFlowChartInfo>
+            {
+                code = 0,
+                message = "ok",
+                result= flowchartdata
+
+            };
+            return new DevResultJson(resultdata);
+        }
+        #endregion
 
 
 

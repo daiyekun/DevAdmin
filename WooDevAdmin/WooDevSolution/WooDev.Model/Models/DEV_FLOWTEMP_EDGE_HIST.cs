@@ -61,7 +61,7 @@ namespace WooDev.Model.Models
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public int EDGE_TYPE { get; set; }
+        public string EDGE_TYPE { get; set; }
 
         /// <summary>
         /// 描    述:链接开始节点ID
@@ -82,28 +82,28 @@ namespace WooDev.Model.Models
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public decimal STARTPORT_X { get; set; }
+        public int STARTPORT_X { get; set; }
 
         /// <summary>
         /// 描    述:开始Y轴
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public decimal STARTPORT_Y { get; set; }
+        public int STARTPORT_Y { get; set; }
 
         /// <summary>
         /// 描    述:结束X轴
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public decimal ENDPORT_X { get; set; }
+        public int ENDPORT_X { get; set; }
 
         /// <summary>
         /// 描    述:介绍Y轴
         /// 默 认 值:
         /// 是否空值:False
         /// </summary>
-        public decimal ENDPORT_Y { get; set; }
+        public int ENDPORT_Y { get; set; }
 
         /// <summary>
         /// 描    述:线条拐角以及开始结束点XY坐标 JSON字符串
@@ -111,6 +111,27 @@ namespace WooDev.Model.Models
         /// 是否空值:False
         /// </summary>
         public string PONTSLIST { get; set; }
+
+        /// <summary>
+        /// 描    述:文本X轴
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public int? TEXT_X { get; set; }
+
+        /// <summary>
+        /// 描    述:文本Y轴
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public int? TEXT_Y { get; set; }
+
+        /// <summary>
+        /// 描    述:文本值
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public string TEXT_VALUE { get; set; }
 
         /// <summary>
         /// 描    述:是否删除

@@ -8,6 +8,7 @@ import {
   flowTempParams,
   deldataInfo,
   FlowTempViewInfo,
+  FlowChartTempSaveInfo,
 } from '../model/flow/flowTempModel';
 import { defHttp } from '/@/utils/http/axios';
 import { ResultData } from '/@/api/model/baseModel';
@@ -19,6 +20,8 @@ enum Api {
   flowTempDelete = '/DevFlowTemp/delFlowTemp', //删除
   flowTempView = '/Customer/flowTempView', //审批模板详情
   setFlowTempStatus = '/DevFlowTemp/setFlowTempStatus', //修改状态
+  flowChartTempSave = '/DevFlowTemp/flowChartTempSave', //保持模板流程图
+  getFlowTempChart = '/DevFlowTemp/getFlowChartData', //根据模板ID获取流出图
 }
 
 export const getFlowItemList = (params?: flowitemParams) =>
@@ -40,3 +43,9 @@ export const flowTempomerViewApi = (id: number) =>
 
 export const setFlowTempStatus = (id: number, status: number) =>
   defHttp.post({ url: Api.setFlowTempStatus, params: { id, status } });
+
+export const flowChartTempSaveApi = (params: FlowChartTempSaveInfo) =>
+  defHttp.post<ResultData>({ url: Api.flowChartTempSave, params });
+
+export const flowTempChartViewApi = (tempId: number) =>
+  defHttp.get<string>({ url: Api.getFlowTempChart, params: { tempId } });

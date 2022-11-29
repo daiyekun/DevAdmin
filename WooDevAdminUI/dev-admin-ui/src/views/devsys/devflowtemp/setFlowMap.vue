@@ -14,6 +14,7 @@
   import { defineComponent, ref, onMounted, unref } from 'vue';
   import LogicFlow from '@logicflow/core';
   import { JsonPreview } from '/@/components/CodeEditor';
+  import { flowChartTempSaveApi, flowTempChartViewApi } from '/@/api/devsys/flow/flowtemp';
   import {
     DndPanel,
     SelectionSelect,
@@ -25,20 +26,34 @@
   import '@logicflow/core/dist/style/index.css';
   import '@logicflow/extension/lib/style/index.css';
   import './css/devflowcustom.css';
-  //import { useMessage } from '/@/hooks/web/useMessage';
+  import { useMessage } from '/@/hooks/web/useMessage';
   import { PageWrapper } from '/@/components/Page';
   import { useModal, BasicModal } from '/@/components/Modal';
   import { useDrawer } from '/@/components/Drawer';
   import NodeDrawer from './NodeDrawer.vue';
+  import { useRoute } from 'vue-router';
   export default defineComponent({
     name: 'DevSetFlowTemp',
     components: { PageWrapper, JsonPreview, BasicModal, NodeDrawer },
     setup() {
       const container = ref();
-      // const { createMessage: msg } = useMessage();
+      const { createMessage: msg } = useMessage();
       const [register, { openModal }] = useModal();
       const [registerNodeInfo, { openDrawer: openNodeDrawer }] = useDrawer();
       const graphData = ref({});
+      const route = useRoute();
+      const tempId = ref(route.params?.id);
+      function getViewChat(lf: LogicFlow) {
+        const reqdata = flowTempChartViewApi(Number(tempId.value));
+        reqdata.then((values) => {
+          //console.log('values', values);
+          //debugger;
+
+          lf.render(values);
+          //return values;
+          // customerdata.viewdata = values;
+        });
+      }
       onMounted(() => {
         LogicFlow.use(Control);
         LogicFlow.use(Menu);
@@ -47,6 +62,9 @@
           grid: true,
           plugins: [BpmnElement, DndPanel, SelectionSelect, Control, MiniMap, Menu],
         });
+        //获取图像数据并渲染
+        getViewChat(lf);
+
         var clickFlag = null; //是否点击标识（定时器编号）
         lf.on('node:click,edge:click', (tdata) => {
           console.log('node:click,edge:click');
@@ -128,9 +146,20 @@
           iconClass: 'custom-saveflow',
           title: '将图保存到数据库',
           text: '保存',
-          onClick: (lf) => {
-            debugger;
-            console.log(JSON.stringify(lf.getGraphData()));
+          onClick: async (lf) => {
+            //console.log(JSON.stringify(lf.getGraphData()));
+            try {
+              msg.loading({ content: '正在保存...', duration: 0, key: 'saving' });
+
+              await flowChartTempSaveApi({
+                TempId: Number(tempId.value),
+                FlowData: JSON.stringify(lf.getGraphData()),
+              });
+              getViewChat(lf);
+              msg.success({ content: '数据已保存', key: 'saving' });
+            } catch (error) {
+              msg.error({ content: '保存失败,' + error, key: 'saving' });
+            }
           },
         });
 

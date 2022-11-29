@@ -7,19 +7,8 @@
     width="500px"
     @ok="handleSubmit"
   >
-    <BasicForm @register="registerForm">
-      <!-- <template #menu="{ model, field }">
-        <BasicTree
-          v-model:value="model[field]"
-          :treeData="treeData"
-          :fieldNames="{ title: 'meta.title', key: 'id' }"
-          checkable
-          toolbar
-          title="菜单分配"
-        />
-      </template> -->
-      <UserTable ref="tableRef" :currgroupId="tmpgroupId" />
-    </BasicForm>
+    <BasicForm @register="registerForm" />
+    <UserTable ref="tableRef" :currgroupId="tmpgroupId" />
   </BasicDrawer>
 </template>
 <script lang="ts">
