@@ -2,7 +2,7 @@ import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
 import { h } from 'vue';
 import { Switch } from 'ant-design-vue';
-import { setRoleStatus } from '/@/api/devsys/system/devsystem';
+import { setFlowGroupStatus } from '/@/api/devsys/flow/flowgroup';
 import { useMessage } from '/@/hooks/web/useMessage';
 
 export const columns: BasicColumn[] = [
@@ -26,14 +26,14 @@ export const columns: BasicColumn[] = [
       }
       return h(Switch, {
         checked: record.G_STATE == 0,
-        checkedChildren: '已启用',
-        unCheckedChildren: '已禁用',
+        checkedChildren: '启用',
+        unCheckedChildren: '停用',
         loading: record.pendingStatus,
         onChange(checked: boolean) {
           record.pendingStatus = true;
           const newStatus = checked ? 0 : 1;
           const { createMessage } = useMessage();
-          setRoleStatus(record.ID, newStatus)
+          setFlowGroupStatus(record.ID, newStatus)
             .then(() => {
               record.G_STATE = newStatus;
               createMessage.success(`已成功修改组状态`);

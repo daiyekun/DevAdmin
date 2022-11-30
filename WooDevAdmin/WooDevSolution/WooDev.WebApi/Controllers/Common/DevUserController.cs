@@ -121,6 +121,10 @@ namespace WooDev.WebApi.Controllers.Common
             var pageinfo = new PageInfo<DEV_USER>() { PageIndex = pageParams.page, PageSize = pageParams.pageSize };
             var whereexp = Expressionable.Create<DEV_USER>();
             whereexp = whereexp.And(a => a.IS_DELETE == 0);
+            if (serachParam.SelecType == 1)
+            {//过滤启用状态
+                whereexp = whereexp.And(a => a.USTATE == 1);
+            }
             if (!string.IsNullOrEmpty(serachParam.NAME))
             {//搜索名称
                 whereexp = whereexp.And(a => a.NAME.Contains(serachParam.NAME));

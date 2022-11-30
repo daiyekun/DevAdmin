@@ -57,6 +57,11 @@ namespace WooDev.WebApi.Controllers.Flow
             var pageinfo = new PageInfo<DEV_FLOW_GROUP>() { PageIndex = pageParams.page, PageSize = pageParams.pageSize };
             var whereexp = Expressionable.Create<DEV_FLOW_GROUP>();
             whereexp = whereexp.And(a => a.IS_DELETE == 0);
+            if (serachParam.SelecType==1)
+            {
+                //启用的数据
+                whereexp = whereexp.And(a => a.G_STATE == 0);
+            }
 
             if (!string.IsNullOrEmpty(serachParam.KeyWord))
             {//搜索
@@ -161,7 +166,7 @@ namespace WooDev.WebApi.Controllers.Flow
         /// </summary>
         /// <param name="roleDTO">角色对象</param>
         /// <returns></returns>
-        [DevOptionLogActionFilter("修改角色状态", OptionLogEnum.Update, "修改角色状态", true)]
+        [DevOptionLogActionFilter("修改组状态", OptionLogEnum.Update, "修改组状态", true)]
         [Route("setFlowGroupStatus")]
         [HttpPost]
         public IActionResult SetFlowGroupStatus(DevStatusInfo roleStatus)

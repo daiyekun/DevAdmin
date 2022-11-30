@@ -97,6 +97,8 @@ export interface FlowNodeInfoListItem {
   RE_TEXT: number;
   INFO_STATE: number;
   NRULE: number;
+  OtypeDsc: string;
+  ObjName: string;
 }
 export type FlowNodeInfoListGetResultModel = BasicFetchResult<FlowNodeInfoListItem>;
 

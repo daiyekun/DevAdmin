@@ -4,7 +4,7 @@
   "avatar": "",
   "version": "4.2.0",
   "createdTime": "2022-5-23 09:09:48",
-  "updatedTime": "2022-11-29 18:58:20",
+  "updatedTime": "2022-11-30 22:50:18",
   "dbConns": [],
   "profile": {
     "default": {
@@ -8053,6 +8053,23 @@
           "refDict": "",
           "uiHint": "",
           "id": "F3366E72-DFD5-4737-936E-D96E9CDCB349"
+        },
+        {
+          "defKey": "NRULE",
+          "defName": "审批规则",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "id": "9D5B93D9-DEF1-40DF-8C1C-6F2A5FFBBA56"
         }
       ],
       "correlations": [],
@@ -9648,6 +9665,23 @@
           "refDict": "",
           "uiHint": "",
           "id": "F3366E72-DFD5-4737-936E-D96E9CDCB349"
+        },
+        {
+          "defKey": "NRULE",
+          "defName": "审批规则",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "id": "1745FE98-69EE-4215-82CF-EA9EB55C22E4"
         }
       ],
       "correlations": [],

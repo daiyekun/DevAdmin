@@ -11,6 +11,7 @@ using WooDev.Model.Models;
 using WooDev.ViewModel.Enums;
 using WooDev.ViewModel;
 using WooDev.ViewModel.Flow;
+using WooDev.ViewModel.Contract.Enums;
 
 namespace WooDev.Services
 {
@@ -71,9 +72,11 @@ namespace WooDev.Services
                             NODE_ID = a.NODE_ID,
                             NODE_STRID = a.NODE_STRID,
                             O_TYPE=a.O_TYPE,
+                            OtypeDsc = EmunUtility.GetDesc(typeof(OptTypeEnum), a.O_TYPE),
                             RE_TEXT = a.RE_TEXT,
                             NRULE = a.NRULE,
                             INFO_STATE = a.INFO_STATE,
+                            ObjName= GetObjName(a.O_TYPE, a.OPT_ID)
                         };
             return new ResultPageData<DevFlowTempNodeInfoList>()
             {
@@ -84,6 +87,28 @@ namespace WooDev.Services
 
 
             };
+
+           
+        }
+        /// <summary>
+        /// 获取对象名称
+        /// </summary>
+        /// <param name="objType">操作对象</param>
+        /// <param name="objId">操作ID</param>
+        /// <returns></returns>
+        private string GetObjName(int objType,int objId)
+        {
+            switch (objType)
+            {
+                case (int)OptTypeEnum.UserRes:
+                    return DevRedisUtility.GetUserField(objId);
+                    
+                case (int)OptTypeEnum.FlowGroup:
+                    return DevRedisUtility.GetGroupField(objId);
+                default:
+                    return "";
+            }
+
         }
     }
 }

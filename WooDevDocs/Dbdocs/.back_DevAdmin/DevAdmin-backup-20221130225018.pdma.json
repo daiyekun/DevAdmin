@@ -4,7 +4,7 @@
   "avatar": "",
   "version": "4.2.0",
   "createdTime": "2022-5-23 09:09:48",
-  "updatedTime": "2022-11-29 18:57:49",
+  "updatedTime": "2022-11-30 22:50:18",
   "dbConns": [],
   "profile": {
     "default": {
@@ -8053,6 +8053,23 @@
           "refDict": "",
           "uiHint": "",
           "id": "F3366E72-DFD5-4737-936E-D96E9CDCB349"
+        },
+        {
+          "defKey": "NRULE",
+          "defName": "审批规则",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "id": "9D5B93D9-DEF1-40DF-8C1C-6F2A5FFBBA56"
         }
       ],
       "correlations": [],
@@ -9648,6 +9665,23 @@
           "refDict": "",
           "uiHint": "",
           "id": "F3366E72-DFD5-4737-936E-D96E9CDCB349"
+        },
+        {
+          "defKey": "NRULE",
+          "defName": "审批规则",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "id": "1745FE98-69EE-4215-82CF-EA9EB55C22E4"
         }
       ],
       "correlations": [],
@@ -10292,6 +10326,23 @@
           "extProps": {},
           "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
           "id": "E6F31529-3A48-479C-9073-3AC47B5D7608"
+        },
+        {
+          "defKey": "OPT_NAME",
+          "defName": "操作名称",
+          "comment": "",
+          "type": "VARCHAR",
+          "len": 100,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "",
+          "id": "79EEEBF1-9393-452E-B5FD-DCCAB6440225"
         },
         {
           "defKey": "INFO_STATE",

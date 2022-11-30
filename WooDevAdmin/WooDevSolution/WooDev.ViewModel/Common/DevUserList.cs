@@ -44,6 +44,10 @@ namespace WooDev.ViewModel
         /// 组ID-用户组使用
         /// </summary>
         public int GroupId { get; set; }
+        /// <summary>
+        /// 查询类型
+        /// </summary>
+        public int SelecType { get; set; } = 0;
     }
     /// <summary>
     /// 账号对象

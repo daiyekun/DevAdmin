@@ -1,8 +1,8 @@
 <template>
   <BasicModal
     v-bind="$attrs"
-    title="选择用户信息"
-    :helpMessage="['选择用户信息', '双击选择用户']"
+    title="选择组信息"
+    :helpMessage="['选择组信息', '双击选择用户组']"
     width="700px"
     @ok="handleOk"
   >
@@ -17,7 +17,7 @@
         <div style="margin-bottom: 12px; text-align: left">
           <a-input-search
             v-model:value="search_word"
-            placeholder="请输入用户名"
+            placeholder="请输入组名称"
             enter-button="查询"
             size="large"
             style="width: 240px; height: 22px"
@@ -33,79 +33,58 @@
   import { defineComponent, reactive, ref } from 'vue';
   import { BasicModal } from '/@/components/Modal';
   import { BasicTable, useTable, BasicColumn } from '/@/components/Table';
-  import { getUserList } from '/@/api/devsys/system/devsystem';
+  import { getFlowGroupList } from '/@/api/devsys/flow/flowgroup';
   import { h } from 'vue';
   import { Tag } from 'ant-design-vue';
   //import { FormSchema } from '/@/components/Table';
   //:searchInfo="searchInfo" 列表属性
   export default defineComponent({
     components: { BasicModal, BasicTable },
-    emits: ['rowUserDbclick', 'selectRowUser'],
+    emits: ['rowGroupDbclick', 'selectRowGroup'],
     setup(_, { emit }) {
       const searchInfo = reactive<Recordable>({});
       const search_word = ref('');
-      // const searchFormSchema: FormSchema[] = [
-      //   {
-      //     field: 'LOGIN_NAME',
-      //     label: '登录名',
-      //     component: 'Input',
-      //     colProps: { span: 12 },
-      //   },
-      // ];
       const columns: BasicColumn[] = [
         {
-          title: '登录名',
-          dataIndex: 'LOGIN_NAME',
-          width: 120,
+          title: '名称',
+          dataIndex: 'NAME',
+          width: 140,
         },
         {
-          title: '姓名',
-          dataIndex: 'NAME',
+          title: '编号',
+          dataIndex: 'CODE',
           width: 120,
         },
 
         {
-          title: '性别',
-          dataIndex: 'SEX',
-          width: 100,
+          title: '状态',
+          dataIndex: 'G_STATE',
+          width: 110,
           customRender: ({ record }) => {
-            const status = record.SEX;
-            const enable = ~~status === 1;
-            const color = enable ? 'blue' : 'red';
-            const text = enable ? '男' : '女';
+            const status = record.G_STATE;
+            const enable = ~~status === 0;
+            const color = enable ? 'green' : 'red';
+            const text = enable ? '启用' : '停用';
             return h(Tag, { color: color }, () => text);
           },
         },
         {
-          title: '电话',
-          dataIndex: 'TEL',
+          title: '备注',
+          dataIndex: 'REMARK',
           width: 130,
         },
         {
-          title: '状态',
-          dataIndex: 'USTATE',
-          width: 110,
-          customRender: ({ record }) => {
-            const status = record.USTATE;
-            const enable = ~~status === 1;
-            const color = enable ? 'green' : 'red';
-            const text = enable ? '启用' : '禁用';
-            return h(Tag, { color: color }, () => text);
-          },
-        },
-
-        {
           title: '创建时间',
           dataIndex: 'CREATE_TIME',
-          width: 140,
+          width: 130,
         },
       ];
       const [registerTable, { reload, getSelectRows }] = useTable({
         //{ reload, updateTableDataRecord }
-        title: '用户列表',
-        api: getUserList,
+        title: '组列表',
+        api: getFlowGroupList,
         beforeFetch: (t) => {
-          t.LOGIN_NAME = search_word.value;
+          t.KeyWord = search_word.value;
           t.SelecType = 1;
         },
         rowKey: 'ID',
@@ -125,13 +104,13 @@
       });
 
       function onRowDbClick(record) {
-        emit('rowUserDbclick', record);
+        emit('rowGroupDbclick', record);
         //console.log('onRowDbClick', event);
       }
       function handleOk() {
         var selectrow = getSelectRows();
-        emit('selectRowUser', selectrow);
-        console.log('handleOk--', selectrow);
+        emit('selectRowGroup', selectrow);
+        //console.log('handleOk--', selectrow);
       }
       /***
        * 查询按钮

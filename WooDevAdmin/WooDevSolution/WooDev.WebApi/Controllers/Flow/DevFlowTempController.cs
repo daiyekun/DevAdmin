@@ -331,6 +331,51 @@ namespace WooDev.WebApi.Controllers.Flow
 
         }
 
+        /// <summary>
+        /// 删除数据
+        /// </summary>
+        /// <param name="Ids">选中ID</param>
+        [DevOptionLogActionFilter("删除审批节点审批对象", OptionLogEnum.Del, "删除审批节点审批对象", true)]
+        [Route("delFlowNodeInfoObj")]
+        [HttpGet]
+        [Authorize]
+        public IActionResult DelFlowNodeInfoObj(string Ids)
+        {
+            var arrIds = StringHelper.String2ArrayInt(Ids);
+            _IDevFlowtempNodeInfoService.Delete(a => arrIds.Contains(a.ID));
+
+            var result = new ResultData
+            {
+                code = 0,
+                message = "ok",
+            };
+            return new DevResultJson(result);
+        }
+
+        /// <summary>
+        /// 新增，修改保存节点信息
+        /// </summary>
+        /// <param name="flowInfoDTO">节点信息</param>
+        /// <returns></returns>
+        [DevOptionLogActionFilter("节点基本信息修改", OptionLogEnum.UpdateOrAdd, "节点基本信息修改", true)]
+        [Route("flowNodeUpdate")]
+        [HttpPost]
+        public IActionResult FlowNodeUpdate([FromBody] DevFlowTempNodeDTO devFlowTempNode)
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            _IDevFlowtempNodeService.UpdateNode(devFlowTempNode, userId);
+             var result = new ResultData
+            {
+                code = 0,
+                message = "ok",
+            };
+            return new DevResultJson(result);
+
+
+        }
+
+        
+
 
 
 

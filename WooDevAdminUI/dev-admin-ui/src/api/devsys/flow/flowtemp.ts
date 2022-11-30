@@ -27,6 +27,7 @@ enum Api {
   getFlowTempChart = '/DevFlowTemp/getFlowChartData', //根据模板ID获取流出图
   getNodeInfoByNodeId = '/DevFlowTemp/getNodeInfoByNodeId', //根据节点ID查询节点信息
   flowNodeInfoSave = '/DevFlowTemp/flowNodeInfoSave', //节点信息修改
+  flowNodeInfoAppObj = '/DevFlowTemp/delFlowNodeInfoObj', //删除节点审批人员
 }
 
 export const getFlowItemList = (params?: flowitemParams) =>
@@ -60,3 +61,6 @@ export const getNodeInfoByNodeIdApi = (params: FlowNodeParams) =>
 
 export const flowNodeInfoSaveApi = (params: FlowTempNodeInfo) =>
   defHttp.post<ResultData>({ url: Api.flowNodeInfoSave, params });
+
+export const flowNodeInfoAppObjApi = (params: deldataInfo) =>
+  defHttp.get<ResultData>({ url: Api.flowNodeInfoAppObj, params });

@@ -55,5 +55,15 @@ namespace WooDev.Common.Utility
         {
             return RedisUtility.HashGet($"{RedisKeys.DataDicHashKey}:{dataId}", field).ToString();
         }
+
+        /// <summary>
+        /// 获取组名称
+        /// </summary>
+        /// <param name="dataId">字典ID</param>
+        /// <returns>用户字段字</returns>
+        public static string GetGroupField(int groupId, string field = "NAME")
+        {
+            return RedisUtility.HashGet($"{RedisKeys.FlowGroupHashKey}:{groupId}", field).ToString();
+        }
     }
 }

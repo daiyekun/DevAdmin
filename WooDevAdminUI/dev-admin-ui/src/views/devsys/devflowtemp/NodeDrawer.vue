@@ -21,8 +21,10 @@
           @edit-end="handleEditEnd"
           @edit-cancel="handleEditCancel"
           :beforeEditSubmit="beforeEditSubmit"
+          :rowSelection="{ type: 'checkbox' }"
         >
           <template #toolbar>
+            <a-button type="primary" danger @click="delAppObj"> 删除 </a-button>
             <a-button type="primary" @click="addAppObj"> 增加 </a-button>
           </template>
         </BasicTable>
@@ -34,23 +36,33 @@
     @rowUserDbclick="SelleadUser"
     @selectRowUser="selectRowUser"
   />
+  <UserGroupModel
+    @register="registerGroupModel"
+    @rowGroupDbclick="rowGroupDbclick"
+    @selectRowGroup="selectRowGroup"
+  />
 </template>
 <script lang="ts">
   import { defineComponent, reactive } from 'vue';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
   import { useModal } from '/@/components/Modal';
   import UserSelectModel from '/@/views/devsys/contract/common/UserModel.vue';
+  import UserGroupModel from '/@/views/devsys/contract/common/UserGroupModel.vue';
   // import { PageWrapper } from '/@/components/Page';
   import { BasicForm, FormSchema, useForm } from '/@/components/Form/index';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { BasicTable, useTable, BasicColumn } from '/@/components/Table';
-  import { getNodeInfoByNodeIdApi, flowNodeInfoSaveApi } from '/@/api/devsys/flow/flowtemp';
+  import {
+    getNodeInfoByNodeIdApi,
+    flowNodeInfoSaveApi,
+    flowNodeInfoAppObjApi,
+  } from '/@/api/devsys/flow/flowtemp';
   import { FlowTempNodeInfo } from '/@/api/devsys/model/flow/flowTempModel';
 
   const columns: BasicColumn[] = [
     {
       title: '审批类型',
-      dataIndex: 'O_TYPE',
+      dataIndex: 'OtypeDsc',
       //edit: true,
       editComponent: 'Select',
       editComponentProps: {
@@ -65,20 +77,20 @@
           },
         ],
       },
-      width: 200,
+      width: 160,
     },
     {
       title: '审批对象',
-      dataIndex: 'OPT_NAME',
+      dataIndex: 'ObjName',
       //edit: true,
       editComponentProps: {
         prefix: '$',
       },
-      width: 200,
+      width: 160,
     },
   ];
   export default defineComponent({
-    components: { BasicDrawer, BasicForm, UserSelectModel, BasicTable },
+    components: { BasicDrawer, BasicForm, UserSelectModel, BasicTable, UserGroupModel },
     setup() {
       // let nodeId = ref(0); //当前节点
       // let tempId = ref(0); //模板ID
@@ -87,8 +99,9 @@
       const [register] = useDrawerInner((data) => {
         // 方式1
         setFieldsValue({
-          id: data.data.data.id,
+          NodeId: data.data.data.id,
           Name: data.data.data.text.value,
+          TempId: data.tempId,
         });
         //节点ID
         nodeInfo.nodeId = data.data.data.id;
@@ -96,7 +109,7 @@
         //刷新列表
         reload();
       });
-      const [registerTable, { reload }] = useTable({
+      const [registerTable, { reload, getSelectRows }] = useTable({
         title: '审批对象列表',
         api: getNodeInfoByNodeIdApi,
         beforeFetch: (t) => {
@@ -106,9 +119,34 @@
         columns: columns,
         showIndexColumn: false,
         bordered: true,
+        pagination: false,
       });
       const [registerUserModel, { openModal: openModal1, closeModal }] = useModal();
+      const [registerGroupModel, { openModal: openGroupModal, closeModal: closeGroupModal }] =
+        useModal();
       const schemas: FormSchema[] = [
+        {
+          field: 'TempId',
+          component: 'Input',
+          componentProps: { disabled: true },
+          label: '流程模板ID',
+          colProps: {
+            span: 24,
+          },
+          defaultValue: '',
+          show: () => {
+            return false;
+          },
+        },
+        {
+          field: 'NodeId',
+          component: 'Input',
+          componentProps: { disabled: true },
+          label: '编号',
+          colProps: {
+            span: 24,
+          },
+        },
         {
           field: 'Name',
           component: 'Input',
@@ -118,62 +156,6 @@
             span: 24,
           },
           defaultValue: '',
-        },
-        {
-          field: 'id',
-          component: 'Input',
-          componentProps: { disabled: true },
-          label: '编号',
-          colProps: {
-            span: 24,
-          },
-        },
-      ];
-
-      const schemas1: FormSchema[] = [
-        {
-          field: 'O_TYPE',
-          component: 'Select',
-          label: '审批类型',
-          colProps: {
-            span: 24,
-          },
-          componentProps: {
-            options: [
-              {
-                label: '人力资源',
-                value: '1',
-                key: '1',
-              },
-              {
-                label: '审批组',
-                value: '2',
-                key: '2',
-              },
-            ],
-          },
-        },
-        {
-          field: 'selSpId',
-          component: 'Input',
-          componentProps: ({ formModel }) => {
-            return {
-              onclick: () => {
-                if (formModel.O_TYPE == undefined) {
-                  msg.warn({ content: '请选择审批类型', key: 'msg' });
-                } else if (formModel.O_TYPE == '1') {
-                  openModal1();
-                } else if (formModel.O_TYPE == '2') {
-                } else {
-                  msg.error({ content: '此类型未实现', key: 'msg' });
-                }
-              },
-            };
-          },
-          label: '审批对象',
-          colProps: {
-            span: 24,
-          },
         },
         {
           field: 'SpRules',
@@ -198,7 +180,59 @@
           },
         },
       ];
-      const [registerForm, { setFieldsValue }] = useForm({
+
+      const schemas1: FormSchema[] = [
+        {
+          field: 'selSpId',
+          component: 'Input',
+          componentProps: ({ formModel }) => {
+            return {
+              onclick: () => {
+                if (formModel.O_TYPE == undefined) {
+                  msg.warn({ content: '请选择审批类型', key: 'msg' });
+                } else if (formModel.O_TYPE == '1') {
+                  openModal1();
+                } else if (formModel.O_TYPE == '2') {
+                  openGroupModal();
+                } else {
+                  msg.error({ content: '此类型未实现', key: 'msg' });
+                }
+              },
+            };
+          },
+          label: '审批对象',
+          colProps: {
+            span: 24,
+          },
+          show: () => {
+            return false;
+          },
+        },
+
+        {
+          field: 'O_TYPE',
+          component: 'Select',
+          label: '审批类型',
+          colProps: {
+            span: 24,
+          },
+          componentProps: {
+            options: [
+              {
+                label: '人力资源',
+                value: '1',
+                key: '1',
+              },
+              {
+                label: '审批组',
+                value: '2',
+                key: '2',
+              },
+            ],
+          },
+        },
+      ];
+      const [registerForm, { setFieldsValue, getFieldsValue: getNodeInfoFieldsValue }] = useForm({
         labelWidth: 120,
         schemas,
         showActionButtonGroup: false,
@@ -227,7 +261,7 @@
       function handleEditCancel() {
         console.log('cancel');
       }
-      //新增列
+      //新增列-已经作废，不需要修改
       function addAppObj() {
         let fdata = getFieldsValue();
         if (fdata.O_TYPE == undefined) {
@@ -236,11 +270,28 @@
           openModal1(); //选择用户
         } else if (fdata.O_TYPE == '2') {
           //选择组
+          openGroupModal();
         } else {
           msg.error({ content: '此类型未实现', key: 'msg' });
         }
-
-        //console.log('addAppObj', fdata);
+      }
+      /***
+       * 删除审批对象
+       */
+      async function delAppObj() {
+        let selrecord = getSelectRows();
+        if (selrecord.length <= 0) {
+          msg.warn({ content: '请选择删除数据', key: 'delinfomsg' });
+        } else {
+          msg.loading({ content: `正在删除数据`, key: 'delinfomsg', duration: 0 });
+          let arrayIds: Array<number> = [];
+          for (let i = 0; i < selrecord.length; i++) {
+            arrayIds.push(selrecord[i].ID);
+          }
+          await flowNodeInfoAppObjApi({ Ids: arrayIds.toString() });
+          reload();
+          msg.success({ content: '删除成功', key: 'delinfomsg' });
+        }
       }
 
       // 模拟将指定数据保存
@@ -276,11 +327,6 @@
         return await feakSave({ id: record.id, key, value });
       }
 
-      function handleOk() {
-        console.log('=====================');
-        console.log('ok');
-        console.log('======================');
-      }
       /**
        * 保存节点信息
        */
@@ -288,6 +334,7 @@
         try {
           await flowNodeInfoSaveApi(sdata);
           closeModal();
+          closeGroupModal();
           reload();
           msg.success({ content: '数据已保存', key: 'saving' });
         } catch (error) {
@@ -298,11 +345,18 @@
        * 选择审批对象
        */
       function SelleadUser(rd: any) {
-        setFieldsValue({
-          LEAD_USERID: rd.ID,
-          LEAD_USERNAME: rd.NAME,
+        // setFieldsValue({
+        //   LEAD_USERID: rd.ID,
+        //   LEAD_USERNAME: rd.NAME,
+        // });
+
+        //closeModal();
+
+        msg.warn({
+          content: '请勾选数据点击确认',
+          key: 'tmsg',
         });
-        closeModal();
+        console.log(rd);
       }
       /**
        * 选择用户弹出框 确认按钮
@@ -330,6 +384,58 @@
         }
       }
 
+      /***
+       * 选择审批对象
+       */
+      function rowGroupDbclick(rd: any) {
+        // setFieldsValue({
+        //   LEAD_USERID: rd.ID,
+        //   LEAD_USERNAME: rd.NAME,
+        // });
+
+        msg.warn({
+          content: '请勾选数据点击确认',
+          key: 'tmsg',
+        });
+        console.log(rd);
+        //closeModal();
+      }
+
+      /**
+       * 选择组弹出框 确认按钮
+       */
+      function selectRowGroup(rds: any) {
+        if (rds.length <= 0) {
+          msg.warn({
+            content: '请选择数据',
+            key: 'tmsg',
+          });
+        } else {
+          //添加到后台
+          let fdata = getFieldsValue();
+          let userIds = [];
+          for (let i = 0; i < rds.length; i++) {
+            userIds.push(rds[i].ID);
+          }
+          const savedata: FlowTempNodeInfo = {
+            TEMP_ID: nodeInfo.tempId,
+            NODE_STRID: nodeInfo.nodeId,
+            O_TYPE: fdata.O_TYPE,
+            SpObjIds: userIds,
+          };
+          SaveNodeInfo(savedata);
+        }
+      }
+      /**
+       * 底部确认按钮
+       */
+
+      function handleOk() {
+        var savedata = getNodeInfoFieldsValue();
+        console.log('=====================');
+        console.log('ok', savedata);
+        console.log('======================');
+      }
       return {
         register,
         schemas,
@@ -344,9 +450,15 @@
         handleEditCancel,
         beforeEditSubmit,
         addAppObj,
+        delAppObj,
         selectRowUser,
         SaveNodeInfo,
         nodeInfo,
+        registerGroupModel,
+        openGroupModal,
+        closeGroupModal,
+        selectRowGroup,
+        rowGroupDbclick,
       };
     },
   });

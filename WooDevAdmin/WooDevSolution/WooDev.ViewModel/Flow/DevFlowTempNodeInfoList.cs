@@ -43,7 +43,7 @@ namespace WooDev.ViewModel.Flow
         /// <summary>
         /// 文本操作
         /// </summary>
-        public int RE_TEXT { get; set;}
+        public int RE_TEXT { get; set; }
         /// <summary>
         /// 状态
         /// </summary>
@@ -52,6 +52,14 @@ namespace WooDev.ViewModel.Flow
         /// 审批规则
         /// </summary>
         public int NRULE { get; set; }
+        /// <summary>
+        /// 操作对象类型描述
+        /// </summary>
+        public string  OtypeDsc{get;set;}
+        /// <summary>
+        /// 对象名称
+        /// </summary>
+        public string ObjName { get; set; }
     }
 
     /// <summary>
@@ -93,5 +101,33 @@ namespace WooDev.ViewModel.Flow
         public List<int> SpObjIds { get; set; }
 
     }
+
+    /// <summary>
+    /// 流程节点信息
+    /// </summary>
+    public class DevFlowTempNodeDTO
+    {
+        /// <summary>
+        /// 节点字符串ID
+        /// </summary>
+        public string NodeId { get; set; }
+        /// <summary>
+        /// 流程模板ID
+        /// </summary>
+
+        public int TempId { get; set; }
+        /// <summary>
+        /// 流程节点名称
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// 审批规则
+        /// 1：全部通过
+        /// 2：任意通过
+        /// </summary>
+        public int SpRules { get; set; }
+
+    }
+
          
 }
