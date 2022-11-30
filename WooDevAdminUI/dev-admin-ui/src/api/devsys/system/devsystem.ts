@@ -50,6 +50,7 @@ enum Api {
   MenuDelete = '/DevMenu/delmenu', //删除
   RoleMenuList = '/DevMenu/getMenuPersion', //角色权限分配
   PermssionSave = '/DevMenu/permssionSave', //保存权限
+  SetSystemCache = '/DevSystemSet/setCache', //设置系统缓存
 }
 
 export const getDepartList = (params?: departParams) =>
@@ -113,3 +114,6 @@ export const getRoleMenuList = (params?: MenuSearchParams) =>
 
 export const permssionSaveApi = (params: any) =>
   defHttp.post<ResultData>({ url: Api.PermssionSave, params });
+
+export const setSystemCacheApi = (sta: number) =>
+  defHttp.get<ResultData>({ url: Api.SetSystemCache, params: { sta } });
