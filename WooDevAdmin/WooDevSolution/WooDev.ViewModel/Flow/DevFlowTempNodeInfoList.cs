@@ -66,4 +66,32 @@ namespace WooDev.ViewModel.Flow
         public string NodeStr { get; set; } = "";
 
     }
+    /// <summary>
+    /// 节点信息修改实体
+    /// </summary>
+
+    public class DevFlowInfoDTO
+    {
+        /// <summary>
+        /// 模板ID
+        /// </summary>
+        public int TEMP_ID { get; set; }
+        /// <summary>
+        /// 节点ID字符串
+        /// </summary>
+        public string NODE_STRID { get; set; }
+        /// <summary>
+        /// 操作类型
+        /// 1：人力资源
+        /// 2：审批组
+        /// </summary>
+        public int O_TYPE { get; set; }
+        /// <summary>
+        /// 审批对象ID集合
+        /// </summary>
+
+        public List<int> SpObjIds { get; set; }
+
+    }
+         
 }

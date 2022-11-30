@@ -76,7 +76,7 @@
           clickFlag = setTimeout(function () {
             openNodeDrawer(true, {
               data: tdata,
-              //info: 'Info',
+              tempId: Number(tempId.value),
             });
           }, 300); //延时300毫秒执行
         });

@@ -287,6 +287,50 @@ namespace WooDev.WebApi.Controllers.Flow
             return new DevResultJson(result);
         }
 
+        /// <summary>
+        /// 新增，修改保存节点信息
+        /// </summary>
+        /// <param name="flowInfoDTO">节点信息</param>
+        /// <returns></returns>
+        [DevOptionLogActionFilter("节点信息修改", OptionLogEnum.UpdateOrAdd, "节点信息修改", true)]
+        [Route("flowNodeInfoSave")]
+        [HttpPost]
+        public IActionResult FlowNodeInfoSave([FromBody] DevFlowInfoDTO flowInfoDTO)
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            List<DEV_FLOWTEMP_NODE_INFO> listNodeInfos = new List<DEV_FLOWTEMP_NODE_INFO>();
+            foreach (var objid in flowInfoDTO.SpObjIds)
+            {
+                var nodeInfo = new DEV_FLOWTEMP_NODE_INFO();
+                nodeInfo.OPT_ID = objid;
+                nodeInfo.TEMP_ID = flowInfoDTO.TEMP_ID;
+                nodeInfo.NODE_STRID = flowInfoDTO.NODE_STRID;
+                nodeInfo.O_TYPE = flowInfoDTO.O_TYPE;
+                nodeInfo.NODE_ID = 0;
+                nodeInfo.INFO_STATE = 0;
+                nodeInfo.RE_TEXT = 0;
+                nodeInfo.NRULE = 0;
+                nodeInfo.IS_DELETE = 0;
+                nodeInfo.CREATE_USERID = userId;
+                nodeInfo.UPDATE_USERID = userId;
+                nodeInfo.CREATE_TIME = DateTime.Now;
+                nodeInfo.UPDATE_TIME = DateTime.Now;
+                nodeInfo.OPT_NAME = "";
+                listNodeInfos.Add(nodeInfo);
+
+
+            }
+            _IDevFlowtempNodeInfoService.Add(listNodeInfos);
+            var result = new ResultData
+            {
+                code = 0,
+                message = "ok",
+            };
+            return new DevResultJson(result);
+
+
+        }
+
 
 
 

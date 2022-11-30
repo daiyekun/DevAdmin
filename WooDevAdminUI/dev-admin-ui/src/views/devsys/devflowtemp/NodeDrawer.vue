@@ -29,10 +29,14 @@
       </div>
     </div>
   </BasicDrawer>
-  <UserSelectModel @register="registerUserModel" @rowUserDbclick="SelleadUser" />
+  <UserSelectModel
+    @register="registerUserModel"
+    @rowUserDbclick="SelleadUser"
+    @selectRowUser="selectRowUser"
+  />
 </template>
 <script lang="ts">
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent, reactive } from 'vue';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
   import { useModal } from '/@/components/Modal';
   import UserSelectModel from '/@/views/devsys/contract/common/UserModel.vue';
@@ -40,7 +44,9 @@
   import { BasicForm, FormSchema, useForm } from '/@/components/Form/index';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { BasicTable, useTable, BasicColumn } from '/@/components/Table';
-  import { getNodeInfoByNodeIdApi } from '/@/api/devsys/flow/flowtemp';
+  import { getNodeInfoByNodeIdApi, flowNodeInfoSaveApi } from '/@/api/devsys/flow/flowtemp';
+  import { FlowTempNodeInfo } from '/@/api/devsys/model/flow/flowTempModel';
+
   const columns: BasicColumn[] = [
     {
       title: '审批类型',
@@ -74,7 +80,9 @@
   export default defineComponent({
     components: { BasicDrawer, BasicForm, UserSelectModel, BasicTable },
     setup() {
-      let nodeId = ref(0); //当前节点
+      // let nodeId = ref(0); //当前节点
+      // let tempId = ref(0); //模板ID
+      let nodeInfo = reactive({ nodeId: '', tempId: 0 });
       const { createMessage: msg } = useMessage();
       const [register] = useDrawerInner((data) => {
         // 方式1
@@ -83,7 +91,8 @@
           Name: data.data.data.text.value,
         });
         //节点ID
-        nodeId = data.data.data.id;
+        nodeInfo.nodeId = data.data.data.id;
+        nodeInfo.tempId = data.tempId;
         //刷新列表
         reload();
       });
@@ -91,7 +100,7 @@
         title: '审批对象列表',
         api: getNodeInfoByNodeIdApi,
         beforeFetch: (t) => {
-          t.NodeStr = nodeId;
+          t.NodeStr = nodeInfo.nodeId;
         },
         rowKey: 'ID',
         columns: columns,
@@ -220,7 +229,7 @@
       }
       //新增列
       function addAppObj() {
-        var fdata = getFieldsValue();
+        let fdata = getFieldsValue();
         if (fdata.O_TYPE == undefined) {
           msg.warn({ content: '请选择审批类型', key: 'msg' });
         } else if (fdata.O_TYPE == '1') {
@@ -272,18 +281,53 @@
         console.log('ok');
         console.log('======================');
       }
+      /**
+       * 保存节点信息
+       */
+      async function SaveNodeInfo(sdata: FlowTempNodeInfo) {
+        try {
+          await flowNodeInfoSaveApi(sdata);
+          closeModal();
+          reload();
+          msg.success({ content: '数据已保存', key: 'saving' });
+        } catch (error) {
+          msg.error({ content: '保存失败,' + error, key: 'saving' });
+        }
+      }
       /***
        * 选择审批对象
        */
       function SelleadUser(rd: any) {
-        // console.log('触发了--1233SelleadUser', rd);
-        // debugger;
-        // console.log('触发了--》SelleadUser', rd.NAME, rd.ID);
         setFieldsValue({
           LEAD_USERID: rd.ID,
           LEAD_USERNAME: rd.NAME,
         });
         closeModal();
+      }
+      /**
+       * 选择用户弹出框 确认按钮
+       */
+      function selectRowUser(rds: any) {
+        if (rds.length <= 0) {
+          msg.warn({
+            content: '请选择数据',
+            key: 'tmsg',
+          });
+        } else {
+          //添加到后台
+          let fdata = getFieldsValue();
+          let userIds = [];
+          for (let i = 0; i < rds.length; i++) {
+            userIds.push(rds[i].ID);
+          }
+          const savedata: FlowTempNodeInfo = {
+            TEMP_ID: nodeInfo.tempId,
+            NODE_STRID: nodeInfo.nodeId,
+            O_TYPE: fdata.O_TYPE,
+            SpObjIds: userIds,
+          };
+          SaveNodeInfo(savedata);
+        }
       }
 
       return {
@@ -300,7 +344,9 @@
         handleEditCancel,
         beforeEditSubmit,
         addAppObj,
-        nodeId,
+        selectRowUser,
+        SaveNodeInfo,
+        nodeInfo,
       };
     },
   });

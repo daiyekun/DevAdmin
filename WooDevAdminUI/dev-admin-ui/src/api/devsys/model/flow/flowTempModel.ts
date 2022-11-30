@@ -99,3 +99,22 @@ export interface FlowNodeInfoListItem {
   NRULE: number;
 }
 export type FlowNodeInfoListGetResultModel = BasicFetchResult<FlowNodeInfoListItem>;
+
+/***
+ * 节点信息保存
+ */
+export interface FlowTempNodeInfo {
+  TEMP_ID: number;
+  /***
+   * 节点ID
+   */
+  NODE_STRID: string;
+  /***
+   * 审批对象类型
+   */
+  O_TYPE: number;
+  /***
+   * 审批对象
+   */
+  SpObjIds: Array<number>;
+}

@@ -4,6 +4,7 @@
     title="选择用户信息"
     :helpMessage="['选择用户信息', '双击选择用户']"
     width="700px"
+    @ok="handleOk"
   >
     <BasicTable
       @register="registerTable"
@@ -15,9 +16,9 @@
         <!-- <a-button type="primary" @click="searchHand"> 增加 </a-button> -->
         <div style="margin-bottom: 12px; text-align: left">
           <a-input-search
-            v-model="search_word"
+            v-model:value="search_word"
             placeholder="请输入用户名"
-            enter-button="搜索"
+            enter-button="查询"
             size="large"
             style="width: 240px; height: 22px"
             @search="onSearch"
@@ -39,7 +40,7 @@
   //:searchInfo="searchInfo" 列表属性
   export default defineComponent({
     components: { BasicModal, BasicTable },
-    emits: ['rowUserDbclick'],
+    emits: ['rowUserDbclick', 'selectRowUser'],
     setup(_, { emit }) {
       const searchInfo = reactive<Recordable>({});
       const search_word = ref('');
@@ -99,7 +100,7 @@
           width: 140,
         },
       ];
-      const [registerTable, { reload }] = useTable({
+      const [registerTable, { reload, getSelectRows }] = useTable({
         //{ reload, updateTableDataRecord }
         title: '用户列表',
         api: getUserList,
@@ -126,13 +127,18 @@
         emit('rowUserDbclick', record);
         //console.log('onRowDbClick', event);
       }
+      function handleOk() {
+        var selectrow = getSelectRows();
+        emit('selectRowUser', selectrow);
+        console.log('handleOk--', selectrow);
+      }
       /***
        * 查询按钮
        ***/
       function onSearch() {
         reload();
       }
-      return { registerTable, searchInfo, onRowDbClick, onSearch, search_word };
+      return { registerTable, searchInfo, onRowDbClick, onSearch, search_word, handleOk };
     },
   });
 </script>

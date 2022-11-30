@@ -10,7 +10,7 @@
     <a-card title="客户联系人" :bordered="false" class="!mt-5">
       <ContactBuild ref="tableRef" :custid="coustomerid" />
     </a-card>
-    <UserSelectModel @register="registerUserModel" @rowUserDbclick="SelleadUser" />
+    <UserSelectModel @register="registerUserModel" @rowUserDbclick="SelleadUser" @selectRowUser="selectRowUser" />
     <!-- <a-button type="primary" class="my-4" @click="openModal1"> 打开弹窗 </a-button> -->
     <template #rightFooter>
       <a-button type="primary" @click="submitAll"> 提交 </a-button>
@@ -280,16 +280,34 @@
           msg.error({ content: '保存失败,' + error, key: 'saving' });
         }
       }
-
+      /***
+       * 双击选择负责人
+       */
       function SelleadUser(rd: any) {
-        // console.log('触发了--1233SelleadUser', rd);
-        // debugger;
-        // console.log('触发了--》SelleadUser', rd.NAME, rd.ID);
         setFieldsValue({
           LEAD_USERID: rd.ID,
           LEAD_USERNAME: rd.NAME,
         });
         closeModal();
+      }
+      /**
+       * 选择用户弹出框 确认按钮
+       */
+       function selectRowUser(rds: any) {
+        if (rds.length!=1) {
+          msg.warn({
+            content: '请选择一条数据',
+            key: 'tmsg',
+          });
+        } else {
+          //添加到后台
+          setFieldsValue({
+          LEAD_USERID: rds[0].ID,
+          LEAD_USERNAME: rds[0].NAME,
+        });
+
+          closeModal();
+        }
       }
       function goBack() {
         // 返回列表
@@ -306,7 +324,8 @@
         SelleadUser,
         tableFileRef,
         customerdata,
-        coustomerid
+        coustomerid,
+        selectRowUser
       };
     },
   });
