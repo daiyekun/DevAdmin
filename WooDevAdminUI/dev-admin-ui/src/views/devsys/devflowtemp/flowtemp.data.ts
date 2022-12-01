@@ -110,7 +110,6 @@ export const formSchema: FormSchema[] = [
     component: 'ApiSelect',
     label: '审批对象',
     required: true,
-
     componentProps: ({ formModel, formActionType }) => {
       // console.log('OBJ_TYPE 执行');
       return {
@@ -121,7 +120,7 @@ export const formSchema: FormSchema[] = [
         // use id as value
         valueField: 'Value',
         // not request untill to select
-        immediate: false,
+        immediate: true,
         numberToString: false,
         onChange: (e: any) => {
           const sel = Number(e);
@@ -214,8 +213,9 @@ export const formSchema: FormSchema[] = [
       labelField: 'Name',
       // use id as value
       valueField: 'Id',
+      numberToString: false,
       // not request untill to select
-      immediate: false,
+      immediate: true,
       onChange: (e) => {
         console.log('selected:', e);
       },
@@ -259,9 +259,10 @@ export const formSchema: FormSchema[] = [
       // use name as label
       labelField: 'NAME',
       // use id as value
-      valueField: 'ID',
+      valueField: 'StrId',
+      numberToString: false,
       // not request untill to select
-      immediate: false,
+      immediate: true,
       onChange: (e) => {
         console.log('selected:', e);
       },

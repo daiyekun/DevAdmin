@@ -17,9 +17,9 @@ namespace WooDev.ViewModel.ExtendModel
         /// </summary>
         public string? Name { get; set; }
         /// <summary>
-        /// 值
+        /// 值 数据库是int 由于前端必须使用string
         /// </summary>
-        public int Id { get; set; }
+        public string Id { get; set; }
         /// <summary>
         /// 默认
         /// </summary>

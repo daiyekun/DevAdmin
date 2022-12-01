@@ -16,6 +16,7 @@
             {
               icon: 'ant-design:delete-outlined',
               color: 'error',
+              tooltip: '删除模板',
               popConfirm: {
                 title: '是否确认删除',
                 confirm: handleDelete.bind(null, record),

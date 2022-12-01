@@ -19,51 +19,6 @@
           checkStrictly="true"
         />
       </template>
-
-      <!-- <template #category="{ model, field }">
-        <BasicTree
-          v-model:value="model[field]"
-          :treeData="treeDataCate"
-          :fieldNames="{ title: 'NAME', key: 'ID' }"
-          checkable
-          toolbar
-          title="类别"
-        />
-      </template> -->
-      <!-- <template #flowitem="{ model, field }">
-        <BasicTree
-          v-model:value="model[field]"
-          :treeData="treeData"
-          :fieldNames="{ title: 'NAME', key: 'ID' }"
-          checkable
-          toolbar
-          title="审批事项"
-        />
-      </template> -->
-      <!-- <template #flowitem="{ model, field }">
-        <a-select :options="options" mode="multiple" v-model:value="model[field]" allowClear />
-      </template> -->
-      <!-- <template #category="{ model, field }">
-        <ApiSelect
-          :api="optionsListApi"
-          mode="multiple"
-          v-model:value="model[field]"
-          optionFilterProp="label"
-          resultField="list"
-          labelField="name"
-          valueField="id"
-        />
-      </template> -->
-      <!-- <a-form-item label="类别" required>
-        <a-select
-          v-model:value="value"
-          mode="multiple"
-          style="width: 100%"
-          placeholder="Please select"
-          :options="[...Array(25)].map((_, i) => ({ value: (i + 10).toString(36) + (i + 1) }))"
-          @change="handleChange"
-        />
-      </a-form-item> -->
     </BasicForm>
   </BasicDrawer>
 </template>
@@ -113,11 +68,9 @@
           //     value: data.record.OBJ_TYPE,
           //   },
           // });
-          debugger;
           setFieldsValue({
             ...data.record,
-            OBJ_TYPE: data.record.ObjTypeDic,
-            //data.record.OBJ_TYPE,//ObjTypeDic
+            OBJ_TYPE: data.record.OBJ_TYPE_Str,
           });
           selflowobj.value = data.record.OBJ_TYPE;
         }

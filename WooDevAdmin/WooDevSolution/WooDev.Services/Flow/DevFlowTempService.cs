@@ -57,6 +57,8 @@ namespace WooDev.Services
                 CREATE_TIME = a.CREATE_TIME,//创建时间
                 CREATE_USERID = a.CREATE_USERID,//创建人
                 DEPART_IDS=a.DEPART_IDS,//部门
+                CATE_IDS=a.CATE_IDS,//类别IDs
+                FLOW_ITEMS=a.FLOW_ITEMS,//审批事项
                
             });
             pageInfo.TotalCount = totalCount;
@@ -67,11 +69,14 @@ namespace WooDev.Services
                             NAME = a.NAME,//名称
                             CODE = a.CODE,//编号
                             OBJ_TYPE = a.OBJ_TYPE,//审批对象
+                            OBJ_TYPE_Str = a.OBJ_TYPE.ToString(),
                             F_STATE = a.F_STATE,//状态
                             CREATE_TIME = a.CREATE_TIME,//创建时间
                             CREATE_USERID = a.CREATE_USERID,//创建人
                             ObjTypeDic = EmunUtility.GetDesc(typeof(FlowObjEnums), a.OBJ_TYPE),
                             DEPART_IDS_LIST=StringHelper.String2ArrayInt(a.DEPART_IDS),
+                            CATE_IDS_LIST= StringHelper.Strint2ArrayString1(a.CATE_IDS),//类别
+                            FLOW_ITEMS_LIST=StringHelper.Strint2ArrayString1(a.FLOW_ITEMS),
                         };
             return new ResultPageData<DevFlowTempList>()
             {

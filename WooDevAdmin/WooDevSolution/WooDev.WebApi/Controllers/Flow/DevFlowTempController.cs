@@ -82,10 +82,11 @@ namespace WooDev.WebApi.Controllers.Flow
         [HttpGet]
         public IActionResult GetWfObjTypes()
         {
-            var list = EmunUtility.GetAttr(typeof(FlowObjEnums));
-            var result = new ResultListData<EnumItemAttribute>
+            var list = EmunUtility.GetAttr(typeof(FlowObjEnums)).ToList();
+            var tlist = list.Select(a => new EnumItemVben {Desc=a.Desc,Value=a.Value.ToString() }).ToList();
+            var result = new ResultListData<EnumItemVben>
             {
-                result = list,
+                result = tlist,
             };
             return new DevResultJson(result);
         }
@@ -106,7 +107,7 @@ namespace WooDev.WebApi.Controllers.Flow
             {
                 SelectMultiple flow = new SelectMultiple();
                 flow.Name = item.Desc;
-                flow.Id = item.Value;
+                flow.Id = item.Value.ToString();
                 flowItems.Add(flow);
             }
             var result = new ResultListData<SelectMultiple>

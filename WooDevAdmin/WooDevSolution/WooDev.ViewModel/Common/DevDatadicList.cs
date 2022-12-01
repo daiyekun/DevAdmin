@@ -13,6 +13,10 @@ namespace WooDev.ViewModel
     /// </summary>
     public partial class DevDatadicList
     {
+        /// <summary>
+        /// 字符ID。前端需要
+        /// </summary>
+        public string StrId { get; set; }
         
 
     }

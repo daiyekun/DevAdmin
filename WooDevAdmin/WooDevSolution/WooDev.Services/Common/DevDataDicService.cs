@@ -202,6 +202,7 @@ namespace WooDev.Services
                         select new DevDatadicList
                         {
                             ID = a.ID,
+                            StrId=a.ID.ToString(),
                             NAME = a.NAME,//显示名称
                             ORDER_NUM = a.ORDER_NUM,//排序
                             REMARK = a.REMARK,

@@ -18,7 +18,7 @@ export type flowitemParams = {
  * 审批对象
  */
 export interface FlowObjectListItem {
-  Value?: number;
+  Value?: string;
   Desc?: string;
 }
 export type flowObjectListResultModel = BasicFetchResult<FlowObjectListItem>;
