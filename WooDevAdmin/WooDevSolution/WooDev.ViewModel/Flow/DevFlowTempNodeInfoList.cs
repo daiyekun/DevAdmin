@@ -128,6 +128,22 @@ namespace WooDev.ViewModel.Flow
         public int SpRules { get; set; }
 
     }
+    /// <summary>
+    ///用于判断节点是否保存
+    /// </summary>
+
+    public class ExistNodeInfo
+    {
+        /// <summary>
+        /// 节点ID
+        /// </summary>
+        public string StrId { get; set; }
+        /// <summary>
+        /// 模板ID
+        /// </summary>
+        public int TempId { get; set; }
+    }
+
 
          
 }

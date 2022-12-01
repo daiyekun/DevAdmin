@@ -111,7 +111,7 @@ namespace WooDev.Common.Models
     /// </summary>
     public class ResultData : BaseResult
     {
-
+        public object result { get; set; }
     }
 
     /// <summary>

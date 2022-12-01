@@ -56,8 +56,9 @@
     getNodeInfoByNodeIdApi,
     flowNodeInfoSaveApi,
     flowNodeInfoAppObjApi,
+    flowNodeUpdateApi,
   } from '/@/api/devsys/flow/flowtemp';
-  import { FlowTempNodeInfo } from '/@/api/devsys/model/flow/flowTempModel';
+  import { FlowTempNodeInfo, FlowTempNodeUpdateInfo } from '/@/api/devsys/model/flow/flowTempModel';
 
   const columns: BasicColumn[] = [
     {
@@ -92,8 +93,6 @@
   export default defineComponent({
     components: { BasicDrawer, BasicForm, UserSelectModel, BasicTable, UserGroupModel },
     setup() {
-      // let nodeId = ref(0); //当前节点
-      // let tempId = ref(0); //模板ID
       let nodeInfo = reactive({ nodeId: '', tempId: 0 });
       const { createMessage: msg } = useMessage();
       const [register] = useDrawerInner((data) => {
@@ -102,6 +101,7 @@
           NodeId: data.data.data.id,
           Name: data.data.data.text.value,
           TempId: data.tempId,
+          SpRules: data.data.data.properties.NRULE,
         });
         //节点ID
         nodeInfo.nodeId = data.data.data.id;
@@ -345,11 +345,6 @@
        * 选择审批对象
        */
       function SelleadUser(rd: any) {
-        // setFieldsValue({
-        //   LEAD_USERID: rd.ID,
-        //   LEAD_USERNAME: rd.NAME,
-        // });
-
         //closeModal();
 
         msg.warn({
@@ -388,11 +383,6 @@
        * 选择审批对象
        */
       function rowGroupDbclick(rd: any) {
-        // setFieldsValue({
-        //   LEAD_USERID: rd.ID,
-        //   LEAD_USERNAME: rd.NAME,
-        // });
-
         msg.warn({
           content: '请勾选数据点击确认',
           key: 'tmsg',
@@ -430,11 +420,31 @@
        * 底部确认按钮
        */
 
-      function handleOk() {
+      async function handleOk() {
         var savedata = getNodeInfoFieldsValue();
-        console.log('=====================');
-        console.log('ok', savedata);
-        console.log('======================');
+        if (savedata.SpRules == undefined || savedata.SpRules == '') {
+          msg.warn({
+            content: `请选择审批规则`,
+            key: '_save_node_data',
+          });
+        } else {
+          msg.loading({
+            content: `正在提交数据`,
+            key: '_save_node_data',
+            duration: 0,
+          });
+          let sdata: FlowTempNodeUpdateInfo = {
+            NodeId: savedata.NodeId,
+            TempId: savedata.TempId,
+            Name: savedata.Name,
+            SpRules: savedata.SpRules,
+          };
+          await flowNodeUpdateApi(sdata);
+          msg.success({
+            content: `保存成功`,
+            key: '_save_node_data',
+          });
+        }
       }
       return {
         register,

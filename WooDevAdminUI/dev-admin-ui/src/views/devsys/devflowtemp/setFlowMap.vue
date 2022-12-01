@@ -32,6 +32,7 @@
   import { useDrawer } from '/@/components/Drawer';
   import NodeDrawer from './NodeDrawer.vue';
   import { useRoute } from 'vue-router';
+  import { IsExistNodeApi } from '/@/api/devsys/flow/flowtemp';
   export default defineComponent({
     name: 'DevSetFlowTemp',
     components: { PageWrapper, JsonPreview, BasicModal, NodeDrawer },
@@ -66,18 +67,26 @@
         getViewChat(lf);
 
         var clickFlag = null; //是否点击标识（定时器编号）
-        lf.on('node:click,edge:click', (tdata) => {
-          console.log('node:click,edge:click');
+        lf.on('node:click,edge:click', async (tdata) => {
+          //console.log('node:click,edge:click');
+          let paramdata = { TempId: Number(tempId.value), StrId: String(tdata.data.id) };
+          const resdata = await IsExistNodeApi(paramdata);
+          // debugger;
+          // console.log(resdata);
           if (clickFlag) {
             //取消上次延时未执行的方法
             clickFlag = clearTimeout(clickFlag);
           }
 
           clickFlag = setTimeout(function () {
-            openNodeDrawer(true, {
-              data: tdata,
-              tempId: Number(tempId.value),
-            });
+            if (resdata) {
+              openNodeDrawer(true, {
+                data: tdata,
+                tempId: Number(tempId.value),
+              });
+            } else {
+              msg.warn({ content: '请先点就右上角保存按钮，保存流出图', key: 'nodemsg' });
+            }
           }, 300); //延时300毫秒执行
         });
         lf.on('node:dbclick,edge:dbclick', () => {
@@ -134,10 +143,6 @@
           title: '查看数据',
           text: '数据',
           onClick: (lf) => {
-            //var strdata = JSON.stringify(lf.getGraphData());
-            // msg.info({ content: strdata, key: 'editing' });
-            // debugger;
-            // console.log(JSON.stringify(lf.getGraphData()));
             graphData.value = unref(lf).getGraphData();
             openModal();
           },

@@ -120,3 +120,21 @@ export interface FlowTempNodeInfo {
    */
   SpObjIds: Array<number>;
 }
+
+/***
+ * 节点修改对象
+ */
+export interface FlowTempNodeUpdateInfo {
+  NodeId: string;
+  TempId: number;
+  Name: string;
+  SpRules: number;
+}
+
+/***
+ *判断节点是否保存
+ */
+export interface ExistNodeInfo {
+  TempId: number;
+  StrId: string;
+}

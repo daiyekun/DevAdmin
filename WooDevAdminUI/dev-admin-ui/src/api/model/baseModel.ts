@@ -11,6 +11,7 @@ export interface BasicFetchResult<T> {
 export interface ResultData {
   code: number;
   message: string;
+  //resdata: any;
 }
 export interface ResultviewData<T> {
   result: T;

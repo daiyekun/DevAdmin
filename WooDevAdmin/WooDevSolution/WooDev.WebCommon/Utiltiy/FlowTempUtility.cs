@@ -123,7 +123,11 @@ namespace WooDev.WebCommon.Utiltiy
                     value = node.TEXT_VALUE
 
                 };
-                logicFlowNode.properties = new Dictionary<string, object>();
+                var dicproperties = new Dictionary<string, object>();
+                
+                dicproperties.Add(nameof(node.NRULE), (node.NRULE??0) == 0 ? "" : Convert.ToString(node.NRULE));
+                dicproperties.Add(nameof(node.RE_TEXT), (node.RE_TEXT??0) == 0 ? "" : Convert.ToString(node.RE_TEXT));
+                logicFlowNode.properties = dicproperties;
 
                 nodes.Add(logicFlowNode);
 

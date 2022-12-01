@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MySqlX.XDevAPI.Common;
 using SqlSugar;
 using System.Linq.Expressions;
 using WooDev.Common.Extend;
@@ -374,7 +375,32 @@ namespace WooDev.WebApi.Controllers.Flow
 
         }
 
-        
+        /// <summary>
+        /// 根据节点ID和模板ID判断节点是否保存
+        /// </summary>
+        /// <param name="strId">节点ID</param>
+        /// <param name="tempId">模板ID</param>
+        [Route("IsExistNode")]
+        [HttpGet]
+        [Authorize]
+        public IActionResult IsExistNode([FromQuery] ExistNodeInfo existNode)
+        {
+            
+           var IsExist=_IDevFlowtempNodeService.IsExistNode(existNode.StrId, existNode.TempId);
+
+            var resdata = new ResultData
+            {
+                code = 0,
+                message = "ok",
+                result= IsExist
+                //resdata = IsExist
+
+            };
+           
+            return new DevResultJson(resdata);
+        }
+
+
 
 
 

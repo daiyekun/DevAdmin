@@ -12,6 +12,8 @@ import {
   FlowNodeParams,
   FlowNodeInfoListGetResultModel,
   FlowTempNodeInfo,
+  FlowTempNodeUpdateInfo,
+  ExistNodeInfo,
 } from '../model/flow/flowTempModel';
 import { defHttp } from '/@/utils/http/axios';
 import { ResultData } from '/@/api/model/baseModel';
@@ -28,6 +30,8 @@ enum Api {
   getNodeInfoByNodeId = '/DevFlowTemp/getNodeInfoByNodeId', //根据节点ID查询节点信息
   flowNodeInfoSave = '/DevFlowTemp/flowNodeInfoSave', //节点信息修改
   flowNodeInfoAppObj = '/DevFlowTemp/delFlowNodeInfoObj', //删除节点审批人员
+  flowNodeUpdate = '/DevFlowTemp/flowNodeUpdate', //节点修改
+  IsExistNode = '/DevFlowTemp/IsExistNode', //根据节点ID与模板ID判断节点是否保存
 }
 
 export const getFlowItemList = (params?: flowitemParams) =>
@@ -64,3 +68,9 @@ export const flowNodeInfoSaveApi = (params: FlowTempNodeInfo) =>
 
 export const flowNodeInfoAppObjApi = (params: deldataInfo) =>
   defHttp.get<ResultData>({ url: Api.flowNodeInfoAppObj, params });
+
+export const flowNodeUpdateApi = (params: FlowTempNodeUpdateInfo) =>
+  defHttp.post<ResultData>({ url: Api.flowNodeUpdate, params });
+
+export const IsExistNodeApi = (params: ExistNodeInfo) =>
+  defHttp.get<ResultData>({ url: Api.IsExistNode, params });
