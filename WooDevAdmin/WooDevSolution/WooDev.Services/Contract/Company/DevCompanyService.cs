@@ -85,7 +85,7 @@ namespace WooDev.Services
                             CATE_ID = a.CATE_ID,//类别
                             CREATE_ID = a.CREATE_ID,//信用等级
                             C_STATE = a.C_STATE,//状态
-                            WF_STATE = a.WF_STATE,//流程状态
+                            WF_STATE = a.WF_STATE??0,//流程状态
                             WF_NODE = a.WF_NODE,//流程节点
                             WF_ITEM = a.WF_ITEM,//审批事项
                             FIELD1 = a.FIELD1,//备用1
