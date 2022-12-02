@@ -9,6 +9,19 @@
         <a-button type="primary" @click="handleCreate">新增</a-button>
         <a-button type="primary" @click="handleDelrolws">批量删除</a-button>
         <a-button type="primary" @click="handleExcel">导出Excel</a-button>
+        <a-dropdown :trigger="['click']" @click="clickFlowBtn" v-model:visible="dwonvisible">
+          <a-button type="primary" @click.prevent @mouseover="dwonmouseover"
+            >状态切换
+            <DownOutlined />
+          </a-button>
+          <template #overlay>
+            <a-menu @click="submitFlow" :class="{ active: isActive }">
+              <a-menu-item key="1">未执行-->执行中</a-menu-item>
+              <a-menu-item key="2">执行中-->已完成</a-menu-item>
+              <a-menu-item key="3">未执行-->已作废</a-menu-item>
+            </a-menu>
+          </template>
+        </a-dropdown>
       </template>
       <template #action="{ record }">
         <TableAction
@@ -40,7 +53,7 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent, ref, VNodeChild, onMounted, reactive } from 'vue';
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { getCusertomerListApi, customerDelApi } from '/@/api/devsys/contract/customer';
@@ -49,21 +62,46 @@
   import { useModal } from '/@/components/Modal';
   import ExportExcelModel from '/@/views/devsys/contract/common/ExportExcelModel.vue';
   import { ExportExcelData } from '/@/api/devsys/model/devCommonModel';
+  import { Dropdown, Menu, MenuItem } from 'ant-design-vue';
+  import { DownOutlined } from '@ant-design/icons-vue';
+  import { getFlowItemList } from '/@/api/devsys/flow/flowtemp';
+  import { FlowItemListItem } from '/@/api/devsys/model/flow/flowTempModel';
+
   import {
     GetCreatePermissionApi,
     GetDeletePermissionApi,
     GetUpdatePermissionApi,
     GetDetailPermissionApi,
   } from '/@/api/devsys/system/devpermission';
+  interface MenuInfo {
+    key: string;
+    keyPath: string[];
+    item: VNodeChild;
+    domEvent: MouseEvent;
+  }
+
   export default defineComponent({
     name: 'DevCustomer',
-    components: { BasicTable, TableAction, ExportExcelModel },
+    components: {
+      BasicTable,
+      TableAction,
+      ExportExcelModel,
+      ADropdown: Dropdown,
+      AMenu: Menu,
+      AMenuItem: MenuItem,
+      DownOutlined,
+    },
     setup() {
       const [registerExcelModel, { openModal: openExcelModal }] = useModal();
       const go = useGo();
       const { createMessage: msg } = useMessage();
       const checkedKeys = ref<Array<string | number>>([]);
-      const [registerTable, { reload, getColumns, getForm }] = useTable({
+      let dwonvisible = ref(false);
+      let flowItems = Array<FlowItemListItem>(); //审批事项
+      let currflowitems = reactive(Array<FlowItemListItem>());
+      let subFlowTag = ref(0); //提交状态
+      let isActive = ref(true);
+      const [registerTable, { reload, getColumns, getForm, getSelectRows }] = useTable({
         title: '客户列表',
         api: getCusertomerListApi,
         columns: customercolumns,
@@ -80,7 +118,6 @@
           slots: { customRender: 'action' },
           ellipsis: true,
           fixed: 'right',
-          //fixed: undefined,
         },
       });
 
@@ -181,6 +218,60 @@
         openExcelModal(true, opendata);
       }
 
+      /**
+       * 提交流程
+       **/
+      const submitFlow = ({ key }: MenuInfo) => {
+        console.log(`Click on item ${key}`);
+      };
+
+      async function loadFlowItems() {
+        console.log('调用getFlowItemList');
+        let tdata = await getFlowItemList({ objEnum: 0 });
+        let tempArray = Array<FlowItemListItem>();
+        for (let i = 0; i < tdata.length; i++) {
+          tempArray.push(tdata[i]);
+        }
+        flowItems = tempArray;
+      }
+      /*移入事件* */
+      function dwonmouseover() {
+        subFlowTag.value = 0;
+        isActive.value = true;
+        //console.log('dwonmouseover----');
+        let selrows = getSelectRows();
+        // var isres = selrows.every((item) => {
+        //   return item.C_STATE == selrows[0].C_STATE && item.WF_STATE == 0;
+        // });
+        // subFlowTag.value = isres ? 1 : 0;
+        //console.log('dwonmouseover----', isres);
+        if (selrows.length == 0) {
+          subFlowTag.value = -1;
+        } else if (selrows.length > 1) {
+          subFlowTag.value = 2;
+        } else if (selrows[0].WF_STATE == 1) {
+          subFlowTag.value = 3;
+        }
+      }
+      function clickFlowBtn() {
+        console.log('点击事件 start--', dwonvisible.value, subFlowTag.value);
+        if (subFlowTag.value == -1) {
+          msg.warn({ content: '请选择数据..', key: 'tmsg' });
+        } else if (subFlowTag.value == 2) {
+          msg.warn({ content: '只能选择一条数据进行提交', key: 'tmsg' });
+        } else if (subFlowTag.value == 3) {
+          msg.warn({ content: '审批中的数据不能提交', key: 'tmsg' });
+        } else {
+          isActive.value = false;
+        }
+        console.log('isActive状态', isActive);
+      }
+
+      onMounted(() => {
+        //console.log('onMounted----');
+        loadFlowItems();
+      });
+
       return {
         registerTable,
         handleCreate,
@@ -193,7 +284,21 @@
         handleView,
         handleExcel,
         registerExcelModel,
+        submitFlow,
+        clickFlowBtn,
+        dwonvisible,
+        dwonmouseover,
+        loadFlowItems,
+        flowItems,
+        currflowitems,
+        subFlowTag,
+        isActive,
       };
     },
   });
 </script>
+<style scoped>
+  .active {
+    display: none;
+  }</style
+>>
