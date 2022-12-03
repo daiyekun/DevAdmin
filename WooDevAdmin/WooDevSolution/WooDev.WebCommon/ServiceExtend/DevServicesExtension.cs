@@ -87,7 +87,16 @@ namespace WooDev.WebCommon.ServiceExtend
             services.AddTransient<IDevFlowtempNodeInfoService,DevFlowtempNodeInfoService>();
             services.AddTransient<IDevFlowTempService, DevFlowTempService>();
             services.AddTransient<IDevFlowGroupuserService, DevFlowGroupuserService>();
+            services.AddTransient<IDevFlowInstanceService, DevFlowInstanceService>();
+            services.AddTransient<IDevFlowInstanceService, DevFlowInstanceService>();
+            services.AddTransient<IDevFlowInstanceService, DevFlowInstanceService>();
+            services.AddTransient<IDevFlowInstanceService, DevFlowInstanceService>();
+            services.AddTransient<IDevFlowInstOptionService, DevFlowInstOptionService>();
+            services.AddTransient<IDevFlowInstNodeInfoService, DevFlowInstNodeInfoService>();
+            services.AddTransient<IDevFlowInstNodeService, DevFlowInstNodeService>();
+            services.AddTransient<IDevFlowInstGroupuserService, DevFlowInstGroupuserService>();
             
+
             #endregion
 
         }

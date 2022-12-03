@@ -231,7 +231,7 @@
       };
 
       async function loadFlowItems() {
-        console.log('调用getFlowItemList');
+        // console.log('调用getFlowItemList');
         let tdata = await getFlowItemList({ objEnum: 0 });
         let tempArray = Array<FlowItemListItem>();
         for (let i = 0; i < tdata.length; i++) {
@@ -243,6 +243,7 @@
       function dwonmouseover() {
         subFlowTag.value = 0;
         isActive.value = true;
+        currflowitems.splice(0, currflowitems.length); //清空审批事项
         //console.log('dwonmouseover----');
         let selrows = getSelectRows();
         // var isres = selrows.every((item) => {

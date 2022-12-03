@@ -114,6 +114,16 @@ public partial interface IDevFlowInstEdgeHistService : IBaseService<DEV_FLOW_INS
     
    
      
+public partial interface IDevFlowInstGroupuserService : IBaseService<DEV_FLOW_INST_GROUPUSER>
+{ }
+    
+   
+     
+public partial interface IDevFlowInstGroupuserHistService : IBaseService<DEV_FLOW_INST_GROUPUSER_HIST>
+{ }
+    
+   
+     
 public partial interface IDevFlowInstNodeService : IBaseService<DEV_FLOW_INST_NODE>
 { }
     
@@ -130,6 +140,16 @@ public partial interface IDevFlowInstNodeInfoService : IBaseService<DEV_FLOW_INS
    
      
 public partial interface IDevFlowInstNodeInfoHistService : IBaseService<DEV_FLOW_INST_NODE_INFO_HIST>
+{ }
+    
+   
+     
+public partial interface IDevFlowInstOptionService : IBaseService<DEV_FLOW_INST_OPTION>
+{ }
+    
+   
+     
+public partial interface IDevFlowInstOptionHistService : IBaseService<DEV_FLOW_INST_OPTION_HIST>
 { }
     
    

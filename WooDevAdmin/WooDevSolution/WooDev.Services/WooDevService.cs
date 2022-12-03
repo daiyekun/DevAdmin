@@ -275,6 +275,32 @@ namespace WooDev.Services
     
    
      
+ public partial class DevFlowInstGroupuserService : BaseService<DEV_FLOW_INST_GROUPUSER>, IDevFlowInstGroupuserService
+    {
+         public DevFlowInstGroupuserService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowInstGroupuserHistService : BaseService<DEV_FLOW_INST_GROUPUSER_HIST>, IDevFlowInstGroupuserHistService
+    {
+         public DevFlowInstGroupuserHistService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
  public partial class DevFlowInstNodeService : BaseService<DEV_FLOW_INST_NODE>, IDevFlowInstNodeService
     {
          public DevFlowInstNodeService(ISqlSugarClient DbClient)
@@ -317,6 +343,32 @@ namespace WooDev.Services
  public partial class DevFlowInstNodeInfoHistService : BaseService<DEV_FLOW_INST_NODE_INFO_HIST>, IDevFlowInstNodeInfoHistService
     {
          public DevFlowInstNodeInfoHistService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowInstOptionService : BaseService<DEV_FLOW_INST_OPTION>, IDevFlowInstOptionService
+    {
+         public DevFlowInstOptionService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowInstOptionHistService : BaseService<DEV_FLOW_INST_OPTION_HIST>, IDevFlowInstOptionHistService
+    {
+         public DevFlowInstOptionHistService(ISqlSugarClient DbClient)
            : base(DbClient)
         {
            

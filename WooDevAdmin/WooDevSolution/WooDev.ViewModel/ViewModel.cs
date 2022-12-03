@@ -258,6 +258,30 @@ public partial class DevFlowInstEdgeHistView : DEV_FLOW_INST_EDGE_HIST
    
      
 //列表使用
+public partial class DevFlowInstGroupuserList : DEV_FLOW_INST_GROUPUSER
+{ }
+//提交数据库使用
+public partial class DevFlowInstGroupuserDTO : DEV_FLOW_INST_GROUPUSER,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowInstGroupuserView : DEV_FLOW_INST_GROUPUSER
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowInstGroupuserHistList : DEV_FLOW_INST_GROUPUSER_HIST
+{ }
+//提交数据库使用
+public partial class DevFlowInstGroupuserHistDTO : DEV_FLOW_INST_GROUPUSER_HIST,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowInstGroupuserHistView : DEV_FLOW_INST_GROUPUSER_HIST
+{ }
+    
+   
+     
+//列表使用
 public partial class DevFlowInstNodeList : DEV_FLOW_INST_NODE
 { }
 //提交数据库使用
@@ -301,6 +325,30 @@ public partial class DevFlowInstNodeInfoHistDTO : DEV_FLOW_INST_NODE_INFO_HIST,I
 { }
 //暂定--查看页面使用
 public partial class DevFlowInstNodeInfoHistView : DEV_FLOW_INST_NODE_INFO_HIST
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowInstOptionList : DEV_FLOW_INST_OPTION
+{ }
+//提交数据库使用
+public partial class DevFlowInstOptionDTO : DEV_FLOW_INST_OPTION,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowInstOptionView : DEV_FLOW_INST_OPTION
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowInstOptionHistList : DEV_FLOW_INST_OPTION_HIST
+{ }
+//提交数据库使用
+public partial class DevFlowInstOptionHistDTO : DEV_FLOW_INST_OPTION_HIST,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowInstOptionHistView : DEV_FLOW_INST_OPTION_HIST
 { }
     
    
