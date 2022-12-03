@@ -1,0 +1,165 @@
+﻿using System;
+using System.Linq;
+using System.Text;
+using SqlSugar;
+
+#pragma warning disable 1591
+#pragma warning disable 8618
+namespace WooDev.Model.Models
+{
+    /// <summary>
+    /// 审批实例板边（连接线条）
+    /// </summary>
+    [SugarTable("dev_flow_inst_edge")]
+    public partial class DEV_FLOW_INST_EDGE
+    {
+        /// <summary>
+        /// DEV_FLOW_INST_EDGE构造函数
+        /// </summary>
+        public DEV_FLOW_INST_EDGE()
+        {
+
+        }
+        /// <summary>
+        /// 描    述:ID
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+           [SugarColumn(IsPrimaryKey=true,IsIdentity=true)]
+        public int ID { get; set; }
+
+        /// <summary>
+        /// 描    述:审批实例
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int INST_ID { get; set; }
+
+        /// <summary>
+        /// 描    述:状态
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int EDGE_STATE { get; set; }
+
+        /// <summary>
+        /// 描    述:连接线字符串ID
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public string EDGE_STRID { get; set; }
+
+        /// <summary>
+        /// 描    述:线类型
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public string EDGE_TYPE { get; set; }
+
+        /// <summary>
+        /// 描    述:链接开始节点ID
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public string SOURCENODEID { get; set; }
+
+        /// <summary>
+        /// 描    述:链接目标节点ID
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public string TARGETNODEID { get; set; }
+
+        /// <summary>
+        /// 描    述:开始X轴
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int STARTPORT_X { get; set; }
+
+        /// <summary>
+        /// 描    述:开始Y轴
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int STARTPORT_Y { get; set; }
+
+        /// <summary>
+        /// 描    述:结束X轴
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int ENDPORT_X { get; set; }
+
+        /// <summary>
+        /// 描    述:介绍Y轴
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int ENDPORT_Y { get; set; }
+
+        /// <summary>
+        /// 描    述:文本X轴
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public int? TEXT_X { get; set; }
+
+        /// <summary>
+        /// 描    述:文本Y轴
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public int? TEXT_Y { get; set; }
+
+        /// <summary>
+        /// 描    述:文本值
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public string TEXT_VALUE { get; set; }
+
+        /// <summary>
+        /// 描    述:线条拐角以及开始结束点XY坐标 JSON字符串
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public string PONTSLIST { get; set; }
+
+        /// <summary>
+        /// 描    述:是否删除
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int IS_DELETE { get; set; }
+
+        /// <summary>
+        /// 描    述:创建人
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int CREATE_USERID { get; set; }
+
+        /// <summary>
+        /// 描    述:创建时间
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public DateTime CREATE_TIME { get; set; }
+
+        /// <summary>
+        /// 描    述:更新人
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int UPDATE_USERID { get; set; }
+
+        /// <summary>
+        /// 描    述:更新时间
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public DateTime UPDATE_TIME { get; set; }
+
+    }
+}

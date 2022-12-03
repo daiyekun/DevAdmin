@@ -223,6 +223,110 @@ namespace WooDev.Services
     
    
      
+ public partial class DevFlowInstanceService : BaseService<DEV_FLOW_INSTANCE>, IDevFlowInstanceService
+    {
+         public DevFlowInstanceService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowInstanceHistService : BaseService<DEV_FLOW_INSTANCE_HIST>, IDevFlowInstanceHistService
+    {
+         public DevFlowInstanceHistService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowInstEdgeService : BaseService<DEV_FLOW_INST_EDGE>, IDevFlowInstEdgeService
+    {
+         public DevFlowInstEdgeService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowInstEdgeHistService : BaseService<DEV_FLOW_INST_EDGE_HIST>, IDevFlowInstEdgeHistService
+    {
+         public DevFlowInstEdgeHistService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowInstNodeService : BaseService<DEV_FLOW_INST_NODE>, IDevFlowInstNodeService
+    {
+         public DevFlowInstNodeService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowInstNodeHistService : BaseService<DEV_FLOW_INST_NODE_HIST>, IDevFlowInstNodeHistService
+    {
+         public DevFlowInstNodeHistService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowInstNodeInfoService : BaseService<DEV_FLOW_INST_NODE_INFO>, IDevFlowInstNodeInfoService
+    {
+         public DevFlowInstNodeInfoService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowInstNodeInfoHistService : BaseService<DEV_FLOW_INST_NODE_INFO_HIST>, IDevFlowInstNodeInfoHistService
+    {
+         public DevFlowInstNodeInfoHistService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
  public partial class DevFlowTempService : BaseService<DEV_FLOW_TEMP>, IDevFlowTempService
     {
          public DevFlowTempService(ISqlSugarClient DbClient)

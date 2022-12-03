@@ -94,6 +94,46 @@ public partial interface IDevFlowGroupuserService : IBaseService<DEV_FLOW_GROUPU
     
    
      
+public partial interface IDevFlowInstanceService : IBaseService<DEV_FLOW_INSTANCE>
+{ }
+    
+   
+     
+public partial interface IDevFlowInstanceHistService : IBaseService<DEV_FLOW_INSTANCE_HIST>
+{ }
+    
+   
+     
+public partial interface IDevFlowInstEdgeService : IBaseService<DEV_FLOW_INST_EDGE>
+{ }
+    
+   
+     
+public partial interface IDevFlowInstEdgeHistService : IBaseService<DEV_FLOW_INST_EDGE_HIST>
+{ }
+    
+   
+     
+public partial interface IDevFlowInstNodeService : IBaseService<DEV_FLOW_INST_NODE>
+{ }
+    
+   
+     
+public partial interface IDevFlowInstNodeHistService : IBaseService<DEV_FLOW_INST_NODE_HIST>
+{ }
+    
+   
+     
+public partial interface IDevFlowInstNodeInfoService : IBaseService<DEV_FLOW_INST_NODE_INFO>
+{ }
+    
+   
+     
+public partial interface IDevFlowInstNodeInfoHistService : IBaseService<DEV_FLOW_INST_NODE_INFO_HIST>
+{ }
+    
+   
+     
 public partial interface IDevFlowTempService : IBaseService<DEV_FLOW_TEMP>
 { }
     

@@ -1,0 +1,49 @@
+{
+  "Version": 1.0,
+  "General": {
+    "Project": "",
+    "ProjectOwnerNavicatID": "",
+    "Server": "本机mysql8",
+    "Host": "localhost",
+    "Catalog": "",
+    "Schema": "woodevadmin",
+    "Comment": "",
+    "ServerType": "MYSQL",
+    "SpecifiedFileName": "",
+    "IsLockTable": false,
+    "UseSingleTransaction": false,
+    "UseSpecifiedFileName": false
+  },
+  "Tables": {
+    "SelectAll": true,
+    "Selected": []
+  },
+  "Views": {
+    "SelectAll": true,
+    "Selected": []
+  },
+  "Functions": {
+    "SelectAll": true,
+    "Selected": []
+  },
+  "Events": {
+    "SelectAll": true,
+    "Selected": []
+  },
+  "Sequences": {
+    "SelectAll": false,
+    "Selected": []
+  },
+  "Types": {
+    "SelectAll": false,
+    "Selected": []
+  },
+  "Indexes": {
+    "SelectAll": false,
+    "Selected": []
+  },
+  "Triggers": {
+    "SelectAll": false,
+    "Selected": []
+  }
+}

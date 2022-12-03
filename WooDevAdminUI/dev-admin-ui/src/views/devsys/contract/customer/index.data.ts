@@ -19,7 +19,7 @@ export const customercolumns: BasicColumn[] = [
   {
     title: '编号',
     dataIndex: 'CODE',
-    width: 120,
+    width: 130,
     align: 'left',
   },
   {

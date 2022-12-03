@@ -210,6 +210,102 @@ public partial class DevFlowGroupuserView : DEV_FLOW_GROUPUSER
    
      
 //列表使用
+public partial class DevFlowInstanceList : DEV_FLOW_INSTANCE
+{ }
+//提交数据库使用
+public partial class DevFlowInstanceDTO : DEV_FLOW_INSTANCE,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowInstanceView : DEV_FLOW_INSTANCE
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowInstanceHistList : DEV_FLOW_INSTANCE_HIST
+{ }
+//提交数据库使用
+public partial class DevFlowInstanceHistDTO : DEV_FLOW_INSTANCE_HIST,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowInstanceHistView : DEV_FLOW_INSTANCE_HIST
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowInstEdgeList : DEV_FLOW_INST_EDGE
+{ }
+//提交数据库使用
+public partial class DevFlowInstEdgeDTO : DEV_FLOW_INST_EDGE,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowInstEdgeView : DEV_FLOW_INST_EDGE
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowInstEdgeHistList : DEV_FLOW_INST_EDGE_HIST
+{ }
+//提交数据库使用
+public partial class DevFlowInstEdgeHistDTO : DEV_FLOW_INST_EDGE_HIST,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowInstEdgeHistView : DEV_FLOW_INST_EDGE_HIST
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowInstNodeList : DEV_FLOW_INST_NODE
+{ }
+//提交数据库使用
+public partial class DevFlowInstNodeDTO : DEV_FLOW_INST_NODE,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowInstNodeView : DEV_FLOW_INST_NODE
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowInstNodeHistList : DEV_FLOW_INST_NODE_HIST
+{ }
+//提交数据库使用
+public partial class DevFlowInstNodeHistDTO : DEV_FLOW_INST_NODE_HIST,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowInstNodeHistView : DEV_FLOW_INST_NODE_HIST
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowInstNodeInfoList : DEV_FLOW_INST_NODE_INFO
+{ }
+//提交数据库使用
+public partial class DevFlowInstNodeInfoDTO : DEV_FLOW_INST_NODE_INFO,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowInstNodeInfoView : DEV_FLOW_INST_NODE_INFO
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowInstNodeInfoHistList : DEV_FLOW_INST_NODE_INFO_HIST
+{ }
+//提交数据库使用
+public partial class DevFlowInstNodeInfoHistDTO : DEV_FLOW_INST_NODE_INFO_HIST,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowInstNodeInfoHistView : DEV_FLOW_INST_NODE_INFO_HIST
+{ }
+    
+   
+     
+//列表使用
 public partial class DevFlowTempList : DEV_FLOW_TEMP
 { }
 //提交数据库使用

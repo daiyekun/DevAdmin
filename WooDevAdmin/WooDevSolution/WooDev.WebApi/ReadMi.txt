@@ -5,3 +5,9 @@ dotnet run --urls="http://*:8059" --ip="127.0.0.1" --port=8059
 dotnet run  WooDev.WebApi.dll --urls="http://*:5188" --ip="127.0.0.1" --port=5188
 
 直接使用dotnet run 调试。如果dotnet run  以后生成端口修改配置文件。然后再dotnet run 
+
+
+git 出错：_read: Connection was reset, errno 10054
+零时解决方案
+git config --global https.sslVerify "false"
+git config --global http.sslVerify "false"
