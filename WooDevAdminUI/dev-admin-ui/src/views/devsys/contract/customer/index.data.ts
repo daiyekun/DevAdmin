@@ -1,5 +1,7 @@
 import { FormProps } from '/@/components/Table';
 import { BasicColumn } from '/@/components/Table/src/types/table';
+import { h } from 'vue';
+import { Tag } from 'ant-design-vue';
 export const customercolumns: BasicColumn[] = [
   {
     title: 'ID',
@@ -12,16 +14,19 @@ export const customercolumns: BasicColumn[] = [
     dataIndex: 'NAME',
     width: 220,
     fixed: 'left',
+    align: 'left',
   },
   {
     title: '编号',
     dataIndex: 'CODE',
     width: 120,
+    align: 'left',
   },
   {
     title: '类别',
     dataIndex: 'CateName',
     width: 140,
+    // align: 'left',
   },
   // {
   //   title: '负责人',
@@ -33,6 +38,25 @@ export const customercolumns: BasicColumn[] = [
     title: '状态',
     dataIndex: 'StateDic',
     width: 120,
+    customRender: ({ record }) => {
+      const status = record.C_STATE;
+      let color = 'default';
+      const text = record.StateDic;
+      switch (~~status) {
+        case 0: //未审核
+          color = 'default';
+          break;
+        case 1: //审核通过
+          color = 'green';
+          break;
+        case 2: //终止
+          color = '#f50';
+          break;
+        default:
+          break;
+      }
+      return h(Tag, { color: color }, () => text);
+    },
   },
   {
     title: '客户级别',
@@ -48,11 +72,13 @@ export const customercolumns: BasicColumn[] = [
     title: '备用1',
     dataIndex: 'FIELD1',
     width: 140,
+    align: 'left',
   },
   {
     title: '备用2',
     dataIndex: 'FIELD2',
     width: 140,
+    align: 'left',
   },
   {
     title: '流程状态',
@@ -63,6 +89,7 @@ export const customercolumns: BasicColumn[] = [
     title: '流程节点',
     dataIndex: 'WF_NODE',
     width: 130,
+    align: 'left',
   },
   {
     title: '审批事项',

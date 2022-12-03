@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 using WooDev.Common.Utility;
 
@@ -15,32 +16,32 @@ namespace WooDev.ViewModel.Enums
         /// <summary>
         /// 1:未执行-->执行中
         /// </summary>
-        [EnumItem(Value = 1, Desc = "未执行-->执行中")]
+        [EnumItemFlowItemExt(Value = 1, Desc = "未执行-->执行中", StartSta = 0, EndSta = 1)]
         State1 = 1,
         /// <summary>
         /// 2:变更未执行-->执行中
         /// </summary>
-        [EnumItem(Value = 2, Desc = "变更未执行-->执行中")]
+        [EnumItemFlowItemExt(Value = 2, Desc = "变更未执行-->执行中", StartSta = 0, EndSta = 1)]
         State2 = 2,
         /// <summary>
         /// 3:执行中-->已完成
         /// </summary>
-        [EnumItem(Value = 3, Desc = "执行中-->已完成")]
+        [EnumItemFlowItemExt(Value = 3, Desc = "执行中-->已完成", StartSta = 1, EndSta = 2)]
         State3 = 3,
         /// <summary>
         /// 4:执行中-->已终止
         /// </summary>
-        [EnumItem(Value = 4, Desc = "执行中-->已终止")]
+        [EnumItemFlowItemExt(Value = 4, Desc = "执行中-->已终止", StartSta = 1, EndSta = 3)]
         State4 = 4,
         /// <summary>
         /// 5:未执行-->已作废
         /// </summary>
-        [EnumItem(Value = 5, Desc = "未执行-->已作废")]
+        [EnumItemFlowItemExt(Value = 5, Desc = "未执行-->已作废", StartSta = 0, EndSta = 4)]
         State5 = 5,
         /// <summary>
         /// 6:审批通过-->执行中
         /// </summary>
-        [EnumItem(Value = 6, Desc = "审批通过-->执行中")]
+        [EnumItemFlowItemExt(Value = 6, Desc = "审批通过-->执行中", StartSta = 6, EndSta = 1)]
         State6 = 6,
 
 
@@ -56,17 +57,17 @@ namespace WooDev.ViewModel.Enums
         /// <summary>
         /// 1:未审核-->审核通过
         /// </summary>
-        [EnumItem(Value = 1, Desc = "未审核-->审核通过")]
+        [EnumItemFlowItemExt(Value = 1, Desc = "未审核-->审核通过",StartSta =0,EndSta =1)]
         State1 = 1,
         /// <summary>
         /// 2:审核通过-->已终止
         /// </summary>
-        [EnumItem(Value = 2, Desc = "审核通过-->已终止")]
+        [EnumItemFlowItemExt(Value = 2, Desc = "审核通过-->已终止",StartSta =1,EndSta =2)]
         State2 = 2,
         /// <summary>
         /// 3:已终止-->审核通过
         /// </summary>
-        [EnumItem(Value = 3, Desc = "已终止-->审核通过")]
+        [EnumItemFlowItemExt(Value = 3, Desc = "已终止-->审核通过",StartSta =2,EndSta =1)]
         State3 = 3,
 
     }
@@ -79,7 +80,7 @@ namespace WooDev.ViewModel.Enums
         /// <summary>
         /// 1:未提交-->已提交
         /// </summary>
-        [EnumItem(Value = 1, Desc = "未提交-->已提交")]
+        [EnumItemFlowItemExt(Value = 1, Desc = "未提交-->已提交", StartSta = 0, EndSta = 1)]
         State1 = 1,
        
     }
@@ -93,7 +94,7 @@ namespace WooDev.ViewModel.Enums
         /// <summary>
         /// 1:未提交-->已提交
         /// </summary>
-        [EnumItem(Value = 1, Desc = "未提交-->已提交")]
+        [EnumItemFlowItemExt(Value = 1, Desc = "未提交-->已提交", StartSta = 0, EndSta = 1)]
         State1 = 1,
     }
 
@@ -106,22 +107,22 @@ namespace WooDev.ViewModel.Enums
         /// <summary>
         /// 1:未执行-->执行中
         /// </summary>
-        [EnumItem(Value = 1, Desc = "未执行-->执行中")]
+        [EnumItemFlowItemExt(Value = 1, Desc = "未执行-->执行中", StartSta = 0, EndSta = 1)]
         State1 = 1,
         /// <summary>
         /// 2:未执行-->已作废
         /// </summary>
-        [EnumItem(Value = 2, Desc = "未执行-->已作废")]
+        [EnumItemFlowItemExt(Value = 2, Desc = "未执行-->已作废", StartSta = 0, EndSta = 3)]
         State2 = 2,
         /// <summary>
         /// 3:执行中-->已完成
         /// </summary>
-        [EnumItem(Value = 3, Desc = "执行中-->已完成")]
+        [EnumItemFlowItemExt(Value = 3, Desc = "执行中-->已完成", StartSta = 1, EndSta = 2)]
         State3 = 3,
         /// <summary>
         /// 4:执行中-->已终止
         /// </summary>
-        [EnumItem(Value = 4, Desc = "执行中-->已终止")]
+        [EnumItemFlowItemExt(Value = 4, Desc = "执行中-->已终止",StartSta = 1, EndSta = 4)]
         State4 = 4
     }
 

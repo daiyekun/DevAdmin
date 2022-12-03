@@ -53,6 +53,28 @@ namespace WooDev.Common.Utility
             }
             return lst;
         }
+
+        /// <summary>
+        /// 得到自定义类型集合
+        /// 获取扩展集合，比如用于审批事项
+        /// </summary>
+        /// <param name="enumType">枚举类型</param>
+        /// <returns></returns>
+        public static IList<EnumItemFlowItemExtAttribute> GetExtAttr(Type enumType)
+        {
+            IList<EnumItemFlowItemExtAttribute> lst = new List<EnumItemFlowItemExtAttribute>();
+            EnumClassAttribute classAtt = GetClassAttribute(enumType);
+            MemberInfo[] members = enumType.GetMembers();
+            foreach (MemberInfo item in members)
+            {
+                EnumItemFlowItemExtAttribute itemAttr = (EnumItemFlowItemExtAttribute)Attribute.GetCustomAttribute(item, typeof(EnumItemFlowItemExtAttribute));
+                if (itemAttr == null)
+                    continue;
+                lst.Add(itemAttr);
+            }
+            return lst;
+        }
+
         /// <summary>
         /// 得到特性属性
         /// </summary>
@@ -279,7 +301,24 @@ namespace WooDev.Common.Utility
        /// </summary>
         public int Value { get; set; }
     }
-  
+    /// <summary>
+    /// 审批事项枚举
+    /// </summary>
+
+    public class EnumItemFlowItemExtAttribute: EnumItemAttribute
+    {
+        /// <summary>
+        /// 开始状态
+        /// </summary>
+        public int StartSta { get; set; }
+        /// <summary>
+        /// 结束状态
+        /// </summary>
+        public int EndSta { get; set; }
+
+    }
+
+
     /// <summary>
     /// 枚举项扩展特性属性
     /// </summary>

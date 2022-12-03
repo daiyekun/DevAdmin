@@ -28,6 +28,15 @@ namespace WooDev.ViewModel.ExtendModel
         /// 是否禁止选择
         /// </summary>
         public string Disabled { get; set; } = "";
+        /// <summary>
+        /// 开始状态
+        /// </summary>
+        public int StartSta { get; set; }
+        /// <summary>
+        /// 变更状态
+        /// </summary>
+
+        public int EndSta { get; set; }
 
     }
 }

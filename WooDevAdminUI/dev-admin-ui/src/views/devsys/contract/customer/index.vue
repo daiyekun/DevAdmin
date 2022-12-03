@@ -15,10 +15,15 @@
             <DownOutlined />
           </a-button>
           <template #overlay>
-            <a-menu @click="submitFlow" :class="{ active: isActive }">
-              <a-menu-item key="1">未执行-->执行中</a-menu-item>
-              <a-menu-item key="2">执行中-->已完成</a-menu-item>
-              <a-menu-item key="3">未执行-->已作废</a-menu-item>
+            <a-menu
+              @click="submitFlow"
+              :class="{ active: isActive }"
+              v-for="item in currflowitems"
+              :key="item.Id"
+            >
+              <a-menu-item key="item.Id" from="item.StartSta" to="item.EndSta">
+                {{ item.Name }}
+              </a-menu-item>
             </a-menu>
           </template>
         </a-dropdown>
@@ -98,7 +103,7 @@
       const checkedKeys = ref<Array<string | number>>([]);
       let dwonvisible = ref(false);
       let flowItems = Array<FlowItemListItem>(); //审批事项
-      let currflowitems = reactive(Array<FlowItemListItem>());
+      let currflowitems: Array<FlowItemListItem> = reactive([]);
       let subFlowTag = ref(0); //提交状态
       let isActive = ref(true);
       const [registerTable, { reload, getColumns, getForm, getSelectRows }] = useTable({
@@ -234,7 +239,7 @@
         }
         flowItems = tempArray;
       }
-      /*移入事件* */
+      /*鼠标移入事件* */
       function dwonmouseover() {
         subFlowTag.value = 0;
         isActive.value = true;
@@ -243,14 +248,22 @@
         // var isres = selrows.every((item) => {
         //   return item.C_STATE == selrows[0].C_STATE && item.WF_STATE == 0;
         // });
+
         // subFlowTag.value = isres ? 1 : 0;
-        //console.log('dwonmouseover----', isres);
-        if (selrows.length == 0) {
+        //debugger;
+        let sellength = selrows.length;
+        if (sellength == 0) {
           subFlowTag.value = -1;
-        } else if (selrows.length > 1) {
+        } else if (sellength > 1) {
           subFlowTag.value = 2;
         } else if (selrows[0].WF_STATE == 1) {
           subFlowTag.value = 3;
+        } else {
+          //debugger;
+          let tempcurrflowitems = flowItems.filter((a) => a.StartSta == selrows[0].C_STATE);
+          currflowitems.push(...tempcurrflowitems);
+          //console.log('审批事项', currflowitems);
+          isActive.value = false;
         }
       }
       function clickFlowBtn() {
@@ -262,7 +275,7 @@
         } else if (subFlowTag.value == 3) {
           msg.warn({ content: '审批中的数据不能提交', key: 'tmsg' });
         } else {
-          isActive.value = false;
+          //isActive.value = false;
         }
         console.log('isActive状态', isActive);
       }

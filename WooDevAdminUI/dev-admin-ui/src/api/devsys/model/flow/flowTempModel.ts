@@ -8,6 +8,8 @@ export interface FlowItemListItem {
   Name?: string;
   Selected?: string;
   Disabled?: string;
+  StartSta?: number;
+  EndSta?: number;
 }
 export type flowItemListResultModel = BasicFetchResult<FlowItemListItem>;
 export type flowitemParams = {

@@ -101,13 +101,15 @@ namespace WooDev.WebApi.Controllers.Flow
         {
 
             var itemObjType = EmunUtility.GetEnumItemExAttribute(typeof(FlowObjEnums), objEnum);
-            var list = EmunUtility.GetAttr(itemObjType.TypeValue);
+            var list = EmunUtility.GetExtAttr(itemObjType.TypeValue);
             List<SelectMultiple> flowItems = new List<SelectMultiple>();
             foreach (var item in list)
             {
                 SelectMultiple flow = new SelectMultiple();
                 flow.Name = item.Desc;
                 flow.Id = item.Value.ToString();
+                flow.StartSta = item.StartSta;
+                flow.EndSta = item.EndSta;
                 flowItems.Add(flow);
             }
             var result = new ResultListData<SelectMultiple>
