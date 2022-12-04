@@ -3,7 +3,7 @@
   <BasicDrawer
     v-bind="$attrs"
     @register="register"
-    title="详细信息"
+    title="审批节点信息"
     width="500px"
     showFooter
     @ok="handleOk"

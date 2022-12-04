@@ -21,7 +21,7 @@
               v-for="item in currflowitems"
               :key="item.Id"
             >
-              <a-menu-item key="item.Id" from="item.StartSta" to="item.EndSta">
+              <a-menu-item :key="item.Id" :from="item.StartSta" :to="item.EndSta">
                 {{ item.Name }}
               </a-menu-item>
             </a-menu>
@@ -71,13 +71,15 @@
   import { DownOutlined } from '@ant-design/icons-vue';
   import { getFlowItemList } from '/@/api/devsys/flow/flowtemp';
   import { FlowItemListItem } from '/@/api/devsys/model/flow/flowTempModel';
-
+  import { flowTempSaveApi } from '/@/api/devsys/flow/flowinst';
   import {
     GetCreatePermissionApi,
     GetDeletePermissionApi,
     GetUpdatePermissionApi,
     GetDetailPermissionApi,
   } from '/@/api/devsys/system/devpermission';
+  import { useUserStore } from '/@/store/modules/user';
+  import { FlowShowData } from '/@/api/devsys/model/flow/flowInstModel';
   interface MenuInfo {
     key: string;
     keyPath: string[];
@@ -97,7 +99,9 @@
       DownOutlined,
     },
     setup() {
+      const userStore = useUserStore(); //当前用户
       const [registerExcelModel, { openModal: openExcelModal }] = useModal();
+      //const {route} = useRoute();
       const go = useGo();
       const { createMessage: msg } = useMessage();
       const checkedKeys = ref<Array<string | number>>([]);
@@ -226,8 +230,26 @@
       /**
        * 提交流程
        **/
-      const submitFlow = ({ key }: MenuInfo) => {
-        console.log(`Click on item ${key}`);
+      const submitFlow = async ({ key, item }: MenuInfo) => {
+        let selrows = getSelectRows();
+        console.log(`Click on item ${key}--${item}`);
+        const tempdata = {
+          FlowObj: 0,
+          CateId: selrows[0].CATE_ID,
+          DeptId: userStore.getUserInfo.departId,
+          FlowItem: Number(key),
+          Monery: 0,
+        };
+        let resdata = await flowTempSaveApi(tempdata);
+        // debugger;
+        isActive.value = true;
+        const flowdata: FlowShowData = {
+          Condition: tempdata,
+          TempId: resdata.ID,
+          Name: selrows[0].NAME,
+        };
+        console.log(resdata, flowdata);
+        go('/devflow/flowtemp/flowsubmitpage/' + encodeURIComponent(JSON.stringify(flowdata)));
       };
 
       async function loadFlowItems() {

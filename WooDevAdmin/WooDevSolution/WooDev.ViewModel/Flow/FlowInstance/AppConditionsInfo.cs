@@ -34,6 +34,6 @@ namespace WooDev.ViewModel.Flow.FlowInstance
         /// 审批金额
         /// </summary>
 
-        public decimal Monery { get; set; }
+        public decimal Monery { get; set; } = -1;
     }
 }
