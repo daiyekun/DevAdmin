@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using WooDev.Common.Models;
 using WooDev.IServices;
+using WooDev.Services;
 using WooDev.ViewModel.Flow.FlowInstance;
+using WooDev.WebCommon.Extend;
 using WooDev.WebCommon.Utiltiy;
 
 namespace WooDev.WebApi.Controllers.Flow
@@ -40,6 +42,28 @@ namespace WooDev.WebApi.Controllers.Flow
                 result= temp
             };
             return new DevResultJson(result);
+        }
+
+        /// <summary>
+        /// 创建审批实例
+        /// </summary>
+        /// <param name="flowInstDTO">创建实例的对象</param>
+        /// <returns></returns>
+        [Route("createFlowInst")]
+        [HttpPost]
+
+        public IActionResult CreateFlowInst([FromBody] FlowInstDTO flowInstDTO)
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            var instInfo=_IDevFlowInstanceService.CreateFlowInst(flowInstDTO, userId);
+            var result = new ResultData
+            {
+                code = 0,
+                message = "ok",
+                result = instInfo
+            };
+            return new DevResultJson(result);
+
         }
     }
 }

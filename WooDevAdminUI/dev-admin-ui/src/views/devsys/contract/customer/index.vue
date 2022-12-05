@@ -71,7 +71,7 @@
   import { DownOutlined } from '@ant-design/icons-vue';
   import { getFlowItemList } from '/@/api/devsys/flow/flowtemp';
   import { FlowItemListItem } from '/@/api/devsys/model/flow/flowTempModel';
-  import { flowTempSaveApi } from '/@/api/devsys/flow/flowinst';
+  import { getFlowTempApi } from '/@/api/devsys/flow/flowinst';
   import {
     GetCreatePermissionApi,
     GetDeletePermissionApi,
@@ -240,12 +240,14 @@
           FlowItem: Number(key),
           Monery: 0,
         };
-        let resdata = await flowTempSaveApi(tempdata);
+        let resdata = await getFlowTempApi(tempdata);
         // debugger;
         isActive.value = true;
         const flowdata: FlowShowData = {
-          Condition: tempdata,
+          FlowType: tempdata.FlowObj,
+          ObjId: selrows[0].ID,
           TempId: resdata.ID,
+          FlowItem: tempdata.FlowItem,
           Name: selrows[0].NAME,
         };
         console.log(resdata, flowdata);

@@ -45,7 +45,7 @@ namespace WooDev.Model.Models
         /// <summary>
         /// 描    述:审批对象编号
         /// 默 认 值:
-        /// 是否空值:False
+        /// 是否空值:True
         /// </summary>
         public string CODE { get; set; }
 
@@ -160,6 +160,13 @@ namespace WooDev.Model.Models
         /// 是否空值:False
         /// </summary>
         public DateTime UPDATE_TIME { get; set; }
+
+        /// <summary>
+        /// 描    述:对象类别
+        /// 默 认 值:
+        /// 是否空值:False
+        /// </summary>
+        public int FLOW_TYPE { get; set; }
 
     }
 }

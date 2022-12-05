@@ -168,5 +168,12 @@ namespace WooDev.Model.Models
         /// </summary>
         public DateTime UPDATE_TIME { get; set; }
 
+        /// <summary>
+        /// 描    述:对象类别
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public int? FLOW_TYPE { get; set; }
+
     }
 }

@@ -173,7 +173,7 @@ namespace WooDev.Model.Models
         /// 默 认 值:
         /// 是否空值:True
         /// </summary>
-        public string WF_ITEM { get; set; }
+        public int? WF_ITEM { get; set; }
 
         /// <summary>
         /// 描    述:备注1
@@ -223,6 +223,13 @@ namespace WooDev.Model.Models
         /// 是否空值:False
         /// </summary>
         public DateTime UPDATE_TIME { get; set; }
+
+        /// <summary>
+        /// 描    述:
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public string WF_NODE_STRID { get; set; }
 
     }
 }

@@ -19,5 +19,12 @@ namespace WooDev.IServices
         /// <param name="appConditions">流程模板条件</param>
         /// <returns></returns>
         DEV_FLOW_TEMP GetTemp(AppConditionsInfo appConditions);
+        /// <summary>
+        /// 创建审批实例
+        /// </summary>
+        /// <param name="flowInstDTO">建立实例参数</param>
+        /// <param name="userId">当前登录人ID</param>
+        /// <returns></returns>
+        DEV_FLOW_INSTANCE CreateFlowInst(FlowInstDTO flowInstDTO, int userId);
     }
 }

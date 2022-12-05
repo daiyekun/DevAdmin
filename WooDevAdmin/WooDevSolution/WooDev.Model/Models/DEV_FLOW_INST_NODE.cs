@@ -94,9 +94,9 @@ namespace WooDev.Model.Models
         /// <summary>
         /// 描    述:收到时间
         /// 默 认 值:
-        /// 是否空值:False
+        /// 是否空值:True
         /// </summary>
-        public DateTime START_TIME { get; set; }
+        public DateTime? START_TIME { get; set; }
 
         /// <summary>
         /// 描    述:结束时间
