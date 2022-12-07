@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 审批意见历史表
     /// </summary>
     [SugarTable("dev_flow_inst_option_hist")]
-    public partial class DEV_FLOW_INST_OPTION_HIST
+    public partial class DEV_FLOW_INST_OPTION_HIST:IDevEntitiy
     {
         /// <summary>
         /// DEV_FLOW_INST_OPTION_HIST构造函数

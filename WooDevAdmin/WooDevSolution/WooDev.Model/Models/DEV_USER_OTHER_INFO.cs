@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 用户其他信息
     /// </summary>
     [SugarTable("dev_user_other_info")]
-    public partial class DEV_USER_OTHER_INFO
+    public partial class DEV_USER_OTHER_INFO:IDevEntitiy
     {
         /// <summary>
         /// DEV_USER_OTHER_INFO构造函数

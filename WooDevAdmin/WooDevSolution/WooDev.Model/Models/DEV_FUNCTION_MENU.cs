@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 功能菜单
     /// </summary>
     [SugarTable("dev_function_menu")]
-    public partial class DEV_FUNCTION_MENU
+    public partial class DEV_FUNCTION_MENU:IDevEntitiy
     {
         /// <summary>
         /// DEV_FUNCTION_MENU构造函数

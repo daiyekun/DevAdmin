@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 部门
     /// </summary>
     [SugarTable("dev_department")]
-    public partial class DEV_DEPARTMENT
+    public partial class DEV_DEPARTMENT:IDevEntitiy
     {
         /// <summary>
         /// DEV_DEPARTMENT构造函数

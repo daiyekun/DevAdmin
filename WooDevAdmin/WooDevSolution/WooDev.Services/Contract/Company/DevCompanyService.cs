@@ -88,6 +88,7 @@ namespace WooDev.Services
                             WF_STATE = a.WF_STATE??0,//流程状态
                             WF_NODE = a.WF_NODE,//流程节点
                             WF_ITEM = a.WF_ITEM,//审批事项
+                            WfFlowDic = EmunUtility.GetDesc(typeof(CommpanyFlowItemsEnum), a.WF_ITEM??0),//审批事项
                             FIELD1 = a.FIELD1,//备用1
                             FIELD2 = a.FIELD2,//备用2
                             CREATE_USERID = a.CREATE_USERID,//创建人

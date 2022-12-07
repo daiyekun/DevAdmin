@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 流程模板节点信息
     /// </summary>
     [SugarTable("dev_flowtemp_node_info")]
-    public partial class DEV_FLOWTEMP_NODE_INFO
+    public partial class DEV_FLOWTEMP_NODE_INFO:IDevEntitiy
     {
         /// <summary>
         /// DEV_FLOWTEMP_NODE_INFO构造函数

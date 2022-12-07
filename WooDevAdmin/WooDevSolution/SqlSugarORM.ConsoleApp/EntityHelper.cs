@@ -26,7 +26,7 @@ namespace SqlSugarORM.ConsoleApp
 namespace {Namespace}
 {
  {ClassDescription}{SugarTable}
-    public partial class {ClassName}
+    public partial class {ClassName}:IDevEntitiy
     {
         /// <summary>
         /// {ClassName}构造函数

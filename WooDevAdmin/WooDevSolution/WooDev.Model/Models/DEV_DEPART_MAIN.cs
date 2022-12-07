@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 签约主体
     /// </summary>
     [SugarTable("dev_depart_main")]
-    public partial class DEV_DEPART_MAIN
+    public partial class DEV_DEPART_MAIN:IDevEntitiy
     {
         /// <summary>
         /// DEV_DEPART_MAIN构造函数

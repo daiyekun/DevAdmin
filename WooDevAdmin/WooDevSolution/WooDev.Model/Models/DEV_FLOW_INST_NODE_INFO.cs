@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 流程实例节点信息表
     /// </summary>
     [SugarTable("dev_flow_inst_node_info")]
-    public partial class DEV_FLOW_INST_NODE_INFO
+    public partial class DEV_FLOW_INST_NODE_INFO:IDevEntitiy
     {
         /// <summary>
         /// DEV_FLOW_INST_NODE_INFO构造函数

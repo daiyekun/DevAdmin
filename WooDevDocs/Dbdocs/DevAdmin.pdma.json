@@ -4,7 +4,7 @@
   "avatar": "",
   "version": "4.2.0",
   "createdTime": "2022-5-23 09:09:48",
-  "updatedTime": "2022-12-5 22:25:46",
+  "updatedTime": "2022-12-7 07:15:41",
   "dbConns": [],
   "profile": {
     "default": {
@@ -10780,8 +10780,8 @@
           "defKey": "CURR_NODE_ID",
           "defName": "当前审批节点",
           "comment": "",
-          "type": "",
-          "len": "",
+          "type": "VARCHAR",
+          "len": 50,
           "scale": "",
           "primaryKey": false,
           "notNull": false,
@@ -10790,7 +10790,7 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "domain": "",
           "id": "0D8DE731-AF23-4C76-88CA-1EE209F4DD0F"
         },
         {
@@ -10835,7 +10835,7 @@
           "len": "",
           "scale": "",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoIncrement": false,
           "defaultValue": "",
           "hideInGraph": false,
@@ -11246,8 +11246,8 @@
           "defKey": "CURR_NODE_ID",
           "defName": "当前审批节点",
           "comment": "",
-          "type": "",
-          "len": "",
+          "type": "VARCHAR",
+          "len": 50,
           "scale": "",
           "primaryKey": false,
           "notNull": false,
@@ -11256,7 +11256,7 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "domain": "",
           "id": "0D8DE731-AF23-4C76-88CA-1EE209F4DD0F"
         },
         {
@@ -11301,7 +11301,7 @@
           "len": "",
           "scale": "",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoIncrement": false,
           "defaultValue": "",
           "hideInGraph": false,
@@ -15173,6 +15173,23 @@
           "id": "86740DBD-0D18-46FD-93C0-3D6D445A57C4"
         },
         {
+          "defKey": "OBJ_ID",
+          "defName": "审批对象ID",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "id": "1FF90A0D-0B4A-4095-A0B6-FA4BA5FC5763"
+        },
+        {
           "defKey": "OBJ_NAME",
           "defName": "审批对象名称",
           "comment": "",
@@ -15271,7 +15288,7 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "9092C4E0-1A54-4859-ABBB-5B62DBC27573",
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
           "id": "426784F5-39FF-4EA6-BF2E-BAA90420C4ED"
         },
         {
@@ -15622,6 +15639,23 @@
           "id": "86740DBD-0D18-46FD-93C0-3D6D445A57C4"
         },
         {
+          "defKey": "OBJ_ID",
+          "defName": "审批对象ID",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "id": "7D30CCFC-46D0-4B01-993C-CAA877CBEA31"
+        },
+        {
           "defKey": "OBJ_NAME",
           "defName": "审批对象名称",
           "comment": "",
@@ -15690,7 +15724,7 @@
           "id": "51FABC1A-67F1-4C54-8052-70845D134D71"
         },
         {
-          "defKey": "OPTION",
+          "defKey": "WF_OPTION",
           "defName": "意见",
           "comment": "",
           "type": "",
@@ -15839,7 +15873,7 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "9092C4E0-1A54-4859-ABBB-5B62DBC27573",
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
           "id": "426784F5-39FF-4EA6-BF2E-BAA90420C4ED"
         },
         {

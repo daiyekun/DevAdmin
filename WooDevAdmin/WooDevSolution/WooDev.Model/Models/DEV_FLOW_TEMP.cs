@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 流程模板
     /// </summary>
     [SugarTable("dev_flow_temp")]
-    public partial class DEV_FLOW_TEMP
+    public partial class DEV_FLOW_TEMP:IDevEntitiy
     {
         /// <summary>
         /// DEV_FLOW_TEMP构造函数

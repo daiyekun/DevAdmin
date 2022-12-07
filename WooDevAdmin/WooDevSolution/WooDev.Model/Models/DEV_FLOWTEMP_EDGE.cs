@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 流程模板边（连接线条）
     /// </summary>
     [SugarTable("dev_flowtemp_edge")]
-    public partial class DEV_FLOWTEMP_EDGE
+    public partial class DEV_FLOWTEMP_EDGE:IDevEntitiy
     {
         /// <summary>
         /// DEV_FLOWTEMP_EDGE构造函数

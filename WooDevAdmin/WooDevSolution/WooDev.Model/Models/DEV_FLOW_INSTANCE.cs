@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 审批实例表
     /// </summary>
     [SugarTable("dev_flow_instance")]
-    public partial class DEV_FLOW_INSTANCE
+    public partial class DEV_FLOW_INSTANCE:IDevEntitiy
     {
         /// <summary>
         /// DEV_FLOW_INSTANCE构造函数
@@ -75,7 +75,7 @@ namespace WooDev.Model.Models
         /// 默 认 值:
         /// 是否空值:True
         /// </summary>
-        public int? CURR_NODE_ID { get; set; }
+        public string CURR_NODE_ID { get; set; }
 
         /// <summary>
         /// 描    述:当前审批节点名称
@@ -94,7 +94,7 @@ namespace WooDev.Model.Models
         /// <summary>
         /// 描    述:审批事项描述
         /// 默 认 值:
-        /// 是否空值:False
+        /// 是否空值:True
         /// </summary>
         public string FLOW_ITEM_DIC { get; set; }
 

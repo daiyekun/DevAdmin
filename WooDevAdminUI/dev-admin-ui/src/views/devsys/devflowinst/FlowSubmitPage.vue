@@ -117,13 +117,19 @@
        * 提交流程按钮
        ***/
       async function submitFlow() {
-        const submitdata: FlowSubmitModel = {
-          FlowType: jsonrdata.FlowType,
-          ObjId: jsonrdata.ObjId,
-          FlowItem: jsonrdata.FlowItem,
-          TempId: jsonrdata.TempId,
-        };
-        await createFlowInstApi(submitdata);
+        msg.loading({ content: '正在提交流程...', duration: 0, key: 'saving' });
+        try {
+          const submitdata: FlowSubmitModel = {
+            FlowType: jsonrdata.FlowType,
+            ObjId: jsonrdata.ObjId,
+            FlowItem: jsonrdata.FlowItem,
+            TempId: jsonrdata.TempId,
+          };
+          await createFlowInstApi(submitdata);
+          msg.success({ content: '流程已提交', key: 'saving' });
+        } catch (error) {
+          msg.error({ content: '流程提交失败,' + error, key: 'saving' });
+        }
       }
 
       return {

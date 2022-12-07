@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 审批意见表
     /// </summary>
     [SugarTable("dev_flow_inst_option")]
-    public partial class DEV_FLOW_INST_OPTION
+    public partial class DEV_FLOW_INST_OPTION:IDevEntitiy
     {
         /// <summary>
         /// DEV_FLOW_INST_OPTION构造函数

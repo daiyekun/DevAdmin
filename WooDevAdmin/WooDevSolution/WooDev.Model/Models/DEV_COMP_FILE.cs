@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 附件
     /// </summary>
     [SugarTable("dev_comp_file")]
-    public partial class DEV_COMP_FILE
+    public partial class DEV_COMP_FILE:IDevEntitiy
     {
         /// <summary>
         /// DEV_COMP_FILE构造函数

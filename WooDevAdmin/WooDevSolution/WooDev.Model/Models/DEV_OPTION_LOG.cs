@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 操作日志
     /// </summary>
     [SugarTable("dev_option_log")]
-    public partial class DEV_OPTION_LOG
+    public partial class DEV_OPTION_LOG:IDevEntitiy
     {
         /// <summary>
         /// DEV_OPTION_LOG构造函数

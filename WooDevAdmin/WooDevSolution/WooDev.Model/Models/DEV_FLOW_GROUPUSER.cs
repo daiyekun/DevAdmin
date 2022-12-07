@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 审批流程模板用户组
     /// </summary>
     [SugarTable("dev_flow_groupuser")]
-    public partial class DEV_FLOW_GROUPUSER
+    public partial class DEV_FLOW_GROUPUSER:IDevEntitiy
     {
         /// <summary>
         /// DEV_FLOW_GROUPUSER构造函数

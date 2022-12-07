@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 菜单路由Meta
     /// </summary>
     [SugarTable("dev_routemeta")]
-    public partial class DEV_ROUTEMETA
+    public partial class DEV_ROUTEMETA:IDevEntitiy
     {
         /// <summary>
         /// DEV_ROUTEMETA构造函数

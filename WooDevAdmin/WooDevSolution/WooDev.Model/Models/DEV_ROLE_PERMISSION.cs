@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 角色权限
     /// </summary>
     [SugarTable("dev_role_permission")]
-    public partial class DEV_ROLE_PERMISSION
+    public partial class DEV_ROLE_PERMISSION:IDevEntitiy
     {
         /// <summary>
         /// DEV_ROLE_PERMISSION构造函数

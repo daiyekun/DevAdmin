@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 沟通记录
     /// </summary>
     [SugarTable("dev_comp_record")]
-    public partial class DEV_COMP_RECORD
+    public partial class DEV_COMP_RECORD:IDevEntitiy
     {
         /// <summary>
         /// DEV_COMP_RECORD构造函数

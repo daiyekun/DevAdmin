@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 系统用户
     /// </summary>
     [SugarTable("dev_user")]
-    public partial class DEV_USER
+    public partial class DEV_USER:IDevEntitiy
     {
         /// <summary>
         /// DEV_USER构造函数

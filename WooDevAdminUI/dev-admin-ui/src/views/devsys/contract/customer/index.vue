@@ -250,7 +250,7 @@
           FlowItem: tempdata.FlowItem,
           Name: selrows[0].NAME,
         };
-        console.log(resdata, flowdata);
+        //console.log(resdata, flowdata);
         go('/devflow/flowtemp/flowsubmitpage/' + encodeURIComponent(JSON.stringify(flowdata)));
       };
 

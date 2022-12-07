@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 审批实例板边（连接线条）
     /// </summary>
     [SugarTable("dev_flow_inst_edge")]
-    public partial class DEV_FLOW_INST_EDGE
+    public partial class DEV_FLOW_INST_EDGE:IDevEntitiy
     {
         /// <summary>
         /// DEV_FLOW_INST_EDGE构造函数

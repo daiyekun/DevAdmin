@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 角色菜单权限
     /// </summary>
     [SugarTable("dev_role_function")]
-    public partial class DEV_ROLE_FUNCTION
+    public partial class DEV_ROLE_FUNCTION:IDevEntitiy
     {
         /// <summary>
         /// DEV_ROLE_FUNCTION构造函数

@@ -10,20 +10,20 @@ namespace WooDev.ViewModel.Enums
     [EnumClass(Max = 5, Min = 0, None = -1)]
     public enum WorkFlowStateEnums
     {/// <summary>
-     /// 审批中：0
+     /// 审批中：1
      /// </summary>
-        [EnumItem(Value = 0, Desc = "审批中")]
-        SPZ = 0,
+        [EnumItem(Value = 1, Desc = "审批中")]
+        SPZ = 1,
         /// <summary>
-        /// 审批通过:1
+        /// 审批通过:2
         /// </summary>
-        [EnumItem(Value = 1, Desc = "审批通过")]
-        SPTG = 1,
+        [EnumItem(Value = 2, Desc = "审批通过")]
+        SPTG = 2,
         /// <summary>
-        /// 被打回:1
+        /// 被打回:3
         /// </summary>
-        [EnumItem(Value = 2, Desc = "被打回")]
-         BDH = 2,
+        [EnumItem(Value = 3, Desc = "被打回")]
+         BDH = 3,
        
     
 }

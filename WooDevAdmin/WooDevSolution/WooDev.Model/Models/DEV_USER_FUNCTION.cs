@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 用户权限
     /// </summary>
     [SugarTable("dev_user_function")]
-    public partial class DEV_USER_FUNCTION
+    public partial class DEV_USER_FUNCTION:IDevEntitiy
     {
         /// <summary>
         /// DEV_USER_FUNCTION构造函数

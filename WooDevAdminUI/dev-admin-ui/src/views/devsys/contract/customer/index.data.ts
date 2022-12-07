@@ -88,13 +88,13 @@ export const customercolumns: BasicColumn[] = [
   {
     title: '流程节点',
     dataIndex: 'WF_NODE',
-    width: 130,
+    width: 140,
     align: 'left',
   },
   {
     title: '审批事项',
-    dataIndex: 'WF_ITEM',
-    width: 130,
+    dataIndex: 'WfFlowDic',
+    width: 150,
   },
 
   {

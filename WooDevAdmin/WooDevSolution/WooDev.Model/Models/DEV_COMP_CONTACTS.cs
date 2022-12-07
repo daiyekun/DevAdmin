@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 公司联系人
     /// </summary>
     [SugarTable("dev_comp_contacts")]
-    public partial class DEV_COMP_CONTACTS
+    public partial class DEV_COMP_CONTACTS:IDevEntitiy
     {
         /// <summary>
         /// DEV_COMP_CONTACTS构造函数

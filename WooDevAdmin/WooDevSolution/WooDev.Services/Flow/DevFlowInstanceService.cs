@@ -1,10 +1,12 @@
 ﻿using Google.Protobuf.WellKnownTypes;
+using Org.BouncyCastle.Asn1.Tsp;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WooDev.Common.Utility;
 using WooDev.Model.Models;
 using WooDev.ViewModel.Enums;
 using WooDev.ViewModel.Flow;
@@ -74,9 +76,11 @@ namespace WooDev.Services
             InstInfo.CREATE_TIME = DateTime.Now;
             InstInfo.UPDATE_USERID = userId;
             InstInfo.UPDATE_TIME = DateTime.Now;
+            InstInfo.CURR_NODE_ID = dicdata["firstNode"];//当前节点ID
+            InstInfo.CURR_NODE_NAME = dicdata["firstNodeName"];//当前节点名称
 
             #region 审批对象信息获取以及修改  其他审批添加基本修改这里
-            UpdateAppObject(flowInstDTO, userId, InstInfo, dicdata);
+           var objInfo= UpdateAppObject(flowInstDTO, userId, InstInfo, dicdata);
             #endregion
             //审批实例对象新增到数据库
             var inceInfo = DbClient.Insertable<DEV_FLOW_INSTANCE>(InstInfo).ExecuteReturnEntity();
@@ -87,11 +91,19 @@ namespace WooDev.Services
             List<DEV_FLOW_INST_NODE> tlistNodes = CreateInstNodes(userId, listNodes, dicdata, inceInfo);
             List<DEV_FLOW_INST_NODE_INFO> tlistNodeInfos = CreateInstNodeInfos(userId, listNodeInfos, inceInfo);
             List<DEV_FLOW_INST_EDGE> tlistEdges = CreateEdges(userId, listEdges, dicdata, inceInfo);
-            DbClient.Insertable<DEV_FLOW_INST_NODE>(tlistNodes).AddQueue();
-            DbClient.Insertable<DEV_FLOW_INST_NODE_INFO>(tlistNodeInfos).AddQueue();
-            DbClient.Insertable<DEV_FLOW_INST_EDGE>(tlistEdges).AddQueue();
+            //审批实例组
+            List<DEV_FLOW_INST_GROUPUSER>tlistInstGroup= GetFlowInstGroupUser(listNodeInfos, dicdata, InstInfo);
+            //当前审批人员，方便后续查询列表而建立-实战中如果不设计这个，审批数据到一定量联合查询很老火
+            List<DEV_FLOW_INST_WAIT_USER> tlistWaitUser = CreateWaitUser(listNodeInfos, dicdata, InstInfo, userId);
 
-            var ar = DbClient.SaveQueuesAsync();
+            DbClient.Insertable(tlistNodes).AddQueue();
+            DbClient.Insertable(tlistNodeInfos).AddQueue();
+            DbClient.Insertable(tlistEdges).AddQueue();
+            DbClient.Insertable(tlistWaitUser).AddQueue();
+            DbClient.Insertable(tlistInstGroup).AddQueue();
+
+
+            var ar = DbClient.SaveQueues();
 
             #endregion
 
@@ -126,7 +138,7 @@ namespace WooDev.Services
                 {
                     edgeInfo.EDGE_STATE = 0;
                 }
-
+                edgeInfo.EDGE_STRID = item.EDGE_STRID;
                 edgeInfo.EDGE_TYPE = item.EDGE_TYPE;
                 edgeInfo.SOURCENODEID = item.SOURCENODEID;
                 edgeInfo.TARGETNODEID = item.TARGETNODEID;
@@ -247,7 +259,7 @@ namespace WooDev.Services
         /// <param name="userId">当前用户</param>
         /// <param name="InstInfo">审批实例</param>
         /// <param name="dicdata">当前审批节点相关信息</param>
-        private void UpdateAppObject(FlowInstDTO flowInstDTO, int userId, DEV_FLOW_INSTANCE InstInfo, Dictionary<string, string> dicdata)
+        private IDevEntitiy UpdateAppObject(FlowInstDTO flowInstDTO, int userId, DEV_FLOW_INSTANCE InstInfo, Dictionary<string, string> dicdata)
         {
             switch (flowInstDTO.FlowType)
             {
@@ -268,10 +280,12 @@ namespace WooDev.Services
                         info.WF_NODE = dicdata["firstNodeName"];//节点名称
                         //修改当前审批对象 最后和审批节点信息一起提交
                         DbClient.Updateable<DEV_COMPANY>(info).AddQueue();
-
+                        return info;
 
                     }
-                    break;
+                default:
+                    return null;
+                    
 
             }
         }
@@ -297,6 +311,121 @@ namespace WooDev.Services
             dicnode.Add("firstNodeName", firstInfo!.TEXT_VALUE);
             dicnode.Add("curredge", edgeInfo!.EDGE_STRID);
             return dicnode;
+        }
+
+        /// <summary>
+        /// 获取节点信息表
+        /// </summary>
+        /// <param name="nodeInfos">节点信息集合</param>
+        /// <returns>审批实例组</returns>
+        public List<DEV_FLOW_INST_GROUPUSER> GetFlowInstGroupUser(List<DEV_FLOWTEMP_NODE_INFO> nodeInfos, Dictionary<string, string> dicdata, DEV_FLOW_INSTANCE InstInfo)
+        {
+            var firstnode= dicdata["firstNode"];
+            var listGroupIds= nodeInfos.Where(a => a.NODE_STRID == firstnode&&a.O_TYPE == (int)OptTypeEnum.FlowGroup)
+                .Select(a=>a.OPT_ID).ToList();
+            var listgoupusers = DbClient.Queryable<DEV_FLOW_GROUPUSER>().Where(a => listGroupIds.Contains(a.GROUP_ID)).ToList();
+            List<DEV_FLOW_INST_GROUPUSER> listInstGroups = new List<DEV_FLOW_INST_GROUPUSER>();
+            foreach (var item in listgoupusers)
+            {
+                
+                    var info = new DEV_FLOW_INST_GROUPUSER();
+                    info.INST_ID = InstInfo.ID;
+                    info.GROUP_ID = item.GROUP_ID;
+                    info.USER_ID = item.USER_ID;
+                    info.GROUP_NAME = DevRedisUtility.GetGroupField(item.GROUP_ID);
+                    listInstGroups.Add(info);
+
+
+
+            }
+
+            return listInstGroups;
+        }
+
+        /// <summary>
+        /// 创建待审批用户列表
+        /// </summary>
+        /// <param name="dicdata">当前审批节点信息</param>
+        /// <param name="InstInfo">审批实例信息</param>
+        /// <param name="nodeInfos">模板节点信息</param>
+        /// <param name="userId">当前用户</param>
+        /// <returns></returns>
+        public List<DEV_FLOW_INST_WAIT_USER> CreateWaitUser(List<DEV_FLOWTEMP_NODE_INFO> nodeInfos, 
+            Dictionary<string, string> dicdata, DEV_FLOW_INSTANCE InstInfo,int userId)
+        {
+
+            var listwaitusers = new List<DEV_FLOW_INST_WAIT_USER>();
+            var firstnode = dicdata["firstNode"];//第一个审批节点
+              //查询组用户
+            var listGroupIds = nodeInfos.Where(a => a.NODE_STRID == firstnode && a.O_TYPE == (int)OptTypeEnum.FlowGroup)
+                .Select(a => a.OPT_ID).ToList();
+            var listspusers = nodeInfos.Where(a => a.NODE_STRID == firstnode && a.O_TYPE == (int)OptTypeEnum.UserRes)
+                .Select(a => a.OPT_ID).ToList();
+            var listgoupusers = DbClient.Queryable<DEV_FLOW_GROUPUSER>().Where(a => listGroupIds.Contains(a.GROUP_ID)).ToList();
+           //遍历组用户
+            foreach (var item in listgoupusers)
+            {
+
+                var info = new DEV_FLOW_INST_WAIT_USER();
+                info.INST_ID = InstInfo.ID;
+                info.NODE_STR = firstnode;
+                info.USER_ID = item.USER_ID;
+                info.FLOW_TYPE = InstInfo.FLOW_TYPE;
+                info.FLOW_ITEM = InstInfo.FLOW_ITEM_ID;
+                info.OBJ_NAME = InstInfo.NAME;
+                info.OBJ_MONERY = InstInfo.APP_MONERY??0;
+                info.OBJ_ID = InstInfo.APP_ID;
+                info.OBJ_CODE = InstInfo.CODE;
+                info.ORDER_NUM = 0;
+                info.FLOW_STATE = 1;//审批中
+                info.IS_DELETE = 0;
+                info.SP_TYPE = (int)OptTypeEnum.FlowGroup;
+                info.SP_TYPE_OBJID = item.GROUP_ID;
+                info.IS_AUTH = 0;
+                info.CREATE_USERID = userId;
+                info.CREATE_TIME = DateTime.Now;
+                info.UPDATE_TIME = DateTime.Now;
+                info.UPDATE_USERID = userId;
+                listwaitusers.Add(info);
+
+
+
+
+            }
+            //遍历用户
+            foreach (var item in listspusers)
+            {
+
+                var info = new DEV_FLOW_INST_WAIT_USER();
+                info.INST_ID = InstInfo.ID;
+                info.NODE_STR = firstnode;
+                info.USER_ID = item;
+                info.FLOW_TYPE = InstInfo.FLOW_TYPE;
+                info.FLOW_ITEM = InstInfo.FLOW_ITEM_ID;
+                info.OBJ_NAME = InstInfo.NAME;
+                info.OBJ_MONERY = InstInfo.APP_MONERY ?? 0;
+                info.OBJ_ID = InstInfo.APP_ID;
+                info.OBJ_CODE = InstInfo.CODE;
+                info.ORDER_NUM = 0;
+                info.FLOW_STATE = 1;//审批中
+                info.IS_DELETE = 0;
+                info.SP_TYPE = (int)OptTypeEnum.UserRes;
+                info.SP_TYPE_OBJID = item;
+                info.IS_AUTH = 0;
+                info.CREATE_USERID = userId;
+                info.CREATE_TIME = DateTime.Now;
+                info.UPDATE_TIME = DateTime.Now;
+                info.UPDATE_USERID = userId;
+
+                listwaitusers.Add(info);
+
+
+
+
+            }
+            return listwaitusers;
+
+
         }
 
         #endregion 

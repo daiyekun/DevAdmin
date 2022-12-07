@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 审批流程实例历史用户组
     /// </summary>
     [SugarTable("dev_flow_inst_groupuser_hist")]
-    public partial class DEV_FLOW_INST_GROUPUSER_HIST
+    public partial class DEV_FLOW_INST_GROUPUSER_HIST:IDevEntitiy
     {
         /// <summary>
         /// DEV_FLOW_INST_GROUPUSER_HIST构造函数

@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 用户角色
     /// </summary>
     [SugarTable("dev_user_role")]
-    public partial class DEV_USER_ROLE
+    public partial class DEV_USER_ROLE:IDevEntitiy
     {
         /// <summary>
         /// DEV_USER_ROLE构造函数

@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 数据字典
     /// </summary>
     [SugarTable("dev_datadic")]
-    public partial class DEV_DATADIC
+    public partial class DEV_DATADIC:IDevEntitiy
     {
         /// <summary>
         /// DEV_DATADIC构造函数

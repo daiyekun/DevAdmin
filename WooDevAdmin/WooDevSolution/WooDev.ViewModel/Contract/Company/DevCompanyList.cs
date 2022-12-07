@@ -79,6 +79,10 @@ namespace WooDev.ViewModel
         /// </summary>
         public string? CrateName { get; set; }
         /// <summary>
+        /// 审批事项
+        /// </summary>
+        public string WfFlowDic { get; set; }
+        /// <summary>
         /// 导出excel使用
         /// </summary>
         /// <param name="propName"></param>

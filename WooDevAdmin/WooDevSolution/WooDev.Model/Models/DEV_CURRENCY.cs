@@ -11,7 +11,7 @@ namespace WooDev.Model.Models
     /// 币种
     /// </summary>
     [SugarTable("dev_currency")]
-    public partial class DEV_CURRENCY
+    public partial class DEV_CURRENCY:IDevEntitiy
     {
         /// <summary>
         /// DEV_CURRENCY构造函数
