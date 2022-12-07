@@ -32,6 +32,9 @@
       title: 'ID',
       dataIndex: 'ID',
       editRow: false,
+      ifShow: () => {
+        return false;
+      },
     },
     {
       title: '姓名',
@@ -82,8 +85,6 @@
       //debugger;
       // console.log('获取值props--->', props.custid);
       const currcustid = Number(props.custid); //toRef(props, 'custid');
-      // console.log('props--->', custid.value);
-      // console.log(`测试客户ID ${custid.value}`);
       const [registerTable, { getDataSource, reload }] = useTable({
         columns: columns,
         showIndexColumn: false,
@@ -227,7 +228,6 @@
         getDataSource,
         handleEditChange,
         handleDel,
-
         handleSuccess,
         currcustid,
       };

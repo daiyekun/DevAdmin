@@ -9,9 +9,15 @@ namespace WooDev.ViewModel.Enums
 {
     [EnumClass(Max = 5, Min = 0, None = -1)]
     public enum WorkFlowStateEnums
-    {/// <summary>
-     /// 审批中：1
-     /// </summary>
+    {
+        /// <summary>
+        /// 0;默认状态
+        /// </summary>
+        [EnumItem(Value = 0, Desc = "")]
+        State0 = 0,
+        /// <summary>
+        /// 审批中：1
+        /// </summary>
         [EnumItem(Value = 1, Desc = "审批中")]
         SPZ = 1,
         /// <summary>

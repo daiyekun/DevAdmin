@@ -1,9 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using SqlSugar;
+using System.Linq.Expressions;
 using WooDev.Common.Models;
 using WooDev.IServices;
+using WooDev.Model.Models;
 using WooDev.Services;
+using WooDev.ViewModel.Common;
+using WooDev.ViewModel;
 using WooDev.ViewModel.Flow.FlowInstance;
 using WooDev.WebCommon.Extend;
 using WooDev.WebCommon.Utiltiy;
@@ -64,6 +69,39 @@ namespace WooDev.WebApi.Controllers.Flow
             };
             return new DevResultJson(result);
 
+        }
+
+        /// <summary>
+        /// 列表
+        /// </summary>
+        /// <returns></returns>
+        [Route("getList")]
+        [HttpGet]
+        //[AllowAnonymous]//跳过授权验证
+        [Authorize]
+        public IActionResult GetList([FromQuery] PageParams pageParams, [FromQuery] FlowInstSearch serachParam)
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            var pageinfo = new PageInfo<DEV_FLOW_INSTANCE>() { PageIndex = pageParams.page, PageSize = pageParams.pageSize };
+            var whereexp = Expressionable.Create<DEV_FLOW_INSTANCE>();
+            whereexp = whereexp.And(a => a.IS_DELETE == 0);
+            if ((serachParam.CustId??0)>0&&(serachParam.FlowType??-1)>0)
+            {
+                whereexp = whereexp.And(a => a.FLOW_TYPE == serachParam.FlowType&&a.APP_ID== serachParam.CustId);
+            }
+
+                if (!string.IsNullOrEmpty(serachParam.KeyWord))
+            {//搜索
+                whereexp = whereexp.And(a => a.NAME.Contains(serachParam.KeyWord) || a.CODE.Contains(serachParam.KeyWord));
+            }
+            
+            Expression<Func<DEV_FLOW_INSTANCE, object>> orderbyLambda = a => a.ID;
+            var data = _IDevFlowInstanceService.GetList(pageinfo, whereexp.ToExpression(), orderbyLambda, false);
+            var result = new ResultData<DevFlowInstanceList>
+            {
+                result = data,
+            };
+            return new DevResultJson(result);
         }
     }
 }

@@ -1,13 +1,17 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Org.BouncyCastle.Asn1.Tsp;
+using SqlSugar;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using WooDev.Common.Models;
 using WooDev.Common.Utility;
 using WooDev.Model.Models;
+using WooDev.ViewModel;
 using WooDev.ViewModel.Enums;
 using WooDev.ViewModel.Flow;
 using WooDev.ViewModel.Flow.FlowInstance;
@@ -226,15 +230,15 @@ namespace WooDev.Services
                 if (dicdata["stratNode"] == item.NODE_STRID)
                     if (item.TEXT_VALUE == FlowStaticData.StratNodeText)
                     {//开始节点
-                        node.NODE_STATE = (int)FlowStateEnum.State2;
+                        node.NODE_STATE = (int)WorkFlowStateEnums.SPTG;
                     }
                     else if (dicdata["firstNode"] == item.NODE_STRID)
                     {//审批中
-                        node.NODE_STATE = (int)FlowStateEnum.State1;
+                        node.NODE_STATE = (int)WorkFlowStateEnums.SPZ;
                     }
                     else
                     {
-                        node.NODE_STATE = (int)FlowStateEnum.State0;
+                        node.NODE_STATE = (int)WorkFlowStateEnums.State0;
                     }
 
                 node.ORDER_NUM = 0;
@@ -428,6 +432,101 @@ namespace WooDev.Services
 
         }
 
-        #endregion 
+        #endregion
+
+        /// <summary>
+        /// 审批历史记录列表
+        /// </summary>
+        /// <typeparam name="s"></typeparam>
+        /// <param name="pageInfo">分页对象</param>
+        /// <param name="whereLambda">where 条件</param>
+        /// <param name="orderbyLambda">排序</param>
+        /// <param name="isAsc">是否正序</param>
+        /// <returns></returns>
+        public ResultPageData<DevFlowInstanceList> GetList(PageInfo<DEV_FLOW_INSTANCE> pageInfo, Expression<Func<DEV_FLOW_INSTANCE, bool>>? whereLambda,
+            Expression<Func<DEV_FLOW_INSTANCE, object>> orderbyLambda, bool isAsc)
+        {
+
+            var tempquery = DbClient.Queryable<DEV_FLOW_INSTANCE>().Where(whereLambda);
+            if (isAsc)
+            {
+                tempquery = tempquery.OrderBy(orderbyLambda, OrderByType.Asc);
+            }
+            else
+            {
+                tempquery = tempquery.OrderBy(orderbyLambda, OrderByType.Desc);
+            }
+
+            int totalCount = 0;
+            if ((pageInfo is NoPageInfo<DEV_FLOW_INSTANCE>))
+            { //分页
+                pageInfo.PageSize = 2000;
+                pageInfo.PageIndex = 0;
+            }
+            var list = tempquery.ToPageList(pageInfo.PageIndex, pageInfo.PageSize, ref totalCount, a => new {
+                ID = a.ID,
+                NAME = a.NAME,//审批对象名称
+                CODE = a.CODE,//审批对象编号
+                FLOW_TYPE = a.FLOW_TYPE,//对象类别，客户，合同..
+                APP_ID = a.APP_ID,//对象ID
+                APP_MONERY=a.APP_MONERY,//对象金额
+                START_USER_ID = a.START_USER_ID,//提交人
+                CREATE_TIME = a.CREATE_TIME,//创建时间
+                CREATE_USERID = a.CREATE_USERID,//创建人
+                CURR_NODE_ID=a.CURR_NODE_ID,//当前节点ID
+                CURR_NODE_NAME=a.CURR_NODE_NAME,//节点名称
+                FLOW_ITEM_ID=a.FLOW_ITEM_ID,//审批事项
+                FLOW_END_TIME=a.FLOW_END_TIME,//审批结束时间
+                FLOW_STATE=a.FLOW_STATE,//
+
+            });
+            pageInfo.TotalCount = totalCount;
+            var local = from a in list
+                        select new DevFlowInstanceList
+                        {
+                            ID = a.ID,
+                            NAME = a.NAME,//审批对象名称
+                            CODE = a.CODE,//审批对象编号
+                            FLOW_TYPE = a.FLOW_TYPE,//对象类别，客户，合同..
+                            APP_ID = a.APP_ID,//对象ID
+                            APP_MONERY = a.APP_MONERY,//对象金额
+                            START_USER_ID = a.START_USER_ID,//提交人
+                            CREATE_TIME = a.CREATE_TIME,//创建时间
+                            CREATE_USERID = a.CREATE_USERID,//创建人
+                            CURR_NODE_ID = a.CURR_NODE_ID,//当前节点ID
+                            CURR_NODE_NAME = a.CURR_NODE_NAME,//节点名称
+                            FLOW_ITEM_ID = a.FLOW_ITEM_ID,//审批事项
+                            FLOW_END_TIME = a.FLOW_END_TIME,//审批结束时间
+                            FlowTypeDic = EmunUtility.GetDesc(typeof(FlowObjEnums), a.FLOW_TYPE),
+                            FlowItemDic = GetFlowItemDic(a.FLOW_TYPE, a.FLOW_ITEM_ID),
+                            FLOW_STATE = a.FLOW_STATE,//
+                            StateDic= EmunUtility.GetDesc(typeof(WorkFlowStateEnums), a.FLOW_STATE),
+                            
+
+                        };
+            return new ResultPageData<DevFlowInstanceList>()
+            {
+                items = local.ToList(),
+                total = pageInfo.TotalCount,
+                page = pageInfo.PageIndex,
+                pageSize = pageInfo.PageSize
+
+
+            };
+        }
+
+        /// <summary>
+        /// 获取审批事项
+        /// </summary>
+        /// <param name="enumval">审批事项值</param>
+        /// <param name="objEnum">审批对象枚举值，客户 供货商...</param>
+        /// <returns></returns>
+        private string GetFlowItemDic(int objEnum,int enumval)
+        {
+            var itemObjType = EmunUtility.GetEnumItemExAttribute(typeof(FlowObjEnums), objEnum);
+            var list = EmunUtility.GetExtAttr(itemObjType.TypeValue);
+            var enuminfo= list.Where(a => a.Value == enumval).FirstOrDefault();
+            return enuminfo == null ? "" : enuminfo.Desc;
+        }
     }
 }
