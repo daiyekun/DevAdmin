@@ -85,7 +85,7 @@ namespace WooDev.WebApi.Controllers.Flow
             var pageinfo = new PageInfo<DEV_FLOW_INSTANCE>() { PageIndex = pageParams.page, PageSize = pageParams.pageSize };
             var whereexp = Expressionable.Create<DEV_FLOW_INSTANCE>();
             whereexp = whereexp.And(a => a.IS_DELETE == 0);
-            if ((serachParam.CustId??0)>0&&(serachParam.FlowType??-1)>0)
+            if ((serachParam.CustId??0)>0&&(serachParam.FlowType??-1)>=0)
             {
                 whereexp = whereexp.And(a => a.FLOW_TYPE == serachParam.FlowType&&a.APP_ID== serachParam.CustId);
             }
@@ -102,6 +102,28 @@ namespace WooDev.WebApi.Controllers.Flow
                 result = data,
             };
             return new DevResultJson(result);
+        }
+
+        /// <summary>
+        /// 查询是否存在当前审批
+        /// </summary>
+        /// <param name="flowInstDTO">创建实例的对象</param>
+        /// <returns></returns>
+        [Route("isAppExistInfo")]
+        [HttpPost]
+
+        public IActionResult IsAppExistInfo([FromBody] ApprovalActionDTO  approval)
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            var info = _IDevFlowInstanceService.IsAppExistInfo(approval, userId);
+            var result = new ResultViewData<PersionApprovalInfo>
+            {
+                code = 0,
+                message = "ok",
+                result = info
+            };
+            return new DevResultJson(result);
+
         }
     }
 }

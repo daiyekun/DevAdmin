@@ -70,3 +70,38 @@ export type FlowInstSearchParams = flowSearchParams & {
   CustId?: number;
   FlowType?: number;
 };
+/***
+ * 审批权限
+ ***/
+export interface PersionApprovalInfo {
+  WaitId: number; //ID DEV_FLOW_INST_WAIT_USER 表
+  InstId: number;
+  NodeId: string;
+  ReText: number;
+}
+/***
+ * 获取审批权限是传递的参数对象
+ */
+
+export interface ApprovalPerssionDto {
+  AppObjId: number;
+  AppObjType: number;
+  UserId: number;
+}
+/***
+ * 审批权限
+ */
+export interface ApprovalQx {
+  appqx: PersionApprovalInfo;
+}
+
+/***
+ * 审批意见提交对象
+ */
+export interface FlowOptionDto {
+  WaitId: number;
+  InstId: number;
+  NodeId: string;
+  Sta: number;
+  Msg: string;
+}

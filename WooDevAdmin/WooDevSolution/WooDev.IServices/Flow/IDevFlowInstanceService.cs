@@ -40,5 +40,11 @@ namespace WooDev.IServices
         /// <returns></returns>
         ResultPageData<DevFlowInstanceList> GetList(PageInfo<DEV_FLOW_INSTANCE> pageInfo, Expression<Func<DEV_FLOW_INSTANCE, bool>>? whereLambda,
            Expression<Func<DEV_FLOW_INSTANCE, object>> orderbyLambda, bool isAsc);
+        ///// <summary>
+        ///// 根据当前人员获取当前审批对象是否可以审批
+        ///// 让其在查看页面是否能看到审批按钮
+        ///// </summary>
+        ///// <returns></returns>
+        PersionApprovalInfo IsAppExistInfo(ApprovalActionDTO approval, int userid);
     }
 }

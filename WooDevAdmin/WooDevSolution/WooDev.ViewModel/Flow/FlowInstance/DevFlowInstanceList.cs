@@ -26,6 +26,11 @@ namespace WooDev.ViewModel
         /// </summary>
 
         public string StateDic { get; set; }
+        /// <summary>
+        /// 审批发起人
+        /// </summary>
+        public string StartUserName { get; set; }
+
 
         
     }

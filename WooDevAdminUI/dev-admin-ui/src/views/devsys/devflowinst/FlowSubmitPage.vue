@@ -127,6 +127,7 @@
           };
           await createFlowInstApi(submitdata);
           msg.success({ content: '流程已提交', key: 'saving' });
+          closeCurrent();
         } catch (error) {
           msg.error({ content: '流程提交失败,' + error, key: 'saving' });
         }

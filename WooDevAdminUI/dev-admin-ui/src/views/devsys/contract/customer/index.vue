@@ -65,7 +65,7 @@
   import { customercolumns, getFormConfig } from './index.data';
   import { useGo } from '/@/hooks/web/usePage';
   import { useModal } from '/@/components/Modal';
-  import ExportExcelModel from '/@/views/devsys/contract/common/ExportExcelModel.vue';
+  import ExportExcelModel from '/@/components/DevComponents/src/ExportExcelModel.vue';
   import { ExportExcelData } from '/@/api/devsys/model/devCommonModel';
   import { Dropdown, Menu, MenuItem } from 'ant-design-vue';
   import { DownOutlined } from '@ant-design/icons-vue';
@@ -241,17 +241,23 @@
           Monery: 0,
         };
         let resdata = await getFlowTempApi(tempdata);
-        // debugger;
-        isActive.value = true;
-        const flowdata: FlowShowData = {
-          FlowType: tempdata.FlowObj,
-          ObjId: selrows[0].ID,
-          TempId: resdata.ID,
-          FlowItem: tempdata.FlowItem,
-          Name: selrows[0].NAME,
-        };
-        //console.log(resdata, flowdata);
-        go('/devflow/flowtemp/flowsubmitpage/' + encodeURIComponent(JSON.stringify(flowdata)));
+        if (resdata != null) {
+          debugger;
+          console.log('返回类型', resdata);
+          isActive.value = true;
+          const flowdata: FlowShowData = {
+            FlowType: tempdata.FlowObj,
+            ObjId: selrows[0].ID,
+            TempId: resdata.ID,
+            FlowItem: tempdata.FlowItem,
+            Name: selrows[0].NAME,
+          };
+          //console.log(resdata, flowdata);
+          go('/devflow/flowtemp/flowsubmitpage/' + encodeURIComponent(JSON.stringify(flowdata)));
+        } else {
+          //没有匹配上流程直接修改
+          msg.info({ content: '没有匹配上流程，是否直接修改', key: 'submitflow' });
+        }
       };
 
       async function loadFlowItems() {
@@ -292,7 +298,7 @@
         }
       }
       function clickFlowBtn() {
-        console.log('点击事件 start--', dwonvisible.value, subFlowTag.value);
+        //console.log('点击事件 start--', dwonvisible.value, subFlowTag.value);
         if (subFlowTag.value == -1) {
           msg.warn({ content: '请选择数据..', key: 'tmsg' });
         } else if (subFlowTag.value == 2) {

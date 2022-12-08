@@ -46,8 +46,8 @@
   import { defineComponent, reactive } from 'vue';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
   import { useModal } from '/@/components/Modal';
-  import UserSelectModel from '/@/views/devsys/contract/common/UserModel.vue';
-  import UserGroupModel from '/@/views/devsys/contract/common/UserGroupModel.vue';
+  import UserSelectModel from '/@/components/DevComponents/src/UserModel.vue';
+  import UserGroupModel from '/@/components/DevComponents/src/UserGroupModel.vue';
   // import { PageWrapper } from '/@/components/Page';
   import { BasicForm, FormSchema, useForm } from '/@/components/Form/index';
   import { useMessage } from '/@/hooks/web/useMessage';

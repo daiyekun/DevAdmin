@@ -30,7 +30,7 @@
   import { Card } from 'ant-design-vue';
   import { useModal } from '/@/components/Modal';
   import { useTabs } from '/@/hooks/web/useTabs';
-  import UserSelectModel from '/@/views/devsys/contract/common/UserModel.vue';
+  import UserSelectModel from '/@/components/DevComponents/src/UserModel.vue';
   import { customerSaveApi } from '/@/api/devsys/contract/customer';
   import { useGo } from '/@/hooks/web/usePage';
   import { useMessage } from '/@/hooks/web/useMessage';

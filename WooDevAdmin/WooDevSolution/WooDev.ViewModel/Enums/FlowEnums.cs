@@ -38,32 +38,25 @@ namespace WooDev.ViewModel.Enums
             Post = 4
         }
 
-    ///// <summary>
-    ///// 审批节点状态
-    ///// </summary>
-    //[EnumClass(Min = 1, Max = 5, Default = -1)]
-    //public enum FlowStateEnum
-    //{
-    //    /// <summary>
-    //    /// 0;默认状态
-    //    /// </summary>
-    //    [EnumItem(Value = 0, Desc = "")]
-    //    State0 = 0,
-    //    /// <summary>
-    //    /// 1;审批中 进行中
-    //    /// </summary>
-    //    [EnumItem(Value = 1, Desc = "审批中")]
-    //    State1 = 1,
-    //    /// <summary>
-    //    /// 2:已通过
-    //    /// </summary>
-    //    [EnumItem(Value = 3, Desc = "已通过")]
-    //    State2 = 2,
-    //    /// <summary>
-    //    /// 3:打回
-    //    /// </summary>
-    //    [EnumItem(Value = 3, Desc = "打回")]
-    //    State3 = 3
-    //}
+    /// <summary>
+    /// 审批规则
+    /// </summary>
+    [EnumClass(Max = 2, Min = 0, None = -1)]
+    public enum NruleEnum
+    {
+        /// <summary>
+        /// 全部通过：1
+        /// </summary>
+        [EnumItem(Value = 1, Desc = "全部通过")]
+        Qbtg = 1,
+        /// <summary>
+        /// 任意通过:2
+        /// </summary>
+        [EnumItem(Value = 2, Desc = "任意通过")]
+        RyTg =2,
+       
+    }
+
+
 }
 

@@ -1,4 +1,6 @@
-﻿using Google.Protobuf.WellKnownTypes;
+﻿using Dev.WooNet.AutoMapper.Extend;
+using Google.Protobuf.WellKnownTypes;
+using Microsoft.AspNetCore.Http;
 using Org.BouncyCastle.Asn1.Tsp;
 using SqlSugar;
 using StackExchange.Redis;
@@ -501,7 +503,8 @@ namespace WooDev.Services
                             FlowItemDic = GetFlowItemDic(a.FLOW_TYPE, a.FLOW_ITEM_ID),
                             FLOW_STATE = a.FLOW_STATE,//
                             StateDic= EmunUtility.GetDesc(typeof(WorkFlowStateEnums), a.FLOW_STATE),
-                            
+                            StartUserName= DevRedisUtility.GetUserField(a.START_USER_ID),
+
 
                         };
             return new ResultPageData<DevFlowInstanceList>()
@@ -527,6 +530,104 @@ namespace WooDev.Services
             var list = EmunUtility.GetExtAttr(itemObjType.TypeValue);
             var enuminfo= list.Where(a => a.Value == enumval).FirstOrDefault();
             return enuminfo == null ? "" : enuminfo.Desc;
+        }
+
+        ///// <summary>
+        ///// 根据当前人员获取当前审批对象是否可以审批
+        ///// 让其在查看页面是否能看到审批按钮
+        ///// </summary>
+        ///<param name="approval">判断条件实例</param>
+        ///<param name="userid">当前用户</param>
+        ///// <returns></returns>
+        public PersionApprovalInfo IsAppExistInfo(ApprovalActionDTO approval,int userid)
+        {
+           var currwaituser= DbClient.Queryable<DEV_FLOW_INST_WAIT_USER>()
+                .Where(a => a.OBJ_ID == approval.AppObjId && a.FLOW_TYPE == approval.AppObjType 
+                && a.USER_ID == userid&&a.FLOW_STATE==1)
+                .Select(a => new PersionApprovalInfo
+                {   WaitId=a.ID,
+                    InstId = a.INST_ID,
+                    NodeId = a.NODE_STR,
+
+                }).First();
+            if (currwaituser != null)
+            {
+                var nodeinfo = DbClient.Queryable<DEV_FLOW_INST_NODE>().Where(a => a.INST_ID == currwaituser.InstId && a.NODE_STRID == currwaituser.NodeId).First();
+                currwaituser.ReText = nodeinfo!=null? (nodeinfo.RE_TEXT ?? 0):0;
+            }
+            else
+            {
+                currwaituser = new PersionApprovalInfo();
+            }
+
+            return currwaituser;
+
+
+
+        }
+        /// <summary>
+        /// 提交审批意见
+        /// </summary>
+        /// <param name="flowOption">审批意见相关信息</param>
+        /// <param name="userId">审批人员</param>
+        /// <returns></returns>
+        public int SubmitOption(FlowOptionDTO flowOption,int userId)
+        {
+            //当前审批人员对象
+            var waitInfo = DbClient.Queryable<DEV_FLOW_INST_WAIT_USER>().Where(a => a.ID == flowOption.WaitId).First();
+            //审批实例
+            var instInfo = DbClient.Queryable<DEV_FLOW_INSTANCE>().Where(a => a.ID == flowOption.InstId).First();
+            //审批节点
+            var listNodes = DbClient.Queryable<DEV_FLOW_INST_NODE>().Where(a => a.INST_ID == flowOption.InstId).ToList();
+            //链接线
+            var listEdges = DbClient.Queryable<DEV_FLOW_INST_EDGE>().Where(a => a.INST_ID == flowOption.InstId).ToList();
+
+            var listNodeInfo = DbClient.Queryable<DEV_FLOW_INST_NODE_INFO>()
+                .Where(a => a.INST_ID == flowOption.InstId && a.NODE_STRID == flowOption.NodeId).ToList();
+          
+            waitInfo.FLOW_STATE = 2;
+            //待处理审批
+            DbClient.Updateable(waitInfo).AddQueue();
+            //审批通过实体
+            var enduserinfo = AutoMapperHelper.Map<DEV_FLOW_INST_WAIT_USER, DEV_FLOW_INST_END_USER>(waitInfo);
+            enduserinfo.FLOW_STATE = 2;
+            enduserinfo.WF_OPTION = flowOption.Msg;
+            enduserinfo.END_TIME = DateTime.Now;
+            enduserinfo.UPDATE_TIME = DateTime.Now;
+            enduserinfo.UPDATE_USERID = userId;
+            //审批通过列表
+            DbClient.Insertable(enduserinfo).AddQueue();
+            //审批意见
+            var option = new DEV_FLOW_INST_OPTION();
+            option.NODE_STR_ID = flowOption.NodeId;
+            option.INST_ID = flowOption.InstId;
+            option.INST_ID = flowOption.InstId;
+            option.USER_ID = userId;
+            option.APP_STATE = flowOption.Sta;
+            option.IS_DELETE = 0;
+            option.CREATE_USERID = userId;
+            option.UPDATE_USERID = userId;
+            option.CREATE_TIME = DateTime.Now;
+            option.UPDATE_TIME = DateTime.Now;
+            DbClient.Insertable(option).AddQueue();
+            //修改当前节点
+            var currnode = listNodes.Where(a => a.NODE_STRID == flowOption.NodeId).FirstOrDefault();
+            if (currnode != null&&currnode.NRULE==(int)NruleEnum.Qbtg)
+            {//全部通过
+                
+            }else if (currnode != null && currnode.NRULE == (int)NruleEnum.RyTg)
+            {//任意通过
+
+            }
+
+
+            //DbClient.Insertable(tlistEdges).AddQueue();
+            //DbClient.Insertable(tlistWaitUser).AddQueue();
+            //DbClient.Insertable(tlistInstGroup).AddQueue();
+            var ar = DbClient.SaveQueues();
+
+            return ar;
+
         }
     }
 }

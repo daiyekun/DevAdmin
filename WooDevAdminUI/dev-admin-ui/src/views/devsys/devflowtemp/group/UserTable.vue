@@ -19,7 +19,7 @@
     ActionItem,
     EditRecordRow,
   } from '/@/components/Table';
-  import UserSelectModel from '/@/views/devsys/contract/common/UserModel.vue';
+  import UserSelectModel from '/@/components/DevComponents/src/UserModel.vue';
   import { useModal } from '/@/components/Modal';
   import { getGroupUserList } from '/@/api/devsys/flow/flowgroup';
   //import {  UserParams } from '/@api/devsys/model/systemModel';
