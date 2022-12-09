@@ -8,20 +8,33 @@
   </BasicModal>
 </template>
 <script lang="ts">
-  import { defineComponent, ref, createVNode } from 'vue';
+  import { defineComponent, ref, createVNode, reactive } from 'vue'; //PropType
   import { BasicModal, useModalInner } from '/@/components/Modal';
   import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+  import {
+    PersionApprovalInfo,
+    ApprovalQx,
+    FlowOptionDto,
+  } from '/@/api/devsys/model/flow/flowInstModel';
   import { Modal } from 'ant-design-vue';
+  import { submitOptionApi } from '/@/api/devsys/flow/flowinst';
   export default defineComponent({
     name: 'FlowOptionModel',
     components: { BasicModal },
-
-    setup() {
+    // props: {
+    //   FlowObj: Object as PropType<PersionApprovalInfo>,
+    // },
+    emits: ['sumitMsg', 'register'],
+    setup(_, { emit }) {
       //const rowId = ref('');
       const flowoption = ref<string>('');
+      let appperssion = reactive<ApprovalQx>({ appqx: {} as PersionApprovalInfo });
       const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {
         setModalProps({ confirmLoading: false });
-        console.log('===data', data);
+        appperssion = await data.appperssion;
+        // debugger;
+        // console.log('===data', data);
+        //console.log('===appperssion', appperssion);
       });
 
       function handleMsg(sta: number) {
@@ -41,10 +54,36 @@
           icon: () => createVNode(ExclamationCircleOutlined),
           content: () => `您点击的是${tjmsg}，确认吗？`,
           onOk() {
-            // return new Promise((resolve, reject) => {
-            //   setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-            // }).catch(() => console.log('Oops errors!'));
-            closeModal();
+            if (flowoption.value === '') {
+              Modal.warning({
+                title: () => '系统提示',
+                content: () => '请填写意见.....',
+              });
+            } else {
+              var optiondata: FlowOptionDto = {
+                WaitId: appperssion.appqx.WaitId,
+                InstId: appperssion.appqx.InstId,
+                NodeId: appperssion.appqx.NodeId,
+                Sta: sta,
+                Msg: flowoption.value,
+              };
+              console.log('提交数据', optiondata);
+              submitOptionApi(optiondata)
+                .then(() => {
+                  Modal.success({
+                    title: () => '系统提示',
+                    content: () => '提交成功',
+                  });
+                  closeModal();
+                  emit('sumitMsg');
+                })
+                .catch((error) => {
+                  Modal.error({
+                    title: () => '系统异常',
+                    content: () => '错误消息：' + error,
+                  });
+                });
+            }
           },
 
           onCancel() {},

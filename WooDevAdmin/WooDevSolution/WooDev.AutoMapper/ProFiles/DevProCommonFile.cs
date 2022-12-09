@@ -447,10 +447,17 @@ namespace Dev.WooNet.AutoMapper.ProFiles
          .ForMember(a => a.UPDATE_USERID, opt => opt.Ignore())
          .ForMember(a => a.UPDATE_TIME, opt => opt.Ignore())
          .ForMember(a => a.CREATE_TIME, opt => opt.Ignore())
-         .ForMember(a => a.CREATE_USERID, opt => opt.Ignore())
-         
-         ;
-            #endregion
+         .ForMember(a => a.CREATE_USERID, opt => opt.Ignore());
+
+        //待处理-->已处理
+         CreateMap<DEV_FLOW_INST_WAIT_USER, DEV_FLOW_INST_END_USER>()
+                .ForMember(a => a.START_TIME, opt => opt.Ignore())
+                .ForMember(a => a.END_TIME, opt => opt.Ignore())
+                 .ForMember(a => a.WF_OPTION, opt => opt.Ignore())
+                ;
+
+           
+         #endregion
 
 
 

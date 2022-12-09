@@ -37,7 +37,7 @@
         <FlowInstHistory :custid="coustomerid" :objtype="0" />
       </div>
     </PageWrapper>
-    <FlowOptionModel @register="flowOptionregister" />
+    <FlowOptionModel @register="flowOptionregister" @sumitMsg="flowSucc" />
   </div>
 </template>
 <script lang="ts">
@@ -103,7 +103,7 @@
           AppObjType: 0,
           UserId: 0,
         });
-        console.log('审批权限 appqx', appperssion);
+        // console.log('审批权限 appqx', appperssion);
       });
       /***
        * 标签切换
@@ -123,6 +123,12 @@
       function submitOption() {
         flowOptinOpenModal(true, { appperssion });
       }
+      /***
+       * 意见提交成功
+       */
+      function flowSucc() {
+        closeCurrent();
+      }
 
       return {
         //registerTimeTable,
@@ -139,6 +145,7 @@
         flowOptionregister,
         flowOptinOpenModal,
         appperssion,
+        flowSucc,
       };
     },
   });

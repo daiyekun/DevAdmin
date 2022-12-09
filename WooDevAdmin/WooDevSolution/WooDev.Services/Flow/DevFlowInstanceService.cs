@@ -759,6 +759,7 @@ namespace WooDev.Services
                 instInfo.CURR_NODE_ID = nextnode.NODE_STRID;
                 instInfo.CURR_NODE_NAME = nextnode.TEXT_VALUE;
                 instInfo.FLOW_STATE = (int)WorkFlowStateEnums.SPTG;
+                instInfo.FLOW_END_TIME = DateTime.Now;
 
 
 
@@ -774,7 +775,7 @@ namespace WooDev.Services
                 CreateWaitUser(nextnode, listnodeInfos, instInfo, userId);
             }
             //2、修改审批实例（需要判断是否需要修改）
-            DbClient.Insertable(instInfo).AddQueue();
+            DbClient.Updateable(instInfo).AddQueue();
 
             //3、修改审批对象（需要判断是否需要修改）
             UpdateObjState(flowOption, instInfo, nextnode);
@@ -809,6 +810,7 @@ namespace WooDev.Services
             {
                 enduserinfo.FLOW_STATE = (int)WorkFlowStateEnums.BDH;
             }
+            enduserinfo.START_TIME = waitInfo.CREATE_TIME;
             enduserinfo.WF_OPTION = flowOption.Msg;
             enduserinfo.END_TIME = DateTime.Now;
             enduserinfo.UPDATE_TIME = DateTime.Now;
@@ -925,6 +927,7 @@ namespace WooDev.Services
             option.UPDATE_USERID = userId;
             option.CREATE_TIME = DateTime.Now;
             option.UPDATE_TIME = DateTime.Now;
+            option.APP_OPTION = flowOption.Msg;
             DbClient.Insertable(option).AddQueue();
         }
 
@@ -994,6 +997,25 @@ namespace WooDev.Services
 
 
 
+        #endregion
+
+        #region 审批实例流程图
+
+        /// <summary>
+        /// 根据审批实例ID获取流出图
+        /// </summary>
+        /// <param name="instId">审批实例Id</param>
+        /// <returns></returns>
+        public FlowInstChartData GetFlowChart(int instId)
+        {
+            //List<DEV_FLOWTEMP_NODE> FlowNodes = new List<DEV_FLOWTEMP_NODE>();
+            //List<DEV_FLOWTEMP_EDGE> FlowEdges = new List<DEV_FLOWTEMP_EDGE>();
+            var listnodes = DbClient.Queryable<DEV_FLOW_INST_NODE>().Where(a => a.INST_ID == instId).ToList();
+            var listedges = DbClient.Queryable<DEV_FLOW_INST_EDGE>().Where(a => a.INST_ID == instId).ToList();
+
+            return new FlowInstChartData { FlowNodes = listnodes, FlowEdges = listedges };
+
+        }
         #endregion
     }
 }

@@ -12,6 +12,8 @@ using WooDev.ViewModel;
 using WooDev.ViewModel.Flow.FlowInstance;
 using WooDev.WebCommon.Extend;
 using WooDev.WebCommon.Utiltiy;
+using WooDev.ViewModel.Flow;
+using WooDev.WebCommon.Utiltiy.Flow;
 
 namespace WooDev.WebApi.Controllers.Flow
 {
@@ -146,6 +148,27 @@ namespace WooDev.WebApi.Controllers.Flow
             };
             return new DevResultJson(result);
 
+        }
+
+        /// <summary>
+        /// 根据审批实例获取流出图数据
+        /// </summary>
+        /// <param name="instId">审批实例ID</param>
+        /// <returns></returns>
+        [Route("getFlowInstChartData")]
+        [HttpGet]
+        public IActionResult GetFlowInstChartData(int instId)
+        {
+            var data = _IDevFlowInstanceService.GetFlowChart(instId);
+            DevFlowChartInfo flowchartdata = FlowInstUtility.GetFlowCharData(data);
+            var resultdata = new ResultViewData<DevFlowChartInfo>
+            {
+                code = 0,
+                message = "ok",
+                result = flowchartdata
+
+            };
+            return new DevResultJson(resultdata);
         }
     }
 }

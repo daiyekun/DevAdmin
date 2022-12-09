@@ -13,7 +13,7 @@ using WooDev.Model.Models;
 using WooDev.ViewModel;
 using WooDev.ViewModel.Flow;
 
-namespace WooDev.WebCommon.Utiltiy
+namespace WooDev.WebCommon.Utiltiy.Flow
 {
 
     /// <summary>
@@ -21,14 +21,14 @@ namespace WooDev.WebCommon.Utiltiy
     /// </summary>
     public class FlowTempUtility
     {
-        
+
         /// <summary>
         /// 获取数据库流出图所需基本数据
         /// </summary>
         /// <param name="flowChartTempDTO">界面传过来的数据对象</param>
         /// <param name="userId">当前登录人</param>
         /// <returns></returns>
-        public static FlowTempChartData GetFlowChartData(FlowChatData flowChartTempDTO,int userId=0)
+        public static FlowTempChartData GetFlowChartData(FlowChatData flowChartTempDTO, int userId = 0)
         {
             var flowchart = JsonUtility.DeserializeJsonToObject<DevFlowChartInfo>(flowChartTempDTO.FlowData);
             List<DEV_FLOWTEMP_NODE> listNodes = new List<DEV_FLOWTEMP_NODE>();
@@ -36,7 +36,7 @@ namespace WooDev.WebCommon.Utiltiy
             //遍历节点
             foreach (var tnode in flowchart.nodes)
             {
-                
+
                 DEV_FLOWTEMP_NODE node = new DEV_FLOWTEMP_NODE();
                 node.CREATE_USERID = userId;
                 node.CREATE_TIME = DateTime.Now;
@@ -49,11 +49,11 @@ namespace WooDev.WebCommon.Utiltiy
                 node.Y = tnode.y;
                 if (tnode.text != null)
                 {
-                    node.TEXT_X = tnode.text.x??0;
-                    node.TEXT_Y = tnode.text.y??0;
+                    node.TEXT_X = tnode.text.x ?? 0;
+                    node.TEXT_Y = tnode.text.y ?? 0;
                     node.TEXT_VALUE = tnode.text.value;
                 }
-               
+
                 node.NODE_STATE = 0;
                 node.IS_DELETE = 0;
                 node.ORDER_NUM = 0;
@@ -74,7 +74,7 @@ namespace WooDev.WebCommon.Utiltiy
                 edge.EDGE_STATE = 0;
                 edge.EDGE_TYPE = tedge.type;
                 edge.SOURCENODEID = tedge.sourceNodeId;
-                edge.TARGETNODEID= tedge.targetNodeId;
+                edge.TARGETNODEID = tedge.targetNodeId;
                 edge.STARTPORT_X = tedge.startPoint.x;
                 edge.STARTPORT_Y = tedge.startPoint.y;
                 edge.ENDPORT_X = tedge.endPoint.x;
@@ -86,7 +86,7 @@ namespace WooDev.WebCommon.Utiltiy
                     edge.TEXT_VALUE = tedge.text.value;
 
                 }
-               
+
                 edge.PONTSLIST = JsonUtility.SerializeObject(tedge.pointsList);
                 listEdges.Add(edge);
 
@@ -95,11 +95,11 @@ namespace WooDev.WebCommon.Utiltiy
             var data = new FlowTempChartData()
             {
                 FlowNodes = listNodes,
-                FlowEdges= listEdges
+                FlowEdges = listEdges
 
             };
             return data;
-        } 
+        }
 
         /// <summary>
         /// 将数据库数据转换成功流出图使用的JSON对象
@@ -108,7 +108,7 @@ namespace WooDev.WebCommon.Utiltiy
         {
             //节点
             List<LogicFlowNode> nodes = new List<LogicFlowNode>();
-           //连线
+            //连线
             List<LogicFlowEdge> edges = new List<LogicFlowEdge>();
             foreach (var node in tempChartData.FlowNodes)
             {
@@ -117,21 +117,22 @@ namespace WooDev.WebCommon.Utiltiy
                 logicFlowNode.type = node.N_TYPE;
                 logicFlowNode.x = node.X;
                 logicFlowNode.y = node.Y;
-                logicFlowNode.text = new Text() {
+                logicFlowNode.text = new Text()
+                {
                     x = node.TEXT_X,
                     y = node.TEXT_Y,
                     value = node.TEXT_VALUE
 
                 };
                 var dicproperties = new Dictionary<string, object>();
-                
-                dicproperties.Add(nameof(node.NRULE), (node.NRULE??0) == 0 ? "" : Convert.ToString(node.NRULE));
-                dicproperties.Add(nameof(node.RE_TEXT), (node.RE_TEXT??0) == 0 ? "" : Convert.ToString(node.RE_TEXT));
+
+                dicproperties.Add(nameof(node.NRULE), (node.NRULE ?? 0) == 0 ? "" : Convert.ToString(node.NRULE));
+                dicproperties.Add(nameof(node.RE_TEXT), (node.RE_TEXT ?? 0) == 0 ? "" : Convert.ToString(node.RE_TEXT));
                 logicFlowNode.properties = dicproperties;
 
                 nodes.Add(logicFlowNode);
 
-               }
+            }
 
             foreach (var edge in tempChartData.FlowEdges)
             {
@@ -156,9 +157,9 @@ namespace WooDev.WebCommon.Utiltiy
                 logicFlowEdge.pointsList = JsonUtility.DeserializeObject<List<Point>>(edge.PONTSLIST);
                 logicFlowEdge.text = new Text()
                 {
-                    x=edge.TEXT_X,
-                    y=edge.TEXT_Y,
-                    value=edge.TEXT_VALUE
+                    x = edge.TEXT_X,
+                    y = edge.TEXT_Y,
+                    value = edge.TEXT_VALUE
 
                 };
 

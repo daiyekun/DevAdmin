@@ -53,5 +53,11 @@ namespace WooDev.IServices
         /// <param name="userId">审批人员</param>
         /// <returns></returns>
         int SubmitOption(FlowOptionDTO flowOption, int userId);
+        /// <summary>
+        /// 根据审批实例ID获取流出图
+        /// </summary>
+        /// <param name="instId">审批实例Id</param>
+        /// <returns></returns>
+        FlowInstChartData GetFlowChart(int instId);
     }
 }

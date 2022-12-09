@@ -242,8 +242,8 @@
         };
         let resdata = await getFlowTempApi(tempdata);
         if (resdata != null) {
-          debugger;
-          console.log('返回类型', resdata);
+          // debugger;
+          // console.log('返回类型', resdata);
           isActive.value = true;
           const flowdata: FlowShowData = {
             FlowType: tempdata.FlowObj,

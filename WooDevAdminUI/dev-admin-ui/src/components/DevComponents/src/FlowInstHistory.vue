@@ -30,6 +30,7 @@
   import { defineComponent, h } from 'vue';
   import { BasicTable, useTable, TableAction, BasicColumn } from '/@/components/Table';
   import { GetFlowInstListApi } from '/@/api/devsys/flow/flowinst';
+  import { useGo } from '/@/hooks/web/usePage';
   import { Tag } from 'ant-design-vue';
   const flowinstcolumns: BasicColumn[] = [
     {
@@ -110,6 +111,7 @@
     setup(props: any) {
       const currcustid = Number(props.custid);
       const flowobjtype = Number(props.objtype);
+      const go = useGo();
       const [registerTable] = useTable({
         title: '审批历史记录',
         api: GetFlowInstListApi,
@@ -144,7 +146,7 @@
        * 查看流出图
        */
       function handViewChart(record: Recordable) {
-        console.log(record);
+        go('/devflow/flowtemp/flowInstchartpage/' + record.ID);
       }
 
       return {
