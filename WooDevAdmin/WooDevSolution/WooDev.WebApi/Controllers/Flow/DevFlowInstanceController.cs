@@ -125,5 +125,27 @@ namespace WooDev.WebApi.Controllers.Flow
             return new DevResultJson(result);
 
         }
+
+        /// <summary>
+        /// 提交审批意见
+        /// </summary>
+        /// <param name="flowInstDTO">创建实例的对象</param>
+        /// <returns></returns>
+        [Route("submitOption")]
+        [HttpPost]
+
+        public IActionResult SubmitOption([FromBody] FlowOptionDTO flowOption)
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            var info = _IDevFlowInstanceService.SubmitOption(flowOption, userId);
+            var result = new ResultData
+            {
+                code = 0,
+                message = "ok",
+                result = info
+            };
+            return new DevResultJson(result);
+
+        }
     }
 }

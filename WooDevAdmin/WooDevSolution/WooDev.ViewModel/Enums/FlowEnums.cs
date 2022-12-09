@@ -57,6 +57,25 @@ namespace WooDev.ViewModel.Enums
        
     }
 
+    /// <summary>
+    /// 审批意见
+    /// </summary>
+    [EnumClass(Max = 2, Min = 0, None = -1)]
+    public enum OptionStateEnum
+    {
+        /// <summary>
+        /// 同意：1
+        /// </summary>
+        [EnumItem(Value = 1, Desc = "同意")]
+        TongYi = 1,
+        /// <summary>
+        /// 不同意:2
+        /// </summary>
+        [EnumItem(Value = 2, Desc = "不同意")]
+        BuTongYi = 2,
+
+    }
+
 
 }
 

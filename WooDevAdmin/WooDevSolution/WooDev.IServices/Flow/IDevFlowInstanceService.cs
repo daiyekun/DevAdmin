@@ -46,5 +46,12 @@ namespace WooDev.IServices
         ///// </summary>
         ///// <returns></returns>
         PersionApprovalInfo IsAppExistInfo(ApprovalActionDTO approval, int userid);
+        /// <summary>
+        /// 提交审批意见
+        /// </summary>
+        /// <param name="flowOption">审批意见相关信息</param>
+        /// <param name="userId">审批人员</param>
+        /// <returns></returns>
+        int SubmitOption(FlowOptionDTO flowOption, int userId);
     }
 }
