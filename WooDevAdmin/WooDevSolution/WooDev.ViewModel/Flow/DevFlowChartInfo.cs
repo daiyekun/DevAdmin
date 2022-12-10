@@ -50,7 +50,7 @@ namespace WooDev.ViewModel.Flow
         /// <summary>
         /// 额外属性
         /// </summary>
-        public Dictionary<string,object> properties;
+        public Dictionary<string,string> properties;
         /// <summary>
         /// 文本
         /// </summary>
@@ -100,7 +100,7 @@ namespace WooDev.ViewModel.Flow
         /// <summary>
         /// 额外属性
         /// </summary>
-        public Dictionary<string, object> properties;
+        public Dictionary<string, string> properties;
         /// <summary>
         /// 节点集合
         /// </summary>

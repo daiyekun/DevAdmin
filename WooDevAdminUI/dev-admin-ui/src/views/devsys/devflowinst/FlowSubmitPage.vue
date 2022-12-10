@@ -43,6 +43,9 @@
   import { IsExistNodeApi } from '/@/api/devsys/flow/flowtemp';
   import { useTabs } from '/@/hooks/web/useTabs';
   import { useRoute } from 'vue-router';
+  import UserTask from '/@/components/DevFlowChart/src/UserTaskNode';
+  import EndNode from '/@/components/DevFlowChart/src/EndNode';
+  import StartNode from '/@/components/DevFlowChart/src/StartNode';
   export default defineComponent({
     name: 'FlowSubmitPage',
     components: { PageWrapper, InstNodeDrawer },
@@ -77,6 +80,9 @@
           grid: true,
           plugins: [BpmnElement, DndPanel, SelectionSelect, Control, MiniMap, Menu],
         });
+        lf.register(UserTask);
+        lf.register(StartNode);
+        lf.register(EndNode);
         //获取图像数据并渲染
         getViewChat(lf);
 

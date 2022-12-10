@@ -245,7 +245,7 @@ namespace WooDev.Services
                 node.TEXT_Y = item.Y;
                 node.TEXT_VALUE = item.TEXT_VALUE;
                 //if (dicdata["stratNode"] == item.NODE_STRID)
-                if (dicdata["stratNode"] == item.NODE_STRID && item.TEXT_VALUE == FlowStaticData.StratNodeText)
+                if (item.N_TYPE== "StartNode")
                 {//开始节点
                     node.NODE_STATE = (int)WorkFlowStateEnums.SPTG;
                 }
@@ -324,7 +324,7 @@ namespace WooDev.Services
         private Dictionary<string, string> GetNodes(List<DEV_FLOWTEMP_NODE> nodes, List<DEV_FLOWTEMP_EDGE> edges)
         {
             var dicnode = new Dictionary<string, string>();
-            var stratNode = nodes.Where(a => a.TEXT_VALUE == FlowStaticData.StratNodeText && a.N_TYPE == "circle").FirstOrDefault();
+            var stratNode = nodes.Where(a =>a.N_TYPE == "StartNode").FirstOrDefault();
             var edgeInfo = edges.Where(a => a.SOURCENODEID == stratNode!.NODE_STRID).FirstOrDefault();
             var firstInfo = nodes.Where(a => a.NODE_STRID == edgeInfo!.TARGETNODEID).FirstOrDefault();
             dicnode.Add("stratNode", stratNode!.NODE_STRID);
@@ -695,6 +695,7 @@ namespace WooDev.Services
             //5、新增审批意见
             //6、新增处理完成用户列表
             //7、构建审批通过表
+            //8、修改链接线
 
             var currnode = listNodes.Where(a => a.NODE_STRID == flowOption.NodeId).FirstOrDefault();
             if (currnode.NRULE==(int)NruleEnum.Qbtg)
@@ -733,6 +734,22 @@ namespace WooDev.Services
         }
 
         /// <summary>
+        /// 跳转到下一个节点
+        /// 设置当前节点到下一个线条的状态
+        /// </summary>
+        /// <param name="lsitEdngs">审批实例连接线</param>
+        /// <param name="currNode">当前节点</param>
+        private void NextNodeSetEdge(List<DEV_FLOW_INST_EDGE> lsitEdngs, DEV_FLOW_INST_NODE currNode)
+        {
+            var edgeinfo = lsitEdngs.Where(a => a.SOURCENODEID == currNode.NODE_STRID).FirstOrDefault();
+            edgeinfo.EDGE_STATE = 2;
+            DbClient.Updateable(edgeinfo).AddQueue();
+
+
+
+        }
+
+        /// <summary>
         /// 可以流转到下一个节点的相关操作
         /// </summary>
         /// <param name="flowOption">审批意见</param>
@@ -752,7 +769,7 @@ namespace WooDev.Services
             DbClient.Updateable(currnode).AddQueue();
 
             var nextnode = GetNextNode(flowOption, listNodes, lsitEdngs);
-            if (nextnode != null && nextnode.TEXT_VALUE == FlowStaticData.EndNodeText)
+            if (nextnode != null && nextnode.N_TYPE == "EndNode")
             {   //最后一个节点是 “结束”
                 instInfo.UPDATE_TIME = DateTime.Now;
                 instInfo.UPDATE_USERID = userId;
@@ -761,6 +778,9 @@ namespace WooDev.Services
                 instInfo.FLOW_STATE = (int)WorkFlowStateEnums.SPTG;
                 instInfo.FLOW_END_TIME = DateTime.Now;
 
+                //最后一个节点状态设置通过
+                nextnode.NODE_STATE= (int)WorkFlowStateEnums.SPTG;
+                DbClient.Updateable(nextnode).AddQueue();
 
 
             }
@@ -773,6 +793,7 @@ namespace WooDev.Services
                 instInfo.FLOW_STATE = (int)WorkFlowStateEnums.SPZ;
                 //6、新增下一个节点待处理审批
                 CreateWaitUser(nextnode, listnodeInfos, instInfo, userId);
+                
             }
             //2、修改审批实例（需要判断是否需要修改）
             DbClient.Updateable(instInfo).AddQueue();
@@ -790,6 +811,8 @@ namespace WooDev.Services
             SubmitUserMsg(flowOption, userId);
             //7、构建当前用户审批通过表
             CreateEndUser(flowOption, userId, waituser);
+            //8、修改线条
+            NextNodeSetEdge(lsitEdngs, currnode);
         }
 
         /// <summary>
@@ -830,7 +853,7 @@ namespace WooDev.Services
         {
             List<DEV_FLOW_INST_WAIT_USER> listwaitusers = new List<DEV_FLOW_INST_WAIT_USER>();
             var nextnodeInfos = nodeinfos.Where(a => a.NODE_STRID == nextNode.NODE_STRID).ToList();
-            if (nextNode.TEXT_VALUE != FlowStaticData.EndNodeText)
+            if (nextNode.N_TYPE != "EndNode")
             {//下一个节点不是结束
                 var listGroupIds = nodeinfos.Where(a => a.NODE_STRID == nextNode.NODE_STRID && a.O_TYPE == (int)OptTypeEnum.FlowGroup)
                 .Select(a => a.OPT_ID).ToList();
@@ -964,7 +987,7 @@ namespace WooDev.Services
                         if (flowOption.Sta== (int)OptionStateEnum.TongYi)
                         {
                            
-                            if (netxtNode.TEXT_VALUE == FlowStaticData.EndNodeText)
+                            if (netxtNode.N_TYPE == "EndNode")
                             {
                                 objinfo.WF_STATE = (int)WorkFlowStateEnums.SPTG;
                                 objinfo.WF_NODE_STRID = "";

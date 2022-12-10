@@ -236,6 +236,7 @@ namespace WooDev.WebApi.Controllers.Flow
             var data= FlowTempUtility.GetFlowChartData(flowChartTempDTO, userId);
             _IDevFlowtempNodeService.Delete(a => a.TEMP_ID == flowChartTempDTO.TempId);
             _IDevFlowtempEdgeService.Delete(a => a.TEMP_ID == flowChartTempDTO.TempId);
+            _IDevFlowtempNodeInfoService.Delete(a => a.TEMP_ID == flowChartTempDTO.TempId);
             _IDevFlowtempNodeService.Add(data.FlowNodes);
             _IDevFlowtempEdgeService.Add(data.FlowEdges);
             var result = new ResultData

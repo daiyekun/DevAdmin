@@ -48,7 +48,8 @@ namespace WooDev.WebCommon.Utiltiy.Flow
                     value = node.TEXT_VALUE
 
                 };
-                var dicproperties = new Dictionary<string, object>();
+                var dicproperties = new Dictionary<string, string>();
+                dicproperties.Add("statu", node.NODE_STATE.ToString());
 
                 dicproperties.Add(nameof(node.NRULE), (node.NRULE ?? 0) == 0 ? "" : Convert.ToString(node.NRULE));
                 dicproperties.Add(nameof(node.RE_TEXT), (node.RE_TEXT ?? 0) == 0 ? "" : Convert.ToString(node.RE_TEXT));
@@ -77,7 +78,10 @@ namespace WooDev.WebCommon.Utiltiy.Flow
                     y = edge.ENDPORT_Y,
 
                 };
-                logicFlowEdge.properties = new Dictionary<string, object>();
+                var dicproperties = new Dictionary<string, string>();
+                dicproperties.Add("statu", edge.EDGE_STATE.ToString());
+                logicFlowEdge.properties = dicproperties;
+               
                 logicFlowEdge.pointsList = JsonUtility.DeserializeObject<List<Point>>(edge.PONTSLIST);
                 logicFlowEdge.text = new Text()
                 {

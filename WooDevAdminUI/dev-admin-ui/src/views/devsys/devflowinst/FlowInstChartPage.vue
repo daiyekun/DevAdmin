@@ -19,11 +19,15 @@
 <script lang="ts">
   import { defineComponent, ref, onMounted } from 'vue';
   //import { Tabs, TabPane } from 'ant-design-vue';
-  import { LogicFlow, RectNode, RectNodeModel } from '@logicflow/core';
+  import { LogicFlow } from '@logicflow/core';
   //import { JsonPreview } from '/@/components/CodeEditor';
   import { flowInstChartViewApi } from '/@/api/devsys/flow/flowinst';
   // import { createFlowInstApi } from '/@/api/devsys/flow/flowinst';
   // import { FlowSubmitModel } from '/@/api/devsys/model/flow/flowInstModel';
+  import UserTask from '/@/components/DevFlowChart/src/UserTaskNode';
+  import EndNode from '/@/components/DevFlowChart/src/EndNode';
+  import StartNode from '/@/components/DevFlowChart/src/StartNode';
+  import CustomerEdge from '/@/components/DevFlowChart/src/CustomerEdge';
   import {
     DndPanel,
     SelectionSelect,
@@ -73,30 +77,25 @@
         let lf = new LogicFlow({
           container: container.value,
           grid: true,
+          adjustNodePosition: false,
+          adjustEdgeStartAndEnd: false,
+          hoverOutline: false,
+          nodeSelectedOutline: false,
+          nodeTextEdit: false,
+          edgeTextEdit: false,
+          textEdit: false,
+          nodeTextDraggable: false,
+          edgeTextDraggable: false,
+
           plugins: [BpmnElement, DndPanel, SelectionSelect, Control, MiniMap, Menu],
         });
-
-        // 提供节点
-        class UserNode extends RectNode {}
-        // 提供节点的属性
-        class UserModel extends RectNodeModel {
-          constructor(data) {
-            super(data, lf.graphModel);
-            const { size } = data.properties;
-            this.width = size * 40;
-            this.height = size * 40;
-            this.fill = 'green';
-          }
-        }
+        lf.register(UserTask);
+        lf.register(StartNode);
+        lf.register(EndNode);
+        lf.register(CustomerEdge);
 
         //获取图像数据并渲染
         getViewChat(lf);
-        lf.register({
-          type: 'user',
-          view: UserNode,
-          model: UserModel,
-        });
-
         var clickFlag = null; //是否点击标识（定时器编号）
         lf.on('node:click,edge:click', async (tdata) => {
           //console.log('node:click,edge:click');
