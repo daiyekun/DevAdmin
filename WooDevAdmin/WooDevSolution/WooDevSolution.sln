@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WooDev.AutoMapper", "WooDev
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WooDev.Auth", "WooDev.Auth\WooDev.Auth.csproj", "{FA748886-1DCE-4CBD-AED1-AD946AD6FDAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WooDeV.UnitTest", "WooDeV.UnitTest\WooDeV.UnitTest.csproj", "{70339331-D644-48AC-BE93-17C507E78139}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WooDeV.UnitTest", "WooDeV.UnitTest\WooDeV.UnitTest.csproj", "{70339331-D644-48AC-BE93-17C507E78139}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

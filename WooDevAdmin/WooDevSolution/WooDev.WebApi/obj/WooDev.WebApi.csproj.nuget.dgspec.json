@@ -611,6 +611,10 @@
               "target": "Package",
               "version": "[1.14.0, )"
             },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.10, )"
+            },
             "SqlSugarCore": {
               "target": "Package",
               "version": "[5.0.8.6, )"
@@ -734,6 +738,10 @@
             "Quartz": {
               "target": "Package",
               "version": "[3.4.0, )"
+            },
+            "Rotativa.AspNetCore": {
+              "target": "Package",
+              "version": "[1.2.0, )"
             },
             "SqlSugarCore": {
               "target": "Package",

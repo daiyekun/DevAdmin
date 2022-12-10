@@ -14,3 +14,11 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = E:\WooAdminProject\WooAdmin\WooDevAdmin\WooDevSolution\WooDev.WebApi
 build_property._RazorSourceGeneratorDebug = 
+
+[E:/WooAdminProject/WooAdmin/WooDevAdmin/WooDevSolution/WooDev.WebApi/Views/FlowToPdf/CustomerPDF.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmxvd1RvUGRmXEN1c3RvbWVyUERGLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WooAdminProject/WooAdmin/WooDevAdmin/WooDevSolution/WooDev.WebApi/Views/FlowToPdf/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmxvd1RvUGRmXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
