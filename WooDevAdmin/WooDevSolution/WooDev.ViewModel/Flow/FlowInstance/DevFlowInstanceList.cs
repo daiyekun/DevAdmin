@@ -34,4 +34,21 @@ namespace WooDev.ViewModel
 
         
     }
+
+    /// <summary>
+    /// 流程节点信息查询
+    /// </summary>
+    public class DevFlowInstInfoSearch
+    {
+
+        /// <summary>
+        /// 流程节点ID
+        /// </summary>
+        public string NodeStr { get; set; } = "";
+        /// <summary>
+        /// 审批实例ID
+        /// </summary>
+        public int? InstId { get; set; }
+
+    }
 }

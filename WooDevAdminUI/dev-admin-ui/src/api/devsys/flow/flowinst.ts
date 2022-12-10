@@ -9,6 +9,8 @@ import {
   PersionApprovalInfo,
   ApprovalPerssionDto,
   FlowOptionDto,
+  FlowNodeParams,
+  FlowNodeInfoListGetResultModel,
 } from '../model/flow/flowInstModel';
 import { defHttp } from '/@/utils/http/axios';
 import { ResultData } from '/@/api/model/baseModel';
@@ -19,6 +21,7 @@ enum Api {
   IsAppExistInfo = '/DevFlowInstance/isAppExistInfo', //判断审批权限
   SubmitOption = '/DevFlowInstance/submitOption', //提交意见
   getFlowInstChart = '/DevFlowInstance/getFlowInstChartData', //审批实例流出图
+  getNodeInfoByNodeId = '/DevFlowInstance/getNodeInfoByNodeId', //获取审批实例节点信息及意见
 }
 export const getFlowTempApi = (params: FlowCondition) =>
   defHttp.post<ResultData>({ url: Api.GetTemp, params });
@@ -33,3 +36,6 @@ export const submitOptionApi = (params: FlowOptionDto) =>
   defHttp.post<ResultData>({ url: Api.SubmitOption, params });
 export const flowInstChartViewApi = (instId: number) =>
   defHttp.get<string>({ url: Api.getFlowInstChart, params: { instId } });
+
+export const getNodeInfoByNodeIdApi = (params: FlowNodeParams) =>
+  defHttp.get<FlowNodeInfoListGetResultModel>({ url: Api.getNodeInfoByNodeId, params });

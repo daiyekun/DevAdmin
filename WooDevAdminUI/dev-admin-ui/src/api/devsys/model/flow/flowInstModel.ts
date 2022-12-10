@@ -105,3 +105,36 @@ export interface FlowOptionDto {
   Sta: number;
   Msg: string;
 }
+
+/**
+ *查询当前节点信息关键参数
+ */
+export type FlowNodeParams = {
+  NodeStr?: string;
+  instId?: number;
+};
+
+/**
+ * 节点信息表
+ */
+export interface FlowInstNodeInfoListItem {
+  ID: number;
+  OPT_ID: number;
+  OPT_NAME: string;
+  NODE_STRID: string;
+  O_TYPE: number;
+  INFO_STATE: number;
+  OtypeDsc: string;
+  ObjName: string;
+  NodeMsg: Array<NodeMsg>;
+}
+/**
+ * 消息
+ */
+export interface NodeMsg {
+  Msg: string;
+  UserName: string;
+  StartTime?: Date;
+  EndTime?: Date;
+}
+export type FlowNodeInfoListGetResultModel = BasicFetchResult<FlowInstNodeInfoListItem>;

@@ -1,4 +1,5 @@
 ﻿using Dev.WooNet.AutoMapper.Extend;
+using Google.Protobuf.Collections;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.AspNetCore.Http;
 using Org.BouncyCastle.Asn1.Tsp;
@@ -92,7 +93,7 @@ namespace WooDev.Services
             var objInfo = UpdateAppObject(flowInstDTO, userId, InstInfo, dicdata);
             #endregion
             //审批实例对象新增到数据库
-            var inceInfo = DbClient.Insertable<DEV_FLOW_INSTANCE>(InstInfo).ExecuteReturnEntity();
+            var inceInfo = DbClient.Insertable(InstInfo).ExecuteReturnEntity();
 
             #region 开始组装审批节点，链接线，审批信息等
 
@@ -249,14 +250,19 @@ namespace WooDev.Services
                 {//开始节点
                     node.NODE_STATE = (int)WorkFlowStateEnums.SPTG;
                 }
-                if (dicdata["firstNode"] == item.NODE_STRID)
-                {//审批中
-                    node.NODE_STATE = (int)WorkFlowStateEnums.SPZ;
-                }
                 else
                 {
-                    node.NODE_STATE = (int)WorkFlowStateEnums.State0;
+                    if (dicdata["firstNode"] == item.NODE_STRID)
+                    {//审批中
+                        node.NODE_STATE = (int)WorkFlowStateEnums.SPZ;
+                    }
+                    else
+                    {
+                        node.NODE_STATE = (int)WorkFlowStateEnums.State0;
+                    }
+
                 }
+               
 
                 node.ORDER_NUM = 0;
                 node.IS_DELETE = 0;
@@ -793,7 +799,10 @@ namespace WooDev.Services
                 instInfo.FLOW_STATE = (int)WorkFlowStateEnums.SPZ;
                 //6、新增下一个节点待处理审批
                 CreateWaitUser(nextnode, listnodeInfos, instInfo, userId);
-                
+                //设置下一个节点为审批中
+                nextnode.NODE_STATE = (int)WorkFlowStateEnums.SPZ;
+                DbClient.Updateable(nextnode).AddQueue();
+
             }
             //2、修改审批实例（需要判断是否需要修改）
             DbClient.Updateable(instInfo).AddQueue();
@@ -1039,6 +1048,85 @@ namespace WooDev.Services
             return new FlowInstChartData { FlowNodes = listnodes, FlowEdges = listedges };
 
         }
+        #endregion
+
+        #region 审批意见表
+
+        /// <summary>
+        /// 审批节点意见列表
+        /// </summary>
+        /// <typeparam name="s"></typeparam>
+        /// <param name="pageInfo">分页对象</param>
+        /// <param name="whereLambda">where 条件</param>
+        /// <param name="orderbyLambda">排序</param>
+        /// <param name="isAsc">是否正序</param>
+        /// <returns></returns>
+        public ResultPageData<FlowInstNodeInfoMsg> GetNodeInfoList(PageInfo<DEV_FLOW_INST_NODE_INFO> pageInfo, Expression<Func<DEV_FLOW_INST_NODE_INFO, bool>>? whereLambda,
+            Expression<Func<DEV_FLOW_INST_NODE_INFO, object>> orderbyLambda, bool isAsc,int instId,string nodestr)
+        {
+            var listdataMsg = DbClient.Queryable<DEV_FLOW_INST_END_USER>()
+                .Where(a => a.INST_ID == instId && a.NODE_STR == nodestr).ToList();
+            var tempquery = DbClient.Queryable<DEV_FLOW_INST_NODE_INFO>().Where(whereLambda);
+            if (isAsc)
+            {
+                tempquery = tempquery.OrderBy(orderbyLambda, OrderByType.Asc);
+            }
+            else
+            {
+                tempquery = tempquery.OrderBy(orderbyLambda, OrderByType.Desc);
+            }
+
+            int totalCount = 0;
+            if ((pageInfo is NoPageInfo<DEV_FLOW_INST_NODE_INFO>))
+            { //分页
+                pageInfo.PageSize = 2000;
+                pageInfo.PageIndex = 0;
+            }
+            var list = tempquery.ToPageList(pageInfo.PageIndex, pageInfo.PageSize, ref totalCount, a => new {
+                ID = a.ID,
+                OPT_ID = a.OPT_ID,
+                OPT_NAME = a.OPT_NAME,
+                NODE_STRID = a.NODE_STRID,
+                O_TYPE = a.O_TYPE,
+                INFO_STATE = a.INFO_STATE,
+                INST_ID=a.INST_ID,
+
+            });
+            pageInfo.TotalCount = totalCount;
+            var local = from a in list
+                        select new FlowInstNodeInfoMsg
+                        {
+                            ID = a.ID,
+                            OPT_ID = a.OPT_ID,
+                            OPT_NAME = a.OPT_NAME,
+                            NODE_STRID = a.NODE_STRID,
+                            O_TYPE = a.O_TYPE,
+                            OtypeDsc = EmunUtility.GetDesc(typeof(OptTypeEnum), a.O_TYPE),
+                            INFO_STATE = a.INFO_STATE,
+                            ObjName = FlowUtility.GetObjName(a.O_TYPE, a.OPT_ID),
+                            NodeMsg= listdataMsg.Where(p => p.SP_TYPE == a.O_TYPE && p.SP_TYPE_OBJID == a.OPT_ID).Select(p => new
+                            NodeMsg
+                            {
+                                Msg = p.WF_OPTION,
+                                UserName = DevRedisUtility.GetUserField(p.USER_ID),
+                                StartTime = p.START_TIME,
+                                EndTime = p.END_TIME
+
+                            }).ToList()
+        };
+            return new ResultPageData<FlowInstNodeInfoMsg>()
+            {
+                items = local.ToList(),
+                total = pageInfo.TotalCount,
+                page = pageInfo.PageIndex,
+                pageSize = pageInfo.PageSize
+
+
+            };
+
+
+        }
+       
         #endregion
     }
 }

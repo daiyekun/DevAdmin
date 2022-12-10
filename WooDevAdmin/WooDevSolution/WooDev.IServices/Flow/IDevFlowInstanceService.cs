@@ -59,5 +59,19 @@ namespace WooDev.IServices
         /// <param name="instId">审批实例Id</param>
         /// <returns></returns>
         FlowInstChartData GetFlowChart(int instId);
+        /// <summary>
+        /// 审批节点意见列表
+        /// </summary>
+        /// <typeparam name="s"></typeparam>
+        /// <param name="pageInfo">分页对象</param>
+        /// <param name="whereLambda">where 条件</param>
+        /// <param name="orderbyLambda">排序</param>
+        /// <param name="isAsc">是否正序</param>
+        /// <returns>返回审批节点信息及意见</returns>
+        ResultPageData<FlowInstNodeInfoMsg> GetNodeInfoList(PageInfo<DEV_FLOW_INST_NODE_INFO> pageInfo, Expression<Func<DEV_FLOW_INST_NODE_INFO, bool>>? whereLambda,
+           Expression<Func<DEV_FLOW_INST_NODE_INFO, object>> orderbyLambda, bool isAsc, int instId, string nodestr);
+
+
+
     }
 }

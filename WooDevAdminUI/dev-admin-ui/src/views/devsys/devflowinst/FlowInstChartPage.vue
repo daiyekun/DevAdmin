@@ -7,7 +7,7 @@
       </template>
       <template #default>
         <div class="container" ref="container" style="height: 1000px"> </div>
-        <InstNodeDrawer @register="registerNodeInfo" />
+        <InstNodeMsgDrawer @register="registerNodeInfo" />
       </template>
     </PageWrapper>
     <!-- <BasicModal @register="register" title="流程数据" width="50%">
@@ -43,13 +43,13 @@
   import { PageWrapper } from '/@/components/Page';
   //import { useModal, BasicModal } from '/@/components/Modal';
   import { useDrawer } from '/@/components/Drawer';
-  import InstNodeDrawer from '/@/views/devsys/devflowinst/InstNodeDrawer.vue';
+  import InstNodeMsgDrawer from '/@/views/devsys/devflowinst/InstNodeMsgDrawer.vue';
   import { useTabs } from '/@/hooks/web/useTabs';
   import { useRoute } from 'vue-router';
 
   export default defineComponent({
     name: 'FlowInstChartPage',
-    components: { PageWrapper, InstNodeDrawer },
+    components: { PageWrapper, InstNodeMsgDrawer },
     setup(props) {
       const { closeCurrent } = useTabs();
       const container = ref();
@@ -77,6 +77,7 @@
         let lf = new LogicFlow({
           container: container.value,
           grid: true,
+          adjustEdge: false,
           adjustNodePosition: false,
           adjustEdgeStartAndEnd: false,
           hoverOutline: false,
@@ -86,6 +87,7 @@
           textEdit: false,
           nodeTextDraggable: false,
           edgeTextDraggable: false,
+          edgeSelectedOutline: false,
 
           plugins: [BpmnElement, DndPanel, SelectionSelect, Control, MiniMap, Menu],
         });
@@ -107,14 +109,10 @@
           }
 
           clickFlag = setTimeout(function () {
-            if (resdata) {
-              openNodeDrawer(true, {
-                data: tdata,
-                tempId: Number(instId.value),
-              });
-            } else {
-              msg.warn({ content: '请先点就右上角保存按钮，保存流出图', key: 'nodemsg' });
-            }
+            openNodeDrawer(true, {
+              data: tdata,
+              instId: Number(instId.value),
+            });
           }, 300); //延时300毫秒执行
         });
         lf.on('node:dbclick,edge:dbclick', () => {

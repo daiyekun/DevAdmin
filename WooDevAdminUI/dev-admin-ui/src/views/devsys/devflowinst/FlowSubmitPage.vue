@@ -78,6 +78,15 @@
         let lf = new LogicFlow({
           container: container.value,
           grid: true,
+          adjustNodePosition: false,
+          adjustEdgeStartAndEnd: false,
+          hoverOutline: false,
+          nodeSelectedOutline: false,
+          nodeTextEdit: false,
+          edgeTextEdit: false,
+          textEdit: false,
+          nodeTextDraggable: false,
+          edgeTextDraggable: false,
           plugins: [BpmnElement, DndPanel, SelectionSelect, Control, MiniMap, Menu],
         });
         lf.register(UserTask);

@@ -170,5 +170,28 @@ namespace WooDev.WebApi.Controllers.Flow
             };
             return new DevResultJson(resultdata);
         }
+
+        /// <summary>
+        /// 列表
+        /// </summary>
+        /// <returns></returns>
+        [Route("getNodeInfoByNodeId")]
+        [HttpGet]
+        //[AllowAnonymous]//跳过授权验证
+        [Authorize]
+        public IActionResult GetNodeInfoByNodeId([FromQuery] PageParams pageParams, [FromQuery] DevFlowInstInfoSearch serachParam)
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            var pageinfo = new NoPageInfo<DEV_FLOW_INST_NODE_INFO> { PageIndex = pageParams.page, PageSize = pageParams.pageSize };
+            var whereexp = Expressionable.Create<DEV_FLOW_INST_NODE_INFO>();
+            whereexp = whereexp.And(a => a.IS_DELETE == 0 && a.NODE_STRID == serachParam.NodeStr&&a.INST_ID== serachParam.InstId);
+            Expression<Func<DEV_FLOW_INST_NODE_INFO, object>> orderbyLambda = a => a.ID;
+            var data = _IDevFlowInstanceService.GetNodeInfoList(pageinfo, whereexp.ToExpression(), orderbyLambda, false, serachParam.InstId??0, serachParam.NodeStr);
+            var result = new ResultData<FlowInstNodeInfoMsg>
+            {
+                result = data,
+            };
+            return new DevResultJson(result);
+        }
     }
 }
