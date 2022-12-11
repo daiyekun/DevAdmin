@@ -164,38 +164,6 @@
           var opurl =
             devconfig.devupload.excelrul + 'api/FlowToPdf/flowInstToPdf?instId=' + record.ID;
           openLink(opurl);
-
-          // var elemIF = document.createElement('iframe');
-          // elemIF.src = opurl;
-          // elemIF.style.display = 'none';
-          // document.body.appendChild(elemIF);
-          // var opurl = '/api/FlowToPdf/flowInstToPdf?instId=' + record.ID;
-          // window.open(opurl, '_blank');
-          // downloadByUrl({
-          //   url: opurl, //'https://codeload.github.com/anncwb/vue-vben-admin-doc/zip/master',
-          //   target: '_self',
-          // });
-          // //window.open(opurl);
-          // var reqdata: SaveFlowPdfReqData = {
-          //   instId: Number(record.ID),
-          // };
-          // const resultdata = saveFlowPdfApi(reqdata);
-          // console.log('====', resultdata);
-          // resultdata.then((values) => {
-          //   const loadurl = devconfig.devupload.baseurl + values.FilePath;
-
-          //   downloadByUrl({
-          //     url: loadurl,
-          //     target: '_self',
-          //   });
-          //   //closeModal();
-          // });
-          // var opurl = '/api/FlowToPdf/flowInstToPdf?instId=' + record.ID;
-          //window.open(opurl);
-          // downloadByUrl({
-          //   url: opurl,
-          //   target: '_self',
-          // });
         } else {
           msg.warn('只有审批通过才允许打印');
         }

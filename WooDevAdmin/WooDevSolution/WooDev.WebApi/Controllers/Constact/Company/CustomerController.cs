@@ -230,6 +230,28 @@ namespace WooDev.WebApi.Controllers.Constact.Company
 
         }
 
+        /// <summary>
+        /// 新增，修改保存
+        /// </summary>
+        /// <param name="roleDTO">角色对象</param>
+        /// <returns></returns>
+        [DevOptionLogActionFilter("修改客户状态", OptionLogEnum.UpdateOrAdd, "修改客户状态", true)]
+        [Route("updateState")]
+        [HttpPost]
+        public IActionResult UpdateState([FromBody] UpdateStateDTO updateState)
+        {
+            var userId = HttpContext.User.Claims.GetTokenUserId();
+            _IDevCompanyService.UpdateState(updateState, userId);
+            var result = new ResultData
+            {
+                code = 0,
+                message = "ok",
+            };
+            return new DevResultJson(result);
+
+
+        }
+
 
 
     }

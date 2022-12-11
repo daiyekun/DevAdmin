@@ -11,6 +11,7 @@ using WooDev.Common.Utility;
 using WooDev.Model.Models;
 using WooDev.ViewModel;
 using WooDev.ViewModel.Contract.Enums;
+using WooDev.ViewModel.Contract.ExcelModel;
 using WooDev.ViewModel.Enums;
 
 namespace WooDev.Services
@@ -235,6 +236,26 @@ namespace WooDev.Services
                         };
             return local.FirstOrDefault();
 
+        }
+        /// <summary>
+        /// 修改状态
+        /// </summary>
+        /// <param name="updateState">修改数据对象</param>
+        /// <param name="userId">当前用户</param>
+        /// <returns></returns>
+        public int UpdateState(UpdateStateDTO updateState,int userId)
+        {
+            var saveinfo = DbClient.Queryable<DEV_COMPANY>().Where(a => a.ID == updateState.Id).Single();
+            if (saveinfo!=null)
+            {
+                saveinfo.C_STATE = updateState.State;
+                saveinfo.UPDATE_TIME = DateTime.Now;
+                saveinfo.UPDATE_USERID = userId;
+                return Update(saveinfo!);
+            }
+            return -1;
+
+           
         }
 
     }

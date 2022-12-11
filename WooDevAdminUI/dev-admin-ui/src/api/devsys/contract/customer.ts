@@ -9,7 +9,7 @@ import {
   custContactSaveInfo,
   CustomerViewInfo,
 } from '../model/customerModel';
-import { devUpdateField, deldataInfo, ExcelReqData } from '../model/devCommonModel';
+import { devUpdateField, deldataInfo, ExcelReqData, updateStateDto } from '../model/devCommonModel';
 import { defHttp } from '/@/utils/http/axios';
 import { ResultData } from '/@/api/model/baseModel';
 //import { ResponseType } from 'axios';
@@ -20,6 +20,7 @@ enum Api {
   customerView = '/Customer/customerView', //客户详情
   customerDel = '/Customer/customerDel', //客户详情
   customerExcel = '/Customer/exportexcel', //导出excel
+  updateState = '/Customer/updateState', //修改状态
 
   customerClearData = '/Customer/customerClear', //清理客户数据
   customerFileSave = '/CustFile/customerFileSave', //附件保存
@@ -63,3 +64,5 @@ export const custContactSaveApi = (params: custContactSaveInfo) =>
 export const custContactDelApi = (params: deldataInfo) =>
   defHttp.get<ResultData>({ url: Api.custContactDel, params });
 export const customerClearDataApi = () => defHttp.get<ResultData>({ url: Api.customerClearData });
+export const updateStateApi = (params: updateStateDto) =>
+  defHttp.post<ResultData>({ url: Api.updateState, params });

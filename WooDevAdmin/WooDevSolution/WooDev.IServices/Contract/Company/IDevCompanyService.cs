@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using WooDev.Common.Models;
 using WooDev.Model.Models;
 using WooDev.ViewModel;
+using WooDev.ViewModel.Contract.ExcelModel;
 
 namespace WooDev.IServices
 {
@@ -49,6 +50,13 @@ namespace WooDev.IServices
         /// <param name="Id">客户ID</param>
         /// <returns></returns>
         DevCompanyView ShowDetail(int Id);
+        /// <summary>
+        /// 修改状态
+        /// </summary>
+        /// <param name="updateState">修改数据对象</param>
+        /// <param name="userId">当前用户</param>
+        /// <returns></returns>
+        int UpdateState(UpdateStateDTO updateState, int userId);
 
     }
 }

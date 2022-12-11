@@ -61,7 +61,11 @@
   import { defineComponent, ref, VNodeChild, onMounted, reactive } from 'vue';
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { useMessage } from '/@/hooks/web/useMessage';
-  import { getCusertomerListApi, customerDelApi } from '/@/api/devsys/contract/customer';
+  import {
+    getCusertomerListApi,
+    customerDelApi,
+    updateStateApi,
+  } from '/@/api/devsys/contract/customer';
   import { customercolumns, getFormConfig } from './index.data';
   import { useGo } from '/@/hooks/web/usePage';
   import { useModal } from '/@/components/Modal';
@@ -103,7 +107,7 @@
       const [registerExcelModel, { openModal: openExcelModal }] = useModal();
       //const {route} = useRoute();
       const go = useGo();
-      const { createMessage: msg } = useMessage();
+      const { createMessage: msg, createConfirm: confirm } = useMessage();
       const checkedKeys = ref<Array<string | number>>([]);
       let dwonvisible = ref(false);
       let flowItems = Array<FlowItemListItem>(); //审批事项
@@ -232,7 +236,9 @@
        **/
       const submitFlow = async ({ key, item }: MenuInfo) => {
         let selrows = getSelectRows();
+        let _state = Number(item.to);
         console.log(`Click on item ${key}--${item}`);
+        debugger;
         const tempdata = {
           FlowObj: 0,
           CateId: selrows[0].CATE_ID,
@@ -256,7 +262,17 @@
           go('/devflow/flowtemp/flowsubmitpage/' + encodeURIComponent(JSON.stringify(flowdata)));
         } else {
           //没有匹配上流程直接修改
-          msg.info({ content: '没有匹配上流程，是否直接修改', key: 'submitflow' });
+          confirm({
+            content: '没有匹配上流程，是否直接修改状态',
+            onOk: () => {
+              //console.log('点击确认....');
+              updateStateApi({ state: _state, Id: Number(selrows[0].ID) });
+              msg.success({ content: '修改成功', key: 'update' });
+              reload();
+            },
+            iconType: 'warning',
+          });
+          //msg.info({ content: '没有匹配上流程，是否直接修改', key: 'submitflow' });
         }
       };
 
@@ -308,7 +324,7 @@
         } else {
           //isActive.value = false;
         }
-        console.log('isActive状态', isActive);
+        // console.log('isActive状态', isActive);
       }
 
       onMounted(() => {

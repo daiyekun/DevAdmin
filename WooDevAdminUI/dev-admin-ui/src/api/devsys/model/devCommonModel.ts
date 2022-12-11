@@ -55,3 +55,11 @@ export type ExResultData = {
   Memi: string; //类型
   FilePath: string; //路径
 };
+
+/**
+ * 修改状态数据
+ **/
+export interface updateStateDto {
+  State?: number; //修改状态
+  Id?: number;
+}
