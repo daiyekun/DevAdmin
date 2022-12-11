@@ -93,7 +93,7 @@ namespace WooDev.WebCommon.ServiceExtend
             services.AddTransient<IDevFlowInstNodeService, DevFlowInstNodeService>();
             services.AddTransient<IDevFlowInstGroupuserService, DevFlowInstGroupuserService>();
             services.AddTransient<IFlowInstPdfService, FlowInstPdfService>();
-            
+
             #endregion
 
         }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using Rotativa.AspNetCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,9 @@ namespace WooDev.WebCommon.ServiceExtend
         /// <param name="app"></param>
         public static void DevAppUse(this WebApplication app)
         {
+            #region 生成pdf
+            RotativaConfiguration.Setup(app.Environment.ContentRootPath);
+            #endregion
             // Configure the HTTP request pipeline.
             app.UseStateAutoMapper();
             app.UseCors("default");
@@ -41,15 +45,17 @@ namespace WooDev.WebCommon.ServiceExtend
             //jwt授权,放在Cors后面，不然存在跨域问题
             app.UseAuthentication();//鉴权：解析信息--就是读取token，解密token
                                     //上传大文件时使用
+
             app.Use(async (context, next) =>
             {
                 context.Request.EnableBuffering();
                 await next();
             });
 
-          
 
 
+
+            
             app.UseAuthorization();
 
             app.MapControllers();

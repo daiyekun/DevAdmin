@@ -34,7 +34,7 @@ namespace WooDev.Services
             var listdata=DbClient.Queryable<DEV_FLOW_INST_OPTION, DEV_FLOW_INST_NODE>((o, i) => new JoinQueryInfos(
                 JoinType.Left, o.NODE_STR_ID == i.NODE_STRID //左连接 左链接 左联 
 
-            )).Where(a => a.INST_ID == appInst.ID)
+            )).Where(o => o.INST_ID == appInst.ID)
             .Select((o, i) => 
             new OptionView 
             {

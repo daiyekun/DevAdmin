@@ -3,9 +3,13 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Rotativa.AspNetCore;
 using System.Globalization;
+using WooDev.Common.Models;
+using WooDev.Common.Utility;
 using WooDev.IServices;
 using WooDev.ViewModel.Enums;
+using WooDev.ViewModel.ExtendModel;
 using WooDev.ViewModel.Flow.FlowInstPdf;
+using WooDev.WebCommon.Utiltiy;
 
 namespace WooDev.WebApi.Controllers.Flow
 {
@@ -14,9 +18,8 @@ namespace WooDev.WebApi.Controllers.Flow
     /// 打印审批单
     /// </summary>
     [Route("api/[controller]")]
-    [ApiController]
     [EnableCors("default")]
-    [Authorize]
+    //[Authorize]
     public class FlowToPdfController : Controller
     {
         private IDevFlowInstanceService _IDevFlowInstanceService;
@@ -26,10 +29,7 @@ namespace WooDev.WebApi.Controllers.Flow
             _IDevFlowInstanceService = iDevFlowInstanceService;
             _IFlowInstPdfService = iFlowInstPdfService;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+
 
         /// <summary>
         /// 根据审批实例生成pdf
@@ -50,6 +50,8 @@ namespace WooDev.WebApi.Controllers.Flow
                         CompanyInfo info = _IFlowInstPdfService.GetCommpanyFlowPdfData(wfinfo);
                         demoViewPortrait = new ViewAsPdf("CustomerPDF", info);
                         demoViewPortrait.FileName = "customer.pdf";
+
+
                     }
                     break;
 
@@ -60,8 +62,14 @@ namespace WooDev.WebApi.Controllers.Flow
             //页面大小
             demoViewPortrait.PageSize = Rotativa.AspNetCore.Options.Size.A4;
 
+
+
             return demoViewPortrait;
 
+
+
+
+
         }
-        }
+    }
 }

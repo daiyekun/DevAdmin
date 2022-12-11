@@ -1,5 +1,6 @@
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
@@ -11,6 +12,7 @@ using WooDev.Auth.Model;
 using WooDev.Common.Models;
 using WooDev.IServices;
 using WooDev.Services;
+using WooDev.WebCommon.FilterExtend;
 using WooDev.WebCommon.ServiceExtend;
 using WooDev.WebCommon.Utility;
 using WooDev.WebCommon.Utiltiy.Quartz;
@@ -36,7 +38,8 @@ builder.Services.AddDevServices();
 builder.Services.AddDevOtherServices();
 builder.Services.AddDevLog4Net();
 #endregion
-
+//必须加入，因为我在生成审批单需要使用视图生成pdf
+builder.Services.AddMvc().AddNewtonsoftJson();
 #region jwt校验  HS
 
 
@@ -90,9 +93,7 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "管理系统后台API", Version = "v1" });
 });
 var app = builder.Build();
-#region 生成pdf
-RotativaConfiguration.Setup(app.Environment.ContentRootPath);
-#endregion
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

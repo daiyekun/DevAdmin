@@ -111,7 +111,7 @@ export interface FlowOptionDto {
  */
 export type FlowNodeParams = {
   NodeStr?: string;
-  instId?: number;
+  InstId?: number;
 };
 
 /**
@@ -138,3 +138,13 @@ export interface NodeMsg {
   EndTime?: Date;
 }
 export type FlowNodeInfoListGetResultModel = BasicFetchResult<FlowInstNodeInfoListItem>;
+
+export type SaveFlowPdfReqData = { instId: number };
+/***
+ * 导出返回pdf信息
+ */
+export type ResultFlowPdfData = {
+  FileName: string; //文件名称
+  Memi: string; //类型
+  FilePath: string; //路径
+};

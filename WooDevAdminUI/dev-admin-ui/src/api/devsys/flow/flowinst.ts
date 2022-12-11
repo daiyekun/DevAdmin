@@ -11,6 +11,8 @@ import {
   FlowOptionDto,
   FlowNodeParams,
   FlowNodeInfoListGetResultModel,
+  SaveFlowPdfReqData,
+  ResultFlowPdfData,
 } from '../model/flow/flowInstModel';
 import { defHttp } from '/@/utils/http/axios';
 import { ResultData } from '/@/api/model/baseModel';
@@ -22,6 +24,7 @@ enum Api {
   SubmitOption = '/DevFlowInstance/submitOption', //提交意见
   getFlowInstChart = '/DevFlowInstance/getFlowInstChartData', //审批实例流出图
   getNodeInfoByNodeId = '/DevFlowInstance/getNodeInfoByNodeId', //获取审批实例节点信息及意见
+  SaveFlowPdf = '/FlowToPdf/flowInstToPdf', //生成pdf
 }
 export const getFlowTempApi = (params: FlowCondition) =>
   defHttp.post<ResultData>({ url: Api.GetTemp, params });
@@ -39,3 +42,7 @@ export const flowInstChartViewApi = (instId: number) =>
 
 export const getNodeInfoByNodeIdApi = (params: FlowNodeParams) =>
   defHttp.get<FlowNodeInfoListGetResultModel>({ url: Api.getNodeInfoByNodeId, params });
+
+export const saveFlowPdfApi = (params: SaveFlowPdfReqData) => {
+  return defHttp.get<ResultFlowPdfData>({ url: Api.SaveFlowPdf, params });
+};
