@@ -47,7 +47,11 @@ namespace WooDev.WebApi.Controllers.Common
             var pageinfo = new PageInfo<DEV_DEPARTMENT>() { PageIndex = pageParams.page, PageSize = pageParams.pageSize };
             var whereexp = Expressionable.Create<DEV_DEPARTMENT>();
             whereexp = whereexp.And(a => a.IS_DELETE == 0);
-           
+            if (serachParam.SelecType == 1)
+            {//过滤签约主体
+                whereexp = whereexp.And(a => a.DSTATE == 1&&a.IS_MAIN==1);
+            }
+
             if (!string.IsNullOrEmpty(pageParams.keyword))
             {//搜索名称
                 whereexp = whereexp.And(a => a.NAME.Contains(pageParams.keyword));

@@ -456,5 +456,105 @@ namespace WooDev.Services
 
         #endregion 合同对方权限
 
+        #region 合同
+        /// <summary>
+        /// 获取合同列表权限表达式
+        /// </summary>
+        /// <param name="userId">当前用户ID</param>
+        /// <param name="deptId">当前用户所属部门ID</param>
+        /// <param name="funcCode">功能点标识</param>
+        /// <param name="roleId">角色ID</param>
+        /// 权限类型：
+        /// 1类：4是/5否 ==》新建权限
+        /// 2类：0个人、1机构、2全部、3本机构、-1 无权限
+        /// <returns>合同对方权限表达式树</returns>
+        public Expression<Func<DEV_CONTRACT, bool>> GetContractListPermissionExpression(string funcCode, int userId, int deptId = 0, int roleId = 0)
+        {
+            var predicate = PredicateBuilder.True<DEV_CONTRACT>();
+            if (userId == -10000)
+            {//超级管理员
+                predicate = predicate.And(a => true);
+            }
+            else
+            {
+                var predOr = PredicateBuilder.False<DEV_CONTRACT>();
+                predOr = predOr.Or(a => a.CREATE_USERID == userId);
+                predOr = predOr.Or(a => a.HEAD_USER_ID == userId);//负责人
+                predicate = predicate.And(predOr);
+                //查询对应角色
+                var pession = GetPession(roleId, funcCode, userId);
+                switch (pession)
+                {
+                    case PerissionEnums.DepartTree://机构
+                        var listIds = GetDeptChids(deptId);
+                        predicate = predicate.And(a => listIds.Any(c => c == a.CreateUser.DEPART_ID));
+                        break;
+                    case PerissionEnums.All:
+                        predicate = predicate.And(a => true);
+                        break;
+                    case PerissionEnums.Depart://本机构
+                        predicate = predicate.And(a => a.CreateUser.DEPART_ID == deptId);
+                        break;
+                    case PerissionEnums.personal://个人
+                        break;
+                    default://-1 无权限
+                        predicate = predicate.And(a => false);
+                        break;
+                }
+
+            }
+            return predicate;
+        }
+
+        /// <summary>
+        /// 获取合同列表权限表达式
+        /// </summary>
+        /// <param name="expre">查询表达式对象</param>
+        /// <param name="userId">当前用户ID</param>
+        /// <param name="deptId">当前用户所属部门ID</param>
+        /// <param name="funcCode">功能点标识</param>
+        /// <param name="roleId">角色ID</param>
+        /// 权限类型：
+        /// 1类：4是/5否 ==》新建权限
+        /// 2类：0个人、1机构、2全部、3本机构、-1 无权限
+        /// <returns>合同对方权限表达式树</returns>
+        public  Expressionable<DEV_CONTRACT> GetContractListPermissionExpression(Expressionable<DEV_CONTRACT> expre, string funcCode, int userId, int deptId = 0, int roleId = 0)
+        {
+            //var predicate = Expressionable.Create<DEV_COMPANY>();
+            //var predicate = PredicateBuilder.True<DEV_COMPANY>();
+            if (userId == -10000)
+            {//超级管理员
+                expre = expre.And(a => true);
+            }
+            else
+            {
+
+                expre = expre.And(a => a.CREATE_USERID == userId || a.HEAD_USER_ID == userId);
+                //查询对应角色
+                var pession = GetPession(roleId, funcCode, userId);
+                switch (pession)
+                {
+                    case PerissionEnums.DepartTree://机构
+                        var listIds = GetDeptChids(deptId);
+                        expre = expre.And(a => listIds.Any(c => c== a.CreateUser.DEPART_ID));
+                        break;
+                    case PerissionEnums.All:
+                        expre = expre.And(a => true);
+                        break;
+                    case PerissionEnums.Depart://本机构
+                        expre = expre.And(a => a.CreateUser.DEPART_ID == deptId);
+                        break;
+                    case PerissionEnums.personal://个人
+                        break;
+                    default://-1 无权限
+                        expre = expre.And(a => false);
+                        break;
+                }
+
+            }
+            return expre;
+        }
+        #endregion
+
     }
 }

@@ -66,6 +66,186 @@ public partial class DevCompRecordView : DEV_COMP_RECORD
    
      
 //列表使用
+public partial class DevContractList : DEV_CONTRACT
+{ }
+//提交数据库使用
+public partial class DevContractDTO : DEV_CONTRACT,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevContractView : DEV_CONTRACT
+{ }
+    
+   
+     
+//列表使用
+public partial class DevContractHistList : DEV_CONTRACT_HIST
+{ }
+//提交数据库使用
+public partial class DevContractHistDTO : DEV_CONTRACT_HIST,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevContractHistView : DEV_CONTRACT_HIST
+{ }
+    
+   
+     
+//列表使用
+public partial class DevContActfinceList : DEV_CONT_ACTFINCE
+{ }
+//提交数据库使用
+public partial class DevContActfinceDTO : DEV_CONT_ACTFINCE,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevContActfinceView : DEV_CONT_ACTFINCE
+{ }
+    
+   
+     
+//列表使用
+public partial class DevContAttachmentList : DEV_CONT_ATTACHMENT
+{ }
+//提交数据库使用
+public partial class DevContAttachmentDTO : DEV_CONT_ATTACHMENT,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevContAttachmentView : DEV_CONT_ATTACHMENT
+{ }
+    
+   
+     
+//列表使用
+public partial class DevContConsultList : DEV_CONT_CONSULT
+{ }
+//提交数据库使用
+public partial class DevContConsultDTO : DEV_CONT_CONSULT,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevContConsultView : DEV_CONT_CONSULT
+{ }
+    
+   
+     
+//列表使用
+public partial class DevContConttextList : DEV_CONT_CONTTEXT
+{ }
+//提交数据库使用
+public partial class DevContConttextDTO : DEV_CONT_CONTTEXT,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevContConttextView : DEV_CONT_CONTTEXT
+{ }
+    
+   
+     
+//列表使用
+public partial class DevContConttextHistList : DEV_CONT_CONTTEXT_HIST
+{ }
+//提交数据库使用
+public partial class DevContConttextHistDTO : DEV_CONT_CONTTEXT_HIST,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevContConttextHistView : DEV_CONT_CONTTEXT_HIST
+{ }
+    
+   
+     
+//列表使用
+public partial class DevContDescList : DEV_CONT_DESC
+{ }
+//提交数据库使用
+public partial class DevContDescDTO : DEV_CONT_DESC,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevContDescView : DEV_CONT_DESC
+{ }
+    
+   
+     
+//列表使用
+public partial class DevContPlanfinceCheckList : DEV_CONT_PLANFINCE_CHECK
+{ }
+//提交数据库使用
+public partial class DevContPlanfinceCheckDTO : DEV_CONT_PLANFINCE_CHECK,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevContPlanfinceCheckView : DEV_CONT_PLANFINCE_CHECK
+{ }
+    
+   
+     
+//列表使用
+public partial class DevContPlanFinanceList : DEV_CONT_PLAN_FINANCE
+{ }
+//提交数据库使用
+public partial class DevContPlanFinanceDTO : DEV_CONT_PLAN_FINANCE,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevContPlanFinanceView : DEV_CONT_PLAN_FINANCE
+{ }
+    
+   
+     
+//列表使用
+public partial class DevContPlanFinanceHistList : DEV_CONT_PLAN_FINANCE_HIST
+{ }
+//提交数据库使用
+public partial class DevContPlanFinanceHistDTO : DEV_CONT_PLAN_FINANCE_HIST,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevContPlanFinanceHistView : DEV_CONT_PLAN_FINANCE_HIST
+{ }
+    
+   
+     
+//列表使用
+public partial class DevContStaticList : DEV_CONT_STATIC
+{ }
+//提交数据库使用
+public partial class DevContStaticDTO : DEV_CONT_STATIC,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevContStaticView : DEV_CONT_STATIC
+{ }
+    
+   
+     
+//列表使用
+public partial class DevContSubDescList : DEV_CONT_SUB_DESC
+{ }
+//提交数据库使用
+public partial class DevContSubDescDTO : DEV_CONT_SUB_DESC,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevContSubDescView : DEV_CONT_SUB_DESC
+{ }
+    
+   
+     
+//列表使用
+public partial class DevContSubMatterList : DEV_CONT_SUB_MATTER
+{ }
+//提交数据库使用
+public partial class DevContSubMatterDTO : DEV_CONT_SUB_MATTER,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevContSubMatterView : DEV_CONT_SUB_MATTER
+{ }
+    
+   
+     
+//列表使用
+public partial class DevContSubMatterHistList : DEV_CONT_SUB_MATTER_HIST
+{ }
+//提交数据库使用
+public partial class DevContSubMatterHistDTO : DEV_CONT_SUB_MATTER_HIST,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevContSubMatterHistView : DEV_CONT_SUB_MATTER_HIST
+{ }
+    
+   
+     
+//列表使用
 public partial class DevCurrencyList : DEV_CURRENCY
 { }
 //提交数据库使用
@@ -258,6 +438,18 @@ public partial class DevFlowInstEdgeHistView : DEV_FLOW_INST_EDGE_HIST
    
      
 //列表使用
+public partial class DevFlowInstEndUserList : DEV_FLOW_INST_END_USER
+{ }
+//提交数据库使用
+public partial class DevFlowInstEndUserDTO : DEV_FLOW_INST_END_USER,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowInstEndUserView : DEV_FLOW_INST_END_USER
+{ }
+    
+   
+     
+//列表使用
 public partial class DevFlowInstGroupuserList : DEV_FLOW_INST_GROUPUSER
 { }
 //提交数据库使用
@@ -349,6 +541,18 @@ public partial class DevFlowInstOptionHistDTO : DEV_FLOW_INST_OPTION_HIST,IModel
 { }
 //暂定--查看页面使用
 public partial class DevFlowInstOptionHistView : DEV_FLOW_INST_OPTION_HIST
+{ }
+    
+   
+     
+//列表使用
+public partial class DevFlowInstWaitUserList : DEV_FLOW_INST_WAIT_USER
+{ }
+//提交数据库使用
+public partial class DevFlowInstWaitUserDTO : DEV_FLOW_INST_WAIT_USER,IModelDTO
+{ }
+//暂定--查看页面使用
+public partial class DevFlowInstWaitUserView : DEV_FLOW_INST_WAIT_USER
 { }
     
    

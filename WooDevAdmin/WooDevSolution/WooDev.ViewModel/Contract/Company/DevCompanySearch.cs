@@ -25,6 +25,12 @@ namespace WooDev.ViewModel
         /// 类别ID
         /// </summary>
         public int CateId { get; set; }
+        /// <summary>
+        /// 选择数据类型
+        /// 1：选择审批通过的
+        /// </summary>
+
+        public int SelecType { get; set; }
 
     }
 }

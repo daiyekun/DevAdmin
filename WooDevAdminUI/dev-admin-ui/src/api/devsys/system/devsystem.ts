@@ -26,6 +26,7 @@ enum Api {
   departList = '/DevDepart/getTreeList', //组织机构查询列表
   departSave = '/DevDepart/departSave', //新建修改保存组织机构
   departDelete = '/DevDepart/deleteDepart', //删除
+  departMainList = '/DevDepart/getList', //组织机构查询列表
 
   roletList = '/DevRole/getList', //角色查询列表
   roleSave = '/DevRole/roleSave', //新建修改保存角色
@@ -55,6 +56,9 @@ enum Api {
 
 export const getDepartList = (params?: departParams) =>
   defHttp.get<departListGetResultModel>({ url: Api.departList, params });
+
+export const getdepartMainList = (params?: departParams) =>
+  defHttp.get<departListGetResultModel>({ url: Api.departMainList, params });
 
 export const departSaveApi = (params: departSaveInfo) =>
   defHttp.post<ResultData>({ url: Api.departSave, params });

@@ -67,6 +67,201 @@ namespace WooDev.Services
     
    
      
+ public partial class DevContractService : BaseService<DEV_CONTRACT>, IDevContractService
+    {
+         public DevContractService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevContractHistService : BaseService<DEV_CONTRACT_HIST>, IDevContractHistService
+    {
+         public DevContractHistService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevContActfinceService : BaseService<DEV_CONT_ACTFINCE>, IDevContActfinceService
+    {
+         public DevContActfinceService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevContAttachmentService : BaseService<DEV_CONT_ATTACHMENT>, IDevContAttachmentService
+    {
+         public DevContAttachmentService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevContConsultService : BaseService<DEV_CONT_CONSULT>, IDevContConsultService
+    {
+         public DevContConsultService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevContConttextService : BaseService<DEV_CONT_CONTTEXT>, IDevContConttextService
+    {
+         public DevContConttextService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevContConttextHistService : BaseService<DEV_CONT_CONTTEXT_HIST>, IDevContConttextHistService
+    {
+         public DevContConttextHistService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevContDescService : BaseService<DEV_CONT_DESC>, IDevContDescService
+    {
+         public DevContDescService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevContPlanfinceCheckService : BaseService<DEV_CONT_PLANFINCE_CHECK>, IDevContPlanfinceCheckService
+    {
+         public DevContPlanfinceCheckService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevContPlanFinanceService : BaseService<DEV_CONT_PLAN_FINANCE>, IDevContPlanFinanceService
+    {
+         public DevContPlanFinanceService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevContPlanFinanceHistService : BaseService<DEV_CONT_PLAN_FINANCE_HIST>, IDevContPlanFinanceHistService
+    {
+         public DevContPlanFinanceHistService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevContStaticService : BaseService<DEV_CONT_STATIC>, IDevContStaticService
+    {
+         public DevContStaticService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevContSubDescService : BaseService<DEV_CONT_SUB_DESC>, IDevContSubDescService
+    {
+         public DevContSubDescService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevContSubMatterService : BaseService<DEV_CONT_SUB_MATTER>, IDevContSubMatterService
+    {
+         public DevContSubMatterService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevContSubMatterHistService : BaseService<DEV_CONT_SUB_MATTER_HIST>, IDevContSubMatterHistService
+    {
+         public DevContSubMatterHistService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
  public partial class DevCurrencyService : BaseService<DEV_CURRENCY>, IDevCurrencyService
     {
          public DevCurrencyService(ISqlSugarClient DbClient)
@@ -275,6 +470,19 @@ namespace WooDev.Services
     
    
      
+ public partial class DevFlowInstEndUserService : BaseService<DEV_FLOW_INST_END_USER>, IDevFlowInstEndUserService
+    {
+         public DevFlowInstEndUserService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
  public partial class DevFlowInstGroupuserService : BaseService<DEV_FLOW_INST_GROUPUSER>, IDevFlowInstGroupuserService
     {
          public DevFlowInstGroupuserService(ISqlSugarClient DbClient)
@@ -369,6 +577,19 @@ namespace WooDev.Services
  public partial class DevFlowInstOptionHistService : BaseService<DEV_FLOW_INST_OPTION_HIST>, IDevFlowInstOptionHistService
     {
          public DevFlowInstOptionHistService(ISqlSugarClient DbClient)
+           : base(DbClient)
+        {
+           
+        }
+		
+		
+    }
+    
+   
+     
+ public partial class DevFlowInstWaitUserService : BaseService<DEV_FLOW_INST_WAIT_USER>, IDevFlowInstWaitUserService
+    {
+         public DevFlowInstWaitUserService(ISqlSugarClient DbClient)
            : base(DbClient)
         {
            

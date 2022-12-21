@@ -85,5 +85,33 @@ namespace WooDev.IServices
 
         #endregion 合同对方权限
 
+        #region 合同权限
+        /// <summary>
+        /// 获取合同列表权限表达式
+        /// </summary>
+        /// <param name="userId">当前用户ID</param>
+        /// <param name="deptId">当前用户所属部门ID</param>
+        /// <param name="funcCode">功能点标识</param>
+        /// <param name="roleId">角色ID</param>
+        /// 权限类型：
+        /// 1类：4是/5否 ==》新建权限
+        /// 2类：0个人、1机构、2全部、3本机构、-1 无权限
+        /// <returns>合同对方权限表达式树</returns>
+         Expression<Func<DEV_CONTRACT, bool>> GetContractListPermissionExpression(string funcCode, int userId, int deptId = 0, int roleId = 0);
+        /// <summary>
+        /// 获取合同列表权限表达式
+        /// </summary>
+        /// <param name="expre">查询表达式对象</param>
+        /// <param name="userId">当前用户ID</param>
+        /// <param name="deptId">当前用户所属部门ID</param>
+        /// <param name="funcCode">功能点标识</param>
+        /// <param name="roleId">角色ID</param>
+        /// 权限类型：
+        /// 1类：4是/5否 ==》新建权限
+        /// 2类：0个人、1机构、2全部、3本机构、-1 无权限
+        /// <returns>合同对方权限表达式树</returns>
+        Expressionable<DEV_CONTRACT> GetContractListPermissionExpression(Expressionable<DEV_CONTRACT> expre, string funcCode, int userId, int deptId = 0, int roleId = 0);
+        #endregion
+
     }
 }

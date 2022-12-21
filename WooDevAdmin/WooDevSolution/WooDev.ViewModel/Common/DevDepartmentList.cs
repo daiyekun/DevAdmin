@@ -24,6 +24,10 @@ namespace WooDev.ViewModel
         /// 搜索名称
         /// </summary>
         public string depName { get; set; }
+        /// <summary>
+        /// 选择类型
+        /// </summary>
+        public int SelecType { get; set; } = 0;
 
     }
 

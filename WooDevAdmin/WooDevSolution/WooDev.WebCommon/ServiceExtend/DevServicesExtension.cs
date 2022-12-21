@@ -80,6 +80,14 @@ namespace WooDev.WebCommon.ServiceExtend
             services.AddTransient<IDevCompRecordService, DevCompRecordService>();
             #endregion
 
+            #region 合同
+            services.AddTransient<IDevContractService, DevContractService>();
+            services.AddTransient<IDevContPlanFinanceService, DevContPlanFinanceService>();
+            services.AddTransient<IDevContConttextService, DevContConttextService>();
+            services.AddTransient<IDevContAttachmentService, DevContAttachmentService>();
+            
+            #endregion
+
             #region 流程
             services.AddTransient<IDevFlowGroupService, DevFlowGroupService>();
             services.AddTransient<IDevFlowtempEdgeService, DevFlowtempEdgeService>();

@@ -34,6 +34,81 @@ public partial interface IDevCompRecordService : IBaseService<DEV_COMP_RECORD>
     
    
      
+public partial interface IDevContractService : IBaseService<DEV_CONTRACT>
+{ }
+    
+   
+     
+public partial interface IDevContractHistService : IBaseService<DEV_CONTRACT_HIST>
+{ }
+    
+   
+     
+public partial interface IDevContActfinceService : IBaseService<DEV_CONT_ACTFINCE>
+{ }
+    
+   
+     
+public partial interface IDevContAttachmentService : IBaseService<DEV_CONT_ATTACHMENT>
+{ }
+    
+   
+     
+public partial interface IDevContConsultService : IBaseService<DEV_CONT_CONSULT>
+{ }
+    
+   
+     
+public partial interface IDevContConttextService : IBaseService<DEV_CONT_CONTTEXT>
+{ }
+    
+   
+     
+public partial interface IDevContConttextHistService : IBaseService<DEV_CONT_CONTTEXT_HIST>
+{ }
+    
+   
+     
+public partial interface IDevContDescService : IBaseService<DEV_CONT_DESC>
+{ }
+    
+   
+     
+public partial interface IDevContPlanfinceCheckService : IBaseService<DEV_CONT_PLANFINCE_CHECK>
+{ }
+    
+   
+     
+public partial interface IDevContPlanFinanceService : IBaseService<DEV_CONT_PLAN_FINANCE>
+{ }
+    
+   
+     
+public partial interface IDevContPlanFinanceHistService : IBaseService<DEV_CONT_PLAN_FINANCE_HIST>
+{ }
+    
+   
+     
+public partial interface IDevContStaticService : IBaseService<DEV_CONT_STATIC>
+{ }
+    
+   
+     
+public partial interface IDevContSubDescService : IBaseService<DEV_CONT_SUB_DESC>
+{ }
+    
+   
+     
+public partial interface IDevContSubMatterService : IBaseService<DEV_CONT_SUB_MATTER>
+{ }
+    
+   
+     
+public partial interface IDevContSubMatterHistService : IBaseService<DEV_CONT_SUB_MATTER_HIST>
+{ }
+    
+   
+     
 public partial interface IDevCurrencyService : IBaseService<DEV_CURRENCY>
 { }
     
@@ -114,6 +189,11 @@ public partial interface IDevFlowInstEdgeHistService : IBaseService<DEV_FLOW_INS
     
    
      
+public partial interface IDevFlowInstEndUserService : IBaseService<DEV_FLOW_INST_END_USER>
+{ }
+    
+   
+     
 public partial interface IDevFlowInstGroupuserService : IBaseService<DEV_FLOW_INST_GROUPUSER>
 { }
     
@@ -150,6 +230,11 @@ public partial interface IDevFlowInstOptionService : IBaseService<DEV_FLOW_INST_
    
      
 public partial interface IDevFlowInstOptionHistService : IBaseService<DEV_FLOW_INST_OPTION_HIST>
+{ }
+    
+   
+     
+public partial interface IDevFlowInstWaitUserService : IBaseService<DEV_FLOW_INST_WAIT_USER>
 { }
     
    

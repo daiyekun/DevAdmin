@@ -11,6 +11,7 @@ using WooDev.Common.Utility;
 using WooDev.IServices;
 using WooDev.Model.Models;
 using WooDev.ViewModel;
+using WooDev.ViewModel.Contract.Enums;
 using WooDev.ViewModel.Contract.ExcelModel;
 using WooDev.ViewModel.Enums;
 using WooDev.ViewModel.ExtendModel;
@@ -54,6 +55,10 @@ namespace WooDev.WebApi.Controllers.Constact.Company
         {
             var pageinfo = new PageInfo<DEV_COMPANY>() { PageIndex = pageParams.page, PageSize = pageParams.pageSize };
             var whereexp = GetFilterExpress(serachParam);
+            if (serachParam.SelecType == 1)
+            {//过滤启用状态
+                whereexp = whereexp.And(a => a.C_STATE == (int)CompanyStateEnums.SHTG);
+            }
             Expression<Func<DEV_COMPANY, object>> orderbyLambda = a => a.ID;
             var data = _IDevCompanyService.GetList(pageinfo, whereexp.ToExpression(), orderbyLambda, false);
             var result = new ResultData<DevCompanyList>

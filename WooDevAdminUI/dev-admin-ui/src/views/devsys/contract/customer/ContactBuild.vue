@@ -142,6 +142,7 @@
               COMP_ID: currcustid,
             };
             await custContactSaveApi(tsavedata);
+            reload();
             // 保存之后提交编辑状态
             const pass = await record.onEdit?.(false, true);
             if (pass) {

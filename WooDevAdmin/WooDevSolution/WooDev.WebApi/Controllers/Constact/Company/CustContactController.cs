@@ -47,6 +47,7 @@ namespace WooDev.WebApi.Controllers.Constact.Company
             var userId = HttpContext.User.Claims.GetTokenUserId();
             var pageinfo = new NoPageInfo<DEV_COMP_CONTACTS>() { PageIndex = pageParams.page, PageSize = pageParams.pageSize };
             var whereexp = Expressionable.Create<DEV_COMP_CONTACTS>();
+            
             whereexp = whereexp.And(a => a.IS_DELETE == 0);
             whereexp = whereexp.And(a => a.COMP_ID == -userId || a.COMP_ID == serachParam.CustId);
             Expression<Func<DEV_COMP_CONTACTS, object>> orderbyLambda = a => a.ID;
