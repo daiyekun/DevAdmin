@@ -207,9 +207,12 @@ namespace WooDev.Services
         /// <returns></returns>
         public DevContractView ShowDetail(int Id)
         {
-            var tempquery = DbClient.Queryable<DEV_CONTRACT>().Includes(a=>a.Company).Where(a => a.ID == Id);
-            var query = from a in tempquery
-                        select new
+            var tempquery = DbClient.Queryable<DEV_CONTRACT>()
+                
+                .LeftJoin<DEV_COMPANY>((a, cus) => a.COMP_ID == cus.ID).Where(a => a.ID == Id);
+                
+            var query = tempquery.Select((a, cus) => new
+                        
                         {
                             ID = a.ID,
                             C_NAME = a.C_NAME,//显示名称
@@ -231,10 +234,14 @@ namespace WooDev.Services
                             ACT_DATE = a.ACT_DATE,//实际完成日期
                             IS_FRAMEWORK = a.IS_FRAMEWORK,//框架合同标准合同
                             IS_SUBCONT = a.IS_SUBCONT,//是否总包
-                            ComName = a.Company.NAME,//合同对方名称
+                            ComName = cus.NAME,//合同对方名称
                             MAIN_DEPART_ID = a.MAIN_DEPART_ID,//签约主体
+                            SOURCE_ID=a.SOURCE_ID,
+                            OTHER_CODE=a.OTHER_CODE,//对方编号
+                            EST_MONERY= a.EST_MONERY,//预估金额
+                            ADVANCE_MONERY=a.ADVANCE_MONERY,//预收预付
 
-                        };
+                        });
 
             var list = query.ToList();
             var local = from a in list
@@ -264,13 +271,19 @@ namespace WooDev.Services
                             StateDic = EmunUtility.GetDesc(typeof(ContractStateEnums), a.CONT_STATE),
                             WfState = EmunUtility.GetDesc(typeof(WorkFlowStateEnums), a.WF_STATE ?? -1),
                             CreateUserName = DevRedisUtility.GetUserField(a.CREATE_USERID),
-                            LeadUserName = DevRedisUtility.GetUserField(a.HEAD_USER_ID ?? -1),
+                            HEAD_USER_NAME = DevRedisUtility.GetUserField(a.HEAD_USER_ID ?? -1),
                             CateName = DevRedisUtility.GetDataField(a.CATE_ID),//合同类别
                             ComName = a.ComName,//合同对方名称
                             ANT_MONERYThod = a.ANT_MONERY.ThousandsSeparator(),
                             DeptName = DevRedisUtility.GetDeptName(a.DEPART_ID),
                             MainDeptName = DevRedisUtility.GetDeptName(a.MAIN_DEPART_ID),
+                            SOURCE_ID = a.SOURCE_ID,
                             ContPro = EmunUtility.GetDesc(typeof(ContractProperty), (a.IS_FRAMEWORK)),//合同属性
+                            SourceName = DevRedisUtility.GetDataField(a.SOURCE_ID??0),//合同来源
+                            OTHER_CODE = a.OTHER_CODE,//对方编号
+                            IS_SUBCONT_DSC= a.IS_SUBCONT==1?"是":"否",
+                            EST_MONERY_Thod=a.EST_MONERY.ThousandsSeparator(),
+                            ADVANCE_MONERY_Thod=a.ADVANCE_MONERY.ThousandsSeparator(),
 
                         };
             return local.FirstOrDefault();
@@ -338,7 +351,7 @@ namespace WooDev.Services
            
             List<DEV_CONT_CONTTEXT_HIST> listtexthist = new List<DEV_CONT_CONTTEXT_HIST>();
             var listtxts = DbClient.Queryable<DEV_CONT_CONTTEXT>().Where(a => a.CONT_ID == contId).ToList();
-            foreach (var item in list)
+            foreach (var item in listtxts)
             {
                 var textdata = AutoMapperHelper.Map<DEV_CONT_CONTTEXT, DEV_CONT_CONTTEXT_HIST>(item);
                 textdata.CREATE_TIME = DateTime.Now;
@@ -353,6 +366,29 @@ namespace WooDev.Services
             }
 
             DbClient.Insertable(listtexthist).AddQueue();
+
+            #endregion
+
+            #region 标的历史
+
+
+            List<DEV_CONT_SUB_MATTER_HIST> listsubmatterhist = new List<DEV_CONT_SUB_MATTER_HIST>();
+            var listsubmatters = DbClient.Queryable<DEV_CONT_SUB_MATTER>().Where(a => a.CONT_ID == contId).ToList();
+            foreach (var item in listsubmatters)
+            {
+                var textdata = AutoMapperHelper.Map<DEV_CONT_SUB_MATTER, DEV_CONT_SUB_MATTER_HIST>(item);
+                textdata.CREATE_TIME = DateTime.Now;
+                textdata.CREATE_USERID = userId;
+                textdata.UPDATE_TIME = DateTime.Now;
+                textdata.UPDATE_USERID = userId;
+                textdata.IS_DELETE = 0;
+                textdata.CONT_ID = saveinfo.ID;
+                textdata.CONT_HIST_ID = histinfo.ID;
+                listsubmatterhist.Add(textdata);
+
+            }
+
+            DbClient.Insertable(listsubmatterhist).AddQueue();
 
             #endregion
 

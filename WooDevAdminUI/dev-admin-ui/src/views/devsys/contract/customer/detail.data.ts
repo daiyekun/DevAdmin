@@ -2,7 +2,7 @@ import { DescItem } from '/@/components/Description/index';
 export const schema: DescItem[] = [
   {
     field: 'NAME',
-    label: '用户名',
+    label: '公司名称',
   },
   {
     field: 'CODE',
@@ -68,7 +68,7 @@ export const schema: DescItem[] = [
     label: '备用2',
   },
   {
-    field: '地址',
-    label: 'ADDRESS',
+    field: 'ADDRESS',
+    label: '地址',
   },
 ];

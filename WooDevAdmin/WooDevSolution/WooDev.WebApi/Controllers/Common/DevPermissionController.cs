@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using WooDev.Common.Models;
 using WooDev.Common.Utility;
 using WooDev.IServices;
@@ -32,6 +33,7 @@ namespace WooDev.WebApi.Controllers.Common
 
         /// <summary>
         /// 新建权限
+        /// 所有模块公用
         /// </summary>
         /// <returns></returns>
         [Route("getCreatePermission")]
@@ -41,17 +43,21 @@ namespace WooDev.WebApi.Controllers.Common
             var userId = HttpContext.User.Claims.GetTokenUserId();
             var deptId = HttpContext.User.Claims.GetTokenDeptId();
             var roleId = HttpContext.User.Claims.GetTokenRoleId();
-            var result = new ResultData
+            var rest = new ResData() { data = "ok" };
+            var result = new ResultObjData<ResData>
             {
                 code = 0,
                 message = "ok",
+                result = rest
             };
             var res=_IDevRolePermissionService.GetCreateCompanyPerssion(reqAddPermission.PerCode, userId, deptId, roleId);
             if (!res)
             {
-                result.code = -1;
-                result.message = "没有相关权限";
-                
+               
+                rest.data = "没有相关权限";
+                rest.result = -1;
+                result.result = rest;
+
             }
             
             return new DevResultJson(result);
@@ -69,18 +75,50 @@ namespace WooDev.WebApi.Controllers.Common
             var deptId = HttpContext.User.Claims.GetTokenDeptId();
             var roleId = HttpContext.User.Claims.GetTokenRoleId();
             var listIds = StringHelper.String2ArrayInt(reqDelPermission.Ids);
-            var result = new ResultData
+            var rest = new ResData() { data = "ok" };
+            var result = new ResultObjData<ResData>
             {
                 code = 0,
                 message = "ok",
+                result= rest
             };
-            var res = _IDevRolePermissionService.GetCompanyDeletePermission(reqDelPermission.PerCode, userId, deptId, roleId, listIds);
-            if (res.Code!=0)
+            switch (reqDelPermission.PerCode)
             {
-                result.code = -1;
-                result.message = res.GetOptionMsg(res.Code);
+                case "customerdelete"://客户
+                    {
+                        var res = _IDevRolePermissionService.GetCompanyDeletePermission(reqDelPermission.PerCode, userId, deptId, roleId, listIds);
+                        if (res.Code != 0)
+                        {
+                            rest.data = res.GetOptionMsg(res.Code); ;
+                            rest.result = -1;
+                            result.result = rest;
+                          
+
+                        }
+                    }
+                    break;
+                case "collcontractdelete"://收款合同
+                    {
+                        var res = _IDevRolePermissionService.GetContractDeletePermission(reqDelPermission.PerCode, userId, deptId, roleId, listIds);
+                        if (res.Code != 0)
+                        {
+                            rest.data = res.GetOptionMsg(res.Code); ;
+                            rest.result = -1;
+                            result.result = rest;
+
+                        }
+                    }
+                    break;
+                default:
+
+                    result.code = -1;
+                    result.message = "权限标识错误";
+
+
+                    break;
 
             }
+          
 
             return new DevResultJson(result);
         }
@@ -96,25 +134,61 @@ namespace WooDev.WebApi.Controllers.Common
             var userId = HttpContext.User.Claims.GetTokenUserId();
             var deptId = HttpContext.User.Claims.GetTokenDeptId();
             var roleId = HttpContext.User.Claims.GetTokenRoleId();
-            
-            var result = new ResultData
+
+            var rest = new ResData() { data="ok"};
+            var result = new ResultObjData<ResData>
             {
                 code = 0,
                 message = "ok",
+                result = rest
+
             };
-            PermissionDicEnum res = _IDevRolePermissionService.GetCompanyUpdatePermission(reqUpdatePermission.PerCode, userId, deptId, roleId, reqUpdatePermission.Id??0);
-            if (res!= PermissionDicEnum.OK)
+            switch (reqUpdatePermission.PerCode)
             {
-                result.code = -1;
-                result.message = EmunUtility.GetDesc(typeof(PermissionDicEnum), (int)res);//EmunUtility.GetDefaultDesc(typeof(PermissionDicEnum));
+                case "customerupdate"://客户
+                    {
+                        PermissionDicEnum res = _IDevRolePermissionService.GetCompanyUpdatePermission(reqUpdatePermission.PerCode, userId, deptId, roleId, reqUpdatePermission.Id ?? 0);
+                        if (res != PermissionDicEnum.OK)
+                        {
+                            rest.data= EmunUtility.GetDesc(typeof(PermissionDicEnum), (int)res);
+                            rest.result = -1;
+                            result.result = rest;
+                            
+
+                        }
+                    }
+                    break;
+                case "collcontractupdate"://收款合同
+                    {
+                        PermissionDicEnum res = _IDevRolePermissionService.GetContractUpdatePermission(reqUpdatePermission.PerCode, userId, deptId, roleId, reqUpdatePermission.Id ?? 0);
+                        if (res != PermissionDicEnum.OK)
+                        {
+                            rest.data = EmunUtility.GetDesc(typeof(PermissionDicEnum), (int)res);
+                            rest.result = -1;
+                            result.result = rest;
+
+                        }
+                    }
+                    break;
+                default:
+
+                    result.code = -1;
+                    result.message = "权限标识错误";
+                    rest.data = "权限标识错误";
+                    rest.result = -1;
+                    result.result = rest;
+
+
+                    break;
 
             }
+            
 
             return new DevResultJson(result);
         }
 
         /// <summary>
-        /// 修改权限
+        /// 查看权限
         /// </summary>
         /// <returns></returns>
         [Route("detailPermission")]
@@ -125,18 +199,51 @@ namespace WooDev.WebApi.Controllers.Common
             var deptId = HttpContext.User.Claims.GetTokenDeptId();
             var roleId = HttpContext.User.Claims.GetTokenRoleId();
 
-            var result = new ResultData
+            var rest = new ResData() { data = "ok" };
+            var result = new ResultObjData<ResData>
             {
                 code = 0,
                 message = "ok",
+                result = rest
             };
-            PermissionDicEnum res = _IDevRolePermissionService.GetCompanyUpdatePermission(reqUpdatePermission.PerCode, userId, deptId, roleId, reqUpdatePermission.Id ?? 0);
-            if (res != PermissionDicEnum.OK)
+            switch (reqUpdatePermission.PerCode)
             {
-                result.code = -1;
-                result.message = EmunUtility.GetDesc(typeof(PermissionDicEnum), (int)res);//EmunUtility.GetDefaultDesc(typeof(PermissionDicEnum));
+                case "customerdetail"://客户
+                    {
+                        PermissionDicEnum res = _IDevRolePermissionService.GetCompanyDetailPermission(reqUpdatePermission.PerCode, userId, deptId, roleId, reqUpdatePermission.Id ?? 0);
+                        if (res != PermissionDicEnum.OK)
+                        {
+                            rest.data = EmunUtility.GetDesc(typeof(PermissionDicEnum), (int)res);
+                            rest.result = -1;
+                            result.result = rest;
+                           
 
+                        }
+                    }
+                    break;
+                case "collcontractdetail"://收款合同
+                    {
+                        PermissionDicEnum res = _IDevRolePermissionService.GetContractDetailPermission(reqUpdatePermission.PerCode, userId, deptId, roleId, reqUpdatePermission.Id ?? 0);
+                        if (res != PermissionDicEnum.OK)
+                        {
+                            rest.data = EmunUtility.GetDesc(typeof(PermissionDicEnum), (int)res);
+                            rest.result = -1;
+                            result.result = rest;
+
+                        }
+                    }
+                    break;
+                default:
+                    rest.data = "权限标识错误";
+                    rest.result = -1;
+                    result.result = rest;
+                    result.code = -1;
+                    result.message = "权限标识错误";
+
+                    
+                    break;
             }
+            
 
             return new DevResultJson(result);
         }

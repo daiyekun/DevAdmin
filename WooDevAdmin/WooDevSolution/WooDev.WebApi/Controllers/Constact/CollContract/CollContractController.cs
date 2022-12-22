@@ -103,7 +103,7 @@ namespace WooDev.WebApi.Controllers.Constact.CollContract
             var pession = _IDevRolePermissionService.GetContractListPermissionExpression(whereexp, "collcontractlist", userId, deptId, roleId);
             //whereexp = whereexp.And(pession);
             //predicateAnd = predicateAnd.And(predicateAnd.ToExpression());
-            pession = pession.And(a => a.F_TYPE == 0);//客户
+            pession = pession.And(a => a.F_TYPE == 0);//收款合同
             pession = pession.And(a => a.IS_DELETE == 0);
             return pession;
 
@@ -114,9 +114,9 @@ namespace WooDev.WebApi.Controllers.Constact.CollContract
         /// </summary>
         /// <param name="Ids">选中ID</param>
         [DevOptionLogActionFilter("删除收款合同", OptionLogEnum.Del, "删除收款合同", true)]
-        [Route("contractDel")]
+        [Route("constractDel")]
         [HttpGet]
-        public IActionResult ContractDel(string ids)
+        public IActionResult ConstractDel(string ids)
         {
             var userId = HttpContext.User.Claims.GetTokenUserId();
             var result = new ResultData
@@ -180,9 +180,9 @@ namespace WooDev.WebApi.Controllers.Constact.CollContract
         /// </summary>
         /// <param name="id">当前ID</param>
         /// <returns></returns>
-        [Route("customerView")]
+        [Route("constractView")]
         [HttpGet]
-        public IActionResult CustomerView(int id)
+        public IActionResult ConstractView(int id)
         {
 
 

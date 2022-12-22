@@ -3,7 +3,7 @@ import { BasicColumn } from '/@/components/Table/src/types/table';
 import { h } from 'vue';
 import { Tag } from 'ant-design-vue';
 import { getdataListApi } from '/@/api/devsys/system/datadic';
-export const customercolumns: BasicColumn[] = [
+export const contcolumns: BasicColumn[] = [
   {
     title: 'ID',
     dataIndex: 'ID',
@@ -26,10 +26,9 @@ export const customercolumns: BasicColumn[] = [
   {
     title: '合同对方',
     dataIndex: 'ComName',
-    width: 160,
+    width: 180,
     align: 'left',
   },
-
   {
     title: '类别',
     dataIndex: 'CateName',
@@ -138,8 +137,18 @@ export const customercolumns: BasicColumn[] = [
     title: '创建时间',
     dataIndex: 'CREATE_TIME',
     sorter: true,
-    // width: 130,//最后一列不设置宽度，否则错乱
   },
+  // {
+  //   title: '创建人',
+  //   dataIndex: 'CreateUserName',
+  //   width: 130,
+  // },
+  // {
+  //   title: '操作',
+  //   key: 'operation',
+  //   fixed: 'right',
+  //   width: 130,
+  // },
 ];
 
 const storeFrameworkOptions: LabelValueOptions = [
@@ -204,7 +213,7 @@ export function getFormConfig(): Partial<FormProps> {
         field: 'SIGNING_DATE',
         component: 'RangePicker',
         label: '签订日期',
-        required: true,
+        // required: true,
         colProps: {
           xl: 8,
           xxl: 8,

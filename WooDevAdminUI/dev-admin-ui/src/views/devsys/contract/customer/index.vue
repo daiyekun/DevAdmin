@@ -156,8 +156,12 @@
           //go('/company/customer/customer_build/0');
           const reqdata = GetCreatePermissionApi({ PerCode: 'customerbuild' });
 
-          reqdata.then(() => {
-            go('/company/customer/customer_build/0');
+          reqdata.then((res) => {
+            if (res.result === -1) {
+              msg.warn({ content: res.data, key: 'adding' });
+            } else {
+              go('/company/customer/customer_build/0');
+            }
           });
         } catch (error) {
           msg.error({ content: '' + error, key: 'adding' });
@@ -171,8 +175,12 @@
             Id: Number(record.ID),
           });
 
-          reqdata.then(() => {
-            go('/company/customer/customer_build/' + record.ID);
+          reqdata.then((res) => {
+            if (res.result === -1) {
+              msg.warn({ content: res.data, key: 'editing' });
+            } else {
+              go('/company/customer/customer_build/' + record.ID);
+            }
           });
         } catch (error) {
           msg.error({ content: '' + error, key: 'editing' });
@@ -180,9 +188,18 @@
       }
 
       async function handleDelete(record: Recordable) {
-        customerDelApi({ Ids: record.ID.toString() });
-        msg.success({ content: '删除成功', key: 'deling' });
-        reload();
+        const reqdata = GetDeletePermissionApi({
+          PerCode: 'customerdelete',
+          Ids: record.ID.toString(),
+        });
+        reqdata.then((res) => {
+          if (res.result === -1) {
+            msg.warn({ content: res.data, key: 'deling' });
+            customerDelApi({ Ids: record.ID.toString() });
+            msg.success({ content: '删除成功', key: 'deling' });
+            reload();
+          }
+        });
       }
       function CustomerDelRows() {
         var _ids = checkedKeys.value.toString();
@@ -202,8 +219,12 @@
               PerCode: 'customerdelete',
               Ids: checkedKeys.value.toString(),
             });
-            reqdata.then(() => {
-              CustomerDelRows();
+            reqdata.then((res) => {
+              if (res.result === -1) {
+                msg.warn({ content: res.data, key: 'deling' });
+              } else {
+                CustomerDelRows();
+              }
             });
           }
         } catch (error) {

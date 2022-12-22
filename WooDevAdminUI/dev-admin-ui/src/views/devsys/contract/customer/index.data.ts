@@ -96,6 +96,11 @@ export const customercolumns: BasicColumn[] = [
     dataIndex: 'WfFlowDic',
     width: 150,
   },
+  {
+    title: '创建人',
+    dataIndex: 'CreateUserName',
+    width: 130,
+  },
 
   {
     title: '创建时间',

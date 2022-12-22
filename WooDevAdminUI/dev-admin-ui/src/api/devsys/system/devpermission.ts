@@ -6,7 +6,7 @@ import {
   detailPermission,
 } from '../model/permissionModel';
 import { defHttp } from '/@/utils/http/axios';
-import { ResultData } from '/@/api/model/baseModel';
+import { ResultDataT, ResData } from '/@/api/model/baseModel';
 enum Api {
   createPermission = '/DevPermission/getCreatePermission', //新建权限
   deletePermission = '/DevPermission/deletePermission', //删除权限
@@ -15,12 +15,12 @@ enum Api {
 }
 
 export const GetCreatePermissionApi = (params: CreatePermission) =>
-  defHttp.get<ResultData>({ url: Api.createPermission, params });
+  defHttp.get<ResultDataT<ResData>>({ url: Api.createPermission, params });
 
 export const GetDeletePermissionApi = (params: DeletePermission) =>
-  defHttp.get<ResultData>({ url: Api.deletePermission, params });
+  defHttp.get<ResultDataT<ResData>>({ url: Api.deletePermission, params });
 
 export const GetUpdatePermissionApi = (params: UpdatePermission) =>
-  defHttp.get<ResultData>({ url: Api.updatePermission, params });
+  defHttp.get<ResultDataT<ResData>>({ url: Api.updatePermission, params });
 export const GetDetailPermissionApi = (params: detailPermission) =>
-  defHttp.get<ResultData>({ url: Api.detailPermission, params });
+  defHttp.get<ResultDataT<ResData>>({ url: Api.detailPermission, params });

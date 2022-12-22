@@ -11,10 +11,19 @@ export interface BasicFetchResult<T> {
 export interface ResultData {
   code: number;
   message: string;
-  //resdata: any;
+  result: any;
+}
+export interface ResultDataT<T> {
+  code: number;
+  message: string;
+  result: T;
 }
 export interface ResultviewData<T> {
   result: T;
   code: number;
   message: string;
+}
+export interface ResData {
+  result: number;
+  data: any;
 }

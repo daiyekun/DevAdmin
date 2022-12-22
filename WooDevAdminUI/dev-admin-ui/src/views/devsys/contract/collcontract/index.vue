@@ -66,7 +66,7 @@
     constractDelApi,
     updateStateApi,
   } from '/@/api/devsys/contract/collcontract';
-  import { customercolumns, getFormConfig } from './index.data';
+  import { contcolumns, getFormConfig } from './index.data';
   import { useGo } from '/@/hooks/web/usePage';
   import { useModal } from '/@/components/Modal';
   import ExportExcelModel from '/@/components/DevComponents/src/ExportExcelModel.vue';
@@ -92,7 +92,7 @@
   }
 
   export default defineComponent({
-    name: 'DevCustomer',
+    name: 'DevCollContract',
     components: {
       BasicTable,
       TableAction,
@@ -117,7 +117,7 @@
       const [registerTable, { reload, getColumns, getForm, getSelectRows }] = useTable({
         title: '收款合同列表',
         api: getContractListApi,
-        columns: customercolumns,
+        columns: contcolumns,
         formConfig: getFormConfig(),
         useSearchForm: true,
         showTableSetting: true,
@@ -140,12 +140,16 @@
       function handleView(record: Recordable) {
         try {
           const reqdata = GetDetailPermissionApi({
-            PerCode: 'customerdetail',
+            PerCode: 'collcontractdetail',
             Id: Number(record.ID),
           });
 
-          reqdata.then(() => {
-            go('/contract/collctract/collcontract_detail/' + record.ID);
+          reqdata.then((res) => {
+            if (res.result === -1) {
+              msg.warn({ content: res.data, key: 'detailing' });
+            } else {
+              go('/contract/collctract/collcontract_detail/' + record.ID);
+            }
           });
         } catch (error) {
           msg.error({ content: '' + error, key: 'detailing' });
@@ -155,9 +159,14 @@
         try {
           //go('/company/customer/customer_build/0');
           const reqdata = GetCreatePermissionApi({ PerCode: 'collcontractbuild' });
-
-          reqdata.then(() => {
-            go('/contract/collctract/collcontract_build/0');
+          //console.log('权限888==reqdata==', reqdata);
+          reqdata.then((res) => {
+            // console.log('权限888==', res);
+            if (res.result === -1) {
+              msg.warn({ content: res.data, key: 'adding' });
+            } else {
+              go('/contract/collctract/collcontract_build/0');
+            }
           });
         } catch (error) {
           msg.error({ content: '' + error, key: 'adding' });
@@ -167,12 +176,17 @@
       function handleEdit(record: Recordable) {
         try {
           const reqdata = GetUpdatePermissionApi({
-            PerCode: 'collcontractbuild',
+            PerCode: 'collcontractupdate',
             Id: Number(record.ID),
           });
-
-          reqdata.then(() => {
-            go('/contract/collctract/collcontract_build/' + record.ID);
+          //console.log('修改权限 reqdata====', reqdata);
+          reqdata.then((res) => {
+            //console.log('修改权限====', res);
+            if (res.result === -1) {
+              msg.warn({ content: res.data, key: 'editing' });
+            } else {
+              go('/contract/collctract/collcontract_build/' + record.ID);
+            }
           });
         } catch (error) {
           msg.error({ content: '' + error, key: 'editing' });
@@ -180,11 +194,21 @@
       }
 
       async function handleDelete(record: Recordable) {
-        constractDelApi({ Ids: record.ID.toString() });
-        msg.success({ content: '删除成功', key: 'deling' });
-        reload();
+        const reqdata = GetDeletePermissionApi({
+          PerCode: 'collcontractdelete',
+          Ids: record.ID.toString(),
+        });
+        reqdata.then((res) => {
+          if (res.result === -1) {
+            msg.warn({ content: res.data, key: 'deling' });
+          } else {
+            constractDelApi({ Ids: record.ID.toString() });
+            msg.success({ content: '删除成功', key: 'deling' });
+            reload();
+          }
+        });
       }
-      function CustomerDelRows() {
+      function DelRows() {
         var _ids = checkedKeys.value.toString();
         constractDelApi({ Ids: _ids });
         msg.success({ content: '删除成功', key: 'deling' });
@@ -199,11 +223,15 @@
             msg.info({ content: '请选择数据', key: 'deling' });
           } else {
             const reqdata = GetDeletePermissionApi({
-              PerCode: 'customerdelete',
+              PerCode: 'collcontractdelete',
               Ids: checkedKeys.value.toString(),
             });
-            reqdata.then(() => {
-              CustomerDelRows();
+            reqdata.then((res) => {
+              if (res.result === -1) {
+                msg.warn({ content: res.data, key: 'deling' });
+              } else {
+                DelRows();
+              }
             });
           }
         } catch (error) {
@@ -226,7 +254,7 @@
           selkey: checkedKeys.value,
           colums: coloums,
           seardata: formvalues,
-          extype: 'customer',
+          extype: 'collcontract',
         };
         openExcelModal(true, opendata);
       }

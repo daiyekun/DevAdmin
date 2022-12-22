@@ -14,7 +14,7 @@
       <FileBuildTable ref="tableFileRef" :custid="coustomerid" />
     </a-card>
     <a-card title="合同标的" :bordered="false" class="!mt-5">
-      <ContactBuild ref="tableRef" :custid="coustomerid" />
+      <SubMatterBuildTable ref="tableRef" :custid="coustomerid" />
     </a-card>
     <UserSelectModel @register="registerUserModel" @rowUserDbclick="SelleadUser" @selectRowUser="selectRowUser" />
     <CustomerSelectModel @register="registerCustomerModel" @rowCustomerDbclick="DbClickSelCusteomer" @selectRowCustomer="selRowCustomer" />
@@ -33,7 +33,7 @@
   import { defineComponent, ref,reactive } from 'vue'; //ComponentOptions
   import FileBuildTable from './FileBuild.vue';
   import ContTextBuildTable from './ContTextBuild.vue';
-  import ContactBuild from './ContactBuild.vue';
+  import SubMatterBuildTable from './SubMatterBuild.vue';
   import PlanFinceBuildTable from './PlanFinceBuild.vue';
   import { PageWrapper } from '/@/components/Page';
   //import { schemas } from './build.data';
@@ -44,12 +44,11 @@
   import CustomerSelectModel from '/@/components/DevComponents/src/CustomerModel.vue';
   import UserSelectModel from '/@/components/DevComponents/src/UserModel.vue';
   import MainDeptModel from '/@/components/DevComponents/src/MainDeptModel.vue';
-  import { customerSaveApi } from '/@/api/devsys/contract/customer';
+  import { constractSaveApi,constractViewApi,contractClearDataApi } from '/@/api/devsys/contract/collcontract';
   import { useGo } from '/@/hooks/web/usePage';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { useRoute } from 'vue-router';
-  import { CustomerViewInfo } from '/@/api/devsys/model/customerModel';
-  import { CustomerViewApi,customerClearDataApi } from '/@/api/devsys/contract/customer';
+  import { contractViewInfo } from '/@/api/devsys/model/devcontractModel';
   const storeFrameworkOptions: LabelValueOptions = [
   {
     label: '标准合同',
@@ -65,7 +64,7 @@
     name: 'CustomerBuild',
     components: {
       BasicForm,
-      ContactBuild,
+      SubMatterBuildTable,
       PageWrapper,
       UserSelectModel,
       FileBuildTable,
@@ -344,18 +343,18 @@
       //修改时给表单赋值
       const customerId = ref(route.params?.id);
        const customerdata = reactive({
-        viewdata:<CustomerViewInfo>{}
+        viewdata:<contractViewInfo>{}
       });
       const coustomerid=Number(customerId.value);
       if(coustomerid>0){
-      const reqdata= CustomerViewApi(Number(customerId.value));
+      const reqdata= constractViewApi(Number(customerId.value));
       reqdata.then((values) => {
         customerdata.viewdata = values;
         setFieldsValue(values);
       });
       
       }else{
-        customerClearDataApi();
+        contractClearDataApi();
       }
 
       // const [registerTask, { validate: validateTaskForm }] = useForm({
@@ -384,7 +383,7 @@
          // const [values, taskValues] = await Promise.all([validate(), validateTaskForm()]);
          const [values] = await Promise.all([validate()]);
           console.log('form data:', values);
-          await customerSaveApi(values);
+          await constractSaveApi(values);
           msg.success({ content: '数据已保存', key: 'saving' });
           closeCurrent();
           goBack();
@@ -486,7 +485,7 @@
 
       function goBack() {
         // 返回列表
-        go('/company/customer');
+        go('/contract/collctract');
       }
 
       return {
@@ -508,7 +507,8 @@
         registerMainDeptModel,
         rowMainDeptDbclick,
         selectRowMainDept,
-        tableTextRef
+        tableTextRef,
+        tablePlanFinceRef
       };
     },
   });

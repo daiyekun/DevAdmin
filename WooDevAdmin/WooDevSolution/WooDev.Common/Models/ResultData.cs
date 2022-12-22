@@ -172,4 +172,21 @@ namespace WooDev.Common.Models
 
 
     }
+
+    /// <summary>
+    /// 返回结果
+    /// </summary>
+    public class ResData
+    {
+        /// <summary>
+        /// 返回结果
+        /// </summary>
+        public int result { get; set; } = 0;
+        /// <summary>
+        /// 数据
+        /// </summary>
+        public object data { get; set; }
+        
+
+    }
 }

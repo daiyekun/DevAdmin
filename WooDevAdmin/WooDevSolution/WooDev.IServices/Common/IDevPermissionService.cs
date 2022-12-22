@@ -82,7 +82,14 @@ namespace WooDev.IServices
         /// <param name="updateObjId">修改数据的ID</param>
         /// <returns>PermissionDicEnum</returns>
         PermissionDicEnum GetCompanyViewPermission(string funcCode, int userId, int deptId, int roleId, int updateObjId);
-
+        /// <summary>
+        /// 判断当前用户是否有查看合同对方的权限
+        /// </summary>
+        /// <param name="userId">当前用户</param>
+        /// <param name="funcCode">功能点标识</param>
+        /// <param name="updateObjId">修改数据的ID</param>
+        /// <returns>PermissionDicEnum</returns>
+        PermissionDicEnum GetCompanyDetailPermission(string funcCode, int userId, int deptId, int roleId, int updateObjId);
         #endregion 合同对方权限
 
         #region 合同权限
@@ -111,6 +118,33 @@ namespace WooDev.IServices
         /// 2类：0个人、1机构、2全部、3本机构、-1 无权限
         /// <returns>合同对方权限表达式树</returns>
         Expressionable<DEV_CONTRACT> GetContractListPermissionExpression(Expressionable<DEV_CONTRACT> expre, string funcCode, int userId, int deptId = 0, int roleId = 0);
+
+        /// <summary>
+        /// 合同删除权限
+        /// </summary>
+        /// <param name="funcCode">权限标识</param>
+        /// <param name="userId">用户ID</param>
+        /// <param name="deptId">部门ID</param>
+        /// <param name="roleId">角色ID</param>
+        /// <param name="listdelIds">删除IDs</param>
+        /// <returns>权限对象</returns>
+        PermissionDataInfo GetContractDeletePermission(string funcCode, int userId, int deptId, int roleId, IList<int> listdelIds);
+        /// <summary>
+        /// 判断当前用户是否有修改合同的权限
+        /// </summary>
+        /// <param name="userId">当前用户</param>
+        /// <param name="funcCode">功能点标识</param>
+        /// <param name="updateObjId">修改数据的ID</param>
+        /// <returns>PermissionDicEnum</returns>
+        PermissionDicEnum GetContractUpdatePermission(string funcCode, int userId, int deptId, int roleId, int updateObjId);
+        /// <summary>
+        /// 判断当前用户是否有查看合同的权限
+        /// </summary>
+        /// <param name="userId">当前用户</param>
+        /// <param name="funcCode">功能点标识</param>
+        /// <param name="updateObjId">修改数据的ID</param>
+        /// <returns>PermissionDicEnum</returns>
+         PermissionDicEnum GetContractDetailPermission(string funcCode, int userId, int deptId, int roleId, int updateObjId);
         #endregion
 
     }

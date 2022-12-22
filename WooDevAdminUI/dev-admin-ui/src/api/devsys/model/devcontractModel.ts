@@ -80,6 +80,10 @@ export interface contractSaveInfo {
  */
 export type contractViewInfo = contractSaveInfo & {
   StateDic: string;
+  SourceName: string;
+  IS_SUBCONT_DSC: string;
+  EST_MONERY_Thod: string;
+  ADVANCE_MONERY_Thod: string;
 };
 export type ViewUserModel = ResultviewData<contractViewInfo>;
 export type ContChidParams = {
@@ -153,3 +157,44 @@ export interface ContAttachmentListItem {
   CONT_ID: number;
 }
 export type ContAttachmentListGetResultModel = BasicFetchResult<ContAttachmentListItem>;
+
+/**
+ * 标的保存对象
+ */
+export interface contSubmatterSaveInfo {
+  ID: number;
+  S_NAME: string;
+  SPEC: string;
+  S_TYPE: string;
+  UNIT: string;
+  AMOUNT: number;
+  PRICE?: number;
+  SUBTOTAL?: number;
+  PLAN_DATE: Date;
+  SALE_PRICE: number;
+  REMARK: string;
+  CONT_ID: number;
+}
+
+/**
+ * 合同标的
+ */
+export interface ContSubMatterListItem {
+  ID: number;
+  S_NAME: string;
+  SPEC: string;
+  S_TYPE: string;
+  UNIT: string;
+  AMOUNT: number;
+  PRICE?: number;
+  SUBTOTAL?: number;
+  CREATE_USERID: number;
+  CreateUserName?: string;
+  CREATE_TIME: Date;
+  PLAN_DATE: Date;
+  SALE_PRICE: number;
+  REMARK: string;
+  SUBTOTAL_Thod: string;
+  CONT_ID: number;
+}
+export type ContSubmatterListGetResultModel = BasicFetchResult<ContSubMatterListItem>;

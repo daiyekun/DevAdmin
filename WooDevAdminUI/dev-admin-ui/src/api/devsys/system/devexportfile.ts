@@ -9,8 +9,13 @@ export const customerExcelApi = (params: ExcelReqData) => {
   const extype = params.Seldata.extype;
   switch (extype) {
     case 'customer': {
-      //可以表
+      //客户
       rapi = '/Customer/exportexcel'; //导出excel
+      break;
+    }
+    case 'collcontract': {
+      //收款合同
+      rapi = '/CollContract/exportexcel'; //导出excel
       break;
     }
   }

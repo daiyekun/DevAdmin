@@ -9,6 +9,8 @@ import {
   contplanfinceSaveInfo,
   ContTextListGetResultModel,
   ContAttachmentListGetResultModel,
+  ContSubmatterListGetResultModel,
+  contSubmatterSaveInfo,
 } from '../model/devcontractModel';
 import { devUpdateField, deldataInfo, ExcelReqData, updateStateDto } from '../model/devCommonModel';
 import { ResultData } from '/@/api/model/baseModel';
@@ -17,6 +19,7 @@ enum Api {
   contractSave = '/CollContract/constractSave', //新建修改保存用户
   contractView = '/CollContract/constractView', //详情
   contractDel = '/CollContract/constractDel', //删除
+  contractClearData = '/CollContract/constractClear', //清理客户数据
   contractExcel = '/CollContract/exportexcel', //导出excel
   updateState = '/CollContract/updateState', //修改状态
   planfinceList = '/PlanFince/getPlanFinceList', //计划资金列表
@@ -30,6 +33,11 @@ enum Api {
   getContAttachmentList = '/ContAttachment/getContAttachmentList', //合同附件列表
   contAttachmentUpdateField = '/ContAttachment/contAttachmentUpdateField', //修改合同附件字段
   contAttachmentDel = '/ContAttachment/contAttachmentDel', //删除合同附件
+
+  contSubmatterSave = '/SubMatter/submatterSave', //标的保存
+  getSubmatterList = '/SubMatter/getSubmatterList', //标的列表
+  contSubmatterUpdateField = '/SubMatter/contSubmatterUpdateField', //修改合同标的字段
+  submatterDel = '/SubMatter/submatterDel', //删除合同附件
 }
 export const getContractListApi = (params: constractParams) =>
   defHttp.get<constractListGetResultModel>({ url: Api.contractList, params });
@@ -43,6 +51,7 @@ export const updateStateApi = (params: updateStateDto) =>
   defHttp.post<ResultData>({ url: Api.updateState, params });
 export const constractExcelApi = (params: ExcelReqData) =>
   defHttp.post<ResultData>({ url: Api.contractExcel, params });
+export const contractClearDataApi = () => defHttp.get<ResultData>({ url: Api.contractClearData });
 
 //计划资金
 export const getPlanFinceListApi = (params: ContChidParams) =>
@@ -71,3 +80,11 @@ export const contAttachmentUpdateFieldApi = (params: devUpdateField) =>
   defHttp.post<ResultData>({ url: Api.contAttachmentUpdateField, params });
 export const contAttachmentDelApi = (params: deldataInfo) =>
   defHttp.get<ResultData>({ url: Api.contAttachmentDel, params });
+
+//标的
+export const getSubmatterListApi = (params: ContChidParams) =>
+  defHttp.get<ContSubmatterListGetResultModel>({ url: Api.getSubmatterList, params });
+export const contSubmatterSaveApi = (params: contSubmatterSaveInfo) =>
+  defHttp.post<ResultData>({ url: Api.contSubmatterSave, params });
+export const submatterDelApi = (params: deldataInfo) =>
+  defHttp.get<ResultData>({ url: Api.submatterDel, params });

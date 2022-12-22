@@ -31,7 +31,7 @@ namespace WooDev.ViewModel
         /// <summary>
         /// 负责人
         /// </summary>
-        public string LeadUserName { get; set; }
+        public string HEAD_USER_NAME { get; set; }
         /// <summary>
         /// 合同类别
         /// </summary>
@@ -56,5 +56,21 @@ namespace WooDev.ViewModel
         /// 合同属性
         /// </summary>
         public string ContPro { get; set; }
+        /// <summary>
+        /// 合同来源
+        /// </summary>
+        public string SourceName { get; set; }
+        /// <summary>
+        /// 总分包
+        /// </summary>
+        public string IS_SUBCONT_DSC { get; set; }
+        /// <summary>
+        /// 预估金额
+        /// </summary>
+        public string EST_MONERY_Thod { get; set; }
+        /// <summary>
+        /// 预收预付
+        /// </summary>
+        public string ADVANCE_MONERY_Thod { get; set; }
     }
 }

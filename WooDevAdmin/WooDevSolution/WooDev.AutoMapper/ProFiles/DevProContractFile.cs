@@ -82,8 +82,27 @@ namespace Dev.WooNet.AutoMapper.ProFiles
            .ForMember(a => a.CONT_HIST_ID, opt => opt.Ignore())
            .ForMember(a => a.CONT_ID, opt => opt.Ignore())
            ;
+            //标的->标的
+            CreateMap<DevContSubMatterDTO, DEV_CONT_SUB_MATTER>()
+           .ForMember(a => a.IS_DELETE, opt => opt.MapFrom(src => 0))
+           .ForMember(a => a.UPDATE_USERID, opt => opt.Ignore())
+           .ForMember(a => a.UPDATE_TIME, opt => opt.Ignore())
+           .ForMember(a => a.CREATE_TIME, opt => opt.Ignore())
+           .ForMember(a => a.CREATE_USERID, opt => opt.Ignore())
+           .ForMember(a => a.CONT_ID, opt => opt.Ignore())
+           ;
+            //标的->标的历史
+            CreateMap<DEV_CONT_SUB_MATTER, DEV_CONT_SUB_MATTER_HIST>()
+           .ForMember(a => a.IS_DELETE, opt => opt.MapFrom(src => 0))
+           .ForMember(a => a.UPDATE_USERID, opt => opt.Ignore())
+           .ForMember(a => a.UPDATE_TIME, opt => opt.Ignore())
+           .ForMember(a => a.CREATE_TIME, opt => opt.Ignore())
+           .ForMember(a => a.CREATE_USERID, opt => opt.Ignore())
+           .ForMember(a => a.CONT_HIST_ID, opt => opt.Ignore())
+           .ForMember(a => a.CONT_ID, opt => opt.Ignore())
+           ;
 
-           
+
 
 
         }
