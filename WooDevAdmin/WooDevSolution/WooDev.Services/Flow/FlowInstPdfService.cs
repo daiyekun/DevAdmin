@@ -11,6 +11,7 @@ using WooDev.Common.Utility;
 using WooDev.IServices;
 using WooDev.Model.Models;
 using WooDev.ViewModel.Flow.FlowInstPdf;
+using WooDev.Common.Extend;
 
 namespace WooDev.Services
 {
@@ -32,12 +33,13 @@ namespace WooDev.Services
         public Dictionary<string, List<WfOption>> GetWfOptions(DEV_FLOW_INSTANCE appInst)
         {
 
-            var listdata=DbClient.Queryable<DEV_FLOW_INST_OPTION, DEV_FLOW_INST_NODE>((o, i) => new JoinQueryInfos(
-                JoinType.Left, o.NODE_STR_ID == i.NODE_STRID //左连接 左链接 左联 
+           
 
-            )).Where(o => o.INST_ID == appInst.ID)
-            .Select((o, i) => 
-            new OptionView 
+            var listdata = DbClient.Queryable<DEV_FLOW_INST_OPTION>()
+                .LeftJoin<DEV_FLOW_INST_NODE>((o, i) => o.NODE_STR_ID == i.NODE_STRID)
+                .Where(o => o.INST_ID == appInst.ID)
+            .Select((o, i) =>
+            new OptionView
             {
                 Id = o.ID,
                 NodeName = i.TEXT_VALUE,
@@ -45,7 +47,7 @@ namespace WooDev.Services
                 CreateUserId = o.CREATE_USERID,
                 Opinion = o.APP_OPTION,
             }
-            ).ToList();
+            ).ToList().Distinct((a,b)=>a.Id==b.Id).ToList();
 
             var local = from a in listdata
                         select new WfOption
@@ -60,7 +62,6 @@ namespace WooDev.Services
                         };
 
             return local.ToList().GroupBy(a => a.NodeName).ToDictionary(g => g.Key, g => g.ToList());
-
         }
         #endregion
 
