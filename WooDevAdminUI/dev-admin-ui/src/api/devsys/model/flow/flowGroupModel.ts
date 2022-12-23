@@ -11,13 +11,14 @@ export interface FlowGroupListItem {
   CREATE_TIME: string;
 }
 /**
- * 新建角色对象
+ * 新建用户组对象
  */
 export interface flowGroupSaveInfo {
   ID: number;
   NAME: string;
   CODE: string;
   REMARK: number;
+  UserIds?: string;
 }
 /**
  * @description: Request list return value

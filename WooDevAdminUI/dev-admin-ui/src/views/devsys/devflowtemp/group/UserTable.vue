@@ -46,9 +46,9 @@
       },
     },
     setup(props: any) {
-      debugger;
       const groupId = Number(props.currgroupId);
-      // const gparams:UserParams= {}
+      console.log('组ID======groupId===', groupId);
+      // const gparams:UserParams= {}===
       const [registerTable, { getDataSource, deleteTableDataRecord }] = useTable({
         columns: columns,
         showIndexColumn: false,
