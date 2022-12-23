@@ -40,7 +40,7 @@
         </CollapseContainer>
       </div>
       <div tabkey="2" v-show="tabdata.tab2">
-        <FlowInstHistory :custid="coustomerid" :objtype="0" />
+        <FlowInstHistory :custid="coustomerid" :objtype="3" />
       </div>
     </PageWrapper>
     <FlowOptionModel @register="flowOptionregister" @sumitMsg="flowSucc" />
@@ -112,7 +112,7 @@
         //审批权限
         appperssion.appqx = await IsAppExistInfoApi({
           AppObjId: coustomerid,
-          AppObjType: 0,
+          AppObjType: 3,
           UserId: 0,
         });
         // console.log('审批权限 appqx', appperssion);

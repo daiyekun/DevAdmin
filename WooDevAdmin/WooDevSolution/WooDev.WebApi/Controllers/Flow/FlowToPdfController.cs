@@ -24,10 +24,12 @@ namespace WooDev.WebApi.Controllers.Flow
     {
         private IDevFlowInstanceService _IDevFlowInstanceService;
         private IFlowInstPdfService _IFlowInstPdfService;
+        
         public FlowToPdfController(IDevFlowInstanceService iDevFlowInstanceService, IFlowInstPdfService iFlowInstPdfService)
         {
             _IDevFlowInstanceService = iDevFlowInstanceService;
             _IFlowInstPdfService = iFlowInstPdfService;
+          
         }
 
 
@@ -50,6 +52,15 @@ namespace WooDev.WebApi.Controllers.Flow
                         CompanyInfo info = _IFlowInstPdfService.GetCommpanyFlowPdfData(wfinfo);
                         demoViewPortrait = new ViewAsPdf("CustomerPDF", info);
                         demoViewPortrait.FileName = "customer.pdf";
+
+
+                    }
+                    break;
+                case (int)FlowObjEnums.Contract:
+                    {
+                        ContractPdfInfo info = _IFlowInstPdfService.GetContractFlowPdfData(wfinfo);
+                        demoViewPortrait = new ViewAsPdf("ContractPDF", info);
+                        demoViewPortrait.FileName = "contract.pdf";
 
 
                     }

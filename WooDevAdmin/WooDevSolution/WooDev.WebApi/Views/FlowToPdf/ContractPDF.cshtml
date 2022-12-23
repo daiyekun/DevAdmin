@@ -1,0 +1,153 @@
+﻿@model WooDev.ViewModel.Flow.FlowInstPdf.ContractPdfInfo;
+@{
+    Layout = null;
+}
+<style>
+    table {
+        border-top: 1px solid #000000;
+        border-left: 1px solid #000000;
+        border-collapse: collapse; /*设置单元格的边框合并为1*/
+        line-height: 40px; /*设置行高*/
+    }
+
+    td {
+        border-bottom: 1px solid #000000;
+        border-right: 1px solid #000000;
+    }
+
+
+
+    /**字体颜色和背景**/
+    /***
+      table tr:nth-child(odd) {
+          background: #F4F4F4;
+      }
+      table tr:nth-child(even) {
+          color: #C00;
+      }
+    ****/
+</style>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>合同审批单</title>
+</head>
+<body>
+    <table width="100%">
+        <tr>
+            <td align="center">
+                <b>
+                    合同审批单
+                </b>
+            </td>
+        </tr>
+    </table>
+    <table width="100%">
+        <tr>
+            <td align="center">
+                合同名称
+            </td>
+            <td colspan="3">
+                @Model.Name
+            </td>
+
+        </tr>
+        <tr>
+            <td align="center">
+                合同对方
+            </td>
+            <td colspan="3">
+                @Model.CompanyName
+            </td>
+
+        </tr>
+        <tr>
+
+            <td align="center">
+                合同编号
+            </td>
+            <td>@Model.Code</td>
+            <td align="center">
+                类别
+            </td>
+            <td>@Model.CateName</td>
+        </tr>
+        <tr>
+            <td align="center">
+                合同金额
+            </td>
+            <td>@Model.AmountMoneyThod</td>
+            <td align="center">
+                负责人
+            </td>
+            <td>@Model.PrincipalUser</td>
+        </tr>
+        <tr>
+            <td align="center">
+                创建人
+            </td>
+            <td>@Model.CreateUserName</td>
+            <td align="center">
+                创建时间
+            </td>
+            <td>@Model.CreateDate</td>
+        </tr>
+
+    </table>
+
+    <table width="100%">
+        <tr>
+            <td align="center">
+                节点名称
+            </td>
+            <td align="center">
+                用户名
+            </td>
+            <td align="center">
+                审批意见
+            </td>
+            <td align="center">
+                审批时间
+            </td>
+        </tr>
+        @foreach (var key in Model.DicWfData.Keys)
+        {
+            int rowindex = 0;
+            @foreach (var item in Model.DicWfData[key])
+            {
+
+                <tr>
+                    @if (rowindex == 0)
+                    {
+                        <td style="text-align:center; width:22%" rowspan="@Model.DicWfData[key].Count()">
+                            @key
+                        </td>
+                    }
+                    <td style = "width:15%" >
+                     @if(@item.UserEs=="1" && @item.UserEsTy=="1")
+                        {
+                        <img src="@item.ImgSrc">
+                        }else{
+                        @item.AppUserName
+                        }
+                    </td>
+                    <td style="width:48%">
+                        @item.Option
+                    </td>
+
+                    <td style="width:15%;text-align:center;">
+                        @item.AppDate
+                    </td>
+                </tr>
+                rowindex++;
+            }
+
+
+        }
+
+    </table>
+    <div style="text-align:right;">生成日期： @DateTime.Now.ToString("yyyy-MM-dd")</div>
+</body>
+</html>

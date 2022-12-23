@@ -33,15 +33,24 @@ namespace WooDev.ViewModel
         /// <summary>
         /// 类别ID
         /// </summary>
-        public List<int> CATE_IDS_LIST { get; set; }
+        public string CATE_IDS_LIST { get; set; }
         /// <summary>
         /// 审批事项
         /// </summary>
-        public List<int> FLOW_ITEMS_LIST { get; set; }
+        public string FLOW_ITEMS_LIST { get; set; }
         /// <summary>
         /// 部门
         /// </summary>
-        public List<int> DEPART_IDS_LIST { get; set; }
+        public string DEPART_IDS_LIST { get; set; }
+
+        /// <summary>
+        /// 最小金额
+        /// </summary>
+        public decimal MIN_MONERY { get; set; } = 0;
+        /// <summary>
+        /// 最大金额
+        /// </summary>
+        public decimal MAX_MONERY { get; set; } = 0;
     }
     /// <summary>
     /// 保存图对象

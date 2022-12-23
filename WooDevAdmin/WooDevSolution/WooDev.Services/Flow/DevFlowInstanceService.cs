@@ -36,25 +36,41 @@ namespace WooDev.Services
         /// <returns></returns>
         public DEV_FLOW_TEMP GetTemp(AppConditionsInfo appConditions)
         {
+            DEV_FLOW_TEMP flowTemp = null;
             var tempquery = DbClient.Queryable<DEV_FLOW_TEMP>()
-                .Where(a => a.OBJ_TYPE == appConditions.FlowObj
-                        && (',' + a.CATE_IDS + ',').Contains(',' + appConditions.CateId.ToString() + ',')
-                        && (',' + a.FLOW_ITEMS + ',').Contains(',' + appConditions.FlowItem.ToString() + ',')
-                        && (',' + a.DEPART_IDS + ',').Contains(',' + appConditions.DeptId.ToString() + ',')
-
-                );
+                .Where(a => a.OBJ_TYPE == appConditions.FlowObj);
             switch (appConditions.FlowObj)
             {
                 case (int)FlowObjEnums.Contract:
                 case (int)FlowObjEnums.InvoiceIn:
                 case (int)FlowObjEnums.InvoiceOut:
                 case (int)FlowObjEnums.payment:
-                    return tempquery.Where(a => a.MIN_MONERY >= appConditions.Monery && appConditions.Monery <= a.MAX_MONERY).Single();
-                default:
-                    return tempquery.Single();
+                    tempquery= tempquery.Where(a => a.MIN_MONERY <= appConditions.Monery && appConditions.Monery <= a.MAX_MONERY);
+                    break;
 
 
             }
+            var listtmp = tempquery.ToList();
+            foreach (var item in listtmp)
+            {
+                var arrflowitem = StringHelper.String2ArrayInt(item.FLOW_ITEMS);
+                var arrcateIds = StringHelper.String2ArrayInt(item.CATE_IDS);
+                var deptIdsIds = StringHelper.String2ArrayInt(item.DEPART_IDS);
+                if(arrflowitem.Contains(appConditions.FlowItem)
+                    && arrcateIds.Contains(appConditions.CateId)
+                    && deptIdsIds.Contains(appConditions.DeptId))
+                {
+                    flowTemp = item;
+                    break;
+                }
+
+            }
+
+            return flowTemp;
+
+
+
+
         }
 
         #region 创建审批实例
@@ -88,7 +104,7 @@ namespace WooDev.Services
             InstInfo.UPDATE_TIME = DateTime.Now;
             InstInfo.CURR_NODE_ID = dicdata["firstNode"];//当前节点ID
             InstInfo.CURR_NODE_NAME = dicdata["firstNodeName"];//当前节点名称
-
+            InstInfo.FLOW_TYPE = flowInstDTO.FlowType;//审批类型
             #region 审批对象信息获取以及修改  其他审批添加基本修改这里
             var objInfo = UpdateAppObject(flowInstDTO, userId, InstInfo, dicdata);
             #endregion
@@ -309,6 +325,25 @@ namespace WooDev.Services
                         DbClient.Updateable<DEV_COMPANY>(info).AddQueue();
                         return info;
 
+                    }
+
+                case (int)FlowObjEnums.Contract:
+                    {
+                        var info = DbClient.Queryable<DEV_CONTRACT>().Where(a => a.ID == flowInstDTO.ObjId).Single();
+                        InstInfo.NAME = info.C_NAME;
+                        InstInfo.CODE = info.C_CODE;
+                        InstInfo.APP_ID = info.ID;
+                        InstInfo.APP_MONERY = 0;
+                        InstInfo.START_USER_ID = userId;
+                        InstInfo.APP_MONERY = info.ANT_MONERY;
+                        //修改当前对象
+                        info.WF_STATE = 1;//审批中
+                        info.WF_ITEM = flowInstDTO.FlowItem;
+                        info.WF_NODE_STRID= dicdata["firstNode"];//节点ID
+                        info.WF_NODE = dicdata["firstNodeName"];//节点名称
+                        //修改当前审批对象 最后和审批节点信息一起提交
+                        DbClient.Updateable<DEV_CONTRACT>(info).AddQueue();
+                        return info;
                     }
                 default:
                     return null;
@@ -1003,6 +1038,40 @@ namespace WooDev.Services
                                 objinfo.WF_NODE = "";
                                 objinfo.WF_ITEM = null;
                                 objinfo.C_STATE = (int)CompanyStateEnums.SHTG;
+                            }
+                            else
+                            {
+                                objinfo.WF_STATE = (int)WorkFlowStateEnums.SPZ;
+                                objinfo.WF_NODE_STRID = netxtNode.NODE_STRID;
+                                objinfo.WF_NODE = netxtNode.TEXT_VALUE;
+                            }
+
+
+
+                        }
+                        else
+                        {
+                            objinfo.WF_STATE = (int)WorkFlowStateEnums.BDH;
+                        }
+
+                        DbClient.Updateable(objinfo).AddQueue();
+
+                    }
+                    break;
+
+                case (int)FlowObjEnums.Contract:
+                    {
+                        var objinfo = DbClient.Queryable<DEV_CONTRACT>().Where(a => a.ID == instInfo.APP_ID).First();
+                        if (flowOption.Sta == (int)OptionStateEnum.TongYi)
+                        {
+
+                            if (netxtNode.N_TYPE == "EndNode")
+                            {
+                                objinfo.WF_STATE = (int)WorkFlowStateEnums.SPTG;
+                                objinfo.WF_NODE_STRID = "";
+                                objinfo.WF_NODE = "";
+                                objinfo.WF_ITEM = null;
+                                objinfo.CONT_STATE = (int)ContractStateEnums.Approve;
                             }
                             else
                             {

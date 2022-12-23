@@ -4,7 +4,7 @@
   "avatar": "",
   "version": "4.2.0",
   "createdTime": "2022-5-23 09:09:48",
-  "updatedTime": "2022-12-21 22:29:26",
+  "updatedTime": "2022-12-23 16:16:57",
   "dbConns": [],
   "profile": {
     "default": {
@@ -16768,6 +16768,23 @@
           "id": "FA6B6842-6FC7-44E0-981B-D49F8D58090C"
         },
         {
+          "defKey": "WF_NODE_STRID",
+          "defName": "当前节点ID",
+          "comment": "",
+          "type": "VARCHAR",
+          "len": 50,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "",
+          "id": "3B462614-07B9-4211-A8E4-C57AF7E8FFB9"
+        },
+        {
           "defKey": "WF_NODE",
           "defName": "当前节点",
           "comment": "",
@@ -17606,6 +17623,23 @@
           "extProps": {},
           "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
           "id": "01A16C9A-6224-41EC-9075-FB8AA4620C9B"
+        },
+        {
+          "defKey": "WF_NODE_STRID",
+          "defName": "当前节点ID",
+          "comment": "",
+          "type": "VARCHAR",
+          "len": 50,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "",
+          "id": "E993D7F1-D48F-467F-84A8-CA1B49554B08"
         },
         {
           "defKey": "WF_NODE",

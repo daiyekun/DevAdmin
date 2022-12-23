@@ -322,5 +322,12 @@ namespace WooDev.Model.Models
         /// </summary>
         public string WF_NODE { get; set; }
 
+        /// <summary>
+        /// 描    述:当前节点ID
+        /// 默 认 值:
+        /// 是否空值:True
+        /// </summary>
+        public string WF_NODE_STRID { get; set; }
+
     }
 }

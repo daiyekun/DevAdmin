@@ -103,9 +103,9 @@ namespace WooDev.Services
                 saveinfo.UPDATE_USERID = userId;
                 saveinfo.UPDATE_TIME = DateTime.Now;
                 saveinfo.VERSION = saveinfo.VERSION+ 1;
-                saveinfo.FLOW_ITEMS = StringHelper.ArrayInt2String(devFlowTempDTO.FLOW_ITEMS_LIST);
-                saveinfo.CATE_IDS = StringHelper.ArrayInt2String(devFlowTempDTO.CATE_IDS_LIST);
-                saveinfo.DEPART_IDS= StringHelper.ArrayInt2String(devFlowTempDTO.DEPART_IDS_LIST);
+                saveinfo.FLOW_ITEMS = devFlowTempDTO.FLOW_ITEMS_LIST;//  StringHelper.ArrayInt2String(devFlowTempDTO.FLOW_ITEMS_LIST);
+                saveinfo.CATE_IDS = devFlowTempDTO.CATE_IDS_LIST;// StringHelper.ArrayInt2String(devFlowTempDTO.CATE_IDS_LIST);
+                saveinfo.DEPART_IDS = devFlowTempDTO.DEPART_IDS_LIST;//  StringHelper.ArrayInt2String(devFlowTempDTO.DEPART_IDS_LIST);
                 Update(saveinfo);
                 CreateFlowTempHist(saveinfo, saveinfo.ID);
 
@@ -117,6 +117,9 @@ namespace WooDev.Services
                 info.UPDATE_TIME = DateTime.Now;
                 info.CREATE_USERID = userId;
                 info.UPDATE_USERID = userId;
+                info.FLOW_ITEMS = devFlowTempDTO.FLOW_ITEMS_LIST;//  StringHelper.ArrayInt2String(devFlowTempDTO.FLOW_ITEMS_LIST);
+                info.CATE_IDS = devFlowTempDTO.CATE_IDS_LIST;// StringHelper.ArrayInt2String(devFlowTempDTO.CATE_IDS_LIST);
+                info.DEPART_IDS = devFlowTempDTO.DEPART_IDS_LIST;//  StringHelp
                 info.VERSION = 1;
                 var currinfo = Add(info);
                 CreateFlowTempHist(info, currinfo.ID);

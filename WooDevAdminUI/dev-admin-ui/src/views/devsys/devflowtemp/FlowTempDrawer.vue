@@ -31,6 +31,8 @@
   import { flowTempSaveApi } from '/@/api/devsys/flow/flowtemp';
   import { getDepartList } from '/@/api/devsys/system/devsystem';
   import { getdatadictreeList } from '/@/api/devsys/system/datadic';
+  import { FlowTempSaveInfo } from '/@/api/devsys/model/flow/flowTempModel';
+
   // import { cloneDeep } from 'lodash-es';
 
   export default defineComponent({
@@ -87,9 +89,22 @@
           const values = await validate();
           setDrawerProps({ confirmLoading: true });
           // TODO custom api
-          console.log(values);
+          console.log('模板提交对象===', values);
+          debugger;
+          let formdata: FlowTempSaveInfo = {
+            ID: values.ID,
+            NAME: values.NAME,
+            CODE: values.CODE,
+            OBJ_TYPE: values.OBJ_TYPE,
+            F_STATE: values.F_STATE,
+            MIN_MONERY: values.MIN_MONERY,
+            MAX_MONERY: values.MAX_MONERY,
+            FLOW_ITEMS_LIST: JSON.parse(JSON.stringify(values.FLOW_ITEMS_LIST)).toString(),
+            DEPART_IDS_LIST: JSON.parse(JSON.stringify(values.DEPART_IDS_LIST)).checked.toString(),
+            CATE_IDS_LIST: JSON.parse(JSON.stringify(values.CATE_IDS_LIST)).toString(),
+          };
           //debugger;
-          await flowTempSaveApi(values);
+          await flowTempSaveApi(formdata);
           closeDrawer();
           emit('success');
         } finally {

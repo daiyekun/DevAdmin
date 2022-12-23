@@ -21,5 +21,11 @@ namespace WooDev.IServices
         /// <param name="appInst">审批实例</param>
         /// <returns>审批单数据对象</returns>
         CompanyInfo GetCommpanyFlowPdfData(DEV_FLOW_INSTANCE appInst);
+        /// <summary>
+        /// 合同审批单信息
+        /// </summary>
+        /// <param name="appInst">审批实例对象</param>
+        /// <returns>合同审批单对象</returns>
+        ContractPdfInfo GetContractFlowPdfData(DEV_FLOW_INSTANCE appInst);
     }
 }

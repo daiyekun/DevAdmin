@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WooDev.Common.Extend;
 using WooDev.Common.Utility;
 using WooDev.IServices;
 using WooDev.Model.Models;
@@ -121,10 +122,68 @@ namespace WooDev.Services
 
 
 
-            #endregion
+        #endregion
+
+        #region 合同
+
+        /// <summary>
+        /// 合同审批单信息
+        /// </summary>
+        /// <param name="appInst">审批实例对象</param>
+        /// <returns>合同审批单对象</returns>
+        public ContractPdfInfo GetContractFlowPdfData(DEV_FLOW_INSTANCE appInst)
+        {
+            ContractPdfInfo contractInfo = GetContractInfo(appInst.APP_ID);
+            contractInfo.DicWfData = GetWfOptions(appInst);
+            return contractInfo;
+
+        }
+
+        /// <summary>
+        /// 合同信息
+        /// </summary>
+        /// <param name="Id">当前ID</param>
+        /// <returns>合同相关信息</returns>
+        private ContractPdfInfo GetContractInfo(int contId)
+        {
+            var query = DbClient.Queryable<DEV_CONTRACT>()
+                        .LeftJoin<DEV_COMPANY>((a, cus) => a.COMP_ID == cus.ID).Where(a=>a.ID== contId)
+
+            .Select((a, cus) => new
+            {
+                        
+                            Id = a.ID,
+                            Name = a.C_NAME,
+                            Code = a.C_CODE,
+                            PrincipalUserId = a.HEAD_USER_ID,
+                            CreateDateTime = a.CREATE_TIME,
+                            CreateUserId = a.CREATE_USERID,
+                            CATE_ID = a.CATE_ID,//类别
+                            AmountMoney = a.ANT_MONERY,//合同金额
+                            CompanyName = cus.NAME,//合同对方
 
 
-        
+               });
+            var local = from a in query.ToList()
+                        select new ContractPdfInfo
+                        {
+                            Id = a.Id,
+                            Name = a.Name,
+                            Code = a.Code,
+                            CateName = DevRedisUtility.GetDataField(a.CATE_ID),
+                            PrincipalUser = DevRedisUtility.GetUserField(a.PrincipalUserId ?? -1),
+                            CreateDate = a.CreateDateTime.ToString("yyyy-MM-dd"),
+                            CreateUserName = DevRedisUtility.GetUserField(a.CreateUserId),
+                            AmountMoneyThod = a.AmountMoney.ThousandsSeparator(),
+                            CompanyName = a.CompanyName,
+                        };
+            return local.FirstOrDefault();
+
+        }
+        #endregion
+
+
+
 
     }
 }

@@ -33,9 +33,9 @@ export interface FlowTempSaveInfo {
   CODE: string;
   OBJ_TYPE: number;
   F_STATE: number;
-  FLOW_ITEMS: string;
-  DEPART_IDS: string;
-  CATE_IDS: string;
+  FLOW_ITEMS_LIST: string;
+  CATE_IDS_LIST: string;
+  DEPART_IDS_LIST: string;
   MIN_MONERY: number;
   MAX_MONERY: number;
 }

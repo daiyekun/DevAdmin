@@ -266,13 +266,13 @@
         let selrows = getSelectRows();
         let _state = Number(item.to);
         console.log(`Click on item ${key}--${item}`);
-        debugger;
+        // debugger;
         const tempdata = {
-          FlowObj: 0,
+          FlowObj: 3,
           CateId: selrows[0].CATE_ID,
           DeptId: userStore.getUserInfo.departId,
           FlowItem: Number(key),
-          Monery: 0,
+          Monery: selrows[0].ANT_MONERY,
         };
         let resdata = await getFlowTempApi(tempdata);
         if (resdata != null) {
@@ -284,7 +284,7 @@
             ObjId: selrows[0].ID,
             TempId: resdata.ID,
             FlowItem: tempdata.FlowItem,
-            Name: selrows[0].NAME,
+            Name: selrows[0].C_NAME,
           };
           //console.log(resdata, flowdata);
           go('/devflow/flowtemp/flowsubmitpage/' + encodeURIComponent(JSON.stringify(flowdata)));
@@ -306,7 +306,7 @@
 
       async function loadFlowItems() {
         // console.log('调用getFlowItemList');
-        let tdata = await getFlowItemList({ objEnum: 0 });
+        let tdata = await getFlowItemList({ objEnum: 3 });
         let tempArray = Array<FlowItemListItem>();
         for (let i = 0; i < tdata.length; i++) {
           tempArray.push(tdata[i]);
@@ -335,7 +335,7 @@
           subFlowTag.value = 3;
         } else {
           //debugger;
-          let tempcurrflowitems = flowItems.filter((a) => a.StartSta == selrows[0].C_STATE);
+          let tempcurrflowitems = flowItems.filter((a) => a.StartSta == selrows[0].CONT_STATE);
           currflowitems.push(...tempcurrflowitems);
           //console.log('审批事项', currflowitems);
           isActive.value = false;

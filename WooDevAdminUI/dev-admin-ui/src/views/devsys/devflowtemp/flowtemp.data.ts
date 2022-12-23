@@ -284,6 +284,9 @@ export const formSchema: FormSchema[] = [
     ifShow: false,
     component: 'InputNumber',
     colProps: { span: 24 },
+    componentProps: {
+      style: { width: '100%' },
+    },
   },
   {
     field: 'MAX_MONERY',
@@ -292,5 +295,8 @@ export const formSchema: FormSchema[] = [
     ifShow: false,
     component: 'InputNumber',
     colProps: { span: 24 },
+    componentProps: {
+      style: { width: '100%' },
+    },
   },
 ];
