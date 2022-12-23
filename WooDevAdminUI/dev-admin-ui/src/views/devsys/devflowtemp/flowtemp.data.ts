@@ -259,7 +259,7 @@ export const formSchema: FormSchema[] = [
       // use name as label
       labelField: 'NAME',
       // use id as value
-      valueField: 'StrId',
+      valueField: 'StrId', //StrId
       numberToString: false,
       // not request untill to select
       immediate: true,

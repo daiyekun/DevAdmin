@@ -59,7 +59,9 @@ namespace WooDev.Services
                 DEPART_IDS=a.DEPART_IDS,//部门
                 CATE_IDS=a.CATE_IDS,//类别IDs
                 FLOW_ITEMS=a.FLOW_ITEMS,//审批事项
-               
+                MAX_MONERY=a.MAX_MONERY,
+                MIN_MONERY = a.MIN_MONERY,
+
             });
             pageInfo.TotalCount = totalCount;
             var local = from a in list
@@ -77,6 +79,8 @@ namespace WooDev.Services
                             DEPART_IDS_LIST=StringHelper.String2ArrayInt(a.DEPART_IDS),
                             CATE_IDS_LIST= StringHelper.Strint2ArrayString1(a.CATE_IDS),//类别
                             FLOW_ITEMS_LIST=StringHelper.Strint2ArrayString1(a.FLOW_ITEMS),
+                            MAX_MONERY = a.MAX_MONERY,
+                            MIN_MONERY = a.MIN_MONERY,
                         };
             return new ResultPageData<DevFlowTempList>()
             {

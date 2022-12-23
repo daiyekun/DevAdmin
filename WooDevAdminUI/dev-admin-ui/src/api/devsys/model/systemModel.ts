@@ -15,6 +15,7 @@ export interface datadicListItem {
   SORT_NAME: string;
   REMARK: string;
   ORDER_NUM: number;
+  StrId: string; //字符ID
 }
 /**
  * 删除对象信息-列表操作删除公用

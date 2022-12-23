@@ -49,6 +49,9 @@ export interface flowTempListItem {
   REMARK: string;
   CODE: string;
   CREATE_TIME: string;
+  MIN_MONERY: number;
+
+  MAX_MONERY: number;
 }
 /**
  * 列表搜索

@@ -44,7 +44,7 @@
       const treeData = ref<TreeItem[]>([]);
       const treeDataCate = ref<TreeItem[]>([]);
 
-      const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
+      const [registerForm, { resetFields, setFieldsValue, validate, updateSchema }] = useForm({
         labelWidth: 90,
         schemas: formSchema,
         showActionButtonGroup: false,
@@ -63,19 +63,60 @@
 
         if (unref(isUpdate)) {
           //debugger;
-          console.log('setFieldsValue 绑定。。。。。');
-          // updateSchema({
-          //   field: 'OBJ_TYPE',
-          //   componentProps: {
-          //     value: data.record.OBJ_TYPE,
-          //   },
-          // });
-          setFieldsValue({
-            ...data.record,
-            OBJ_TYPE: data.record.OBJ_TYPE_Str,
+          updateSchema({
+            field: 'FLOW_ITEMS_LIST',
+            componentProps: {
+              params: { objEnum: data.record.OBJ_TYPE },
+            },
           });
-          selflowobj.value = data.record.OBJ_TYPE;
+          updateSchema({
+            field: 'CATE_IDS_LIST',
+            componentProps: {
+              params: { FlowObj: data.record.OBJ_TYPE },
+            },
+          });
+          switch (data.record.OBJ_TYPE) {
+            case 3: //合同
+              {
+                updateSchema({
+                  field: 'MIN_MONERY',
+                  componentProps: {},
+                  ifShow: true,
+                  defaultValue: data.record.MIN_MONERY,
+                });
+                updateSchema({
+                  field: 'MAX_MONERY',
+                  componentProps: {},
+                  ifShow: true,
+                  defaultValue: data.record.MAX_MONERY,
+                });
+              }
+              break;
+            default:
+              {
+                {
+                  updateSchema({
+                    field: 'MIN_MONERY',
+                    componentProps: {},
+                    ifShow: false,
+                    defaultValue: 0,
+                  });
+                  updateSchema({
+                    field: 'MAX_MONERY',
+                    componentProps: {},
+                    ifShow: false,
+                    defaultValue: 0,
+                  });
+                }
+              }
+              break;
+          }
         }
+        setFieldsValue({
+          ...data.record,
+          OBJ_TYPE: data.record.OBJ_TYPE_Str,
+        });
+        selflowobj.value = data.record.OBJ_TYPE;
       });
 
       const handleChange = (value: string[]) => {
@@ -89,8 +130,8 @@
           const values = await validate();
           setDrawerProps({ confirmLoading: true });
           // TODO custom api
-          console.log('模板提交对象===', values);
-          debugger;
+          // console.log('模板提交对象===', values);
+          // debugger;
           let formdata: FlowTempSaveInfo = {
             ID: values.ID,
             NAME: values.NAME,
@@ -100,7 +141,10 @@
             MIN_MONERY: values.MIN_MONERY,
             MAX_MONERY: values.MAX_MONERY,
             FLOW_ITEMS_LIST: JSON.parse(JSON.stringify(values.FLOW_ITEMS_LIST)).toString(),
-            DEPART_IDS_LIST: JSON.parse(JSON.stringify(values.DEPART_IDS_LIST)).checked.toString(),
+            DEPART_IDS_LIST:
+              JSON.parse(JSON.stringify(values.DEPART_IDS_LIST)).checked != undefined
+                ? JSON.parse(JSON.stringify(values.DEPART_IDS_LIST)).checked.toString()
+                : JSON.parse(JSON.stringify(values.DEPART_IDS_LIST)).toString(),
             CATE_IDS_LIST: JSON.parse(JSON.stringify(values.CATE_IDS_LIST)).toString(),
           };
           //debugger;
