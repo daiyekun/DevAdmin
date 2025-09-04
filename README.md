@@ -37,5 +37,7 @@
 
 ![权限分配](README.assets/%E6%9D%83%E9%99%90%E5%88%86%E9%85%8D.png)
 
-下载pdma 文档查看器：https://www.jb51.net/database/890504.html（建议这个）下载下来。把文档json加入就可以看到数据库设计文档了
+下载pdma 文档查看器：
+https://www.jb51.net/database/890504.html
+（建议这个）下载下来。把文档json加入就可以看到数据库设计文档了
 https://soft.3dmgame.com/down/264778.html（没测试过）
