@@ -37,10 +37,11 @@
 
 ![权限分配](README.assets/%E6%9D%83%E9%99%90%E5%88%86%E9%85%8D.png)
 
-下载pdma 文档查看器：
+下载pdma 文档查看器 用来查看数据库文档设计：
 https://www.jb51.net/database/890504.html
-（建议这个）下载下来。把文档json加入就可以看到数据库设计文档了
+（建议这个）下载下来。把文档json加入就可以看到数据库设计文档了。直接打开你下载的DevAdmin.pdma.json文件就可以看到下图效果
 https://soft.3dmgame.com/down/264778.html（没测试过）
+你也可以网络搜索“PDManer” 找个合适的下载，版本大概再V4.6以上
 打开效果如下：
 <img width="2525" height="1338" alt="image" src="https://github.com/user-attachments/assets/3d9a38a7-b440-4893-9d4c-4fabacc87aa3" />
 
